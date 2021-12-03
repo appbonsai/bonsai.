@@ -1,0 +1,12 @@
+name: bonsai 
+options: 
+    bundleIdPrefix: com.bonsai
+targets: 
+    bonsai: 
+        type: application
+        platform: iOS
+        deploymentTarget: "14.0"
+        sources:
+            - path: bonsai
+
+
