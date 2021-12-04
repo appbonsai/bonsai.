@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF478FEE4B88187D628D79 /* bonsaiApp.swift */; };
+		20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FD275BB25C00745114 /* BalanceFlowView.swift */; };
+		20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */; };
+		20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A60301275BB45C00745114 /* HomeControlsView.swift */; };
 		B3F6A7CBFFFFBE3762A0A582 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */; };
 		B69B6E5CE6B166BFF532C4A6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7B7DE7D9F963576BDEEF18 /* Preview Assets.xcassets */; };
 		FBBE1367E0F1DDB1CC1C13F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B06552218A79CCCA1C47A0DB /* Assets.xcassets */; };
@@ -15,6 +18,9 @@
 
 /* Begin PBXFileReference section */
 		1EF4F235E8B7138C6620EFB7 /* bonsai.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = bonsai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20A602FD275BB25C00745114 /* BalanceFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowView.swift; sourceTree = "<group>"; };
+		20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowViewContainer.swift; sourceTree = "<group>"; };
+		20A60301275BB45C00745114 /* HomeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControlsView.swift; sourceTree = "<group>"; };
 		38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3B7B7DE7D9F963576BDEEF18 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		55CF478FEE4B88187D628D79 /* bonsaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bonsaiApp.swift; sourceTree = "<group>"; };
@@ -22,9 +28,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		20A602FB275BB17000745114 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				20A602FD275BB25C00745114 /* BalanceFlowView.swift */,
+				20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */,
+				20A60301275BB45C00745114 /* HomeControlsView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		29672633605230A60F08B10B /* bonsai */ = {
 			isa = PBXGroup;
 			children = (
+				20A602FB275BB17000745114 /* Home */,
 				B06552218A79CCCA1C47A0DB /* Assets.xcassets */,
 				55CF478FEE4B88187D628D79 /* bonsaiApp.swift */,
 				38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */,
@@ -83,8 +100,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 66A5DCA6DF15EEE8C751620D /* Build configuration list for PBXProject "bonsai" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -121,7 +136,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3F6A7CBFFFFBE3762A0A582 /* ContentView.swift in Sources */,
+				20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */,
 				1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */,
+				20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */,
+				20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
