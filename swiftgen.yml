@@ -1,0 +1,6 @@
+xcassets:
+  inputs:
+    - bonsai/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: bonsai/SwiftGen/Assets.swift

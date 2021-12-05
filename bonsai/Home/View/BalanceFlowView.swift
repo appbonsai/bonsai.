@@ -11,6 +11,7 @@ import SwiftUI
 struct BalanceFlowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
+            Spacer()
             Text("Revenue")
                 .font(.system(size: 15))
                 .foregroundColor(BonsaiColor.green)
@@ -21,14 +22,19 @@ struct BalanceFlowView: View {
                 .padding(.top, 8)
 
             HStack(alignment: .firstTextBaseline, spacing: 6) {
-                Image(uiImage: #imageLiteral(resourceName: "arrow-green-up"))
+                Image(Asset.arrowGreenUp.name)
+                    .resizable()
+                    .frame(width: 12, height: 14)
                 Text("22% of target")
                     .font(.system(size: 15))
                     .foregroundColor(.white)
+                
+                Spacer()
             }
             .padding(.top, 8)
+            
+            Spacer()
         }
-        .frame(maxWidth: 171, maxHeight: 116, alignment: .leading)
         .padding(.leading, 16)
         .background(BonsaiColor.card)
         .cornerRadius(13)
@@ -38,5 +44,6 @@ struct BalanceFlowView: View {
 struct BalanceFlowView_Previews: PreviewProvider {
     static var previews: some View {
         BalanceFlowView()
+            .previewLayout(.fixed(width: 171, height: 116))
     }
 }

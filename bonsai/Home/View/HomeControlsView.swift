@@ -12,11 +12,17 @@ struct HomeControlsView: View {
     var body: some View {
         HStack {
             Spacer()
-            Image(uiImage: #imageLiteral(resourceName: "settings"))
+            Image(Asset.settings.name)
+                .resizable()
+                .frame(width: 20, height: 20)
             Spacer(minLength: 100)
-            Image(uiImage: #imageLiteral(resourceName: "home"))
+            Image(Asset.home.name)
+                .resizable()
+                .frame(width: 27, height: 25)
             Spacer(minLength: 100)
-            Image(uiImage: #imageLiteral(resourceName: "charts"))
+            Image(Asset.charts.name)
+                .resizable()
+                .frame(width: 20, height: 20)
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: 36.0)

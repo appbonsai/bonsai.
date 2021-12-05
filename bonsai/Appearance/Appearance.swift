@@ -8,66 +8,51 @@
 import Foundation
 import SwiftUI
 
-struct BonsaiColor {
+enum BonsaiColor {
     
     /*
      UIKit 1 column
      */
  
-    static let mainPurple = Color(hex: "9791FE")
-    static let purple2 = Color(hex: "A49FFE")
-    static let purple3 = Color(hex: "B1ACFE")
-    static let purple4 = Color(hex: "BEBAFE")
-    static let purple5 = Color(hex: "CBC8FE")
-    static let purple6 = Color(hex: "D8D6FF")
-    static let purple7 = Color(hex: "E5E3FF")
+    static let mainPurple = Color(hex: 0x9791FE)
+    static let purple2 = Color(hex: 0xA49FFE)
+    static let purple3 = Color(hex: 0xB1ACFE)
+    static let purple4 = Color(hex: 0xBEBAFE)
+    static let purple5 = Color(hex: 0xCBC8FE)
+    static let purple6 = Color(hex: 0xD8D6FF)
+    static let purple7 = Color(hex: 0xE5E3FF)
 
     /*
      UIKit 2 column
      */
-    static let disabled = Color(hex: "1D1C22")
-    static let green = Color(hex: "34CE8D")
-    static let text = Color(hex: "E5E3FF")
+    static let disabled = Color(hex: 0x1D1C22)
+    static let green = Color(hex: 0x34CE8D)
+    static let text = Color(hex: 0xE5E3FF)
     
     /*
      UIKit 3 column
      */
     
-    static let card = Color(hex: "292838")
-    static let blue = Color(hex: "34A0CE")
-    
+    static let card = Color(hex: 0x292838)
+    static let blue = Color(hex: 0x34A0CE)
+    static let blue_dark = Color(hex: 0x0052D4)
+    static let pink = Color(hex: 0xC84E89)
+
     /*
      UIKit 4 column
      */
-    static let back = Color(hex: "1D1C22")
-    static let secondary = Color(hex: "F86D70")
+    static let back = Color(hex: 0x1D1C22)
+    static let secondary = Color(hex: 0xF86D70)
+    static let blueLight = Color(hex: 0x1FA2FF)
+    static let orange = Color(hex: 0xFFE259)
 
 }
 
 extension Color {
-    
-    init(hex: String) {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (1, 1, 1, 0)
-        }
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue:  Double(b) / 255,
-            opacity: Double(a) / 255
-        )
+    init(hex: Int, opacity: Double = 1.0) {
+        let red = Double((hex & 0xff0000) >> 16) / 255.0
+        let green = Double((hex & 0xff00) >> 8) / 255.0
+        let blue = Double((hex & 0xff) >> 0) / 255.0
+        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
     }
-
 }
