@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF478FEE4B88187D628D79 /* bonsaiApp.swift */; };
+		2011525B275BCF7E003BEF0B /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2011525A275BCF7E003BEF0B /* Appearance.swift */; };
+		20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FD275BB25C00745114 /* BalanceFlowView.swift */; };
+		20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */; };
+		20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A60301275BB45C00745114 /* HomeControlsView.swift */; };
+		20EC47A4275D132F00881E0F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 20EC47A3275D132F00881E0F /* swiftgen.yml */; };
+		20EC47A7275D158500881E0F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EC47A6275D158500881E0F /* Assets.swift */; };
 		B3F6A7CBFFFFBE3762A0A582 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */; };
 		B69B6E5CE6B166BFF532C4A6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7B7DE7D9F963576BDEEF18 /* Preview Assets.xcassets */; };
 		FBBE1367E0F1DDB1CC1C13F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B06552218A79CCCA1C47A0DB /* Assets.xcassets */; };
@@ -15,6 +21,12 @@
 
 /* Begin PBXFileReference section */
 		1EF4F235E8B7138C6620EFB7 /* bonsai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bonsai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2011525A275BCF7E003BEF0B /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		20A602FD275BB25C00745114 /* BalanceFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowView.swift; sourceTree = "<group>"; };
+		20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowViewContainer.swift; sourceTree = "<group>"; };
+		20A60301275BB45C00745114 /* HomeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControlsView.swift; sourceTree = "<group>"; };
+		20EC47A3275D132F00881E0F /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		20EC47A6275D158500881E0F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3B7B7DE7D9F963576BDEEF18 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		55CF478FEE4B88187D628D79 /* bonsaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bonsaiApp.swift; sourceTree = "<group>"; };
@@ -22,9 +34,46 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		20115259275BCF5E003BEF0B /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				2011525A275BCF7E003BEF0B /* Appearance.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		2011525E275BE3C5003BEF0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20A602FD275BB25C00745114 /* BalanceFlowView.swift */,
+				20A60301275BB45C00745114 /* HomeControlsView.swift */,
+				20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		20A602FB275BB17000745114 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2011525E275BE3C5003BEF0B /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		20EC47A5275D14DC00881E0F /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				20EC47A6275D158500881E0F /* Assets.swift */,
+			);
+			path = SwiftGen;
+			sourceTree = "<group>";
+		};
 		29672633605230A60F08B10B /* bonsai */ = {
 			isa = PBXGroup;
 			children = (
+				20EC47A5275D14DC00881E0F /* SwiftGen */,
+				20115259275BCF5E003BEF0B /* Appearance */,
+				20A602FB275BB17000745114 /* Home */,
 				B06552218A79CCCA1C47A0DB /* Assets.xcassets */,
 				55CF478FEE4B88187D628D79 /* bonsaiApp.swift */,
 				38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */,
@@ -36,6 +85,7 @@
 		495275EEB16E2676388A824B = {
 			isa = PBXGroup;
 			children = (
+				20EC47A3275D132F00881E0F /* swiftgen.yml */,
 				29672633605230A60F08B10B /* bonsai */,
 				D804670F5A2CBA364C7979AD /* Products */,
 			);
@@ -108,6 +158,7 @@
 			files = (
 				FBBE1367E0F1DDB1CC1C13F2 /* Assets.xcassets in Resources */,
 				B69B6E5CE6B166BFF532C4A6 /* Preview Assets.xcassets in Resources */,
+				20EC47A4275D132F00881E0F /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +170,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3F6A7CBFFFFBE3762A0A582 /* ContentView.swift in Sources */,
+				20EC47A7275D158500881E0F /* Assets.swift in Sources */,
+				2011525B275BCF7E003BEF0B /* Appearance.swift in Sources */,
+				20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */,
 				1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */,
+				20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */,
+				20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,8 +186,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -189,7 +247,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_INFOPLIST_FILE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -251,7 +308,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_INFOPLIST_FILE = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -267,8 +323,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
