@@ -14,13 +14,13 @@ struct BonsaiColor {
      UIKit 1 column
      */
  
-    static let lilac1 = Color(hex: "9791FE")
-    static let lilac2 = Color(hex: "A49FFE")
-    static let lilac3 = Color(hex: "B1ACFE")
-    static let lilac4 = Color(hex: "BEBAFE")
-    static let lilac5 = Color(hex: "CBC8FE")
-    static let lilac6 = Color(hex: "D8D6FF")
-    static let lilac7 = Color(hex: "E5E3FF")
+    static let mainPurple = Color(hex: "9791FE")
+    static let purple2 = Color(hex: "A49FFE")
+    static let purple3 = Color(hex: "B1ACFE")
+    static let purple4 = Color(hex: "BEBAFE")
+    static let purple5 = Color(hex: "CBC8FE")
+    static let purple6 = Color(hex: "D8D6FF")
+    static let purple7 = Color(hex: "E5E3FF")
 
     /*
      UIKit 2 column
