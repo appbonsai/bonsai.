@@ -1,6 +1,6 @@
 # Flow
 
-#### Git flow
+## Git flow
 
 - default branch is **develop**
    - Consists of commits where each commit represents fully completed and reviewed task
@@ -15,18 +15,18 @@
    - Description
    - Affected parts of the project
 
-> > **Commit** in **develop** example:
-BS-01 Improve SomeService background fetch
+> **Commit** in **develop** example:
+> BS-01 Improve SomeService background fetch
 
-> > **Branch** example:
-feature/BS-01-some-service-bg-fetch
+> **Branch** example:
+> feature/BS-01-some-service-bg-fetch
 
-> > **Pull request** example:
-[BS-01]
+> **Pull request** example:
+> [BS-01]
 Improve SomeService background fetch
 Service app layer affected
 
-#### Trello flow
+## Trello flow
 
 - 1 feature = 1 epic
 - Task consists of:
@@ -35,22 +35,13 @@ Service app layer affected
    - Tag (bugfix/feature)
    - Epic link
 
-> > Epic examples:
+#### Epic examples:
 
-- > > Ассеты/фонт/локализация
-- > > Бизнес логика подсчета денег
-- Тесты
-
-- > > Главный экран
-- реализовать UI
-- реализовать логику
-
-- > > Экран с графиками
-- > > Экран с бюджетом
-- > > Экран ввода транзакции
-- > > Deployment (билды, заливка, сертификаты)
-- > > 3rd part libraries
-
-- Swiftgen
-
-
+- Ассеты/фонт/локализация
+- Бизнес логика подсчета денег
+- Главный экран
+- Экран с графиками
+- Экран с бюджетом
+- Экран ввода транзакции
+- Deployment (билды, заливка, сертификаты)
+- 3rd part libraries
