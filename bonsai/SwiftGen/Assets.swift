@@ -25,13 +25,15 @@ internal enum Asset {
   internal static let iconDark = ImageAsset(name: "icon-dark")
   internal static let iconLight = ImageAsset(name: "icon-light")
   internal static let icon = ImageAsset(name: "icon")
+  internal static let pawprint = ImageAsset(name: "pawprint")
   internal static let arrowGreenUp = ImageAsset(name: "arrow-green-up")
   internal static let arrowRedDown = ImageAsset(name: "arrow-red-down")
   internal static let charts = ImageAsset(name: "charts")
   internal static let home = ImageAsset(name: "home")
   internal static let settings = ImageAsset(name: "settings")
-  internal static let revenueGreen = ImageAsset(name: "revenue-green")
-  internal static let revenueViolet = ImageAsset(name: "revenue-violet")
+  internal static let trendingDown = ImageAsset(name: "trending_down")
+  internal static let trendingFlat = ImageAsset(name: "trending_flat")
+  internal static let trendingUp = ImageAsset(name: "trending_up")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
