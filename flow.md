@@ -8,7 +8,7 @@
    - History should never be rewritten
 - 1 task = 1 branch = 1 pull request - 1 commit to **develop**
    - mark bug tasks as bugfix/
-   - mark nornal tasks as feature/
+   - mark normal tasks as feature/
 - Merge requires 2 approval in pull request
 - Pull request consists of
    - Task tag
@@ -16,7 +16,7 @@
    - Affected parts of the project
 
 > **Commit** in **develop** example:
-> BS-01 Improve SomeService background fetch
+> [BS-01] Improve SomeService background fetch
 
 > **Branch** example:
 > feature/BS-01-some-service-bg-fetch
@@ -30,6 +30,7 @@ Service app layer affected
 
 - 1 feature = 1 epic
 - Task consists of:
+   - Task tag
    - Title
    - Description
    - Tag (bugfix/feature)
