@@ -82,6 +82,7 @@
 				20EC47A5275D14DC00881E0F /* SwiftGen */,
 				20115259275BCF5E003BEF0B /* Appearance */,
 				20A602FB275BB17000745114 /* Home */,
+				7E3262D2275E23F70045CEA0 /* Entity */,
 				7E3262D1275E23D10045CEA0 /* Data */,
 				B06552218A79CCCA1C47A0DB /* Assets.xcassets */,
 				55CF478FEE4B88187D628D79 /* bonsaiApp.swift */,
@@ -111,7 +112,6 @@
 		7E3262D1275E23D10045CEA0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				7E3262D2275E23F70045CEA0 /* Entity */,
 			);
 			path = Data;
 			sourceTree = "<group>";

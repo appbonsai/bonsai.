@@ -10,7 +10,7 @@ import Foundation
 struct Transaction: Identifiable {
     let id: UUID
 
-    let kind: Kind
+    let type: `Type`
     let account: Account
     let amount: Double
     let title: String?
@@ -20,7 +20,7 @@ struct Transaction: Identifiable {
 }
 
 extension Transaction {
-    enum Kind {
+    enum `Type` {
         case income
         case expense
         case transfer(toAccount: Account)
