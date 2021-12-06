@@ -47,6 +47,28 @@ public class Transaction: NSManagedObject, Identifiable {
         }
     }
 
+    @discardableResult convenience init(
+        context: NSManagedObjectContext,
+        id: UUID = UUID(),
+        amount: NSDecimalNumber,
+        title: String? = nil,
+        date: Date,
+        category: Category,
+        account: Account,
+        type: `Type`,
+        tags: Set<Tag>
+    ) {
+        self.init(context: context)
+        self.id = id
+        self.amount = amount
+        self.title = title
+        self.date = date
+        self.category = category
+        self.account = account
+        self.type = type
+        tags.forEach(addToTags(_:))
+    }
+
     @nonobjc class func fetchRequest() -> NSFetchRequest<Transaction> {
         return NSFetchRequest<Transaction>(entityName: "Transaction")
     }
