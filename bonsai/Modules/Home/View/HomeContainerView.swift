@@ -1,5 +1,5 @@
 //
-//  BalanceFlowViewContainer.swift
+//  HomeContainerView.swift
 //  bonsai
 //
 //  Created by hoang on 04.12.2021.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct BalanceFlowViewContainer: View {
+struct HomeContainerView: View {
     var body: some View {
         ZStack {
             BonsaiColor.back
@@ -43,8 +43,8 @@ struct BalanceFlowViewContainer: View {
     }
 }
 
-struct BalanceFlowViewContainer_Previews: PreviewProvider {
+struct HomeContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceFlowViewContainer()
+        HomeContainerView()
     }
 }

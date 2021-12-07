@@ -10,7 +10,7 @@
 		1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF478FEE4B88187D628D79 /* bonsaiApp.swift */; };
 		2011525B275BCF7E003BEF0B /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2011525A275BCF7E003BEF0B /* Appearance.swift */; };
 		20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FD275BB25C00745114 /* BalanceFlowView.swift */; };
-		20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */; };
+		20A60300275BB3A700745114 /* HomeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FF275BB3A700745114 /* HomeContainerView.swift */; };
 		20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A60301275BB45C00745114 /* HomeControlsView.swift */; };
 		20EC47A4275D132F00881E0F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 20EC47A3275D132F00881E0F /* swiftgen.yml */; };
 		20EC47A7275D158500881E0F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EC47A6275D158500881E0F /* Assets.swift */; };
@@ -25,7 +25,7 @@
 		1EF4F235E8B7138C6620EFB7 /* bonsai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bonsai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2011525A275BCF7E003BEF0B /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		20A602FD275BB25C00745114 /* BalanceFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowView.swift; sourceTree = "<group>"; };
-		20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowViewContainer.swift; sourceTree = "<group>"; };
+		20A602FF275BB3A700745114 /* HomeContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContainerView.swift; sourceTree = "<group>"; };
 		20A60301275BB45C00745114 /* HomeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControlsView.swift; sourceTree = "<group>"; };
 		20EC47A3275D132F00881E0F /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		20EC47A6275D158500881E0F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
@@ -49,9 +49,9 @@
 		2011525E275BE3C5003BEF0B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				20A602FD275BB25C00745114 /* BalanceFlowView.swift */,
+				88855563275F371800555272 /* Balance */,
 				20A60301275BB45C00745114 /* HomeControlsView.swift */,
-				20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */,
+				20A602FF275BB3A700745114 /* HomeContainerView.swift */,
 				8885555F275F2FCE00555272 /* Budget */,
 			);
 			path = View;
@@ -78,7 +78,7 @@
 			children = (
 				20EC47A5275D14DC00881E0F /* SwiftGen */,
 				20115259275BCF5E003BEF0B /* Appearance */,
-				20A602FB275BB17000745114 /* Home */,
+				88855562275F36BC00555272 /* Modules */,
 				B06552218A79CCCA1C47A0DB /* Assets.xcassets */,
 				55CF478FEE4B88187D628D79 /* bonsaiApp.swift */,
 				38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */,
@@ -111,6 +111,22 @@
 				88855560275F305000555272 /* BudgetCellView.swift */,
 			);
 			path = Budget;
+			sourceTree = "<group>";
+		};
+		88855562275F36BC00555272 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				20A602FB275BB17000745114 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		88855563275F371800555272 /* Balance */ = {
+			isa = PBXGroup;
+			children = (
+				20A602FD275BB25C00745114 /* BalanceFlowView.swift */,
+			);
+			path = Balance;
 			sourceTree = "<group>";
 		};
 		D804670F5A2CBA364C7979AD /* Products */ = {
@@ -188,7 +204,7 @@
 				20EC47A7275D158500881E0F /* Assets.swift in Sources */,
 				2011525B275BCF7E003BEF0B /* Appearance.swift in Sources */,
 				88855561275F305000555272 /* BudgetCellView.swift in Sources */,
-				20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */,
+				20A60300275BB3A700745114 /* HomeContainerView.swift in Sources */,
 				1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */,
 				20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */,
 				20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */,
