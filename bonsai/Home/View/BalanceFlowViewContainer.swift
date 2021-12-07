@@ -13,7 +13,7 @@ struct BalanceFlowViewContainer: View {
     var body: some View {
         ZStack {
             BonsaiColor.back
-            VStack(alignment: .center) {
+            VStack(alignment: .leading) {
                 HomeControlsView()
                 Text("$2,452.00")
                     .font(.system(size: 34))
@@ -24,6 +24,16 @@ struct BalanceFlowViewContainer: View {
                     BalanceFlowView()
                 }
                 .frame(height: 116)
+                
+                Text("Budget")
+                    .font(BonsaiFont.title_20)
+                    .foregroundColor(.white)
+                    .padding(.top, 32)
+                
+                BudgetView()
+                    .frame(height: 320)
+                    .cornerRadius(13)
+                
                 Spacer()
             }
             .padding(.horizontal, 16)

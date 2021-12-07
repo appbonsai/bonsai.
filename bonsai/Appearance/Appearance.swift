@@ -51,7 +51,6 @@ enum BonsaiColor {
     static let purple5 = Color(hex: 0xCBC8FE)
     static let purple6 = Color(hex: 0xD8D6FF)
     static let purple7 = Color(hex: 0xE5E3FF)
-    static let newPurple = Color(hex: 0x6C63FF)
 
     /*
      UIKit 2 column
@@ -76,7 +75,12 @@ enum BonsaiColor {
     static let secondary = Color(hex: 0xF86D70)
     static let blueLight = Color(hex: 0x1FA2FF)
     static let orange = Color(hex: 0xFFE259)
-
+    
+    /*
+     Not in UIKit
+     */
+    static let newPurple = Color(hex: 0x6C63FF)
+    static let separator = Color(hex: 0x343150)
 }
 
 extension Color {
