@@ -36,5 +36,7 @@ struct BalanceFlowViewContainer: View {
 struct BalanceFlowViewContainer_Previews: PreviewProvider {
     static var previews: some View {
         BalanceFlowViewContainer()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+            .previewDisplayName("iPhone 12")
     }
 }

@@ -9,16 +9,16 @@ import Foundation
 import SwiftUI
 
 enum BonsaiFont {
-    static let title_34 = UIFont.systemFont(ofSize: 34, weight: .init(rawValue: 700))
-    static let title_28 = UIFont.systemFont(ofSize: 28, weight: .init(rawValue: 700))
-    static let title_22 = UIFont.systemFont(ofSize: 22, weight: .init(rawValue: 700))
-    static let title_20 = UIFont.systemFont(ofSize: 20, weight: .init(rawValue: 600))
-    static let title_headline_17 = UIFont.systemFont(ofSize: 17, weight: .init(rawValue: 600))
-    static let body_17 = UIFont.systemFont(ofSize: 17, weight: .init(rawValue: 400))
-    static let subtitle_15 = UIFont.systemFont(ofSize: 15, weight: .init(rawValue: 600))
-    static let body_15 = UIFont.systemFont(ofSize: 15, weight: .init(rawValue: 400))
-    static let caption_12 = UIFont.systemFont(ofSize: 12, weight: .init(rawValue: 400))
-    static let caption_11 = UIFont.systemFont(ofSize: 11, weight: .init(rawValue: 400))
+    static let title_34 = Font(UIFont.systemFont(ofSize: 34, weight: .init(rawValue: 700)))
+    static let title_28 = Font(UIFont.systemFont(ofSize: 28, weight: .init(rawValue: 700)))
+    static let title_22 = Font(UIFont.systemFont(ofSize: 22, weight: .init(rawValue: 700)))
+    static let title_20 = Font(UIFont.systemFont(ofSize: 20, weight: .init(rawValue: 600)))
+    static let title_headline_17 = Font(UIFont.systemFont(ofSize: 17, weight: .init(rawValue: 600)))
+    static let body_17 = Font(UIFont.systemFont(ofSize: 17, weight: .init(rawValue: 400)))
+    static let subtitle_15 = Font(UIFont.systemFont(ofSize: 15, weight: .init(rawValue: 600)))
+    static let body_15 = Font(UIFont.systemFont(ofSize: 15, weight: .init(rawValue: 400)))
+    static let caption_12 = Font(UIFont.systemFont(ofSize: 12, weight: .init(rawValue: 400)))
+    static let caption_11 = Font(UIFont.systemFont(ofSize: 11, weight: .init(rawValue: 400)))
 }
 
 enum BonsaiImage {
@@ -36,6 +36,7 @@ enum BonsaiImage {
     static let category = UIImage(systemName: "folder")!
     static let tag = UIImage(systemName: "tag")!
     static let title = UIImage(systemName: "text.bubble")!
+    static let arrowUpCircle = UIImage(systemName: "arrow.up.circle")!
 }
 
 enum BonsaiColor {

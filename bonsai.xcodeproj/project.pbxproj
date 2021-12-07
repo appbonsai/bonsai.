@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF478FEE4B88187D628D79 /* bonsaiApp.swift */; };
 		2011525B275BCF7E003BEF0B /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2011525A275BCF7E003BEF0B /* Appearance.swift */; };
+		20482AFF275FED8F0052B2C8 /* BudgetDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20482AFE275FED8F0052B2C8 /* BudgetDetails.swift */; };
+		20482B01275FF8690052B2C8 /* BudgetFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20482B00275FF8690052B2C8 /* BudgetFlowView.swift */; };
+		20482B03275FFE940052B2C8 /* BudgetMoneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20482B02275FFE940052B2C8 /* BudgetMoneyTitleView.swift */; };
+		20482B05276000B20052B2C8 /* BudgetNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20482B04276000B20052B2C8 /* BudgetNameView.swift */; };
+		20482B0727600C020052B2C8 /* BudgetDragUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20482B0627600C020052B2C8 /* BudgetDragUpView.swift */; };
 		20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FD275BB25C00745114 /* BalanceFlowView.swift */; };
 		20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */; };
 		20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A60301275BB45C00745114 /* HomeControlsView.swift */; };
@@ -22,6 +27,11 @@
 /* Begin PBXFileReference section */
 		1EF4F235E8B7138C6620EFB7 /* bonsai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bonsai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2011525A275BCF7E003BEF0B /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		20482AFE275FED8F0052B2C8 /* BudgetDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetails.swift; sourceTree = "<group>"; };
+		20482B00275FF8690052B2C8 /* BudgetFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetFlowView.swift; sourceTree = "<group>"; };
+		20482B02275FFE940052B2C8 /* BudgetMoneyTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetMoneyTitleView.swift; sourceTree = "<group>"; };
+		20482B04276000B20052B2C8 /* BudgetNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetNameView.swift; sourceTree = "<group>"; };
+		20482B0627600C020052B2C8 /* BudgetDragUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDragUpView.swift; sourceTree = "<group>"; };
 		20A602FD275BB25C00745114 /* BalanceFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowView.swift; sourceTree = "<group>"; };
 		20A602FF275BB3A700745114 /* BalanceFlowViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceFlowViewContainer.swift; sourceTree = "<group>"; };
 		20A60301275BB45C00745114 /* HomeControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControlsView.swift; sourceTree = "<group>"; };
@@ -52,6 +62,26 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		20482AFD275FED7B0052B2C8 /* BudgetDetails */ = {
+			isa = PBXGroup;
+			children = (
+				20482B0827600C330052B2C8 /* View */,
+				20482AFE275FED8F0052B2C8 /* BudgetDetails.swift */,
+			);
+			path = BudgetDetails;
+			sourceTree = "<group>";
+		};
+		20482B0827600C330052B2C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20482B00275FF8690052B2C8 /* BudgetFlowView.swift */,
+				20482B02275FFE940052B2C8 /* BudgetMoneyTitleView.swift */,
+				20482B04276000B20052B2C8 /* BudgetNameView.swift */,
+				20482B0627600C020052B2C8 /* BudgetDragUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		20A602FB275BB17000745114 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +101,7 @@
 		29672633605230A60F08B10B /* bonsai */ = {
 			isa = PBXGroup;
 			children = (
+				20482AFD275FED7B0052B2C8 /* BudgetDetails */,
 				20EC47A5275D14DC00881E0F /* SwiftGen */,
 				20115259275BCF5E003BEF0B /* Appearance */,
 				20A602FB275BB17000745114 /* Home */,
@@ -170,12 +201,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3F6A7CBFFFFBE3762A0A582 /* ContentView.swift in Sources */,
+				20482B05276000B20052B2C8 /* BudgetNameView.swift in Sources */,
+				20482B0727600C020052B2C8 /* BudgetDragUpView.swift in Sources */,
 				20EC47A7275D158500881E0F /* Assets.swift in Sources */,
+				20482B03275FFE940052B2C8 /* BudgetMoneyTitleView.swift in Sources */,
 				2011525B275BCF7E003BEF0B /* Appearance.swift in Sources */,
+				20482B01275FF8690052B2C8 /* BudgetFlowView.swift in Sources */,
 				20A60300275BB3A700745114 /* BalanceFlowViewContainer.swift in Sources */,
 				1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */,
 				20A60302275BB45C00745114 /* HomeControlsView.swift in Sources */,
 				20A602FE275BB25C00745114 /* BalanceFlowView.swift in Sources */,
+				20482AFF275FED8F0052B2C8 /* BudgetDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
