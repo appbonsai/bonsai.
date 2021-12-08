@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct bonsaiApp: App {
+
+    @StateObject private var dataController = DataController.sharedInstance
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environment(\.persistentContainer, dataController.container)
         }
     }
 }
