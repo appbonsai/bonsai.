@@ -92,7 +92,7 @@ public class Transaction: NSManagedObject, Identifiable {
 }
 
 public extension Transaction {
-    enum `Type` {
+   enum `Type`: Equatable {
         case income
         case expense
         case transfer(toAccount: Account)
