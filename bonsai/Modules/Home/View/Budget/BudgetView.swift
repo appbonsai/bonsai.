@@ -10,35 +10,8 @@ import SwiftUI
 struct BudgetView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Circle() // needs update when charts will be ready
-                    .foregroundColor(BonsaiColor.text)
-                    .frame(width: 75, height: 75)
-                    .padding(.leading, 16)
-                
-                VStack(alignment: .leading) {
-                    Text("Money Spent")
-                        .font(BonsaiFont.body_17)
-                        .fontWeight(.regular)
-                        .foregroundColor(BonsaiColor.text)
-
-                    Text("$14.00")
-                        .font(BonsaiFont.title_28)
-                        .foregroundColor(.white)
-                    Text("out of $28")
-                        .font(BonsaiFont.body_15)
-                        .fontWeight(.regular)
-                        .foregroundColor(BonsaiColor.text)
-
-                }
-                .padding(.vertical, 28)
-                .padding(.leading, 16)
-                
-                Spacer()
-            }
-            .background(BonsaiColor.newPurple)
-            .cornerRadius(13)
-            .padding(.horizontal, -16)
+            BudgetHeaderView()
+                .padding(.horizontal, -16)
             
             Text("The most expensive categories")
                 .font(BonsaiFont.subtitle_15)

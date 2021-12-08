@@ -15,6 +15,7 @@
 		20EC47A4275D132F00881E0F /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 20EC47A3275D132F00881E0F /* swiftgen.yml */; };
 		20EC47A7275D158500881E0F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EC47A6275D158500881E0F /* Assets.swift */; };
 		88855561275F305000555272 /* BudgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88855560275F305000555272 /* BudgetCellView.swift */; };
+		88C7154F2760A8D0002E69F5 /* BudgetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C7154E2760A8D0002E69F5 /* BudgetHeaderView.swift */; };
 		88ED429E275F28FF0055B4D1 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88ED429D275F28FF0055B4D1 /* BudgetView.swift */; };
 		B3F6A7CBFFFFBE3762A0A582 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E9FAC0882AD6BBFCE12B1B /* ContentView.swift */; };
 		B69B6E5CE6B166BFF532C4A6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B7B7DE7D9F963576BDEEF18 /* Preview Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		3B7B7DE7D9F963576BDEEF18 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		55CF478FEE4B88187D628D79 /* bonsaiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bonsaiApp.swift; sourceTree = "<group>"; };
 		88855560275F305000555272 /* BudgetCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCellView.swift; sourceTree = "<group>"; };
+		88C7154E2760A8D0002E69F5 /* BudgetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetHeaderView.swift; sourceTree = "<group>"; };
 		88ED429D275F28FF0055B4D1 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
 		B06552218A79CCCA1C47A0DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 			children = (
 				88ED429D275F28FF0055B4D1 /* BudgetView.swift */,
 				88855560275F305000555272 /* BudgetCellView.swift */,
+				88C7154E2760A8D0002E69F5 /* BudgetHeaderView.swift */,
 			);
 			path = Budget;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				88ED429E275F28FF0055B4D1 /* BudgetView.swift in Sources */,
 				20EC47A7275D158500881E0F /* Assets.swift in Sources */,
 				2011525B275BCF7E003BEF0B /* Appearance.swift in Sources */,
+				88C7154F2760A8D0002E69F5 /* BudgetHeaderView.swift in Sources */,
 				88855561275F305000555272 /* BudgetCellView.swift in Sources */,
 				20A60300275BB3A700745114 /* HomeContainerView.swift in Sources */,
 				1B47516B4D27F5B9E0EA7B4F /* bonsaiApp.swift in Sources */,
@@ -229,7 +233,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bonsai.mrvalter566;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appbonsai.bonsai;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -367,7 +371,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bonsai.mrvalter566;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appbonsai.bonsai;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
