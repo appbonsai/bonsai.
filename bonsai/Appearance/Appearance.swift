@@ -36,6 +36,7 @@ enum BonsaiImage {
     static let category = UIImage(systemName: "folder")!
     static let tag = UIImage(systemName: "tag")!
     static let title = UIImage(systemName: "text.bubble")!
+    static let arrowUpCircle = UIImage(systemName: "arrow.up.circle")!
 }
 
 enum BonsaiColor {
