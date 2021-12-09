@@ -9,16 +9,16 @@ import Foundation
 import SwiftUI
 
 enum BonsaiFont {
-    static let title_34 = Font(UIFont.systemFont(ofSize: 34, weight: .init(rawValue: 700)))
-    static let title_28 = Font(UIFont.systemFont(ofSize: 28, weight: .init(rawValue: 700)))
-    static let title_22 = Font(UIFont.systemFont(ofSize: 22, weight: .init(rawValue: 700)))
-    static let title_20 = Font(UIFont.systemFont(ofSize: 20, weight: .init(rawValue: 600)))
-    static let title_headline_17 = Font(UIFont.systemFont(ofSize: 17, weight: .init(rawValue: 600)))
-    static let body_17 = Font(UIFont.systemFont(ofSize: 17, weight: .init(rawValue: 400)))
-    static let subtitle_15 = Font(UIFont.systemFont(ofSize: 15, weight: .init(rawValue: 600)))
-    static let body_15 = Font(UIFont.systemFont(ofSize: 15, weight: .init(rawValue: 400)))
-    static let caption_12 = Font(UIFont.systemFont(ofSize: 12, weight: .init(rawValue: 400)))
-    static let caption_11 = Font(UIFont.systemFont(ofSize: 11, weight: .init(rawValue: 400)))
+    static let title_34 = Font.system(size: 34, weight: .bold)
+    static let title_28 = Font.system(size: 28, weight: .bold)
+    static let title_22 = Font.system(size: 22, weight: .bold)
+    static let title_20 = Font.system(size: 20, weight: .bold)
+    static let title_headline_17 = Font.system(size: 34, weight: .bold)
+    static let body_17 = Font.system(size: 17)
+    static let subtitle_15 = Font.system(size: 15, weight: .bold)
+    static let body_15 = Font.system(size: 15)
+    static let caption_12 = Font.system(size: 12)
+    static let caption_11 = Font.system(size: 11)
 }
 
 enum BonsaiImage {
@@ -76,7 +76,12 @@ enum BonsaiColor {
     static let secondary = Color(hex: 0xF86D70)
     static let blueLight = Color(hex: 0x1FA2FF)
     static let orange = Color(hex: 0xFFE259)
-
+    
+    /*
+     Not in UIKit
+     */
+    static let newPurple = Color(hex: 0x6C63FF)
+    static let separator = Color(hex: 0x343150)
 }
 
 extension Color {
