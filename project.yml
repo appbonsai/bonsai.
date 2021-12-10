@@ -1,13 +1,14 @@
 name: bonsai 
 options: 
-    bundleIdPrefix: com.bonsai
+  bundleIdPrefix: com.bonsai
 targets: 
-    bonsai: 
-        type: application
-        platform: iOS
-        deploymentTarget: "14.0"
-        sources: bonsai
-        settings: 
-            GENERATE_INFOPLIST_FILE: true 
-
-
+  bonsai:
+    type: application
+    platform: iOS
+    deploymentTarget: "14.0"
+    sources: bonsai
+    settings:
+      base:
+        MARKETING_VERSION: 1.0
+        CURRENT_PROJECT_VERSION: 1
+        GENERATE_INFOPLIST_FILE: true
