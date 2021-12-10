@@ -14,7 +14,8 @@ targets:
         GENERATE_INFOPLIST_FILE: true
     dependencies:
       - package: swift-collections
+        product: OrderedCollections
 packages:
   swift-collections:
-    url: https://github.com/apple/swift-collections.git
+    url: https://github.com/apple/swift-collections
     from: 1.0.0
