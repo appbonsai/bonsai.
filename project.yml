@@ -12,3 +12,9 @@ targets:
         MARKETING_VERSION: 1.0
         CURRENT_PROJECT_VERSION: 1
         GENERATE_INFOPLIST_FILE: true
+    dependencies:
+      - package: swift-collections
+packages:
+  swift-collections:
+    url: https://github.com/apple/swift-collections.git
+    from: 1.0.0
