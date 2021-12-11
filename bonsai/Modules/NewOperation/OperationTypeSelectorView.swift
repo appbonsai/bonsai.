@@ -10,18 +10,10 @@ import OrderedCollections
 
 struct OperationTypeSelectorView: View {
 
-    typealias Operation = OperationTypeView.OperationType
+    typealias Operation = NewOperationView.OperationType
 
-    private let operations: OrderedSet<Operation>
+    let operations: OrderedSet<Operation>
     @Binding var selectedOperation: Operation
-
-    init(
-        operations: OrderedSet<Operation>,
-        selected: Binding<Operation>
-    ) {
-        self.operations = operations
-        self._selectedOperation = selected
-    }
 
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
@@ -41,7 +33,7 @@ struct OperationTypeSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         OperationTypeSelectorView(
             operations: [.expense, .income, .transfer],
-            selected: .constant(.expense)
+            selectedOperation: .constant(.expense)
         )
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")

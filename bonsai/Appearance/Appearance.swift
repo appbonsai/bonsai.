@@ -31,7 +31,7 @@ enum BonsaiImage {
     static let graduationcapCircleFill = UIImage(systemName: "graduationcap.circle.fill")!
     static let graduationcapCircle = UIImage(systemName: "graduationcap.circle")!
     static let pawprintFill = UIImage(systemName: "pawprint.fill")!
-    static let amount = UIImage(systemName: "dollarsign.circle")!
+    static let amount = UIImage(systemName: "dollarsign.circle")!.withRenderingMode(.alwaysTemplate)
     static let calendar = UIImage(systemName: "calendar")!
     static let category = UIImage(systemName: "folder")!
     static let tag = UIImage(systemName: "tag")!
@@ -82,6 +82,7 @@ enum BonsaiColor {
      */
     static let newPurple = Color(hex: 0x6C63FF)
     static let separator = Color(hex: 0x343150)
+    static let prompt = Color(hex: 0x686599)
 }
 
 extension Color {

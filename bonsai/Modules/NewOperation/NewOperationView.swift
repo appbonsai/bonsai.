@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewOperationView: View {
 
-    @State var selectedOperation: OperationTypeSelectorView.Operation = .expense
+    @State var selectedOperation: OperationType = .expense
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -31,7 +31,7 @@ struct NewOperationView: View {
                             .padding(.init(top: 0, leading: 0, bottom: 8, trailing: 0))
                         OperationTypeSelectorView(
                             operations: [.expense, .income, .transfer],
-                            selected: $selectedOperation
+                            selectedOperation: $selectedOperation
                         )
                     }
                     .padding(
