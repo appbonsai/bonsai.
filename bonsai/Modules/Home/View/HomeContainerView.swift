@@ -15,8 +15,6 @@ struct HomeContainerView: View {
             BonsaiColor.back
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    HomeControlsView()
-                        .padding(.top)
                     Text("$2,452.00")
                         .font(.system(size: 34))
                         .frame(maxWidth: .infinity, alignment: .leading)
