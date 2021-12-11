@@ -10,6 +10,7 @@ import SwiftUI
 struct NewOperationView: View {
 
     @State var selectedOperation: OperationType = .expense
+    @State var amount: String = ""
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -24,24 +25,19 @@ struct NewOperationView: View {
                     .ignoresSafeArea()
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .center, spacing: 0) {
-                        Text("Type")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(BonsaiFont.title_22)
-                            .foregroundColor(BonsaiColor.text)
-                            .padding(.init(top: 0, leading: 0, bottom: 8, trailing: 0))
                         OperationTypeSelectorView(
                             operations: [.expense, .income, .transfer],
                             selectedOperation: $selectedOperation
                         )
-                    }
-                    .padding(
-                        .init(
-                            top: 16,
-                            leading: 16,
-                            bottom: 0,
-                            trailing: 16
+                            .padding([.bottom], 12)
+                        AmountView(
+                            operation: selectedOperation,
+                            text: $amount
                         )
-                    )
+                            .cornerRadius(13)
+                            .padding([.top], 12)
+                    }
+                    .padding([.top, .leading, .trailing], 16)
                 }
             }
             .navigationTitle("New Operation")
