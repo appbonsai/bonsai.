@@ -7,11 +7,15 @@ targets:
     platform: iOS
     deploymentTarget: "14.0"
     sources: bonsai
+    info:
+      path: bonsai/Info.plist
+      properties:
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UILaunchStoryboardName: LaunchScreen
     settings:
       base:
         MARKETING_VERSION: 1.0
         CURRENT_PROJECT_VERSION: 1
-        GENERATE_INFOPLIST_FILE: true
     dependencies:
       - package: swift-collections
         product: OrderedCollections
