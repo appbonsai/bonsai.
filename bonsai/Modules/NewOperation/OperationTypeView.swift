@@ -27,16 +27,16 @@ struct OperationTypeView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             Spacer(minLength: 4)
-            operation.image
+            operation.viewModel.image
                 .foregroundColor({
                     if isSelected {
                         return BonsaiColor.mainPurple
                     } else {
-                        return operation.imageColor
+                        return operation.viewModel.imageColor
                     }
                 }())
                 .padding([.top, .bottom], 7)
-            Text(operation.title)
+            Text(operation.viewModel.title)
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor({
                     if isSelected {
@@ -79,36 +79,32 @@ struct OperationTypeView_Previews: PreviewProvider {
 }
 
 fileprivate extension OperationTypeView.OperationType {
-    var imageColor: Color {
-        switch self {
-        case .expense:
-            return BonsaiColor.secondary
-        case .income:
-            return BonsaiColor.green
-        case .transfer:
-            return BonsaiColor.blue
-        }
+    struct ViewModel {
+        let imageColor: Color
+        let image: Image
+        let title: String
     }
 
-    var image: Image {
+    var viewModel: ViewModel {
         switch self {
         case .expense:
-            return Image(uiImage: Asset.trendingDown.image)
+            return .init(
+                imageColor: BonsaiColor.secondary,
+                image: Image(uiImage: Asset.trendingDown.image),
+                title: "Expense"
+            )
         case .income:
-            return Image(uiImage: Asset.trendingUp.image)
+            return .init(
+                imageColor: BonsaiColor.green,
+                image: Image(uiImage: Asset.trendingUp.image),
+                title: "Revenue"
+            )
         case .transfer:
-            return Image(uiImage: Asset.trendingFlat.image)
-        }
-    }
-
-    var title: String {
-        switch self {
-        case .expense:
-            return "Expense"
-        case .income:
-            return "Revenue"
-        case .transfer:
-            return "Transfer"
+            return .init(
+                imageColor: BonsaiColor.blue,
+                image: Image(uiImage: Asset.trendingFlat.image),
+                title: "Transfer"
+            )
         }
     }
 }
