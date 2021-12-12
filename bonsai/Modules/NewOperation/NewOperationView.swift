@@ -9,7 +9,10 @@ import SwiftUI
 
 struct NewOperationView: View {
 
-    @State var selectedOperation: OperationTypeSelectorView.Operation = .expense
+    @State var selectedOperation: OperationType = .expense
+    @State var amount: String = ""
+    @State var category: Category?
+    @State var title: String = ""
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -24,24 +27,31 @@ struct NewOperationView: View {
                     .ignoresSafeArea()
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .center, spacing: 0) {
-                        Text("Type")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(BonsaiFont.title_22)
-                            .foregroundColor(BonsaiColor.text)
-                            .padding(.init(top: 0, leading: 0, bottom: 8, trailing: 0))
                         OperationTypeSelectorView(
                             operations: [.expense, .income, .transfer],
-                            selected: $selectedOperation
+                            selectedOperation: $selectedOperation
                         )
+                            .padding([.bottom], 12)
+                        AmountView(
+                            operation: selectedOperation,
+                            text: $amount
+                        )
+                            .cornerRadius(13)
+                            .padding([.top], 12)
+                        CategoryView(category: $category)
+                            .cornerRadius(13, corners: [.topLeft, .topRight])
+                            .padding([.top], 16)
+                        ZStack { // separator
+                            BonsaiColor.card
+                                .frame(height: 1)
+                            BonsaiColor.separator
+                                .frame(height: 1)
+                                .padding([.leading, .trailing], 16)
+                        }
+                        TitleView(text: $title)
+                            .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
                     }
-                    .padding(
-                        .init(
-                            top: 16,
-                            leading: 16,
-                            bottom: 0,
-                            trailing: 16
-                        )
-                    )
+                    .padding([.top, .leading, .trailing], 16)
                 }
             }
             .navigationTitle("New Operation")

@@ -7,22 +7,9 @@
 
 import SwiftUI
 
-extension OperationTypeView {
-    enum OperationType {
-        case expense
-        case income
-        case transfer
-    }
-}
-
 struct OperationTypeView: View {
-    private let operation: OperationType
-    private let isSelected: Bool
-
-    init(operation: OperationType, isSelected: Bool) {
-        self.operation = operation
-        self.isSelected = isSelected
-    }
+    let operation: NewOperationView.OperationType
+    let isSelected: Bool
 
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
@@ -32,7 +19,7 @@ struct OperationTypeView: View {
                     if isSelected {
                         return BonsaiColor.mainPurple
                     } else {
-                        return operation.viewModel.imageColor
+                        return operation.viewModel.color
                     }
                 }())
                 .padding([.top, .bottom], 7)
@@ -75,36 +62,5 @@ struct OperationTypeView_Previews: PreviewProvider {
         )
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")
-    }
-}
-
-fileprivate extension OperationTypeView.OperationType {
-    struct ViewModel {
-        let imageColor: Color
-        let image: Image
-        let title: String
-    }
-
-    var viewModel: ViewModel {
-        switch self {
-        case .expense:
-            return .init(
-                imageColor: BonsaiColor.secondary,
-                image: Image(uiImage: Asset.trendingDown.image),
-                title: "Expense"
-            )
-        case .income:
-            return .init(
-                imageColor: BonsaiColor.green,
-                image: Image(uiImage: Asset.trendingUp.image),
-                title: "Revenue"
-            )
-        case .transfer:
-            return .init(
-                imageColor: BonsaiColor.blue,
-                image: Image(uiImage: Asset.trendingFlat.image),
-                title: "Transfer"
-            )
-        }
     }
 }
