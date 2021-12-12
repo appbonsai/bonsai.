@@ -38,6 +38,7 @@ enum BonsaiImage {
     static let title = UIImage(systemName: "text.bubble")!
     static let arrowUpCircle = UIImage(systemName: "arrow.up.circle")!
     static let chevronForward = Image(systemName: "chevron.forward").renderingMode(.template)
+    static let textBubble = Image(systemName: "text.bubble").renderingMode(.template)
 }
 
 enum BonsaiColor {
