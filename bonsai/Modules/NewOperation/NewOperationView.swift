@@ -11,6 +11,7 @@ struct NewOperationView: View {
 
     @State var selectedOperation: OperationType = .expense
     @State var amount: String = ""
+    @State var category: Category?
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -36,6 +37,9 @@ struct NewOperationView: View {
                         )
                             .cornerRadius(13)
                             .padding([.top], 12)
+                        CategoryView(category: $category)
+                            .cornerRadius(13)
+                            .padding([.top], 16)
                     }
                     .padding([.top, .leading, .trailing], 16)
                 }
