@@ -33,10 +33,12 @@ enum BonsaiImage {
     static let pawprintFill = UIImage(systemName: "pawprint.fill")!
     static let amount = UIImage(systemName: "dollarsign.circle")!.withRenderingMode(.alwaysTemplate)
     static let calendar = UIImage(systemName: "calendar")!
-    static let category = UIImage(systemName: "folder")!
+    static let category = UIImage(systemName: "folder")!.withRenderingMode(.alwaysTemplate)
     static let tag = UIImage(systemName: "tag")!
     static let title = UIImage(systemName: "text.bubble")!
     static let arrowUpCircle = UIImage(systemName: "arrow.up.circle")!
+    static let chevronForward = Image(systemName: "chevron.forward").renderingMode(.template)
+    static let textBubble = Image(systemName: "text.bubble").renderingMode(.template)
 }
 
 enum BonsaiColor {

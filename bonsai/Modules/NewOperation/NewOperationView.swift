@@ -11,6 +11,8 @@ struct NewOperationView: View {
 
     @State var selectedOperation: OperationType = .expense
     @State var amount: String = ""
+    @State var category: Category?
+    @State var title: String = ""
 
     init() {
         let navBarAppearance = UINavigationBar.appearance()
@@ -36,6 +38,18 @@ struct NewOperationView: View {
                         )
                             .cornerRadius(13)
                             .padding([.top], 12)
+                        CategoryView(category: $category)
+                            .cornerRadius(13, corners: [.topLeft, .topRight])
+                            .padding([.top], 16)
+                        ZStack { // separator
+                            BonsaiColor.card
+                                .frame(height: 1)
+                            BonsaiColor.separator
+                                .frame(height: 1)
+                                .padding([.leading, .trailing], 16)
+                        }
+                        TitleView(text: $title)
+                            .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
                     }
                     .padding([.top, .leading, .trailing], 16)
                 }

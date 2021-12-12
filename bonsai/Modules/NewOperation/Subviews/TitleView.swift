@@ -1,45 +1,41 @@
 //
-//  AmountView.swift
+//  TitleView.swift
 //  bonsai
 //
-//  Created by Vladimir Korolev on 11.12.2021.
+//  Created by Vladimir Korolev on 12.12.2021.
 //
 
 import SwiftUI
 
-struct AmountView: View {
+struct TitleView: View {
 
-    let operation: Operation
     @Binding var text: String
 
     var body: some View {
         HStack(spacing: 8) {
-            Image(uiImage: BonsaiImage.amount)
-                .foregroundColor(operation.viewModel.color)
+            BonsaiImage.textBubble
+                .foregroundColor(BonsaiColor.purple3)
                 .padding([.leading, .top, .bottom], 16)
             TextField("", text: $text)
                 .font(BonsaiFont.body_17)
                 .modifier(
                     PlaceholderStyle(
-                        showPlaceHolder: $text.wrappedValue.isEmpty,
-                        placeholder: "Amount",
+                        showPlaceHolder: text.isEmpty,
+                        placeholder: "Title",
                         placeholderColor: BonsaiColor.prompt,
-                        contentColor: operation.viewModel.color
+                        contentColor: BonsaiColor.purple3
                     )
                 )
+                .padding([.trailing], 16)
         }
         .background(BonsaiColor.card)
     }
 }
 
-struct AmountView_Previews: PreviewProvider {
+struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        AmountView(operation: .expense, text: .constant(""))
+        TitleView(text: .constant(""))
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")
     }
-}
-
-extension AmountView {
-    typealias Operation = NewOperationView.OperationType
 }
