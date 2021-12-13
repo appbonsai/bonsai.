@@ -13,7 +13,7 @@ enum BonsaiFont {
     static let title_28 = Font.system(size: 28, weight: .bold)
     static let title_22 = Font.system(size: 22, weight: .bold)
     static let title_20 = Font.system(size: 20, weight: .bold)
-    static let title_headline_17 = Font.system(size: 34, weight: .bold)
+    static let title_headline_17 = Font.system(size: 17, weight: .bold)
     static let body_17 = Font.system(size: 17)
     static let subtitle_15 = Font.system(size: 15, weight: .bold)
     static let body_15 = Font.system(size: 15)
