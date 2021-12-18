@@ -40,6 +40,7 @@ enum BonsaiImage {
     static let chevronForward = Image(systemName: "chevron.forward").renderingMode(.template)
     static let chevronDown = Image(systemName: "chevron.down").renderingMode(.template)
     static let textBubble = Image(systemName: "text.bubble").renderingMode(.template)
+    static let xmark = Image(systemName: "xmark").renderingMode(.template)
 }
 
 enum BonsaiColor {
@@ -59,7 +60,7 @@ enum BonsaiColor {
     /*
      UIKit 2 column
      */
-    static let disabled = Color(hex: 0x1D1C22)
+    static let disabled = Color(hex: 0x4E4B76)
     static let green = Color(hex: 0x34CE8D)
     static let text = Color(hex: 0xE5E3FF)
     
