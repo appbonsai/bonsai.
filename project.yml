@@ -7,12 +7,19 @@ targets:
     platform: iOS
     deploymentTarget: "14.0"
     sources: bonsai
-    settings:
-      base:
-        MARKETING_VERSION: 1.0
-        CURRENT_PROJECT_VERSION: 1
     info:
       path: bonsai/Info.plist
       properties:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UILaunchStoryboardName: LaunchScreen
+    settings:
+      base:
+        MARKETING_VERSION: 1.0
+        CURRENT_PROJECT_VERSION: 1
+    dependencies:
+      - package: swift-collections
+        product: OrderedCollections
+packages:
+  swift-collections:
+    url: https://github.com/apple/swift-collections
+    from: 1.0.0
