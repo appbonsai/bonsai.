@@ -19,6 +19,16 @@ targets:
     dependencies:
       - package: swift-collections
         product: OrderedCollections
+  BudgetTests:
+    platform: iOS
+    type: bundle.unit-test
+    sources:
+      - BudgetTests/
+    dependencies:
+      - target: bonsai
+    scheme:
+      testTargets:
+        - BudgetTests
 packages:
   swift-collections:
     url: https://github.com/apple/swift-collections
