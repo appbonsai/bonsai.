@@ -33,11 +33,12 @@ struct CreateCategoryView: View {
                .ignoresSafeArea()
             VStack {
                TextField("", text: $title)
-                  .onReceive(title.publisher.collect(), perform: {
-                     if $0.count > characterLimit {
-                        title = String($0.prefix(characterLimit))
-                     }
-                  })
+                  .modifier(
+                     CharacterLimit(
+                        text: $title,
+                        limit: characterLimit
+                     )
+                  )
                   .frame(height: 50, alignment: .center)
                   .padding([.leading], 16)
                   .font(BonsaiFont.body_17)
@@ -54,27 +55,7 @@ struct CreateCategoryView: View {
                   .cornerRadius(13)
                   .padding([.leading, .trailing], 16)
 
-               HStack {
-                  ForEach($colors.wrappedValue.keys) { color in
-                     let isSelected = colors[color] ?? false
-                     CategoryColorView(
-                        isSelected: isSelected,
-                        color: color
-                     )
-                        .padding(.horizontal, 8)
-                        .onTapGesture {
-                           colors.forEach {
-                              if $0.key == color {
-                                 if $0.value == false {
-                                    colors[$0.key] = true
-                                 }
-                              } else if $0.value == true {
-                                 colors[$0.key] = false
-                              }
-                           }
-                        }
-                  }
-               }
+               CategoryColorSelectorView(colors: $colors)
 
                Button("Create") {
                   print("create")
