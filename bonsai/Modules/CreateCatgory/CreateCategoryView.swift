@@ -6,22 +6,31 @@
 //
 
 import SwiftUI
+import OrderedCollections
 
 struct CreateCategoryView: View {
 
    @State private var title: String = ""
    private let characterLimit = 16
+
+   // [color: isSelected]
+   @State private var colors: OrderedDictionary<Color, Bool> = [
+      BonsaiColor.green: false,
+      BonsaiColor.blue: false,
+      BonsaiColor.secondary: false,
+      BonsaiColor.text: false
+   ]
    
    init() {
-       UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-       UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+      UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+      UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
    }
 
    var body: some View {
       NavigationView {
          ZStack {
             BonsaiColor.back
-                .ignoresSafeArea()
+               .ignoresSafeArea()
             VStack {
                TextField("", text: $title)
                   .onReceive(title.publisher.collect(), perform: {
@@ -45,10 +54,32 @@ struct CreateCategoryView: View {
                   .cornerRadius(13)
                   .padding([.leading, .trailing], 16)
 
-                  Button("Create") {
-                     print("create")
+               HStack {
+                  ForEach($colors.wrappedValue.keys) { color in
+                     let isSelected = colors[color] ?? false
+                     CategoryColorView(
+                        isSelected: isSelected,
+                        color: color
+                     )
+                        .padding(.horizontal, 8)
+                        .onTapGesture {
+                           colors.forEach {
+                              if $0.key == color {
+                                 if $0.value == false {
+                                    colors[$0.key] = true
+                                 }
+                              } else if $0.value == true {
+                                 colors[$0.key] = false
+                              }
+                           }
+                        }
                   }
-                  .buttonStyle(PrimaryButtonStyle())
+               }
+
+               Button("Create") {
+                  print("create")
+               }
+               .buttonStyle(PrimaryButtonStyle())
             }
             .navigationTitle("New category")
          }
