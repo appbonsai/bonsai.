@@ -8,6 +8,10 @@
 import SwiftUI
 import OrderedCollections
 
+fileprivate extension CreateCategoryView {
+   typealias Icon = Category.Icon
+}
+
 struct CreateCategoryView: View {
 
    @State private var title: String = ""
@@ -15,11 +19,19 @@ struct CreateCategoryView: View {
 
    // [color: isSelected]
    @State private var colors: OrderedDictionary<Color, Bool> = [
-      BonsaiColor.green: false,
+      BonsaiColor.green: true,
       BonsaiColor.blue: false,
       BonsaiColor.secondary: false,
       BonsaiColor.text: false
    ]
+
+   // [iconName: isSelected]
+   @State private var icons = Icon.allCases.reduce(OrderedDictionary<Icon, Bool>())
+   { partialResult, icon in
+      var res = partialResult
+      res[icon] = false
+      return res
+   }
    
    init() {
       UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -56,6 +68,12 @@ struct CreateCategoryView: View {
                   .padding([.leading, .trailing], 16)
 
                CategoryColorSelectorView(colors: $colors)
+
+               CategoryIconSelectorView(
+                  icons: $icons,
+                  selectedColor: colors.first(where: { $0.value == true })?.key
+               )
+                  .padding()
 
                Button("Create") {
                   print("create")

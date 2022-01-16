@@ -41,6 +41,10 @@ extension Category {
       case paintPalette = "paintpalette.fill"
       case gift = "gift.fill"
       case display = "display"
+      case play = "play.fill"
+      case banknote = "banknote.fill"
+      case mic = "mic.fill"
+      case docText = "doc.text.fill"
 
       var img: Image { .init(systemName: rawValue) }
 
