@@ -20,13 +20,11 @@ struct AmountView: View {
             .padding([.leading, .top, .bottom], 16)
          TextField("", text: $text)
             .font(BonsaiFont.body_17)
-            .modifier(
-               PlaceholderStyle(
-                  showPlaceHolder: text.isEmpty,
-                  placeholder: "Amount",
-                  placeholderColor: BonsaiColor.prompt,
-                  contentColor: operation.viewModel.color
-               )
+            .foregroundColor(operation.viewModel.color)
+            .placeholder(
+               Text("Amount")
+                  .foregroundColor(BonsaiColor.prompt),
+               show: text.isEmpty
             )
             .modifier(
                CharacterLimit(

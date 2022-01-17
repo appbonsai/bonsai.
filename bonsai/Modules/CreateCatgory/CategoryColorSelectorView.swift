@@ -13,14 +13,14 @@ struct CategoryColorSelectorView: View {
    @Binding private(set) var colors: OrderedDictionary<Color, Bool>
 
    var body: some View {
-      HStack {
+      LazyHGrid(rows: [GridItem(.flexible())]) {
          ForEach($colors.wrappedValue.keys) { color in
             let isSelected = colors[color] ?? false
             CategoryColorView(
                isSelected: isSelected,
                color: color
             )
-               .padding(12)
+               .frame(width: 44, height: 44, alignment: .center)
                .onTapGesture {
                   colors.forEach {
                      if $0.key == color {
@@ -34,6 +34,7 @@ struct CategoryColorSelectorView: View {
                }
          }
       }
+      .padding([.top, .bottom], 8)
       .frame(maxWidth: .infinity)
       .background(BonsaiColor.card)
    }

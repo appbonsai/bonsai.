@@ -17,33 +17,37 @@ struct CategoryIconSelectorView: View {
       GridItem(.flexible()),
       GridItem(.flexible()),
       GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible()),
       GridItem(.flexible())
    ]
 
    var body: some View {
-      ScrollView {
-         LazyVGrid(columns: grid) {
-            ForEach(icons.keys) { iconName in
-               let isSelected = icons[iconName] ?? false
-               CategoryIconView(
-                  isSelected: isSelected,
-                  icon: iconName.img,
-                  color: selectedColor ?? BonsaiColor.green
-               )
-                  .onTapGesture {
-                     icons.forEach {
-                        if $0.key == iconName {
-                           if $0.value == false {
-                              icons[$0.key] = true
-                           }
-                        } else if $0.value == true {
-                           icons[$0.key] = false
+      LazyVGrid(columns: grid) {
+         ForEach(icons.keys) { iconName in
+            let isSelected = icons[iconName] ?? false
+            CategoryIconView(
+               isSelected: isSelected,
+               icon: iconName.img,
+               color: selectedColor ?? BonsaiColor.green
+            )
+               .frame(width: 44, height: 44, alignment: .center)
+               .onTapGesture {
+                  icons.forEach {
+                     if $0.key == iconName {
+                        if $0.value == false {
+                           icons[$0.key] = true
                         }
+                     } else if $0.value == true {
+                        icons[$0.key] = false
                      }
                   }
-            }
-         }.padding()
-      }.background(BonsaiColor.card)
+               }
+         }
+      }
+      .padding(8)
+      .frame(maxHeight: .infinity)
+      .background(BonsaiColor.card)
    }
 }
 

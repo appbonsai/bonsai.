@@ -15,25 +15,23 @@ struct CategoryNewTitleView: View {
 
    var body: some View {
       TextField("", text: $title)
+         .font(BonsaiFont.title_22)
+         .foregroundColor(BonsaiColor.purple3)
+         .multilineTextAlignment(.center)
          .modifier(
             CharacterLimit(
                text: $title,
                limit: characterLimit
             )
          )
-         .frame(height: 50, alignment: .center)
-         .padding([.leading], 16)
-         .font(BonsaiFont.body_17)
-         .modifier(
-            PlaceholderStyle(
-               showPlaceHolder: title.isEmpty,
-               placeholder: placeholder,
-               placeholderColor: BonsaiColor.prompt,
-               contentColor: BonsaiColor.purple3,
-               placeholderPadding: 16
-            )
+         .placeholder(
+            Text(placeholder)
+               .font(BonsaiFont.title_22)
+               .foregroundColor(BonsaiColor.prompt)
+               .frame(maxWidth: .infinity, alignment: .center)
+               .multilineTextAlignment(.center),
+            show: title.isEmpty
          )
-         .background(BonsaiColor.card)
    }
 }
 
@@ -41,7 +39,7 @@ struct CategoryNewTitleView_Previews: PreviewProvider {
    static var previews: some View {
       CategoryNewTitleView(
          title: .constant(""),
-         placeholder: "maximum of 16 symbols"
+         placeholder: "Title"
       )
    }
 }

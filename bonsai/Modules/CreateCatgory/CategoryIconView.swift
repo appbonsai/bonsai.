@@ -11,21 +11,23 @@ struct CategoryIconView: View {
    let isSelected: Bool
    let icon: Image
    let color: Color
-   private let sideSize: CGFloat = 40
 
    var body: some View {
       ZStack {
          if isSelected {
             Circle()
-               .stroke(lineWidth: 2)
-               .foregroundColor(color)
-               .frame(width: sideSize, height: sideSize)
+               .foregroundColor(BonsaiColor.prompt)
+               .frame(width: 44, height: 44)
          }
+         Circle()
+            .foregroundColor(BonsaiColor.card)
+            .frame(width: 40, height: 40)
          icon
             .renderingMode(.template)
-            .cornerRadius(sideSize / 2)
+            .resizable()
+            .scaledToFit()
             .foregroundColor(BonsaiColor.purple5)
-            .frame(width: sideSize, height: sideSize)
+            .frame(width: 24, height: 24)
       }
    }
 }

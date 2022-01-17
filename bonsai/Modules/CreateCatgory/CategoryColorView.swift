@@ -13,13 +13,15 @@ struct CategoryColorView: View {
 
    var body: some View {
       ZStack {
-         Circle() // needed to handle taps from outside
-            .foregroundColor(BonsaiColor.card)
-            .frame(width: 36, height: 36)
+         if isSelected {
+            Circle()
+               .foregroundColor(BonsaiColor.prompt)
+               .frame(width: 44, height: 44)
+         }
          Circle()
-            .if(!isSelected) { circle in
-               circle.stroke(lineWidth: 2)
-            }
+            .foregroundColor(BonsaiColor.card)
+            .frame(width: 40, height: 40)
+         Circle()
             .foregroundColor(color)
             .frame(width: 36, height: 36)
       }

@@ -66,7 +66,7 @@ enum BonsaiColor {
      UIKit 3 column
      */
     
-    static let card = Color(hex: 0x292838)
+   static let card = Color(hex: 0x292838)
     static let blue = Color(hex: 0x34A0CE)
     static let blue_dark = Color(hex: 0x0052D4)
     static let pink = Color(hex: 0xC84E89)

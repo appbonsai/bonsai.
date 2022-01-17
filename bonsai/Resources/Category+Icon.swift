@@ -45,6 +45,7 @@ extension Category {
       case banknote = "banknote.fill"
       case mic = "mic.fill"
       case docText = "doc.text.fill"
+      case star = "star.fill"
 
       var img: Image { .init(systemName: rawValue) }
 

@@ -19,13 +19,11 @@ struct TitleView: View {
             .padding([.leading, .top, .bottom], 16)
          TextField("", text: $text)
             .font(BonsaiFont.body_17)
-            .modifier(
-               PlaceholderStyle(
-                  showPlaceHolder: text.isEmpty,
-                  placeholder: "Title",
-                  placeholderColor: BonsaiColor.prompt,
-                  contentColor: BonsaiColor.purple3
-               )
+            .foregroundColor(BonsaiColor.purple3)
+            .placeholder(
+               Text("Title")
+                  .foregroundColor(BonsaiColor.prompt),
+               show: text.isEmpty
             )
             .modifier(
                CharacterLimit(
