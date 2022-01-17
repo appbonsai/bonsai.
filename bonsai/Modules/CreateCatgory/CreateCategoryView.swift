@@ -43,34 +43,51 @@ struct CreateCategoryView: View {
             BonsaiColor.back
                .ignoresSafeArea()
 
-            ScrollView(.vertical) {
+            VStack {
 
-               VStack {
+               Spacer()
 
-                  Spacer()
+                  VStack {
 
-                  CategoryNewTitleView(title: $title)
+                     LeadingTitleView(text: "Icon")
 
-                  Spacer()
+                     CategoryIconSelectorView(
+                        icons: $icons,
+                        selectedColor: colors.first { $0.value == true }?.key
+                     )
+                        .cornerRadius(13)
+                        .frame(maxHeight: 180)
+                        .padding([.bottom], 16)
 
-                  CategoryColorSelectorView(colors: $colors)
+                     LeadingTitleView(text: "Color")
 
-                  CategoryIconSelectorView(
-                     icons: $icons,
-                     selectedColor: colors.first(where: { $0.value == true })?.key
-                  )
-                     .padding()
+                     CategoryColorSelectorView(colors: $colors)
+                        .cornerRadius(13)
+                        .padding([.bottom], 16)
 
-                  Button("Create") {
-                     print("create")
-                  }
-                  .buttonStyle(PrimaryButtonStyle())
-                  .padding()
+                     LeadingTitleView(text: "Title")
+                     
+                     CategoryNewTitleView(
+                        title: $title,
+                        placeholder: "maximum of 16 symbols"
+                     )
+                        .cornerRadius(13)
+                        .padding([.bottom], 16)
+                  } // VStack
+                  .padding([.leading, .trailing], 16)
+
+               Spacer()
+
+               Button("Create") {
+                  print("create")
                }
-            }
+               .buttonStyle(PrimaryButtonStyle())
+               .padding([.bottom], 16)
 
-            .navigationTitle("New category")
-         }
+            } // VStack
+            .frame(maxHeight: .infinity)
+         } // ZStack
+         .navigationTitle("New category")
       }
    }
 }

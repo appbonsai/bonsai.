@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoryNewTitleView: View {
 
    @Binding private(set) var title: String
+   let placeholder: String
    private let characterLimit = 16
 
    var body: some View {
@@ -26,20 +27,21 @@ struct CategoryNewTitleView: View {
          .modifier(
             PlaceholderStyle(
                showPlaceHolder: title.isEmpty,
-               placeholder: "Title (maximum of 16 symbols)",
+               placeholder: placeholder,
                placeholderColor: BonsaiColor.prompt,
                contentColor: BonsaiColor.purple3,
                placeholderPadding: 16
             )
          )
          .background(BonsaiColor.card)
-         .cornerRadius(13)
-         .padding([.leading, .trailing], 16)
    }
 }
 
 struct CategoryNewTitleView_Previews: PreviewProvider {
    static var previews: some View {
-      CategoryNewTitleView(title: .constant(""))
+      CategoryNewTitleView(
+         title: .constant(""),
+         placeholder: "maximum of 16 symbols"
+      )
    }
 }

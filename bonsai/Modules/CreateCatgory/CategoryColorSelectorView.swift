@@ -20,7 +20,7 @@ struct CategoryColorSelectorView: View {
                isSelected: isSelected,
                color: color
             )
-               .padding(.horizontal, 8)
+               .padding(12)
                .onTapGesture {
                   colors.forEach {
                      if $0.key == color {
@@ -34,6 +34,8 @@ struct CategoryColorSelectorView: View {
                }
          }
       }
+      .frame(maxWidth: .infinity)
+      .background(BonsaiColor.card)
    }
 }
 

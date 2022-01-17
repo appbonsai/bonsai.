@@ -14,7 +14,7 @@ struct CategoryColorView: View {
    var body: some View {
       ZStack {
          Circle() // needed to handle taps from outside
-            .foregroundColor(BonsaiColor.back)
+            .foregroundColor(BonsaiColor.card)
             .frame(width: 36, height: 36)
          Circle()
             .if(!isSelected) { circle in

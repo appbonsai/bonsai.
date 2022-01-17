@@ -17,7 +17,6 @@ struct CategoryIconSelectorView: View {
       GridItem(.flexible()),
       GridItem(.flexible()),
       GridItem(.flexible()),
-      GridItem(.flexible()),
       GridItem(.flexible())
    ]
 
@@ -43,8 +42,8 @@ struct CategoryIconSelectorView: View {
                      }
                   }
             }
-         }
-      }
+         }.padding()
+      }.background(BonsaiColor.card)
    }
 }
 

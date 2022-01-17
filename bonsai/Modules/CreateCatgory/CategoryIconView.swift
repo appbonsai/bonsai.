@@ -11,6 +11,7 @@ struct CategoryIconView: View {
    let isSelected: Bool
    let icon: Image
    let color: Color
+   private let sideSize: CGFloat = 40
 
    var body: some View {
       ZStack {
@@ -18,13 +19,13 @@ struct CategoryIconView: View {
             Circle()
                .stroke(lineWidth: 2)
                .foregroundColor(color)
-               .frame(width: 36, height: 36)
+               .frame(width: sideSize, height: sideSize)
          }
          icon
             .renderingMode(.template)
-            .cornerRadius(18)
+            .cornerRadius(sideSize / 2)
             .foregroundColor(BonsaiColor.purple5)
-            .frame(width: 36, height: 36)
+            .frame(width: sideSize, height: sideSize)
       }
    }
 }
