@@ -12,26 +12,45 @@ import CoreData
 @objc(Category)
 public class Category: NSManagedObject, Identifiable {
 
-    @NSManaged public var id: UUID
-    @NSManaged public var title: String
-    @NSManaged public var color: UIColor
-    @NSManaged public var icon: UIImage
+   @NSManaged public var id: UUID
+   @NSManaged public var title: String
+   var icon: Icon {
+      get {
+         .init(rawValue: iconString) ?? .gameController
+      }
+      set {
+         iconString = newValue.rawValue
+      }
+   }
+   var color: Color {
+      get {
+         .init(rawValue: colorString) ?? .green
+      }
+      set {
+         colorString = newValue.rawValue
+      }
+   }
 
-    @discardableResult convenience init(
-        context: NSManagedObjectContext,
-        id: UUID = UUID(),
-        title: String,
-        color: UIColor,
-        icon: UIImage
-    ) {
-        self.init(context: context)
-        self.id = id
-        self.title = title
-        self.color = color
-        self.icon = icon
-    }
+   @discardableResult convenience init(
+      context: NSManagedObjectContext,
+      id: UUID = UUID(),
+      title: String,
+      color: Color,
+      icon: Icon
+   ) {
+      self.init(context: context)
+      self.id = id
+      self.title = title
+      self.colorString = color.rawValue
+      self.iconString = icon.rawValue
+   }
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
-        NSFetchRequest<Category>(entityName: "Category")
-    }
+   @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
+      NSFetchRequest<Category>(entityName: "Category")
+   }
+
+   // Note: Do not use this accessor, but use `color` instead
+   @NSManaged public var colorString: String
+   // Note: Do not use this accessor, but use `icon` instead
+   @NSManaged public var iconString: String
 }

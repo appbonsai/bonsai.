@@ -10,7 +10,7 @@ import OrderedCollections
 
 struct CategoryColorSelectorView: View {
 
-   @Binding private(set) var colors: OrderedDictionary<Color, Bool>
+   @Binding private(set) var colors: OrderedDictionary<Category.Color, Bool>
 
    var body: some View {
       LazyHGrid(rows: [GridItem(.flexible())]) {
@@ -18,7 +18,7 @@ struct CategoryColorSelectorView: View {
             let isSelected = colors[color] ?? false
             CategoryColorView(
                isSelected: isSelected,
-               color: color
+               color: color.color
             )
                .frame(width: 44, height: 44, alignment: .center)
                .onTapGesture {
@@ -41,13 +41,15 @@ struct CategoryColorSelectorView: View {
 }
 
 struct CategoryColorSelectorView_Previews: PreviewProvider {
+   static var colors = Category.Color.allCases.reduce(OrderedDictionary<Category.Color, Bool>())
+   { partialResult, color in
+      var res = partialResult
+      res[color] = false
+      return res
+   }
+
    static var previews: some View {
-      CategoryColorSelectorView(colors: .constant([
-         BonsaiColor.green: false,
-         BonsaiColor.blue: false,
-         BonsaiColor.secondary: false,
-         BonsaiColor.text: false
-      ]))
+      CategoryColorSelectorView(colors: .constant(colors))
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

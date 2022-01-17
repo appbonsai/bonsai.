@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21C52" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
@@ -7,10 +7,10 @@
         <relationship name="transaction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="account" inverseEntity="Transaction"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
-        <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="UIColorValueTransformer" customClassName="UIColor"/>
-        <attribute name="icon" attributeType="Transformable" valueTransformerName="UIImageValueTransformer" customClassName="UIImage"/>
+        <attribute name="colorString" attributeType="String" valueTransformerName="UIColorValueTransformer" customClassName="UIColor"/>
+        <attribute name="iconString" attributeType="String" valueTransformerName="UIImageValueTransformer" customClassName="UIImage"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
         <relationship name="transaction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="category" inverseEntity="Transaction"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
@@ -30,8 +30,8 @@
         <relationship name="toAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="toAccountInverse" inverseEntity="Account"/>
     </entity>
     <elements>
-        <element name="Category" positionX="-69.262451171875" positionY="89.51480102539062" width="128" height="118"/>
         <element name="Account" positionX="-521.1292114257812" positionY="229.8336486816406" width="128" height="103"/>
+        <element name="Category" positionX="-69.262451171875" positionY="89.51480102539062" width="128" height="104"/>
         <element name="Tag" positionX="-83.6285400390625" positionY="260.9072265625" width="128" height="88"/>
         <element name="Transaction" positionX="-247.595947265625" positionY="75.6036376953125" width="128" height="178"/>
     </elements>

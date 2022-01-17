@@ -29,7 +29,7 @@ struct CategoryPreviewView: View {
 struct CategoryPreviewView_Previews: PreviewProvider {
    static var previews: some View {
       CategoryPreviewView(
-         color: .green,
+         color: Category.Color.green.color,
          image: Category.Icon.gameController.img
       )
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
