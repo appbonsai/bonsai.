@@ -96,8 +96,8 @@ struct CreateCategoryView: View {
          } // ZStack
          .navigationTitle("New Category")
          .navigationBarTitleDisplayMode(.inline)
-         .navigationBarItems(
-            leading:
+         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
                Button(action: {
                   confirmationPresented = true
                }) {
@@ -107,8 +107,9 @@ struct CreateCategoryView: View {
                   Button("Discard Changes", role: .destructive, action: {
                      isPresented = false
                   })
-               }),
-            trailing:
+               })
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
                Button(action: {
                   guard let color = colors.first(where: \.value)?.key,
                         let icon = icons.first(where: \.value)?.key else {
@@ -127,7 +128,8 @@ struct CreateCategoryView: View {
                   Text("Done")
                }
                .disabled($title.wrappedValue.isEmpty)
-         )
+            }
+         }
       } // NavigationView
    }
 
