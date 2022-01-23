@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OrderedCollections
 
 struct NewOperationView: View {
 
@@ -15,6 +16,7 @@ struct NewOperationView: View {
    @State var amount: String = ""
    @State var category: Category?
    @State var title: String = ""
+   @State var tags: OrderedSet<Tag> = []
    @State var isCategoriesViewPresented: Bool = false
 
    init(isPresented: Binding<Bool>) {
@@ -58,7 +60,11 @@ struct NewOperationView: View {
                   }
                   TitleView(text: $title)
                      .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
-               }
+
+                  TagsInputView(tags: $tags)
+                     .cornerRadius(13)
+                     .padding([.top], 16)
+               } // VStack
                .padding([.top, .leading, .trailing], 16)
             }
          } // ZStack
