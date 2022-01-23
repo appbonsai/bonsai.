@@ -17,6 +17,8 @@ struct BudgetTransactions: View {
 
    private let transactionsByDate: OrderedDictionary<String, [Transaction]>
 
+   typealias Offset = (CGFloat) -> Void
+
    init(transactions: [Transaction]) {
       var dict = OrderedDictionary<String, [Transaction]>()
       let sortedTransaction = transactions
@@ -50,6 +52,7 @@ struct BudgetTransactions: View {
                   .cornerRadius(25, corners: .allCorners)
                Spacer()
             }
+            .padding(.top, 20)
 
             Text("Transactions")
                .font(BonsaiFont.title_headline_17)
@@ -57,7 +60,6 @@ struct BudgetTransactions: View {
                .padding(.leading, 16)
                .frame(height: 17)
                .padding(.top, 7)
-
             List {
                ForEach(transactionsByDate.keys, id: \.self) { key in
                   Section(header: HStack() {

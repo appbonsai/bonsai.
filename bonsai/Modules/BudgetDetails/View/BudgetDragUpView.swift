@@ -12,14 +12,13 @@ struct BudgetDragUpView: View {
         VStack {
             BonsaiImage.arrowUpCircle
               .renderingMode(.template)
-              .background(Color.white)
-            
-            //Need to update asset white system arrow doesnt match
-            
+              .foregroundColor(Color.white)
+              .padding(.bottom, 5)
             Text("Drag up to see your last operations")
                 .font(BonsaiFont.body_17)
                 .foregroundColor(BonsaiColor.text)
         }
+        .frame(height: 148)
     }
 }
 

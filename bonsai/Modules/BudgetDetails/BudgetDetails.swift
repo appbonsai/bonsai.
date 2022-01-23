@@ -9,9 +9,29 @@ import SwiftUI
 
 struct BudgetDetails: View {
 
-   @Environment(\.managedObjectContext) private var moc
+   @Environment(\.managedObjectContext) private static var moc
 
-   @State var size: CGFloat = UIScreen.main.bounds.height
+   @State var startOffsetY: CGFloat = UIScreen.main.bounds.height
+   @State var currentOffsetY: CGFloat = 0
+   @State var endingOffsetY: CGFloat = 0
+   private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.8) / 2
+
+   private let transactions = [
+      Transaction(
+         context: Self.moc,
+         amount: 1000,
+         date: Date(),
+         category: .init(context: Self.moc,
+                         id: UUID(),
+                         title: "category",
+                         color: Category.Color.red,
+                         icon: Category.Icon.airplane),
+         account: .init(context: Self.moc,
+                        id: UUID(),
+                        title: "account"),
+         type: .expense,
+         tags: .init())
+   ]
 
    var body: some View {
       ZStack {
@@ -53,14 +73,17 @@ struct BudgetDetails: View {
                   Spacer()
 
                   BudgetDragUpView()
-                     .padding(.bottom, 74)
-                     .gesture(DragGesture()
-                                 .onChanged({ value in
-                        if value.translation.height < 0 {
-                           // up
-                           size = 400
-                        }
-                     }))
+                     .gesture(
+                        DragGesture()
+                           .onChanged{ value in
+                              withAnimation(.spring()) {
+                                 currentOffsetY = value.translation.height
+                              }
+                           }
+                           .onEnded { _ in
+                              lockBudgetTransactionsOffset()
+                           }
+                     )
                }
             }
             .padding(.top, 16)
@@ -69,21 +92,35 @@ struct BudgetDetails: View {
          .background(BonsaiColor.back)
          .ignoresSafeArea()
 
-         BudgetTransactions(transactions: [Transaction(
-            context: self.moc,
-            amount: 1000,
-            date: Date(),
-            category: .init(context: self.moc,
-                            id: UUID(),
-                            title: "category",
-                            color: Category.Color.red,
-                            icon: Category.Icon.airplane),
-            account: .init(context: self.moc,
-                           id: UUID(),
-                           title: "account"),
-            type: .expense,
-            tags: .init())])
-            .offset(y: size)
+         BudgetTransactions(transactions: transactions)
+            .offset(y: startOffsetY)
+            .offset(y: currentOffsetY)
+            .offset(y: endingOffsetY)
+            .gesture(
+               DragGesture()
+                  .onChanged { value in
+                     withAnimation(.spring()) {
+                        currentOffsetY = value.translation.height
+                        if currentOffsetY < 0 {
+                           currentOffsetY = 0
+                        }
+                     }
+                  }
+                  .onEnded { _ in
+                     lockBudgetTransactionsOffset()
+                  }
+            )
+      }
+   }
+
+   private func lockBudgetTransactionsOffset() {
+      withAnimation(.spring()) {
+         if currentOffsetY < -thresholdY {
+            endingOffsetY = -startOffsetY
+         } else if endingOffsetY != 0 && currentOffsetY > thresholdY {
+            endingOffsetY = 0
+         }
+         currentOffsetY = 0
       }
    }
 }
@@ -93,6 +130,5 @@ struct BudgetDetails_Previews: PreviewProvider {
       BudgetDetails()
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
-
    }
 }
