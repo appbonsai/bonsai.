@@ -12,13 +12,8 @@ struct ContentView: View {
    @State private var isPresented = false
 
    var body: some View {
-      VStack {
-         Button("Present") {
-            isPresented.toggle()
-         }
-         .popover(isPresented: $isPresented) {
-            NewOperationView(isPresented: $isPresented)
-         }
+      Button("Present") {
+         isPresented.toggle()
       }
    }
 }
