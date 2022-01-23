@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
+
+   @State private var isPresented = false
+
+   var body: some View {
+      Button("Present") {
+         isPresented.toggle()
+      }
+   }
 }
 
 struct ContentView_Previews: PreviewProvider {

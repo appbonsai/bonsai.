@@ -66,7 +66,7 @@ enum BonsaiColor {
      UIKit 3 column
      */
     
-    static let card = Color(hex: 0x292838)
+   static let card = Color(hex: 0x292838)
     static let blue = Color(hex: 0x34A0CE)
     static let blue_dark = Color(hex: 0x0052D4)
     static let pink = Color(hex: 0xC84E89)
@@ -85,13 +85,4 @@ enum BonsaiColor {
     static let newPurple = Color(hex: 0x6C63FF)
     static let separator = Color(hex: 0x343150)
     static let prompt = Color(hex: 0x686599)
-}
-
-extension Color {
-    init(hex: Int, opacity: Double = 1.0) {
-        let red = Double((hex & 0xff0000) >> 16) / 255.0
-        let green = Double((hex & 0xff00) >> 8) / 255.0
-        let blue = Double((hex & 0xff) >> 0) / 255.0
-        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
-    }
 }
