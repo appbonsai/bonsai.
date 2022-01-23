@@ -15,6 +15,9 @@ struct ContentView: View {
       Button("Present") {
          isPresented.toggle()
       }
+      .popover(isPresented: $isPresented) {
+         NewOperationView(isPresented: $isPresented)
+      }
    }
 }
 

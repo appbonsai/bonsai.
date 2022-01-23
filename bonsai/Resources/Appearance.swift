@@ -22,23 +22,23 @@ enum BonsaiFont {
 }
 
 enum BonsaiImage {
-    static let crossVialFill = UIImage(systemName: "cross.vial.fill")!
-    static let crossVial = UIImage(systemName: "cross.vial")!
-    static let forkKnifeCircleFill = UIImage(systemName: "fork.knife.circle.fill")!
-    static let forkKnifeCircle = UIImage(systemName: "fork.knife.circle")!
-    static let fuelpumpFill = UIImage(systemName: "fuelpump.fill")!
-    static let fuelpump = UIImage(systemName: "fuelpump")!
-    static let graduationcapCircleFill = UIImage(systemName: "graduationcap.circle.fill")!
-    static let graduationcapCircle = UIImage(systemName: "graduationcap.circle")!
-    static let pawprintFill = UIImage(systemName: "pawprint.fill")!
-    static let amount = UIImage(systemName: "dollarsign.circle")!.withRenderingMode(.alwaysTemplate)
-    static let calendar = UIImage(systemName: "calendar")!
-    static let category = UIImage(systemName: "folder")!.withRenderingMode(.alwaysTemplate)
-    static let tag = UIImage(systemName: "tag")!
-    static let title = UIImage(systemName: "text.bubble")!
-    static let arrowUpCircle = UIImage(systemName: "arrow.up.circle")!
-    static let chevronForward = Image(systemName: "chevron.forward").renderingMode(.template)
-    static let textBubble = Image(systemName: "text.bubble").renderingMode(.template)
+   static var crossVialFill: Image { Image(systemName: "cross.vial.fill") }
+   static var crossVial: Image { Image(systemName: "cross.vial") }
+   static var forkKnifeCircleFill: Image { Image(systemName: "fork.knife.circle.fill") }
+   static var forkKnifeCircle: Image { Image(systemName: "fork.knife.circle") }
+   static var fuelpumpFill: Image { Image(systemName: "fuelpump.fill") }
+   static var fuelpump: Image { Image(systemName: "fuelpump") }
+   static var graduationcapCircleFill: Image { Image(systemName: "graduationcap.circle.fill") }
+   static var graduationcapCircle: Image { Image(systemName: "graduationcap.circle") }
+   static var pawprintFill: Image { Image(systemName: "pawprint.fill") }
+   static var amount: Image { Image(systemName: "dollarsign.circle") }
+   static var calendar: Image { Image(systemName: "calendar") }
+   static var category: Image { Image(systemName: "folder") }
+   static var tag: Image { Image(systemName: "tag") }
+   static var title: Image { Image(systemName: "text.bubble") }
+   static var arrowUpCircle: Image { Image(systemName: "arrow.up.circle") }
+   static var chevronForward: Image { Image(systemName: "chevron.forward") }
+   static var textBubble: Image { Image(systemName: "text.bubble") }
 }
 
 enum BonsaiColor {

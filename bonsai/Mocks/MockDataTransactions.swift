@@ -18,7 +18,7 @@ public struct MockDataTransaction {
                      context: viewContext,
                      title: "Restaurant",
                      color: .green,
-                     icon: BonsaiImage.forkKnifeCircle),
+                     icon: .star),
                   account: .init(
                      context: viewContext,
                      title: "BonsaiTest"),
@@ -32,7 +32,7 @@ public struct MockDataTransaction {
                      context: viewContext,
                      title: "Fuel",
                      color: .blue,
-                     icon: BonsaiImage.fuelpump),
+                     icon: .fuel),
                   account: .init(
                      context: viewContext,
                      title: "BonsaiTest"),
@@ -46,7 +46,7 @@ public struct MockDataTransaction {
                      context: viewContext,
                      title: "Graduation",
                      color: .red,
-                     icon: BonsaiImage.graduationcapCircle),
+                     icon: .gameController),
                   account: .init(
                      context: viewContext,
                      title: "BonsaiTest"),
@@ -60,7 +60,7 @@ public struct MockDataTransaction {
                      context: viewContext,
                      title: "Salary",
                      color: .red,
-                     icon: BonsaiImage.amount),
+                     icon: .heart),
                   account: .init(
                      context: viewContext,
                      title: "BonsaiTest"),

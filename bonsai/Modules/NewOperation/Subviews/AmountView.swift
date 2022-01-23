@@ -15,7 +15,8 @@ struct AmountView: View {
 
    var body: some View {
       HStack(spacing: 8) {
-         Image(uiImage: BonsaiImage.amount)
+         BonsaiImage.amount
+            .renderingMode(.template)
             .foregroundColor(operation.viewModel.color)
             .padding([.leading, .top, .bottom], 16)
          TextField("", text: $text)

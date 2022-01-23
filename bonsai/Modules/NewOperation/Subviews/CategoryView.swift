@@ -13,7 +13,8 @@ struct CategoryView: View {
 
    var body: some View {
       HStack(spacing: 8) {
-         (category?.icon.img ?? Image(uiImage: BonsaiImage.category))
+         (category?.icon.img ?? BonsaiImage.category)
+            .renderingMode(.template)
             .foregroundColor(category.flatMap { $0.color.color } ?? BonsaiColor.purple3)
             .padding([.leading, .top, .bottom], 16)
          Text(category?.title ?? "Category")
