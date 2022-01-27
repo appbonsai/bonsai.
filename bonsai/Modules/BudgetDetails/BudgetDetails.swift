@@ -9,22 +9,20 @@ import SwiftUI
 import CoreData
 
 struct BudgetDetails: View {
-
-   @Environment(\.managedObjectContext) private var moc
-
    @State var startOffsetY: CGFloat = UIScreen.main.bounds.height
    @State var currentOffsetY: CGFloat = 0
    @State var endingOffsetY: CGFloat = 0
    private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.8) / 2
-
    private var transactions: [Transaction] = []
    private let mainContext: NSManagedObjectContext
 
    init(mainContext: NSManagedObjectContext) {
       self.mainContext = mainContext
       let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
-      let transactions = try? mainContext.fetch(fetchRequest)
-      self.transactions = transactions ?? []
+      do {
+         let transactions = try mainContext.fetch(fetchRequest)
+         self.transactions = transactions
+      } catch { }
    }
 
    var body: some View {
