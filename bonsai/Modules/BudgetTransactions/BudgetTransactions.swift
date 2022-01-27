@@ -17,8 +17,6 @@ struct BudgetTransactions: View {
 
    private let transactionsByDate: OrderedDictionary<String, [Transaction]>
 
-   typealias Offset = (CGFloat) -> Void
-
    init(transactions: [Transaction]) {
       var dict = OrderedDictionary<String, [Transaction]>()
       let sortedTransaction = transactions
