@@ -6,32 +6,26 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct BudgetDetails: View {
 
-   @Environment(\.managedObjectContext) private static var moc
+   @Environment(\.managedObjectContext) private var moc
 
    @State var startOffsetY: CGFloat = UIScreen.main.bounds.height
    @State var currentOffsetY: CGFloat = 0
    @State var endingOffsetY: CGFloat = 0
    private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.8) / 2
 
-   private let transactions = [
-      Transaction(
-         context: Self.moc,
-         amount: 1000,
-         date: Date(),
-         category: .init(context: Self.moc,
-                         id: UUID(),
-                         title: "category",
-                         color: Category.Color.red,
-                         icon: Category.Icon.airplane),
-         account: .init(context: Self.moc,
-                        id: UUID(),
-                        title: "account"),
-         type: .expense,
-         tags: .init())
-   ]
+   private var transactions: [Transaction] = []
+   private let mainContext: NSManagedObjectContext
+
+   init(mainContext: NSManagedObjectContext) {
+      self.mainContext = mainContext
+      let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+      let transactions = try? mainContext.fetch(fetchRequest)
+      self.transactions = transactions ?? []
+   }
 
    var body: some View {
       ZStack {
@@ -127,7 +121,7 @@ struct BudgetDetails: View {
 
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
-      BudgetDetails()
+      BudgetDetails(mainContext: MockDataTransaction.viewContext)
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }
