@@ -10,8 +10,9 @@ import SwiftUI
 struct BudgetDragUpView: View {
     var body: some View {
         VStack {
-            Image(uiImage: BonsaiImage.arrowUpCircle)
-                .background(Color.white)
+            BonsaiImage.arrowUpCircle
+              .renderingMode(.template)
+              .background(Color.white)
             
             //Need to update asset white system arrow doesnt match
             

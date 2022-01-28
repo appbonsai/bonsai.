@@ -22,23 +22,23 @@ enum BonsaiFont {
 }
 
 enum BonsaiImage {
-    static let crossVialFill = UIImage(systemName: "cross.vial.fill")!
-    static let crossVial = UIImage(systemName: "cross.vial")!
-    static let forkKnifeCircleFill = UIImage(systemName: "fork.knife.circle.fill")!
-    static let forkKnifeCircle = UIImage(systemName: "fork.knife.circle")!
-    static let fuelpumpFill = UIImage(systemName: "fuelpump.fill")!
-    static let fuelpump = UIImage(systemName: "fuelpump")!
-    static let graduationcapCircleFill = UIImage(systemName: "graduationcap.circle.fill")!
-    static let graduationcapCircle = UIImage(systemName: "graduationcap.circle")!
-    static let pawprintFill = UIImage(systemName: "pawprint.fill")!
-    static let amount = UIImage(systemName: "dollarsign.circle")!.withRenderingMode(.alwaysTemplate)
-    static let calendar = UIImage(systemName: "calendar")!
-    static let category = UIImage(systemName: "folder")!.withRenderingMode(.alwaysTemplate)
-    static let tag = UIImage(systemName: "tag")!
-    static let title = UIImage(systemName: "text.bubble")!
-    static let arrowUpCircle = UIImage(systemName: "arrow.up.circle")!
-    static let chevronForward = Image(systemName: "chevron.forward").renderingMode(.template)
-    static let textBubble = Image(systemName: "text.bubble").renderingMode(.template)
+   static var crossVialFill: Image { Image(systemName: "cross.vial.fill") }
+   static var crossVial: Image { Image(systemName: "cross.vial") }
+   static var forkKnifeCircleFill: Image { Image(systemName: "fork.knife.circle.fill") }
+   static var forkKnifeCircle: Image { Image(systemName: "fork.knife.circle") }
+   static var fuelpumpFill: Image { Image(systemName: "fuelpump.fill") }
+   static var fuelpump: Image { Image(systemName: "fuelpump") }
+   static var graduationcapCircleFill: Image { Image(systemName: "graduationcap.circle.fill") }
+   static var graduationcapCircle: Image { Image(systemName: "graduationcap.circle") }
+   static var pawprintFill: Image { Image(systemName: "pawprint.fill") }
+   static var amount: Image { Image(systemName: "dollarsign.circle") }
+   static var calendar: Image { Image(systemName: "calendar") }
+   static var category: Image { Image(systemName: "folder") }
+   static var tag: Image { Image(systemName: "tag") }
+   static var title: Image { Image(systemName: "text.bubble") }
+   static var arrowUpCircle: Image { Image(systemName: "arrow.up.circle") }
+   static var chevronForward: Image { Image(systemName: "chevron.forward") }
+   static var textBubble: Image { Image(systemName: "text.bubble") }
 }
 
 enum BonsaiColor {
@@ -58,7 +58,7 @@ enum BonsaiColor {
     /*
      UIKit 2 column
      */
-    static let disabled = Color(hex: 0x1D1C22)
+    static let disabled = Color(hex: 0x4E4B76)
     static let green = Color(hex: 0x34CE8D)
     static let text = Color(hex: 0xE5E3FF)
     
@@ -66,7 +66,7 @@ enum BonsaiColor {
      UIKit 3 column
      */
     
-    static let card = Color(hex: 0x292838)
+   static let card = Color(hex: 0x292838)
     static let blue = Color(hex: 0x34A0CE)
     static let blue_dark = Color(hex: 0x0052D4)
     static let pink = Color(hex: 0xC84E89)
@@ -85,13 +85,4 @@ enum BonsaiColor {
     static let newPurple = Color(hex: 0x6C63FF)
     static let separator = Color(hex: 0x343150)
     static let prompt = Color(hex: 0x686599)
-}
-
-extension Color {
-    init(hex: Int, opacity: Double = 1.0) {
-        let red = Double((hex & 0xff0000) >> 16) / 255.0
-        let green = Double((hex & 0xff00) >> 8) / 255.0
-        let blue = Double((hex & 0xff) >> 0) / 255.0
-        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
-    }
 }

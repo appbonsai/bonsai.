@@ -14,7 +14,7 @@ struct bonsaiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabBar()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
                 .environment(\.persistentContainer, dataController.container)
         }

@@ -9,37 +9,43 @@ import SwiftUI
 
 struct AmountView: View {
 
-    let operation: Operation
-    @Binding var text: String
+   let operation: Operation
+   @Binding var text: String
+   private let characterLimit = 16
 
-    var body: some View {
-        HStack(spacing: 8) {
-            Image(uiImage: BonsaiImage.amount)
-                .foregroundColor(operation.viewModel.color)
-                .padding([.leading, .top, .bottom], 16)
-            TextField("", text: $text)
-                .font(BonsaiFont.body_17)
-                .modifier(
-                    PlaceholderStyle(
-                        showPlaceHolder: text.isEmpty,
-                        placeholder: "Amount",
-                        placeholderColor: BonsaiColor.prompt,
-                        contentColor: operation.viewModel.color
-                    )
-                )
-        }
-        .background(BonsaiColor.card)
-    }
+   var body: some View {
+      HStack(spacing: 8) {
+         BonsaiImage.amount
+            .renderingMode(.template)
+            .foregroundColor(operation.viewModel.color)
+            .padding([.leading, .top, .bottom], 16)
+         TextField("", text: $text)
+            .font(BonsaiFont.body_17)
+            .foregroundColor(operation.viewModel.color)
+            .placeholder(
+               Text("Amount")
+                  .foregroundColor(BonsaiColor.prompt),
+               show: text.isEmpty
+            )
+            .modifier(
+               CharacterLimit(
+                  text: $text,
+                  limit: characterLimit
+               )
+            )
+      }
+      .background(BonsaiColor.card)
+   }
 }
 
 struct AmountView_Previews: PreviewProvider {
-    static var previews: some View {
-        AmountView(operation: .expense, text: .constant(""))
-            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-            .previewDisplayName("iPhone 12")
-    }
+   static var previews: some View {
+      AmountView(operation: .expense, text: .constant(""))
+         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+         .previewDisplayName("iPhone 12")
+   }
 }
 
 extension AmountView {
-    typealias Operation = NewOperationView.OperationType
+   typealias Operation = NewOperationView.OperationType
 }

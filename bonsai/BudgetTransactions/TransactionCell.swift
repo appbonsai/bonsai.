@@ -17,9 +17,9 @@ struct TransactionCell: View {
 
    var body: some View {
       HStack {
-         Image(uiImage: item.category.icon)
+         item.category.icon.img
             .renderingMode(.template)
-            .foregroundColor(Color(item.category.color))
+            .foregroundColor(item.category.color.color)
          Text(item.category.title)
             .font(BonsaiFont.body_17)
             .foregroundColor(Color.white)
@@ -42,7 +42,7 @@ struct TransactionCell_Previews: PreviewProvider {
                                                    context: viewContext,
                                                    title: "Restaurant",
                                                    color: .green,
-                                                   icon: BonsaiImage.forkKnifeCircle),
+                                                   icon: .star),
                                                 account: .init(
                                                    context: viewContext,
                                                    title: "BonsaiTest"),
