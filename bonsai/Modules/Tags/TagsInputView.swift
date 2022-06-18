@@ -13,28 +13,33 @@ struct TagsInputView: View {
    @Binding private(set) var tags: OrderedSet<Tag>
    let newTagHandler: () -> Void
 
-   var body: some View {
-      let cornerRadius: CGFloat = 24
+   private var bubbles: Array<TagBubbleView.Kind> {
+      get {
+         var arr: [TagBubbleView.Kind] = [.newTagButton(touchHandler: newTagHandler)]
+         tags.forEach { tag in
+            arr.append(.tag(tag, closeHandler: {
+               tags.remove(tag)
+            }))
+         }
+         return arr
+      }
+   }
 
+   var body: some View {
       ZStack {
          BonsaiColor.card
          HStack(spacing: 8) {
             BonsaiImage.tag
                .renderingMode(.template)
                .foregroundColor(BonsaiColor.purple3)
-            HStack(spacing: 8) {
-               TagBubbleView(kind: .newTagButton(
-                  touchHandler: newTagHandler
-               ))
-                  .cornerRadius(cornerRadius)
-               ForEach(tags) { tag in
-                  TagBubbleView(kind: .tag(tag, closeHandler: {
-                     tags.remove(tag)
-                  })).cornerRadius(cornerRadius)
-               } // ForEach
-               Spacer()
-                  .frame(maxWidth: .infinity)
-            } // HStack
+            FlexibleView(
+               data: bubbles,
+               spacing: 8,
+               alignment: .leading) { item in
+                  TagBubbleView(kind: item)
+                     .cornerRadius(24)
+               }
+            Spacer()
          } // HStack
          .padding(16)
       } // ZStack
@@ -43,9 +48,18 @@ struct TagsInputView: View {
 
 struct TagsInputView_Previews: PreviewProvider {
    static var previews: some View {
-      TagsInputView(tags: .constant([Tag(
-         context: DataController.sharedInstance.container.viewContext,
-         title: "Health"
-      )]), newTagHandler: { })
+      TagsInputView(tags: .constant(
+         [Tag(
+            context: DataController.sharedInstance.container.viewContext,
+            title: "Health"),
+          Tag(
+            context: DataController.sharedInstance.container.viewContext,
+            title: "Sh"
+          ),
+          Tag(
+             context: DataController.sharedInstance.container.viewContext,
+             title: "VeryVeryLongNaming")]), newTagHandler: { })
+      .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
+      .previewDisplayName("iPhone 13")
    }
 }

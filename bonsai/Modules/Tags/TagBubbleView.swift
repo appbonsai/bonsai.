@@ -8,9 +8,30 @@
 import SwiftUI
 
 extension TagBubbleView {
-   enum Kind {
+   
+   enum Kind: Hashable {
       case tag (Tag, closeHandler: () -> Void)
       case newTagButton(touchHandler: () -> Void)
+
+      static func == (lhs: TagBubbleView.Kind, rhs: TagBubbleView.Kind) -> Bool {
+         switch (lhs, rhs) {
+         case (.newTagButton, .newTagButton):
+            return true
+         case (.tag(let lhsTag, _), .tag(let rhsTag, _)):
+            return lhsTag == rhsTag
+         default:
+            return false
+         }
+      }
+
+      func hash(into hasher: inout Hasher) {
+         switch self {
+         case .tag(let tag, _):
+            hasher.combine(tag)
+         case .newTagButton:
+            hasher.combine("newTagButton")
+         }
+      }
    }
 }
 
@@ -44,6 +65,7 @@ struct TagBubbleView: View {
                      }
                   }())
                   .padding([.top, .bottom], 8)
+                  .lineLimit(1)
                if case .tag(_, let closeHandler) = kind {
                   Button(action: closeHandler) {
                      BonsaiImage.xMark
@@ -66,5 +88,7 @@ struct TagBubbleView_Previews: PreviewProvider {
             title: "Health"
          ), closeHandler: {})
       )
+      .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
+      .previewDisplayName("iPhone 13")
    }
 }
