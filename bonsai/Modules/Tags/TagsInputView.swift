@@ -9,7 +9,9 @@ import SwiftUI
 import OrderedCollections
 
 struct TagsInputView: View {
+
    @Binding private(set) var tags: OrderedSet<Tag>
+   let newTagHandler: () -> Void
 
    var body: some View {
       let cornerRadius: CGFloat = 24
@@ -21,9 +23,9 @@ struct TagsInputView: View {
                .renderingMode(.template)
                .foregroundColor(BonsaiColor.purple3)
             HStack(spacing: 8) {
-               TagBubbleView(kind: .newTagButton(touchHandler: {
-                  print("add tag")
-               }))
+               TagBubbleView(kind: .newTagButton(
+                  touchHandler: newTagHandler
+               ))
                   .cornerRadius(cornerRadius)
                ForEach(tags) { tag in
                   TagBubbleView(kind: .tag(tag, closeHandler: {
@@ -44,6 +46,6 @@ struct TagsInputView_Previews: PreviewProvider {
       TagsInputView(tags: .constant([Tag(
          context: DataController.sharedInstance.container.viewContext,
          title: "Health"
-      )]))
+      )]), newTagHandler: { })
    }
 }

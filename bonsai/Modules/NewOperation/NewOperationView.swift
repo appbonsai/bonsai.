@@ -18,6 +18,7 @@ struct NewOperationView: View {
    @State var title: String = ""
    @State var tags: OrderedSet<Tag> = []
    @State var isCategoriesViewPresented: Bool = false
+   @State var isTagsViewPresented: Bool = false
 
    init(isPresented: Binding<Bool>) {
       self._isPresented = isPresented
@@ -37,20 +38,19 @@ struct NewOperationView: View {
                      operations: [.expense, .income],
                      selectedOperation: $selectedOperation
                   )
-                     .padding([.bottom], 12)
+                  .padding([.bottom], 12)
                   AmountView(
                      operation: selectedOperation,
                      text: $amount
                   )
-                     .cornerRadius(13)
-                     .padding([.top], 12)
+                  .cornerRadius(13)
+                  .padding([.top], 12)
                   CategoryView(category: $category)
                      .cornerRadius(13, corners: [.topLeft, .topRight])
                      .padding([.top], 16)
                      .onTapGesture {
                         isCategoriesViewPresented = true
                      }
-
                   ZStack { // separator
                      BonsaiColor.card
                         .frame(height: 1)
@@ -60,10 +60,12 @@ struct NewOperationView: View {
                   }
                   TitleView(text: $title)
                      .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
-
-                  TagsInputView(tags: $tags)
-                     .cornerRadius(13)
-                     .padding([.top], 16)
+                  TagsInputView(
+                     tags: $tags,
+                     newTagHandler: { isTagsViewPresented = true }
+                  )
+                  .cornerRadius(13)
+                  .padding([.top], 16)
                } // VStack
                .padding([.top, .leading, .trailing], 16)
             }
@@ -80,6 +82,12 @@ struct NewOperationView: View {
          CategoriesContainerView(
             isPresented: $isCategoriesViewPresented,
             selectedCategory: $category
+         )
+      }
+      .popover(isPresented: $isTagsViewPresented) {
+         TagsContainerView(
+            isPresented: $isTagsViewPresented,
+            selectedTags: $tags
          )
       }
    }
