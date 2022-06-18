@@ -64,9 +64,9 @@ struct TagsContainerView: View {
             }
          }
       } // NavigationView
-//      .popover(isPresented: $isCreateCategoryPresented) {
-//         CreateCategoryView(isPresented: $isCreateCategoryPresented)
-//      }
+      .popover(isPresented: $isCreateTagPresented) {
+         CreateTagView(isPresented: $isCreateTagPresented)
+      }
    }
 }
 

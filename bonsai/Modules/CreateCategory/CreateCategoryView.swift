@@ -16,7 +16,7 @@ fileprivate extension CreateCategoryView {
 struct CreateCategoryView: View {
 
    @Environment(\.managedObjectContext) private var moc
-   @Binding var isPresented: Bool
+   @Binding private var isPresented: Bool
    @State private var title: String = ""
    // [color: isSelected]
    @State private var colors: OrderedDictionary<Color, Bool>
