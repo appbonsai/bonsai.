@@ -36,9 +36,9 @@ struct CategoriesContainerView: View {
                         isSelected: category == selectedCategory,
                         category: category
                      )
-                        .onTapGesture {
-                           selectedCategory = category
-                        }
+                     .onTapGesture {
+                        selectedCategory = category
+                     }
                   } // ForEach
                } // VStack
             } // ScrollView

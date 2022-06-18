@@ -34,7 +34,7 @@ struct TagsContainerView: View {
                VStack(spacing: 16) {
                   ForEach(tags) { tag in
                      TagCellView(
-                        isSelected: tags.contains(tag),
+                        isSelected: selectedTags.contains(tag),
                         tag: tag
                      )
                      .onTapGesture {
@@ -44,6 +44,7 @@ struct TagsContainerView: View {
                      }
                   } // ForEach
                } // VStack
+               .padding(2)
             } // ScrollView
             .padding(.top, 24)
             .padding(.horizontal, 16)

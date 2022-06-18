@@ -1,5 +1,5 @@
 //
-//  TagsCellView.swift
+//  TagCellView.swift
 //  bonsai
 //
 //  Created by Vladimir Korolev on 18.06.2022.
@@ -13,8 +13,7 @@ struct TagCellView: View {
    let tag: Tag
 
    var body: some View {
-      HStack(spacing: 13) {
-
+      HStack() {
          Text(tag.title)
             .foregroundColor(
                isSelected
@@ -26,7 +25,6 @@ struct TagCellView: View {
                ? BonsaiFont.title_headline_17
                : BonsaiFont.body_17
             )
-
          Spacer()
       }
       .padding([.vertical, .leading], 20)
