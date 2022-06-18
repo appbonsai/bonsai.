@@ -34,7 +34,7 @@ struct NewOperationView: View {
             ScrollView(.vertical, showsIndicators: false) {
                VStack(alignment: .center, spacing: 0) {
                   OperationTypeSelectorView(
-                     operations: [.expense, .income, .transfer],
+                     operations: [.expense, .income],
                      selectedOperation: $selectedOperation
                   )
                      .padding([.bottom], 12)
