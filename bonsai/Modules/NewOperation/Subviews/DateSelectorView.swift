@@ -10,7 +10,7 @@ import SwiftUI
 struct DateSelectorView: View {
 
    @Binding var date: Date
-   @State var fullSized: Bool = false
+   @Binding var fullSized: Bool
 
    var dateText: String {
       let dateFormatter = DateFormatter()
@@ -57,7 +57,7 @@ struct DateSelectorView: View {
 struct DateSelectorView_Previews: PreviewProvider {
    static var previews: some View {
       DateSelectorView(
-         date: .constant(Date())
+         date: .constant(Date()), fullSized: .constant(false)
       )
    }
 }

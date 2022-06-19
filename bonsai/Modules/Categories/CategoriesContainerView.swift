@@ -41,6 +41,7 @@ struct CategoriesContainerView: View {
                      }
                   } // ForEach
                } // VStack
+               .padding(2)
             } // ScrollView
             .padding(.top, 24)
             .padding(.horizontal, 16)
