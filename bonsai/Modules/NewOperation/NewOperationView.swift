@@ -36,57 +36,67 @@ struct NewOperationView: View {
          ZStack {
             BonsaiColor.back
                .ignoresSafeArea()
-            ScrollViewReader { reader in
-               ScrollView(.vertical, showsIndicators: false) {
-                  VStack(alignment: .center, spacing: 0) {
-                     OperationTypeSelectorView(
-                        operations: [.expense, .income],
-                        selectedOperation: $selectedOperation
-                     )
-                     .padding([.bottom], 12)
-                     AmountView(
-                        operation: selectedOperation,
-                        text: $amount
-                     )
-                     .cornerRadius(13)
-                     .padding([.top], 12)
-                     CategoryView(category: $category)
-                        .cornerRadius(13, corners: [.topLeft, .topRight])
-                        .padding([.top], 16)
-                        .onTapGesture {
-                           isCategoriesViewPresented = true
+            VStack {
+               ScrollViewReader { reader in
+                  ScrollView(.vertical, showsIndicators: false) {
+                     VStack(alignment: .center, spacing: 0) {
+                        OperationTypeSelectorView(
+                           operations: [.expense, .income],
+                           selectedOperation: $selectedOperation
+                        )
+                        .padding([.bottom], 12)
+                        AmountView(
+                           operation: selectedOperation,
+                           text: $amount
+                        )
+                        .cornerRadius(13)
+                        .padding([.top], 12)
+                        CategoryView(category: $category)
+                           .cornerRadius(13, corners: [.topLeft, .topRight])
+                           .padding([.top], 16)
+                           .onTapGesture {
+                              isCategoriesViewPresented = true
+                           }
+                        ZStack { // separator
+                           BonsaiColor.card
+                              .frame(height: 1)
+                           BonsaiColor.separator
+                              .frame(height: 1)
+                              .padding([.leading, .trailing], 16)
                         }
-                     ZStack { // separator
-                        BonsaiColor.card
-                           .frame(height: 1)
-                        BonsaiColor.separator
-                           .frame(height: 1)
-                           .padding([.leading, .trailing], 16)
-                     }
-                     TitleView(text: $title)
-                        .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
-                     TagsInputView(
-                        tags: $tags,
-                        newTagHandler: { isTagsViewPresented = true }
-                     )
-                     .cornerRadius(13)
-                     .padding([.top], 16)
-                     DateSelectorView(date: $date, fullSized: $isCalendarOpened)
+                        TitleView(text: $title)
+                           .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
+                        TagsInputView(
+                           tags: $tags,
+                           newTagHandler: { isTagsViewPresented = true }
+                        )
                         .cornerRadius(13)
                         .padding([.top], 16)
-                        .id(calendarID)
-                  } // VStack
-                  .padding([.top, .leading, .trailing], 16)
-                  .onChange(of: isCalendarOpened) { newValue in
-                     guard newValue == true else { return }
-                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        withAnimation {
-                           reader.scrollTo(calendarID)
+                        DateSelectorView(date: $date, fullSized: $isCalendarOpened)
+                           .cornerRadius(13)
+                           .padding([.top], 16)
+                           .id(calendarID)
+                     } // VStack
+                     .padding([.top, .leading, .trailing], 16)
+                     .onChange(of: isCalendarOpened) { newValue in
+                        guard newValue == true else { return }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                           withAnimation {
+                              reader.scrollTo(calendarID)
+                           }
                         }
                      }
-                  }
-               } // ScrollView
-            } // ScrollViewReader
+                  } // ScrollView
+               } // ScrollViewReader
+               Button {
+                  print("save")
+               } label: {
+                  Text("Save")
+               }
+               .buttonStyle(PrimaryButtonStyle())
+               .padding([.top], 16)
+               .disabled(amount.isEmpty)
+            } // VStack
          } // ZStack
          .navigationTitle("New Operation")
          .navigationBarTitleDisplayMode(.large)
