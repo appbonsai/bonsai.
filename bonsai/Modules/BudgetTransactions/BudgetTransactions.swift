@@ -16,8 +16,13 @@ struct VisualEffectView: UIViewRepresentable {
 struct BudgetTransactions: View {
 
    private let transactionsByDate: OrderedDictionary<String, [Transaction]>
+   
+   private let dragGestureOnChanged: (DragGesture.Value) -> Void
+   private let dragGestureOnEnded: () -> (Void)
 
-   init(transactions: [Transaction]) {
+   init(transactions: [Transaction],
+        dragGestureOnChanged: @escaping (DragGesture.Value) -> Void,
+        dragGestureOnEnded: @escaping () -> (Void)) {
       var dict = OrderedDictionary<String, [Transaction]>()
       let sortedTransaction = transactions
          .sorted(by: { $0.date > $1.date  })
@@ -33,6 +38,8 @@ struct BudgetTransactions: View {
          }
       }
       transactionsByDate = dict
+      self.dragGestureOnChanged = dragGestureOnChanged
+      self.dragGestureOnEnded = dragGestureOnEnded
    }
 
    var body: some View {
@@ -40,24 +47,18 @@ struct BudgetTransactions: View {
          VisualEffectView(
             effect: UIBlurEffect(style: .dark))
             .edgesIgnoringSafeArea(.all)
-
          VStack(alignment: .leading) {
-            HStack {
-               Spacer()
-               RoundedCorner()
-                  .foregroundColor(BonsaiColor.disabled)
-                  .frame(width: 60, height: 5, alignment: .center)
-                  .cornerRadius(25, corners: .allCorners)
-               Spacer()
-            }
-
-            Text("Transactions")
-               .font(BonsaiFont.title_headline_17)
-               .foregroundColor(Color.white)
-               .padding(.leading, 16)
-               .frame(height: 17)
-               .padding(.top, 7)
-
+            BudgetTransactionHeader()
+               .contentShape(Rectangle())
+               .gesture(
+                  DragGesture()
+                     .onChanged { value in
+                        dragGestureOnChanged(value)
+                     }
+                     .onEnded { _ in
+                        dragGestureOnEnded()
+                     }
+               )
             List {
                ForEach(transactionsByDate.keys, id: \.self) { key in
                   Section(header: HStack() {
@@ -90,7 +91,7 @@ struct BudgetTransactions_Previews: PreviewProvider {
 
    static var previews: some View {
       BudgetTransactions(
-         transactions: MockDataTransaction.transactions)
+         transactions: MockDataTransaction.transactions, dragGestureOnChanged: { _ in }, dragGestureOnEnded: { })
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

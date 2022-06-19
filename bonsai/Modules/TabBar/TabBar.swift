@@ -38,11 +38,11 @@ struct TabBar: View {
             }
          }
          TabView(selection: $selection) {
-            BudgetDetails()
+            BudgetDetails(mainContext: MockDataTransaction.viewContext)
                .tag(0)
             HomeContainerView()
                .tag(1)
-            BudgetDetails()
+            BudgetDetails(mainContext: MockDataTransaction.viewContext)
                .tag(2)
          }
          .animation(.easeInOut)
