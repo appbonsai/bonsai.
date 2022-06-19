@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension TagBubbleView {
-   
+
    enum Kind: Hashable {
       case tag (Tag, closeHandler: () -> Void)
       case newTagButton(touchHandler: () -> Void)
@@ -46,26 +46,34 @@ struct TagBubbleView: View {
       }) {
          ZStack {
             BonsaiColor.disabled
+
             HStack(spacing: 10) {
+
                Text({ () -> String in
                   switch kind {
                   case .tag(let tag, _):
                      return tag.title
                   case .newTagButton:
-                     return "Add Tag  +"
+                     return "Add Tag"
                   }
                }())
-                  .font(BonsaiFont.caption_12)
-                  .foregroundColor({ () -> Color in
-                     switch (kind) {
-                     case (.newTagButton):
-                        return BonsaiColor.green
-                     case (.tag):
-                        return BonsaiColor.text
-                     }
-                  }())
-                  .padding([.top, .bottom], 8)
-                  .lineLimit(1)
+               .font(BonsaiFont.body_15)
+               .foregroundColor({ () -> Color in
+                  switch (kind) {
+                  case (.newTagButton):
+                     return BonsaiColor.green
+                  case (.tag):
+                     return BonsaiColor.text
+                  }
+               }())
+               .lineLimit(1)
+
+               if case .newTagButton = kind {
+                  BonsaiImage.plus
+                     .renderingMode(.template)
+                     .foregroundColor(BonsaiColor.green)
+               }
+
                if case .tag(_, let closeHandler) = kind {
                   Button(action: closeHandler) {
                      BonsaiImage.xMark
@@ -73,8 +81,9 @@ struct TagBubbleView: View {
                         .foregroundColor(BonsaiColor.text)
                   }
                }
+
             } // HStack
-            .padding([.leading, .trailing], 8)
+            .padding(8)
          }
       }
    }

@@ -59,7 +59,7 @@ struct TagsContainerView: View {
                Button(action: {
                   isCreateTagPresented = true
                }) {
-                  Image(systemName: "plus")
+                  BonsaiImage.plus
                      .foregroundColor(BonsaiColor.mainPurple)
                }
             }

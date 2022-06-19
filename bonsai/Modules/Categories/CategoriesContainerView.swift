@@ -55,7 +55,7 @@ struct CategoriesContainerView: View {
                Button(action: {
                   isCreateCategoryPresented = true
                }) {
-                  Image(systemName: "plus")
+                  BonsaiImage.plus
                      .foregroundColor(BonsaiColor.mainPurple)
                }
             }

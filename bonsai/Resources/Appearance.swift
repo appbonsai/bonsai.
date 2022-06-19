@@ -40,6 +40,7 @@ enum BonsaiImage {
    static var chevronForward: Image { Image(systemName: "chevron.forward") }
    static var textBubble: Image { Image(systemName: "text.bubble") }
    static var xMark: Image { Image(systemName: "xmark") }
+   static var plus: Image { Image(systemName: "plus") }
 }
 
 enum BonsaiColor {
