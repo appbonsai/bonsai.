@@ -38,6 +38,8 @@ enum BonsaiImage {
    static var title: Image { Image(systemName: "text.bubble") }
    static var arrowUpCircle: Image { Image(systemName: "arrow.up.circle") }
    static var chevronForward: Image { Image(systemName: "chevron.forward") }
+   static var chevronDown: Image { Image(systemName: "chevron.down") }
+   static var chevronUp: Image { Image(systemName: "chevron.up") }
    static var textBubble: Image { Image(systemName: "text.bubble") }
    static var xMark: Image { Image(systemName: "xmark") }
    static var plus: Image { Image(systemName: "plus") }

@@ -17,6 +17,7 @@ struct NewOperationView: View {
    @State var category: Category?
    @State var title: String = ""
    @State var tags: OrderedSet<Tag> = []
+   @State var date: Date = Date()
    @State var isCategoriesViewPresented: Bool = false
    @State var isTagsViewPresented: Bool = false
 
@@ -66,6 +67,9 @@ struct NewOperationView: View {
                   )
                   .cornerRadius(13)
                   .padding([.top], 16)
+                  DateSelectorView(date: $date)
+                     .cornerRadius(13)
+                     .padding([.top], 16)
                } // VStack
                .padding([.top, .leading, .trailing], 16)
             }

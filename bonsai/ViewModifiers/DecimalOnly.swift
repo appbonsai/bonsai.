@@ -5,6 +5,8 @@
 //  Created by Vladimir Korolev on 19.06.2022.
 //
 
+import SwiftUI
+
 struct DecimalOnly: ViewModifier {
 
    @Binding var text: String
