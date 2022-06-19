@@ -14,9 +14,10 @@ struct bonsaiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TabBar()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environment(\.persistentContainer, dataController.container)
+           BudgetDetails(mainContext: dataController.container.viewContext)
+//            TabBar()
+//                .environment(\.managedObjectContext, dataController.container.viewContext)
+//                .environment(\.persistentContainer, dataController.container)
         }
     }
 }

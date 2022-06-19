@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BudgetDragUpView: View {
+    static let height: CGFloat = 148
     var body: some View {
         VStack {
             BonsaiImage.arrowUpCircle
@@ -18,7 +19,7 @@ struct BudgetDragUpView: View {
                 .font(BonsaiFont.body_17)
                 .foregroundColor(BonsaiColor.text)
         }
-        .frame(height: 148)
+        .frame(height: Self.height)
     }
 }
 

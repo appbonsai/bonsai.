@@ -69,7 +69,7 @@ struct BudgetDetails: View {
                         DragGesture()
                            .onChanged{ value in
                               withAnimation(.spring()) {
-                                 currentOffsetY = value.translation.height
+                                 currentOffsetY = value.translation.height - BudgetDragUpView.height
                               }
                            }
                            .onEnded { _ in
@@ -84,24 +84,17 @@ struct BudgetDetails: View {
          .background(BonsaiColor.back)
          .ignoresSafeArea()
 
-         BudgetTransactions(transactions: transactions)
+         BudgetTransactions(transactions: transactions, dragGestureOnChanged: { value in
+            withAnimation(.spring()) {
+               currentOffsetY = value.location.y
+               if currentOffsetY < 0 {
+                  currentOffsetY = 0
+               }
+            }
+         }, dragGestureOnEnded: lockBudgetTransactionsOffset)
             .offset(y: startOffsetY)
             .offset(y: currentOffsetY)
             .offset(y: endingOffsetY)
-            .gesture(
-               DragGesture()
-                  .onChanged { value in
-                     withAnimation(.spring()) {
-                        currentOffsetY = value.translation.height
-                        if currentOffsetY < 0 {
-                           currentOffsetY = 0
-                        }
-                     }
-                  }
-                  .onEnded { _ in
-                     lockBudgetTransactionsOffset()
-                  }
-            )
       }
    }
 
