@@ -10,6 +10,8 @@ import OrderedCollections
 
 struct NewOperationView: View {
 
+   @Environment(\.managedObjectContext) private var moc
+
    @Binding var isPresented: Bool
 
    @State var selectedOperation: OperationType = .expense
@@ -89,7 +91,19 @@ struct NewOperationView: View {
                   } // ScrollView
                } // ScrollViewReader
                Button {
-                  print("save")
+                  bonsai.Transaction(
+                     context: moc,
+                     amount: NSDecimalNumber(string: amount),
+                     date: date,
+                     type: selectedOperation.mappedToTransactionType,
+                     tags: Set(tags)
+                  )
+                  do {
+                     try moc.save()
+                     isPresented = false
+                  } catch (let e) {
+                     assertionFailure(e.localizedDescription)
+                  }
                } label: {
                   Text("Save")
                }

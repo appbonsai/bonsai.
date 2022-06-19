@@ -122,7 +122,11 @@ struct CreateCategoryView: View {
                      color: color,
                      icon: icon
                   )
-                  try? moc.save()
+                  do {
+                     try moc.save()
+                  } catch (let e) {
+                     assertionFailure(e.localizedDescription)
+                  }
                   isPresented = false
                }) {
                   Text("Done")

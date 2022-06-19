@@ -48,7 +48,11 @@ struct CreateTagView: View {
                      return
                   }
                   Tag(context: moc, title: title)
-                  try? moc.save()
+                  do {
+                     try moc.save()
+                  } catch (let e) {
+                     assertionFailure(e.localizedDescription)
+                  }
                   isPresented = false
                }) {
                   Text("Done")
