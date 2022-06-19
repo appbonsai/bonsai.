@@ -17,7 +17,10 @@ struct BudgetTransactions: View {
 
    private let transactionsByDate: OrderedDictionary<String, [Transaction]>
 
-   init(transactions: [Transaction]) {
+   init(transactions: [Transaction],
+        dragGestureOnChanged: @escaping (DragGesture.Value) -> Void,
+        dragGestureOnEnded: @escaping () -> Void
+   ) {
       var dict = OrderedDictionary<String, [Transaction]>()
       let sortedTransaction = transactions
          .sorted(by: { $0.date > $1.date  })
@@ -33,7 +36,12 @@ struct BudgetTransactions: View {
          }
       }
       transactionsByDate = dict
+      self.dragGestureOnChanged = dragGestureOnChanged
+      self.dragGestureOnEnded = dragGestureOnEnded
    }
+
+   let dragGestureOnChanged: (DragGesture.Value) -> Void
+   let dragGestureOnEnded: () -> Void
 
    var body: some View {
       ZStack {
@@ -46,11 +54,20 @@ struct BudgetTransactions: View {
                Spacer()
                RoundedCorner()
                   .foregroundColor(BonsaiColor.disabled)
-                  .frame(width: 60, height: 5, alignment: .center)
+                  .frame(width: 60, height: 50, alignment: .center)
                   .cornerRadius(25, corners: .allCorners)
                Spacer()
             }
             .padding(.top, 20)
+            .gesture(
+               DragGesture()
+                  .onChanged { value in
+                     dragGestureOnChanged(value)
+                  }
+                  .onEnded { _ in
+                     dragGestureOnEnded()
+                  }
+            )
 
             Text("Transactions")
                .font(BonsaiFont.title_headline_17)
@@ -90,7 +107,7 @@ struct BudgetTransactions_Previews: PreviewProvider {
 
    static var previews: some View {
       BudgetTransactions(
-         transactions: MockDataTransaction.transactions)
+         transactions: MockDataTransaction.transactions, dragGestureOnChanged: { _ in }, dragGestureOnEnded: { })
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

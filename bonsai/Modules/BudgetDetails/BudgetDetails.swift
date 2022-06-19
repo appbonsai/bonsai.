@@ -21,7 +21,7 @@ struct BudgetDetails: View {
       let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
       do {
          let transactions = try mainContext.fetch(fetchRequest)
-         self.transactions = transactions
+         self.transactions = MockDataTransaction.transactions
       } catch { }
    }
 
@@ -84,24 +84,17 @@ struct BudgetDetails: View {
          .background(BonsaiColor.back)
          .ignoresSafeArea()
 
-         BudgetTransactions(transactions: transactions)
-            .offset(y: startOffsetY)
-            .offset(y: currentOffsetY)
+         BudgetTransactions(transactions: transactions, dragGestureOnChanged: { value in
+            withAnimation(.spring()) {
+               currentOffsetY = value.translation.height
+               if currentOffsetY < 0 {
+                  currentOffsetY = 0
+               }
+            }
+         }, dragGestureOnEnded: lockBudgetTransactionsOffset)
+         .offset(y: startOffsetY)
+         .offset(y: currentOffsetY)
             .offset(y: endingOffsetY)
-            .gesture(
-               DragGesture()
-                  .onChanged { value in
-                     withAnimation(.spring()) {
-                        currentOffsetY = value.translation.height
-                        if currentOffsetY < 0 {
-                           currentOffsetY = 0
-                        }
-                     }
-                  }
-                  .onEnded { _ in
-                     lockBudgetTransactionsOffset()
-                  }
-            )
       }
    }
 
