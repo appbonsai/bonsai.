@@ -10,6 +10,7 @@ import SwiftUI
 struct AmountView: View {
 
    let operation: Operation
+
    @Binding var text: String
    private let characterLimit = 16
 
@@ -22,6 +23,7 @@ struct AmountView: View {
          TextField("", text: $text)
             .font(BonsaiFont.body_17)
             .foregroundColor(operation.viewModel.color)
+            .keyboardType(.decimalPad)
             .placeholder(
                Text("Amount")
                   .foregroundColor(BonsaiColor.prompt),
@@ -33,6 +35,7 @@ struct AmountView: View {
                   limit: characterLimit
                )
             )
+            .modifier(DecimalOnly(text: $text))
       }
       .background(BonsaiColor.card)
    }
