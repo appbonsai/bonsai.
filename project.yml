@@ -23,3 +23,6 @@ packages:
   swift-collections:
     url: https://github.com/apple/swift-collections
     from: 1.0.0
+  ChartView: 
+    url: https://github.com/AppPear/ChartView
+    from: 2.0.0-beta.2
