@@ -57,12 +57,16 @@ public class Category: NSManagedObject, Identifiable {
 
 // Category for use when no category was specified on transaction
 extension Category {
-   @NonNilUserDefault("Category.notSpecified.id", defaultValue: UUID().uuidString)
-   private static var categoryId: String
+   @UserDefault("Category.notSpecified.id")
+   private(set) static var nonSpecifiedId: String?
 
-   static var notSpecified = Category(
+   private(set) static var notSpecified = Category(
       context: DataController.sharedInstance.container.viewContext,
-      id: UUID(uuidString: categoryId)!,
+      id: { () -> UUID in
+          let id = nonSpecifiedId ?? UUID().uuidString
+          nonSpecifiedId = id
+          return UUID(uuidString: id)!
+      }(),
       title: "No category",
       color: .blue,
       icon: .star
