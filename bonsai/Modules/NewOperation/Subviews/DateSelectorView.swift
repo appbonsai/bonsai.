@@ -20,20 +20,24 @@ struct DateSelectorView: View {
 
    var body: some View {
       VStack {
-         HStack(spacing: 8) {
-            BonsaiImage.calendar
-               .renderingMode(.template)
-               .foregroundColor(BonsaiColor.purple3)
-               .padding([.leading, .top, .bottom], 16)
-            Text(fullSized ? "Date" : dateText)
-               .foregroundColor(BonsaiColor.purple3)
-               .font(BonsaiFont.body_17)
-            Spacer()
-            (fullSized ? BonsaiImage.chevronUp : BonsaiImage.chevronDown)
-               .renderingMode(.template)
-               .padding([.trailing], 24)
-               .foregroundColor(BonsaiColor.purple3)
-         }.onTapGesture {
+          ZStack {
+              BonsaiColor.card
+              HStack(spacing: 8) {
+                 BonsaiImage.calendar
+                    .renderingMode(.template)
+                    .foregroundColor(BonsaiColor.purple3)
+                    .padding([.leading, .top, .bottom], 16)
+                 Text(fullSized ? "Date" : dateText)
+                    .foregroundColor(BonsaiColor.purple3)
+                    .font(BonsaiFont.body_17)
+                 Spacer()
+                 (fullSized ? BonsaiImage.chevronUp : BonsaiImage.chevronDown)
+                    .renderingMode(.template)
+                    .padding([.trailing], 24)
+                    .foregroundColor(BonsaiColor.purple3)
+              }
+          }
+         .onTapGesture {
             withAnimation {
                fullSized.toggle()
             }
