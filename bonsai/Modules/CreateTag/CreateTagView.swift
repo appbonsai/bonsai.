@@ -39,6 +39,7 @@ struct CreateTagView: View {
             ToolbarItem(placement: .navigationBarLeading) {
                Button(action: { isPresented = false }) {
                   Text("Cancel")
+                       .foregroundColor(BonsaiColor.secondary)
                }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -56,6 +57,9 @@ struct CreateTagView: View {
                   isPresented = false
                }) {
                   Text("Done")
+                       .if($title.wrappedValue.isEmpty == false, transform: { text in
+                           text.foregroundColor(BonsaiColor.secondary)
+                       })
                }
                .disabled($title.wrappedValue.isEmpty)
             }

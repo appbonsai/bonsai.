@@ -102,6 +102,7 @@ struct CreateCategoryView: View {
                   confirmationPresented = true
                }) {
                   Text("Cancel")
+                       .foregroundColor(BonsaiColor.secondary)
                }
                .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
                   Button("Discard Changes", role: .destructive, action: {
@@ -127,9 +128,12 @@ struct CreateCategoryView: View {
                   } catch (let e) {
                      assertionFailure(e.localizedDescription)
                   }
-                  isPresented = false
+                   isPresented = false
                }) {
-                  Text("Done")
+                   Text("Done")
+                       .if($title.wrappedValue.isEmpty == false, transform: { text in
+                           text.foregroundColor(BonsaiColor.secondary)
+                       })
                }
                .disabled($title.wrappedValue.isEmpty)
             }
