@@ -7,9 +7,9 @@
         <relationship name="transaction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="account" inverseEntity="Transaction"/>
     </entity>
     <entity name="Budget" representedClassName="Budget" syncable="YES">
-        <attribute name="amount" optional="YES" attributeType="Decimal" defaultValueString="0.0"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="periodDays" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="amount" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="periodDays" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Category" representedClassName="Category" syncable="YES">
         <attribute name="colorString" attributeType="String" valueTransformerName="UIColorValueTransformer" customClassName="UIColor"/>
@@ -36,9 +36,9 @@
     </entity>
     <elements>
         <element name="Account" positionX="-521.1292114257812" positionY="229.8336486816406" width="128" height="103"/>
+        <element name="Budget" positionX="-315" positionY="198" width="128" height="74"/>
         <element name="Category" positionX="-69.262451171875" positionY="89.51480102539062" width="128" height="104"/>
         <element name="Tag" positionX="-83.6285400390625" positionY="260.9072265625" width="128" height="88"/>
         <element name="Transaction" positionX="-247.595947265625" positionY="75.6036376953125" width="128" height="178"/>
-        <element name="Budget" positionX="-315" positionY="198" width="128" height="74"/>
     </elements>
 </model>

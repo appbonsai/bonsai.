@@ -12,16 +12,35 @@ import CoreData
 class BudgetServiceTests: XCTestCase {
 
     func test() {
-        XCTFail()
+        
     }
     
-    func testBudgetNotEmpty() {
+    func testCreateBudget() throws {
         // g
-        let sut = BudgetService()
+        let sut = makeSUT()
         // w
-        let budget = try? sut.getBudget()
+        let budget = try sut.create(name: "test", amount: 2000, periodDays: 30)
         // t
-        XCTAssertNotNil(budget)
+        XCTAssertEqual(budget.name, "test")
+        XCTAssertEqual(budget.amount, 2000)
+        XCTAssertEqual(budget.periodDays, 30)
+    }
+    
+    func makeSUT() -> BudgetService {
+        let dataController = DataControllerMock()
+        return BudgetService(context: dataController.mainContext)
+    }
+    func testBudgetNotEmpty() {
+//        // g
+//        let sut = BudgetService()
+//        // w
+//
+//        let budget = sut.create(name: "na Tailand", amount: 2000, period: 30)
+//
+////        let budget = try? sut.getBudget()
+//        // t
+//        print("budget", budget)
+//        XCTAssertNotNil(budget)
     }
 
 }
@@ -35,12 +54,12 @@ class BudgetService {
     }
     
     @discardableResult
-    func create(name: String, amount: Decimal, period: Int64) throws -> Budget {
+    func create(name: String, amount: NSDecimalNumber, periodDays: Int64) throws -> Budget {
         let budget = Budget(
             context: context,
             name: name,
             amount: amount,
-            periodDays: period)
+            periodDays: periodDays)
         try context.save()
         return budget
     }

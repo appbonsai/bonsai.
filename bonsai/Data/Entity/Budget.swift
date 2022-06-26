@@ -11,14 +11,14 @@ import CoreData
 @objc(Budget)
 public class Budget: NSManagedObject, Identifiable {
     @NSManaged public var name: String
-    @NSManaged public var amount: Decimal // NSDecimal
+    @NSManaged public var amount: NSDecimalNumber
     @NSManaged public var periodDays: Int64
     
     @discardableResult convenience init(
         context: NSManagedObjectContext,
         name: String,
-        amount: Decimal,
-        periodDays: Int64
+        amount: NSDecimalNumber = 0,
+        periodDays: Int64 = 0
     ) {
         self.init(context: context)
         self.name = name
@@ -30,3 +30,4 @@ public class Budget: NSManagedObject, Identifiable {
         NSFetchRequest<Budget>(entityName: "Budget")
     }
 }
+
