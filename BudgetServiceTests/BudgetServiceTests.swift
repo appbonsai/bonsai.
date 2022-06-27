@@ -51,11 +51,11 @@ class BudgetServiceTests: XCTestCase {
         oldBudget.amount = 8888
         oldBudget.periodDays = 17
         // w
-        try sut.update(budget: oldBudget)
+        let updated = try sut.update(budget: oldBudget)
         // t
-        XCTAssertEqual(oldBudget.name, "na Bali")
-        XCTAssertEqual(oldBudget.amount, 8888)
-        XCTAssertEqual(oldBudget.periodDays, 17)
+        XCTAssertEqual(updated.name, "na Bali")
+        XCTAssertEqual(updated.amount, 8888)
+        XCTAssertEqual(updated.periodDays, 17)
     }
     
     func testDeleteBudget() throws {
@@ -69,10 +69,6 @@ class BudgetServiceTests: XCTestCase {
         XCTAssertThrowsError(try action()) { error in
             XCTAssertTrue(error is BudgetService.BudgetDoesntExist)
         }
-    }
-    
-    func testBudgetMoneyLeft() throws {
-
     }
         
     func testBudgetMoneyCanSpendToday() throws {
@@ -143,7 +139,8 @@ class BudgetService {
         return budget
     }
     
-    func update(budget: Budget) throws {
+    @discardableResult
+    func update(budget: Budget) throws -> Budget {
         let request: NSFetchRequest<Budget> = Budget.fetchRequest()
         request.fetchLimit = 1
         let currentBudget = try getBudget()
@@ -151,6 +148,7 @@ class BudgetService {
         currentBudget.setValue(budget.amount, forKeyPath: #keyPath(Budget.amount))
         currentBudget.setValue(budget.periodDays, forKeyPath: #keyPath(Budget.periodDays))
         try context.save()
+        return currentBudget
     }
     
     func delete() throws {
