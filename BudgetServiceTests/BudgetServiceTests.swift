@@ -72,18 +72,9 @@ class BudgetServiceTests: XCTestCase {
     }
     
     func testBudgetMoneyLeft() throws {
-//        // g
-//        let sut = makeSUT()
-//        let expectedMoneyLeft: NSDecimalNumber = 222.2
-//        // w
-//        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
-//        let moneyLeft = try sut.calculateMoneyCanSpendToday()
-//        // t
-//        XCTAssertEqual(expectedMoneyLeft, moneyLeft)
+
     }
-    
-    // Logic update periodDays by time zone
-    
+        
     func testBudgetMoneyCanSpendToday() throws {
         // g
         let sut = makeSUT()
