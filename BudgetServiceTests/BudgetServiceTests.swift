@@ -10,37 +10,42 @@ import XCTest
 import CoreData
 
 class BudgetServiceTests: XCTestCase {
-
-    func test() {
-        
+    
+    func testNoBudgetCreated() throws {
+        // g
+        let sut = makeSUT()
+        // w
+        let action = { try sut.getBudget() }
+        // t
+        XCTAssertThrowsError(try action()) { error in
+            XCTAssertTrue(error is BudgetService.BudgetDoesntExist)
+        }
     }
     
     func testCreateBudget() throws {
         // g
         let sut = makeSUT()
         // w
-        let budget = try sut.create(name: "test", amount: 2000, periodDays: 30)
+        let budget = try sut.create(name: "na Tailand", amount: 2000, periodDays: 30)
         // t
-        XCTAssertEqual(budget.name, "test")
+        XCTAssertEqual(budget.name, "na Tailand")
         XCTAssertEqual(budget.amount, 2000)
         XCTAssertEqual(budget.periodDays, 30)
+    }
+    
+    func testCreateAndGetBudgetNotNil() throws {
+        // g
+        let sut = makeSUT()
+        // w
+        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        let budget = try sut.getBudget()
+        // t
+        XCTAssertNotNil(budget)
     }
     
     func makeSUT() -> BudgetService {
         let dataController = DataControllerMock()
         return BudgetService(context: dataController.mainContext)
-    }
-    func testBudgetNotEmpty() {
-//        // g
-//        let sut = BudgetService()
-//        // w
-//
-//        let budget = sut.create(name: "na Tailand", amount: 2000, period: 30)
-//
-////        let budget = try? sut.getBudget()
-//        // t
-//        print("budget", budget)
-//        XCTAssertNotNil(budget)
     }
 
 }
@@ -67,7 +72,6 @@ class BudgetService {
     func getBudget() throws -> Budget {
         let request: NSFetchRequest<Budget> = Budget.fetchRequest()
         request.fetchLimit = 1
-        request.predicate = NSPredicate(format: "%K == %@", #keyPath(Budget.name))
         guard let budget = try context.fetch(request).first else {
             throw BudgetDoesntExist()
         }
