@@ -33,7 +33,7 @@ class BudgetServiceTests: XCTestCase {
         XCTAssertEqual(budget.periodDays, 30)
     }
     
-    func testCreateAndGetBudgetNotNil() throws {
+    func testCreateAndGetBudget() throws {
         // g
         let sut = makeSUT()
         // w
@@ -69,6 +69,30 @@ class BudgetServiceTests: XCTestCase {
         XCTAssertThrowsError(try action()) { error in
             XCTAssertTrue(error is BudgetService.BudgetDoesntExist)
         }
+    }
+    
+    func testBudgetMoneyLeft() throws {
+//        // g
+//        let sut = makeSUT()
+//        let expectedMoneyLeft: NSDecimalNumber = 222.2
+//        // w
+//        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+//        let moneyLeft = try sut.calculateMoneyCanSpendToday()
+//        // t
+//        XCTAssertEqual(expectedMoneyLeft, moneyLeft)
+    }
+    
+    // Logic update periodDays
+    
+    func testBudgetMoneyCanSpendToday() throws {
+        // g
+        let sut = makeSUT()
+        let expectedMoneyCanSpendToday: NSDecimalNumber = 222.2
+        // w
+        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        let moneyLeftCanSpend = try sut.calculateMoneyCanSpendToday()
+        // t
+        XCTAssertEqual(expectedMoneyCanSpendToday, moneyLeftCanSpend)
     }
     
     func makeSUT() -> BudgetService {
@@ -119,6 +143,20 @@ class BudgetService {
         let currentBudget = try getBudget()
         context.delete(currentBudget)
         try context.save()
+    }
+    
+    func calculateMoneyCanSpendToday() throws -> NSDecimalNumber {
+        let currentBudget = try getBudget()
+        let scale: Int16 = 2
+        let behaviour = NSDecimalNumberHandler(
+            roundingMode: .plain,
+            scale: scale,
+            raiseOnExactness: false,
+            raiseOnOverflow: false,
+            raiseOnUnderflow: false,
+            raiseOnDivideByZero: true)
+        let diffValue = currentBudget.amount.floatValue / Float(currentBudget.periodDays)
+        return NSDecimalNumber(value: diffValue).rounding(accordingToBehavior: behaviour)
     }
     
     struct BudgetDoesntExist: Error { }
