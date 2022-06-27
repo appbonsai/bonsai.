@@ -36,8 +36,8 @@ class BudgetServiceTests: XCTestCase {
     func testCreateAndGetBudget() throws {
         // g
         let sut = makeSUT()
-        // w
         try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        // w
         let budget = try sut.getBudget()
         // t
         XCTAssertNotNil(budget)
@@ -46,11 +46,11 @@ class BudgetServiceTests: XCTestCase {
     func testUpdateBudget() throws {
         // g
         let sut = makeSUT()
-        // w
         let oldBudget = try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
         oldBudget.name = "na Bali"
         oldBudget.amount = 8888
         oldBudget.periodDays = 17
+        // w
         try sut.update(budget: oldBudget)
         // t
         XCTAssertEqual(oldBudget.name, "na Bali")
@@ -61,8 +61,8 @@ class BudgetServiceTests: XCTestCase {
     func testDeleteBudget() throws {
         // g
         let sut = makeSUT()
-        // w
         try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        // w
         try sut.delete()
         let action = { try sut.getBudget() }
         // t
@@ -82,17 +82,39 @@ class BudgetServiceTests: XCTestCase {
 //        XCTAssertEqual(expectedMoneyLeft, moneyLeft)
     }
     
-    // Logic update periodDays
+    // Logic update periodDays by time zone
     
     func testBudgetMoneyCanSpendToday() throws {
         // g
         let sut = makeSUT()
         let expectedMoneyCanSpendToday: NSDecimalNumber = 222.2
-        // w
         try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        // w
         let moneyLeftCanSpend = try sut.calculateMoneyCanSpendToday()
         // t
         XCTAssertEqual(expectedMoneyCanSpendToday, moneyLeftCanSpend)
+    }
+    
+    func testBudgetMoneySpending() throws {
+        // g
+        let sut = makeSUT()
+        let budget = try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        // w
+        try sut.calculateAmount(spending: 999)
+        // t
+        XCTAssertEqual(budget.amount, 9000)
+    }
+    
+    func testBudgetMoneySpendingMoreThanAmountAvailable() throws {
+        // g
+        let sut = makeSUT()
+        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        // w
+        let action = { try sut.calculateAmount(spending: 20000) }
+        // t
+        XCTAssertThrowsError(try action()) { error in
+            XCTAssertTrue(error is BudgetService.BudgetAmountDoesNotEnough)
+        }
     }
     
     func makeSUT() -> BudgetService {
@@ -137,6 +159,7 @@ class BudgetService {
         currentBudget.setValue(budget.name, forKeyPath: #keyPath(Budget.name))
         currentBudget.setValue(budget.amount, forKeyPath: #keyPath(Budget.amount))
         currentBudget.setValue(budget.periodDays, forKeyPath: #keyPath(Budget.periodDays))
+        try context.save()
     }
     
     func delete() throws {
@@ -147,6 +170,23 @@ class BudgetService {
     
     func calculateMoneyCanSpendToday() throws -> NSDecimalNumber {
         let currentBudget = try getBudget()
+        let diffValue = currentBudget.amount.floatValue / Float(currentBudget.periodDays)
+        let moneyCanSpendToday = roundedDecimal(diffValue: diffValue)
+        return moneyCanSpendToday
+    }
+    
+    func calculateAmount(spending: NSDecimalNumber) throws {
+        let budget = try getBudget()
+        if spending.floatValue > budget.amount.floatValue {
+            throw BudgetAmountDoesNotEnough()
+        }
+        let diffValue = (budget.amount.floatValue - spending.floatValue)
+        let currentAmount = roundedDecimal(diffValue: diffValue)
+        budget.setValue(currentAmount, forKeyPath: #keyPath(Budget.amount))
+        try context.save()
+    }
+    
+    private func roundedDecimal(diffValue: Float) -> NSDecimalNumber {
         let scale: Int16 = 2
         let behaviour = NSDecimalNumberHandler(
             roundingMode: .plain,
@@ -155,10 +195,11 @@ class BudgetService {
             raiseOnOverflow: false,
             raiseOnUnderflow: false,
             raiseOnDivideByZero: true)
-        let diffValue = currentBudget.amount.floatValue / Float(currentBudget.periodDays)
         return NSDecimalNumber(value: diffValue).rounding(accordingToBehavior: behaviour)
     }
     
     struct BudgetDoesntExist: Error { }
     
+    struct BudgetAmountDoesNotEnough: Error { }
+
 }
