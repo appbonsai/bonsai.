@@ -26,17 +26,17 @@ class BudgetServiceTests: XCTestCase {
         // g
         let sut = makeSUT()
         // w
-        let budget = try sut.create(name: "na Tailand", amount: 2000, periodDays: 30)
+        let budget = try sut.create(name: "na Tailand", totalAmount: 2000, periodDays: 30)
         // t
         XCTAssertEqual(budget.name, "na Tailand")
-        XCTAssertEqual(budget.amount, 2000)
+        XCTAssertEqual(budget.totalAmount, 2000)
         XCTAssertEqual(budget.periodDays, 30)
     }
     
     func testCreateAndGetBudget() throws {
         // g
         let sut = makeSUT()
-        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        try sut.create(name: "na Tailand", totalAmount: 9999, periodDays: 45)
         // w
         let budget = try sut.getBudget()
         // t
@@ -46,22 +46,22 @@ class BudgetServiceTests: XCTestCase {
     func testUpdateBudget() throws {
         // g
         let sut = makeSUT()
-        let oldBudget = try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        let oldBudget = try sut.create(name: "na Tailand", totalAmount: 9999, periodDays: 45)
         oldBudget.name = "na Bali"
-        oldBudget.amount = 8888
+        oldBudget.totalAmount = 8888
         oldBudget.periodDays = 17
         // w
         let updated = try sut.update(budget: oldBudget)
         // t
         XCTAssertEqual(updated.name, "na Bali")
-        XCTAssertEqual(updated.amount, 8888)
+        XCTAssertEqual(updated.totalAmount, 8888)
         XCTAssertEqual(updated.periodDays, 17)
     }
     
     func testDeleteBudget() throws {
         // g
         let sut = makeSUT()
-        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        try sut.create(name: "na Tailand", totalAmount: 9999, periodDays: 45)
         // w
         try sut.delete()
         let action = { try sut.getBudget() }
@@ -75,7 +75,7 @@ class BudgetServiceTests: XCTestCase {
         // g
         let sut = makeSUT()
         let expectedMoneyCanSpendToday: NSDecimalNumber = 222.2
-        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        try sut.create(name: "na Tailand", totalAmount: 9999, periodDays: 45)
         // w
         let moneyLeftCanSpend = try sut.calculateMoneyCanSpendToday()
         // t
@@ -85,17 +85,17 @@ class BudgetServiceTests: XCTestCase {
     func testBudgetMoneySpending() throws {
         // g
         let sut = makeSUT()
-        let budget = try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        let budget = try sut.create(name: "na Tailand", totalAmount: 9999, periodDays: 45)
         // w
         try sut.calculateAmount(spending: 999)
         // t
-        XCTAssertEqual(budget.amount, 9000)
+        XCTAssertEqual(budget.currentAmount, 9000)
     }
     
     func testBudgetMoneySpendingMoreThanAmountAvailable() throws {
         // g
         let sut = makeSUT()
-        try sut.create(name: "na Tailand", amount: 9999, periodDays: 45)
+        try sut.create(name: "na Tailand", totalAmount: 9999, periodDays: 45)
         // w
         let action = { try sut.calculateAmount(spending: 20000) }
         // t
@@ -120,11 +120,11 @@ class BudgetService {
     }
     
     @discardableResult
-    func create(name: String, amount: NSDecimalNumber, periodDays: Int64) throws -> Budget {
+    func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) throws -> Budget {
         let budget = Budget(
             context: context,
             name: name,
-            amount: amount,
+            totalAmount: totalAmount,
             periodDays: periodDays)
         try context.save()
         return budget
@@ -141,11 +141,9 @@ class BudgetService {
     
     @discardableResult
     func update(budget: Budget) throws -> Budget {
-        let request: NSFetchRequest<Budget> = Budget.fetchRequest()
-        request.fetchLimit = 1
         let currentBudget = try getBudget()
         currentBudget.setValue(budget.name, forKeyPath: #keyPath(Budget.name))
-        currentBudget.setValue(budget.amount, forKeyPath: #keyPath(Budget.amount))
+        currentBudget.setValue(budget.totalAmount, forKeyPath: #keyPath(Budget.totalAmount))
         currentBudget.setValue(budget.periodDays, forKeyPath: #keyPath(Budget.periodDays))
         try context.save()
         return currentBudget
@@ -159,19 +157,19 @@ class BudgetService {
     
     func calculateMoneyCanSpendToday() throws -> NSDecimalNumber {
         let currentBudget = try getBudget()
-        let diffValue = currentBudget.amount.floatValue / Float(currentBudget.periodDays)
+        let diffValue = currentBudget.currentAmount.floatValue / Float(currentBudget.periodDays)
         let moneyCanSpendToday = roundedDecimal(diffValue: diffValue)
         return moneyCanSpendToday
     }
     
     func calculateAmount(spending: NSDecimalNumber) throws {
         let budget = try getBudget()
-        if spending.floatValue > budget.amount.floatValue {
+        if spending.floatValue > budget.currentAmount.floatValue {
             throw BudgetAmountDoesNotEnough()
         }
-        let diffValue = (budget.amount.floatValue - spending.floatValue)
+        let diffValue = (budget.currentAmount.floatValue - spending.floatValue)
         let currentAmount = roundedDecimal(diffValue: diffValue)
-        budget.setValue(currentAmount, forKeyPath: #keyPath(Budget.amount))
+        budget.setValue(currentAmount, forKeyPath: #keyPath(Budget.currentAmount))
         try context.save()
     }
     
@@ -185,6 +183,14 @@ class BudgetService {
             raiseOnUnderflow: false,
             raiseOnDivideByZero: true)
         return NSDecimalNumber(value: diffValue).rounding(accordingToBehavior: behaviour)
+    }
+    
+    func dailyUpdateBudget() throws -> Budget {
+        let budget = try getBudget()
+        /*
+         https://stackoverflow.com/questions/35284913/swift-countdown-timer-displays-days-hours-seconds-remaining
+         */
+        return budget
     }
     
     struct BudgetDoesntExist: Error { }
