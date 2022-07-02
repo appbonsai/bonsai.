@@ -16,7 +16,7 @@ fileprivate extension CreateCategoryView {
 struct CreateCategoryView: View {
 
    @Environment(\.managedObjectContext) private var moc
-   @Binding var isPresented: Bool
+   @Binding private var isPresented: Bool
    @State private var title: String = ""
    // [color: isSelected]
    @State private var colors: OrderedDictionary<Color, Bool>
@@ -102,6 +102,7 @@ struct CreateCategoryView: View {
                   confirmationPresented = true
                }) {
                   Text("Cancel")
+                       .foregroundColor(BonsaiColor.secondary)
                }
                .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
                   Button("Discard Changes", role: .destructive, action: {
@@ -122,10 +123,17 @@ struct CreateCategoryView: View {
                      color: color,
                      icon: icon
                   )
-                  try? moc.save()
-                  isPresented = false
+                  do {
+                     try moc.save()
+                  } catch (let e) {
+                     assertionFailure(e.localizedDescription)
+                  }
+                   isPresented = false
                }) {
-                  Text("Done")
+                   Text("Done")
+                       .if($title.wrappedValue.isEmpty == false, transform: { text in
+                           text.foregroundColor(BonsaiColor.secondary)
+                       })
                }
                .disabled($title.wrappedValue.isEmpty)
             }
