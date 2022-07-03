@@ -29,9 +29,6 @@ class BarChartViewModel: ObservableObject {
     func normalizedValue(value: Double) -> Double {
              var allValues: [Double]    {
                  var values = [Double]()
-//                 for data in data {
-//                     values.append(data.value)
-//                 }
                  for piece in chartData.pieces {
                      values.append(piece.value)
                  }

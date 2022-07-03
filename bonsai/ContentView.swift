@@ -12,12 +12,7 @@ struct ContentView: View {
    @State private var isPresented = false
 
    var body: some View {
-      Button("Present") {
-         isPresented.toggle()
-      }
-      .popover(isPresented: $isPresented) {
-         NewOperationView(isPresented: $isPresented)
-      }
+      BarChartView(viewModel: BarChartViewModel())
    }
 }
 
