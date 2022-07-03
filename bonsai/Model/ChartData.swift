@@ -23,7 +23,8 @@ struct ChartPiece: Identifiable {
     var value: Double
 }
 
-struct ChartLegend {
+struct ChartLegend: Identifiable {
+    var id = UUID() 
     var color: Color
     var title: String
 }
