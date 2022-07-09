@@ -9,6 +9,9 @@ import XCTest
 @testable import bonsai
 import CoreData
 
+// как получаем бюджет
+// где его достать
+
 class BudgetServiceTests: XCTestCase {
     
     func testNoBudgetCreated() throws {
@@ -81,6 +84,47 @@ class BudgetServiceTests: XCTestCase {
         // t
         XCTAssertEqual(expectedMoneyCanSpendToday, moneyLeftCanSpend)
     }
+
+  func testBudgetMoneyCanSpendToday2() throws {
+
+    // g
+
+    let input: [(amount: Float, days: Int64)] = [
+      (amount: 90, days: 30),
+      (amount: 120, days: 30),
+      (amount: 30, days: 30),
+      (amount: 150, days: 30),
+      (amount: 160, days: 30),
+      (amount: 880, days: 29)
+    ]
+
+    // w
+
+    let results: [NSDecimalNumber] = input.map {
+      calculateMoney2(
+        currentAmount: $0.amount,
+        periodDays: $0.days
+      )
+    }
+
+    // t
+
+    let expectations: [NSDecimalNumber] = [
+      .init(value: 3),
+      .init(value: 4),
+      .init(value: 1),
+      .init(value: 5),
+      .init(value: 5.33),
+      .init(value: 30.34)
+    ]
+
+    for i in 0..<results.count {
+      XCTAssertNotNil(expectations[i])
+      let res = results[i]
+      let exp = expectations[i]
+      XCTAssert(res == exp, "res=\(res); exp=\(exp)")
+    }
+  }
     
     func testBudgetMoneySpending() throws {
         // g
@@ -109,6 +153,24 @@ class BudgetServiceTests: XCTestCase {
         return BudgetService(context: dataController.mainContext)
     }
 
+}
+
+func calculateMoney2(currentAmount: Float, periodDays: Int64) -> NSDecimalNumber {
+  let diffValue = currentAmount / Float(periodDays)
+  let moneyCanSpendToday: NSDecimalNumber = roundedDecimal(diffValue: diffValue)
+  return moneyCanSpendToday
+}
+
+private func roundedDecimal(diffValue: Float) -> NSDecimalNumber {
+    let scale: Int16 = 2
+    let behaviour = NSDecimalNumberHandler(
+        roundingMode: .plain,
+        scale: scale,
+        raiseOnExactness: false,
+        raiseOnOverflow: false,
+        raiseOnUnderflow: false,
+        raiseOnDivideByZero: true)
+    return NSDecimalNumber(value: diffValue).rounding(accordingToBehavior: behaviour)
 }
 
 class BudgetService {
@@ -154,7 +216,7 @@ class BudgetService {
         context.delete(currentBudget)
         try context.save()
     }
-    
+
     func calculateMoneyCanSpendToday() throws -> NSDecimalNumber {
         let currentBudget = try getBudget()
         let diffValue = currentBudget.currentAmount.floatValue / Float(currentBudget.periodDays)
