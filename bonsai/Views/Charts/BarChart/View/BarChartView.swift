@@ -20,16 +20,11 @@ struct BarChartView: View {
     var body: some View {
         HStack {
             // left title
-//            VStack {
-//                Spacer()
-//
-//                Text(viewModel.chartData.leftTitle)
-//                    .font(BonsaiFont.caption_12)
-//                    .foregroundColor(BonsaiColor.text)
-//                    .rotationEffect(.degrees(-90))
-//
-//                Spacer()
-//            }
+                Text(viewModel.chartData.leftTitle)
+                    .font(BonsaiFont.caption_12)
+                    .foregroundColor(BonsaiColor.text)
+                    .rotated()
+                    .padding(.trailing, 8)
             
             VStack(alignment: .leading) {
                 // legend
@@ -46,6 +41,7 @@ struct BarChartView: View {
                             BarDetailLabel(title: currentValue, color: viewModel.chartData.piecesColor)
                                 .offset(x: labelOffset(in: geo.frame(in: .local).width))
                                 .animation(.easeIn)
+                            
                         }
                         
                         // bars 
@@ -93,8 +89,9 @@ struct BarChartView: View {
                 }
                 .padding(.top, 8)
             }
-            .padding(16)
         }
+        .padding(.vertical, 16)
+        .padding(.horizontal, 10)
         .background(BonsaiColor.card)
     }
     
