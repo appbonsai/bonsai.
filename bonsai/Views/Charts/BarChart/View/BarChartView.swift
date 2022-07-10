@@ -20,16 +20,16 @@ struct BarChartView: View {
     var body: some View {
         HStack {
             // left title
-            VStack {
-                Spacer()
-                
-                Text(viewModel.chartData.leftTitle)
-                    .font(BonsaiFont.caption_12)
-                    .foregroundColor(BonsaiColor.text)
-                    .rotationEffect(.degrees(-90))
-                
-                Spacer()
-            }
+//            VStack {
+//                Spacer()
+//
+//                Text(viewModel.chartData.leftTitle)
+//                    .font(BonsaiFont.caption_12)
+//                    .foregroundColor(BonsaiColor.text)
+//                    .rotationEffect(.degrees(-90))
+//
+//                Spacer()
+//            }
             
             VStack(alignment: .leading) {
                 // legend
@@ -40,7 +40,6 @@ struct BarChartView: View {
                 }
                 .padding(.bottom, 20)
                 
-                // bars
                 GeometryReader { geo in
                     VStack {
                         if !currentLabel.isEmpty {
@@ -49,10 +48,10 @@ struct BarChartView: View {
                                 .animation(.easeIn)
                         }
                         
+                        // bars 
                         HStack(spacing: 12) {
                             ForEach(Array(viewModel.chartData.pieces.enumerated()), id: \.offset) { i, bar in
                                 VStack {
-                                    
                                     BarChartLineView(value: viewModel.normalizedValue(value: bar.value), color: viewModel.chartData.piecesColor)
                                         .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.3, height: 1.1) : CGSize(width: 1, height: 1), anchor: .bottom)
                                         .shadow(color: viewModel.chartData.piecesColor.opacity(barIsTouched(index: i) ? 0.5 : 0), radius: 15, x: 0, y: 0)
@@ -94,6 +93,7 @@ struct BarChartView: View {
                 }
                 .padding(.top, 8)
             }
+            .padding(16)
         }
         .background(BonsaiColor.card)
     }
@@ -129,5 +129,6 @@ struct BarChartView: View {
 struct BarChartView_Previews: PreviewProvider {
     static var previews: some View {
         BarChartView(viewModel: BarChartViewModel())
+            .previewLayout(.fixed(width: 358, height: 325))
     }
 }
