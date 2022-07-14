@@ -6,55 +6,16 @@
 //
 
 import Foundation
-import CoreData
 
-class BudgetService {
+public final class BudgetService {
     
-    private let context: NSManagedObjectContext
-    
-    init(context: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
-        self.context = context
-    }
-    
-    @discardableResult
-    func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) throws -> Budget {
-        let budget = Budget(
-            context: context,
-            name: name,
-            totalAmount: totalAmount,
-            periodDays: periodDays)
-        try context.save()
-        return budget
-    }
-    
-    func getBudget() throws -> Budget {
-        let request: NSFetchRequest<Budget> = Budget.fetchRequest()
-        request.fetchLimit = 1
-        guard let budget = try context.fetch(request).first else {
-            throw BudgetDoesntExist()
-        }
-        return budget
-    }
-    
-    @discardableResult
-    func update(budget: Budget) throws -> Budget {
-        let currentBudget = try getBudget()
-        currentBudget.setValue(budget.name, forKeyPath: #keyPath(Budget.name))
-        currentBudget.setValue(budget.totalAmount, forKeyPath: #keyPath(Budget.totalAmount))
-        currentBudget.setValue(budget.periodDays, forKeyPath: #keyPath(Budget.periodDays))
-        try context.save()
-        return currentBudget
-    }
-    
-    func delete() throws {
-        let currentBudget = try getBudget()
-        context.delete(currentBudget)
-        try context.save()
-    }
-    
-    func calculateMoneyCanSpendToday(currentAmount: Float, periodDays: Int64) -> NSDecimalNumber {
-        let diffValue = currentAmount / Float(periodDays)
-        return NSDecimalNumber.roundedDecimal(diffValue: diffValue)
+    private let budgetRepository: BudgetRepositoryProtocol
+    private let budgetCalculations: BudgetCalculationsProtocol
+     
+    init(budgetRepository: BudgetRepositoryProtocol,
+         budgetCalculations: BudgetCalculationsProtocol) {
+        self.budgetRepository = budgetRepository
+        self.budgetCalculations = budgetCalculations
     }
     
 //    func calculateAmount(spending: NSDecimalNumber) throws {
@@ -68,17 +29,7 @@ class BudgetService {
 //        try context.save()
 //    }
     
-    func calculateAmount(currentAmount: Float, spending: NSDecimalNumber) -> NSDecimalNumber? {
-        if spending.floatValue > currentAmount {
-           return nil
-        }
-        let diffValue = currentAmount - spending.floatValue
-        return NSDecimalNumber.roundedDecimal(diffValue: diffValue)
-    }
-    
-    struct BudgetDoesntExist: Error { }
-    
-    struct BudgetAmountDoesNotEnough: Error { }
+ 
     
 }
 

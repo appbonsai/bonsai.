@@ -92,8 +92,33 @@ class BudgetServiceTests: XCTestCase {
     }
     
     func makeSUT() -> BudgetService {
-        let dataController = DataControllerMock()
-        return BudgetService(context: dataController.mainContext)
+        BudgetService(
+            budgetRepository: BudgetRepositoryMock(),
+            budgetCalculations: BudgetCalculationsMock())
+    }
+    
+    struct BudgetCalculationsMock: BudgetCalculationsProtocol {
+        
+    }
+    
+    struct BudgetRepositoryMock: BudgetRepositoryProtocol {
+        func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) throws -> Budget {
+            fatalError()
+        }
+        
+        func getBudget() throws -> Budget {
+            fatalError()    
+        }
+        
+        func update(budget: Budget) throws -> Budget {
+            fatalError()
+        }
+        
+        func delete() throws {
+            fatalError()
+        }
+        
+        
     }
     
 }
