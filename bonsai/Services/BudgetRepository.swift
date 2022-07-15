@@ -8,21 +8,23 @@
 import Foundation
 import CoreData
 
-public protocol BudgetRepositoryProtocol {
+protocol BudgetRepositoryProtocol {
+    @discardableResult
     func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) throws -> Budget
-    func getBudget() throws -> Budget
-    func update(budget: Budget) throws -> Budget
+    @discardableResult
+    func getBudget() -> Budget?
+    @discardableResult
+    func update(budget: Budget) -> Budget?
     func delete() throws
 }
 
-private final class BudgetRepository: BudgetRepositoryProtocol {
+final class BudgetRepository: BudgetRepositoryProtocol {
     private let context: NSManagedObjectContext
 
     init(context: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
         self.context = context
     }
     
-    @discardableResult
     func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) throws -> Budget {
         let budget = Budget(
             context: context,
@@ -33,32 +35,44 @@ private final class BudgetRepository: BudgetRepositoryProtocol {
         return budget
     }
     
-    func getBudget() throws -> Budget {
+    func getBudget() -> Budget? {
         let request: NSFetchRequest<Budget> = Budget.fetchRequest()
         request.fetchLimit = 1
-        guard let budget = try context.fetch(request).first else {
-            throw BudgetDoesntExist()
+        do {
+            guard let budget = try context.fetch(request).first else {
+                throw BudgetDoesntExist()
+            }
+            return budget
+        } catch {
+            return nil
         }
-        return budget
     }
     
-    @discardableResult
-    func update(budget: Budget) throws -> Budget {
-        let currentBudget = try getBudget()
+    func update(budget: Budget) -> Budget? {
+        guard let currentBudget = getBudget() else {
+            return nil
+        }
         currentBudget.setValue(budget.name, forKeyPath: #keyPath(Budget.name))
-        currentBudget.setValue(budget.totalAmount, forKeyPath: #keyPath(Budget.totalAmount))
+        currentBudget.setValue(budget.amount, forKeyPath: #keyPath(Budget.amount))
         currentBudget.setValue(budget.periodDays, forKeyPath: #keyPath(Budget.periodDays))
-        try context.save()
-        return currentBudget
+        do {
+            try context.save()
+            return currentBudget
+        } catch {
+            return nil
+        }
     }
     
-    func delete() throws {
-        let currentBudget = try getBudget()
-        context.delete(currentBudget)
-        try context.save()
+    func delete() {
+        if let currentBudget = getBudget() {
+            context.delete(currentBudget)
+        }
+        do { try context.save() }
+        catch {
+            print(BudgetDoesntExist())
+        }
     }
     
-    struct BudgetDoesntExist: Error { }
+    private struct BudgetDoesntExist: Error { }
     
-    struct BudgetAmountDoesNotEnough: Error { }
 }

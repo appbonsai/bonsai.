@@ -27,7 +27,7 @@ class BudgetCalculationsTests: XCTestCase {
         // w
         
         let results: [NSDecimalNumber] = input.map {
-            budgetCalculations.calculateMoneyCanSpendToday(
+            budgetCalculations.calculateMoneyCanSpendDaily(
                 currentAmount: $0.amount,
                 periodDays: $0.days
             )
@@ -52,7 +52,7 @@ class BudgetCalculationsTests: XCTestCase {
         }
     }
     
-    func testBudgetMoneySpending() throws {
+    func testBudgetAfterMoneySpending() throws {
         // g
         let sut = makeSUT()
         
@@ -67,9 +67,7 @@ class BudgetCalculationsTests: XCTestCase {
         
         // w
         let results: [NSDecimalNumber?] = input.map {
-            sut.calculateAmount(
-                currentAmount: $0.currentAmount,
-                spending: $0.spending)
+            sut.calculateBudgetCurrentAmount(with: $0.currentAmount, after: $0.spending)
         }
         
         // t
@@ -121,7 +119,28 @@ class BudgetCalculationsTests: XCTestCase {
         }
     }
     
-    func makeSUT() -> BudgetCalculations {
+    func testCalculateTotalSpend() {
+        // g
+        let sut = makeSUT()
+        let transactions: [NSDecimalNumber] = [
+            .init(value: 100),
+            .init(value: 249.33),
+            .init(value: 351.79)
+        ]
+        // w
+        let result = sut.calculateTotalSpend(transactionAmounts: transactions)
+        
+        // t
+        XCTAssertEqual(result, 701.12)
+    }
+    
+    func testTotalBudgetAmount() {
+        let sut = makeSUT()
+        let result = sut.calculateBudgetTotalAmount(currentAmount: 123.55, totalSpend: 26.44)
+        XCTAssertEqual(result, 149.99)
+    }
+    
+    func makeSUT() -> BudgetCalculationsProtocol {
         BudgetCalculations()
     }
     

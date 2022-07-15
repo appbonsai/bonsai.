@@ -5,16 +5,14 @@
 - delete 
 
 #  Budget calculation 
-- spent money
-- money left
-- can spend money today 
-- update periodDays && "can spend money today" time based on user's region 
+- calculate budget very time when user spent money 
+- calculate budget how much money user can spend today 
 
 
 #  Budget terminology
 1. ML  - Money left
 2. MCS - Money can spend today
-3. UMS - User Money spend input (it can be multiple)
+3. UMS - User Money spend input(user input transaction how much money he spent)
 4. TA  - Total Amount
 5. P   - Period days
 6. CA  - Current Amount
@@ -27,9 +25,3 @@
 - ML = TA - CA
 3. Calculate how much CA left after spending user input
 - CA = CA - UMS
-4. Calculate daily update budget
-- 
-
-
-#  Budget cases 
-1. Case when user create budget, make a few transaction, then want to update total amount

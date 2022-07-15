@@ -7,26 +7,30 @@
 
 import Foundation
 
-public protocol BudgetCalculationsProtocol {
+protocol BudgetCalculationsProtocol {
     @discardableResult
-    func calculateMoneyCanSpendToday(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
+    func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
     @discardableResult
-    func calculateAmount(currentAmount: NSDecimalNumber, spending: NSDecimalNumber) -> NSDecimalNumber?
+    func calculateBudgetCurrentAmount(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
+    @discardableResult
+    func calculateTotalMoneyLeft(total: NSDecimalNumber, currentAmount: NSDecimalNumber) -> NSDecimalNumber
+    @discardableResult
+    func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
+    func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber
 }
 
-class BudgetCalculations: BudgetCalculationsProtocol {
+final class BudgetCalculations: BudgetCalculationsProtocol {
     
-    @discardableResult
-    func calculateMoneyCanSpendToday(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber {
+    func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber {
         let diffValue = Float(truncating: currentAmount) / Float(periodDays)
         return .roundedDecimal(diffValue: diffValue)
     }
-    @discardableResult
-    func calculateAmount(currentAmount: NSDecimalNumber, spending: NSDecimalNumber) -> NSDecimalNumber? {
-        if spending.floatValue > Float(truncating: currentAmount) {
+    
+    func calculateBudgetCurrentAmount(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber? {
+        if spending.floatValue > Float(truncating: amount) {
            return nil
         }
-        let diffValue = Float(truncating: currentAmount) - spending.floatValue
+        let diffValue = Float(truncating: amount) - spending.floatValue
         return .roundedDecimal(diffValue: diffValue)
     }
     
@@ -35,17 +39,16 @@ class BudgetCalculations: BudgetCalculationsProtocol {
         return .roundedDecimal(diffValue: diffValue)
     }
     
-}
-
-extension NSDecimalNumber {
-    static func roundedDecimal(diffValue: Float, with scale: Int16 = 2) -> NSDecimalNumber {
-        let behaviour = NSDecimalNumberHandler(
-            roundingMode: .plain,
-            scale: scale,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: true)
-        return NSDecimalNumber(value: diffValue).rounding(accordingToBehavior: behaviour)
+    func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
+        let currentAmount = transactionAmounts
+            .map { $0.floatValue }
+            .reduce(0, +)
+        return .roundedDecimal(diffValue: currentAmount)
+    }
+    
+    func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber {
+        let diffValue = currentAmount.floatValue + totalSpend.floatValue
+        return .roundedDecimal(diffValue: diffValue)
     }
 }
+
