@@ -1,22 +1,21 @@
 //
-//  BudgetServiceTests.swift
+//  BudgetCalculationsTests.swift
 //  BudgetServiceTests
 //
-//  Created by antuan.khoanh on 19/06/2022.
+//  Created by antuan.khoanh on 15/07/2022.
 //
 
 import XCTest
 @testable import bonsai
-import CoreData
 
-class BudgetServiceTests: XCTestCase {
-    
+class BudgetCalculationsTests: XCTestCase {
+
     func testBudgetMoneyCanSpendToday() throws {
         // g
         
-        let budgetService = makeSUT()
+        let budgetCalculations = makeSUT()
         
-        let input: [(amount: Float, days: Int64)] = [
+        let input: [(amount: NSDecimalNumber, days: Int64)] = [
             (amount: 90, days: 30),
             (amount: 120, days: 30),
             (amount: 30, days: 30),
@@ -28,7 +27,7 @@ class BudgetServiceTests: XCTestCase {
         // w
         
         let results: [NSDecimalNumber] = input.map {
-            budgetService.calculateMoneyCanSpendToday(
+            budgetCalculations.calculateMoneyCanSpendToday(
                 currentAmount: $0.amount,
                 periodDays: $0.days
             )
@@ -57,7 +56,7 @@ class BudgetServiceTests: XCTestCase {
         // g
         let sut = makeSUT()
         
-        let input: [(currentAmount: Float, spending: NSDecimalNumber)] = [
+        let input: [(currentAmount: NSDecimalNumber, spending: NSDecimalNumber)] = [
             (currentAmount: 95, spending: 100),
             (currentAmount: 122, spending: 42),
             (currentAmount: 3032.4, spending: 504.87),
@@ -77,11 +76,11 @@ class BudgetServiceTests: XCTestCase {
         
         let expectations: [NSDecimalNumber?] = [
             nil,
-            NSDecimalNumber.roundedDecimal(diffValue: 80),
-            NSDecimalNumber.roundedDecimal(diffValue: 2527.53),
-            NSDecimalNumber.roundedDecimal(diffValue: 1380.52),
-            NSDecimalNumber.roundedDecimal(diffValue: 1059.35),
-            NSDecimalNumber.roundedDecimal(diffValue: 7820.2)
+            .roundedDecimal(diffValue: 80),
+            .roundedDecimal(diffValue: 2527.53),
+            .roundedDecimal(diffValue: 1380.52),
+            .roundedDecimal(diffValue: 1059.35),
+            .roundedDecimal(diffValue: 7820.2)
         ]
         
         for i in 0..<results.count {
@@ -91,34 +90,39 @@ class BudgetServiceTests: XCTestCase {
         }
     }
     
-    func makeSUT() -> BudgetService {
-        BudgetService(
-            budgetRepository: BudgetRepositoryMock(),
-            budgetCalculations: BudgetCalculationsMock())
+    func testTotalMoneyLeft() {
+        // g
+        let sut = makeSUT()
+        let input: [(total: NSDecimalNumber, currentAmount: NSDecimalNumber)] = [
+            (total: 9000, currentAmount: 1234),
+            (total: 7890, currentAmount: 4231),
+            (total: 923.13, currentAmount: 318.57)
+        ]
+        
+        let expectations: [NSDecimalNumber] = [
+            .roundedDecimal(diffValue: 7766),
+            .roundedDecimal(diffValue: 3659),
+            .roundedDecimal(diffValue: 604.56)
+        ]
+        // w
+        let results: [NSDecimalNumber] = input.map {
+            sut.calculateTotalMoneyLeft(
+                total: $0.total,
+                currentAmount: $0.currentAmount)
+        }
+        
+        // t
+        
+        for i in 0..<results.count {
+            XCTAssertNotNil(expectations[i])
+            let res = results[i]
+            let exp = expectations[i]
+            XCTAssert(res == exp, "res=\(res); exp=\(exp)")
+        }
     }
     
-    struct BudgetCalculationsMock: BudgetCalculationsProtocol {
-        
-    }
-    
-    struct BudgetRepositoryMock: BudgetRepositoryProtocol {
-        func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) throws -> Budget {
-            fatalError()
-        }
-        
-        func getBudget() throws -> Budget {
-            fatalError()    
-        }
-        
-        func update(budget: Budget) throws -> Budget {
-            fatalError()
-        }
-        
-        func delete() throws {
-            fatalError()
-        }
-        
-        
+    func makeSUT() -> BudgetCalculations {
+        BudgetCalculations()
     }
     
 }
