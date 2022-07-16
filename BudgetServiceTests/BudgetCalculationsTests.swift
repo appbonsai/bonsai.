@@ -15,6 +15,10 @@ class BudgetCalculationsTests: XCTestCase {
     override func setUp() async throws {
         budgetCalculations = BudgetCalculations()
     }
+    
+    override func tearDown() async throws {
+        budgetCalculations = nil
+    }
 
     func testBudgetMoneyCanSpendToday() throws {
         // g
@@ -50,7 +54,7 @@ class BudgetCalculationsTests: XCTestCase {
         for i in 0..<results.count {
             XCTAssertNotNil(expectations[i])
             let res = results[i]
-            let exp = expectations[i]
+            let exp = expectations[i].round(2)
             XCTAssertEqual(res, exp)
         }
     }
@@ -75,16 +79,16 @@ class BudgetCalculationsTests: XCTestCase {
         
         let expectations: [NSDecimalNumber?] = [
             nil,
-            .init(value: 80).round(),
-            .init(value: 2527.53).round(),
-            .init(value: 1380.52).round(),
-            .init(value: 1059.35).round(),
-            .init(value: 7820.2).round()
+            .init(value: 80),
+            .init(value: 2527.53),
+            .init(value: 1380.52),
+            .init(value: 1059.35),
+            .init(value: 7820.2)
         ]
         
         for i in 0..<results.count {
             let res = results[i]
-            let exp = expectations[i]
+            let exp = expectations[i]?.round(2)
             XCTAssertEqual(res, exp)
         }
     }
@@ -98,9 +102,9 @@ class BudgetCalculationsTests: XCTestCase {
         ]
         
         let expectations: [NSDecimalNumber] = [
-            .init(value: 7766).round(),
-            .init(value: 3659).round(),
-            .init(value: 604.56).round()
+            .init(value: 7766),
+            .init(value: 3659),
+            .init(value: 604.56)
         ]
         // w
         let results: [NSDecimalNumber] = input.map {
@@ -114,7 +118,7 @@ class BudgetCalculationsTests: XCTestCase {
         for i in 0..<results.count {
             XCTAssertNotNil(expectations[i])
             let res = results[i]
-            let exp = expectations[i]
+            let exp = expectations[i].round(2)
             XCTAssertEqual(res, exp)
         }
     }
