@@ -104,6 +104,7 @@ struct CreateCategoryView: View {
                   Text("Cancel")
                        .foregroundColor(BonsaiColor.secondary)
                }
+                // TODO: Localize
                .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
                   Button("Discard Changes", role: .destructive, action: {
                      isPresented = false
