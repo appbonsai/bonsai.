@@ -1,31 +1,25 @@
 //
-//  CategoriesContainerView.swift
+//  TagsContainerView.swift
 //  bonsai
 //
-//  Created by Максим Алексеев  on 10.12.2021.
+//  Created by Vladimir Korolev on 18.06.2022.
 //
 
 import SwiftUI
+import OrderedCollections
 
-struct CategoriesContainerView: View {
+struct TagsContainerView: View {
 
-   @FetchRequest(
-      sortDescriptors: [SortDescriptor(\.title)],
-      predicate: NSPredicate(
-         format: "id != %@", Category.notSpecified.id as CVarArg
-      )
-   )
-   var categories: FetchedResults<Category>
-
-   @Binding var selectedCategory: Category?
+   @FetchRequest(sortDescriptors: []) var tags: FetchedResults<Tag>
+   @Binding var selectedTags: OrderedSet<Tag>
    @Binding var isPresented: Bool
-   @State var isCreateCategoryPresented: Bool = false
+   @State var isCreateTagPresented: Bool = false
 
    init(isPresented: Binding<Bool>,
-        selectedCategory: Binding<Category?>
+        selectedTags: Binding<OrderedSet<Tag>>
    ) {
       self._isPresented = isPresented
-      self._selectedCategory = selectedCategory
+      self._selectedTags = selectedTags
       UINavigationBar
          .appearance()
          .titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -38,13 +32,15 @@ struct CategoriesContainerView: View {
                .ignoresSafeArea()
             ScrollView(.vertical, showsIndicators: false) {
                VStack(spacing: 16) {
-                  ForEach(categories) { category in
-                     CategoriesCellView(
-                        isSelected: category == selectedCategory,
-                        category: category
+                  ForEach(tags) { tag in
+                     TagCellView(
+                        isSelected: selectedTags.contains(tag),
+                        tag: tag
                      )
                      .onTapGesture {
-                        selectedCategory = category
+                        if selectedTags.append(tag).inserted == false {
+                           selectedTags.remove(tag)
+                        }
                      }
                   } // ForEach
                } // VStack
@@ -53,7 +49,7 @@ struct CategoriesContainerView: View {
             .padding(.top, 24)
             .padding(.horizontal, 16)
          } // ZStack
-         .navigationTitle("Category")
+         .navigationTitle("Tags")
          .navigationBarTitleDisplayMode(.inline)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -61,7 +57,7 @@ struct CategoriesContainerView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                Button(action: {
-                  isCreateCategoryPresented = true
+                  isCreateTagPresented = true
                }) {
                   BonsaiImage.plus
                      .foregroundColor(BonsaiColor.mainPurple)
@@ -69,17 +65,17 @@ struct CategoriesContainerView: View {
             }
          }
       } // NavigationView
-      .popover(isPresented: $isCreateCategoryPresented) {
-         CreateCategoryView(isPresented: $isCreateCategoryPresented)
+      .popover(isPresented: $isCreateTagPresented) {
+         CreateTagView(isPresented: $isCreateTagPresented)
       }
    }
 }
 
-struct CategoriesContainerView_Previews: PreviewProvider {
+struct TagsContainerView_Previews: PreviewProvider {
    static var previews: some View {
-      CategoriesContainerView(
+      TagsContainerView(
          isPresented: .constant(true),
-         selectedCategory: .constant(nil)
+         selectedTags: .constant([])
       )
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
