@@ -8,14 +8,29 @@
 import Foundation
 
 extension NSDecimalNumber {
-    public static func roundedDecimal(diffValue: Float, with scale: Int16 = 2) -> NSDecimalNumber {
-        let behaviour = NSDecimalNumberHandler(
-            roundingMode: .plain,
-            scale: scale,
-            raiseOnExactness: false,
-            raiseOnOverflow: false,
-            raiseOnUnderflow: false,
-            raiseOnDivideByZero: true)
-        return NSDecimalNumber(value: diffValue).rounding(accordingToBehavior: behaviour)
+    public func round(_ scale: Int = 2) -> NSDecimalNumber {
+        rounding(
+            accordingToBehavior:
+                NSDecimalNumberHandler(
+                    roundingMode: .plain,
+                    scale: Int16(scale),
+                    raiseOnExactness: false,
+                    raiseOnOverflow: false,
+                    raiseOnUnderflow: false,
+                    raiseOnDivideByZero: false))
+    }
+}
+
+extension NSDecimalNumber: Comparable {
+    public static func < (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
+        lhs.compare(rhs) == .orderedAscending
+    }
+    
+    public static func > (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
+        lhs.compare(rhs) == .orderedDescending
+    }
+    
+    public static func == (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
+        lhs.compare(rhs) == .orderedSame
     }
 }

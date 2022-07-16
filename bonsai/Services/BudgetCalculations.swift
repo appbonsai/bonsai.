@@ -8,13 +8,9 @@
 import Foundation
 
 protocol BudgetCalculationsProtocol {
-    @discardableResult
     func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
-    @discardableResult
     func calculateBudgetCurrentAmount(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
-    @discardableResult
     func calculateTotalMoneyLeft(total: NSDecimalNumber, currentAmount: NSDecimalNumber) -> NSDecimalNumber
-    @discardableResult
     func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
     func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber
 }
@@ -22,33 +18,28 @@ protocol BudgetCalculationsProtocol {
 final class BudgetCalculations: BudgetCalculationsProtocol {
     
     func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber {
-        let diffValue = Float(truncating: currentAmount) / Float(periodDays)
-        return .roundedDecimal(diffValue: diffValue)
+        currentAmount.dividing(by: NSDecimalNumber(value: periodDays)).round()
     }
     
     func calculateBudgetCurrentAmount(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber? {
-        if spending.floatValue > Float(truncating: amount) {
-           return nil
+        if spending > amount {
+            return nil
         }
-        let diffValue = Float(truncating: amount) - spending.floatValue
-        return .roundedDecimal(diffValue: diffValue)
+        return amount.subtracting(spending).round()
     }
     
     func calculateTotalMoneyLeft(total: NSDecimalNumber, currentAmount: NSDecimalNumber) -> NSDecimalNumber {
-        let diffValue = total.floatValue - currentAmount.floatValue
-        return .roundedDecimal(diffValue: diffValue)
+        total.subtracting(currentAmount).round()
     }
     
     func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
         let currentAmount = transactionAmounts
-            .map { $0.floatValue }
-            .reduce(0, +)
-        return .roundedDecimal(diffValue: currentAmount)
+            .reduce(0, { $1.adding($0) })
+        return currentAmount.round()
     }
     
     func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber {
-        let diffValue = currentAmount.floatValue + totalSpend.floatValue
-        return .roundedDecimal(diffValue: diffValue)
+        currentAmount.adding(totalSpend).round()
     }
 }
 

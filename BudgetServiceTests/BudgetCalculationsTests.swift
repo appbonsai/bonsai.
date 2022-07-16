@@ -9,12 +9,15 @@ import XCTest
 @testable import bonsai
 
 class BudgetCalculationsTests: XCTestCase {
+    
+    var budgetCalculations: BudgetCalculationsProtocol!
+    
+    override func setUp() async throws {
+        budgetCalculations = BudgetCalculations()
+    }
 
     func testBudgetMoneyCanSpendToday() throws {
         // g
-        
-        let budgetCalculations = makeSUT()
-        
         let input: [(amount: NSDecimalNumber, days: Int64)] = [
             (amount: 90, days: 30),
             (amount: 120, days: 30),
@@ -48,14 +51,12 @@ class BudgetCalculationsTests: XCTestCase {
             XCTAssertNotNil(expectations[i])
             let res = results[i]
             let exp = expectations[i]
-            XCTAssert(res == exp, "res=\(res); exp=\(exp)")
+            XCTAssertEqual(res, exp)
         }
     }
     
     func testBudgetAfterMoneySpending() throws {
         // g
-        let sut = makeSUT()
-        
         let input: [(currentAmount: NSDecimalNumber, spending: NSDecimalNumber)] = [
             (currentAmount: 95, spending: 100),
             (currentAmount: 122, spending: 42),
@@ -67,18 +68,18 @@ class BudgetCalculationsTests: XCTestCase {
         
         // w
         let results: [NSDecimalNumber?] = input.map {
-            sut.calculateBudgetCurrentAmount(with: $0.currentAmount, after: $0.spending)
+            budgetCalculations.calculateBudgetCurrentAmount(with: $0.currentAmount, after: $0.spending)
         }
         
         // t
         
         let expectations: [NSDecimalNumber?] = [
             nil,
-            .roundedDecimal(diffValue: 80),
-            .roundedDecimal(diffValue: 2527.53),
-            .roundedDecimal(diffValue: 1380.52),
-            .roundedDecimal(diffValue: 1059.35),
-            .roundedDecimal(diffValue: 7820.2)
+            .init(value: 80).round(),
+            .init(value: 2527.53).round(),
+            .init(value: 1380.52).round(),
+            .init(value: 1059.35).round(),
+            .init(value: 7820.2).round()
         ]
         
         for i in 0..<results.count {
@@ -90,7 +91,6 @@ class BudgetCalculationsTests: XCTestCase {
     
     func testTotalMoneyLeft() {
         // g
-        let sut = makeSUT()
         let input: [(total: NSDecimalNumber, currentAmount: NSDecimalNumber)] = [
             (total: 9000, currentAmount: 1234),
             (total: 7890, currentAmount: 4231),
@@ -98,13 +98,13 @@ class BudgetCalculationsTests: XCTestCase {
         ]
         
         let expectations: [NSDecimalNumber] = [
-            .roundedDecimal(diffValue: 7766),
-            .roundedDecimal(diffValue: 3659),
-            .roundedDecimal(diffValue: 604.56)
+            .init(value: 7766).round(),
+            .init(value: 3659).round(),
+            .init(value: 604.56).round()
         ]
         // w
         let results: [NSDecimalNumber] = input.map {
-            sut.calculateTotalMoneyLeft(
+            budgetCalculations.calculateTotalMoneyLeft(
                 total: $0.total,
                 currentAmount: $0.currentAmount)
         }
@@ -115,33 +115,27 @@ class BudgetCalculationsTests: XCTestCase {
             XCTAssertNotNil(expectations[i])
             let res = results[i]
             let exp = expectations[i]
-            XCTAssert(res == exp, "res=\(res); exp=\(exp)")
+            XCTAssertEqual(res, exp)
         }
     }
     
     func testCalculateTotalSpend() {
         // g
-        let sut = makeSUT()
         let transactions: [NSDecimalNumber] = [
-            .init(value: 100),
-            .init(value: 249.33),
-            .init(value: 351.79)
+            .init(value: 100).round(),
+            .init(value: 249.33).round(),
+            .init(value: 351.79).round()
         ]
         // w
-        let result = sut.calculateTotalSpend(transactionAmounts: transactions)
+        let result = budgetCalculations.calculateTotalSpend(transactionAmounts: transactions)
         
         // t
         XCTAssertEqual(result, 701.12)
     }
     
     func testTotalBudgetAmount() {
-        let sut = makeSUT()
-        let result = sut.calculateBudgetTotalAmount(currentAmount: 123.55, totalSpend: 26.44)
+        let result = budgetCalculations.calculateBudgetTotalAmount(currentAmount: 123.55, totalSpend: 26.44)
         XCTAssertEqual(result, 149.99)
-    }
-    
-    func makeSUT() -> BudgetCalculationsProtocol {
-        BudgetCalculations()
     }
     
 }
