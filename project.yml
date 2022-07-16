@@ -30,6 +30,9 @@ targets:
     scheme:
       testTargets:
         - BudgetServiceTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
 packages:
   swift-collections:
     url: https://github.com/apple/swift-collections
