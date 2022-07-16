@@ -123,6 +123,7 @@ struct NewOperationView: View {
                   Text("Cancel")
                        .foregroundColor(BonsaiColor.secondary)
                }
+                // TODO: Localize
                .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
                   Button("Discard Transaction", role: .destructive, action: {
                      isPresented = false
