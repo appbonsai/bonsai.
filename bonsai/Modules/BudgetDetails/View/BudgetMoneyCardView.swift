@@ -7,18 +7,27 @@
 
 import SwiftUI
 
-struct BudgetFlowView: View {
+struct BudgetMoneyCardView: View {
+    
+    private let title: String
+    private let amount: NSDecimalNumber
+    
+    init(title: String, amount: NSDecimalNumber) {
+        self.title = title
+        self.amount = amount
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
             Image(Asset.accountBalance.name)
                 .resizable()
                 .frame(width: 24, height: 24)
-            Text("Total budget")
+            Text(title)
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor(BonsaiColor.mainPurple)
                 .padding(.top, 10)
-            Text("$400")
+            Text("$\(amount)")
                 .font(BonsaiFont.title_22)
                 .foregroundColor(BonsaiColor.text)
                 .padding(.top, 8)
@@ -33,7 +42,7 @@ struct BudgetFlowView: View {
 
 struct BudgetFlowView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetFlowView()
+        BudgetMoneyCardView(title: "", amount: 10)
             .previewLayout(.fixed(width: 171, height: 116))
     }
 }

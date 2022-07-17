@@ -13,18 +13,12 @@ struct BudgetDetails: View {
    @State var currentOffsetY: CGFloat = 0
    @State var endingOffsetY: CGFloat = 0
    private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.8) / 2
-   private var transactions: [Transaction] = []
-   private let mainContext: NSManagedObjectContext
-
-   init(mainContext: NSManagedObjectContext) {
-      self.mainContext = mainContext
-      let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
-      do {
-         let transactions = try mainContext.fetch(fetchRequest)
-         self.transactions = transactions
-      } catch { }
+   private let viewModel: BudgetViewModelProtocol
+   
+   init(viewModel: BudgetViewModelProtocol) {
+      self.viewModel = viewModel
    }
-
+   
    var body: some View {
       ZStack {
          VStack {
@@ -40,9 +34,10 @@ struct BudgetDetails: View {
             }
 
             HStack(alignment: .center, spacing: 16) {
-               BudgetMoneyTitleView()
+                // TODO: localization
+               BudgetMoneyTitleView(title: "Money left", amount: viewModel.totalMoneyLeft)
                   .padding(.leading, 16)
-               BudgetMoneyTitleView()
+               BudgetMoneyTitleView(title: "Money spent", amount: viewModel.totalMoneySpent)
             }
             .frame(height: 63)
 
@@ -52,10 +47,11 @@ struct BudgetDetails: View {
 
                VStack {
                   HStack(alignment: .center, spacing: 16) {
-                     BudgetFlowView()
+                      // TODO: localization
+                     BudgetMoneyCardView(title: "Total budget", amount: viewModel.totalBudget)
                         .shadow(color: .black, radius: 7, x: 0, y: 4)
 
-                     BudgetFlowView()
+                     BudgetMoneyCardView(title: "Daily budget", amount: viewModel.budgetDaily)
                         .shadow(color: .black, radius: 7, x: 0, y: 4)
                   }
                   .frame(height: 116)
@@ -84,7 +80,7 @@ struct BudgetDetails: View {
          .background(BonsaiColor.back)
          .ignoresSafeArea()
 
-         BudgetTransactions(transactions: transactions, dragGestureOnChanged: { value in
+         BudgetTransactions(transactions: viewModel.transactions, dragGestureOnChanged: { value in
             withAnimation(.spring()) {
                currentOffsetY = value.location.y
                if currentOffsetY < 0 {
@@ -112,8 +108,12 @@ struct BudgetDetails: View {
 
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
-      BudgetDetails(mainContext: MockDataTransaction.viewContext)
+      BudgetDetails(
+         viewModel: BudgetViewModelAssembler(mainContext: MockDataTransaction.viewContext).assembly())
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }
 }
+
+
+
