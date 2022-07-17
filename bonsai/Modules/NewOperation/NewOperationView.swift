@@ -23,6 +23,7 @@ struct NewOperationView: View {
    @State var isCategoriesViewPresented: Bool = false
    @State var isTagsViewPresented: Bool = false
    @State var isCalendarOpened: Bool = false
+   @State private var confirmationPresented: Bool = false
 
    @Namespace var calendarID
 
@@ -116,7 +117,18 @@ struct NewOperationView: View {
          .navigationBarTitleDisplayMode(.large)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-               NavigationBackButton(isPresented: $isPresented)
+               Button(action: {
+                  confirmationPresented = true
+               }) {
+                  Text("Cancel")
+                       .foregroundColor(BonsaiColor.secondary)
+               }
+                // TODO: Localize
+               .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
+                  Button("Discard Transaction", role: .destructive, action: {
+                     isPresented = false
+                  })
+               })
             }
          }
       } // NavigationView
