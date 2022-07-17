@@ -9,8 +9,7 @@ import Foundation
 
 protocol BudgetCalculationsProtocol {
     func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
-    func calculateBudgetCurrentAmount(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
-    func calculateTotalMoneyLeft(total: NSDecimalNumber, currentAmount: NSDecimalNumber) -> NSDecimalNumber
+    func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
     func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
     func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber
 }
@@ -21,15 +20,11 @@ final class BudgetCalculations: BudgetCalculationsProtocol {
         currentAmount.dividing(by: NSDecimalNumber(value: periodDays)).round()
     }
     
-    func calculateBudgetCurrentAmount(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber? {
+    func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber? {
         if spending > amount {
             return nil
         }
         return amount.subtracting(spending).round()
-    }
-    
-    func calculateTotalMoneyLeft(total: NSDecimalNumber, currentAmount: NSDecimalNumber) -> NSDecimalNumber {
-        total.subtracting(currentAmount).round()
     }
     
     func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {

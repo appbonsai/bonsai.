@@ -59,7 +59,7 @@ class BudgetCalculationsTests: XCTestCase {
         }
     }
     
-    func testBudgetAfterMoneySpending() throws {
+    func testTotalMoneyLeftAfterSpending() throws {
         // g
         let input: [(currentAmount: NSDecimalNumber, spending: NSDecimalNumber)] = [
             (currentAmount: 95, spending: 100),
@@ -72,7 +72,7 @@ class BudgetCalculationsTests: XCTestCase {
         
         // w
         let results: [NSDecimalNumber?] = input.map {
-            budgetCalculations.calculateBudgetCurrentAmount(with: $0.currentAmount, after: $0.spending)
+            budgetCalculations.calculateTotalMoneyLeft(with: $0.currentAmount, after: $0.spending)
         }
         
         // t
@@ -89,36 +89,6 @@ class BudgetCalculationsTests: XCTestCase {
         for i in 0..<results.count {
             let res = results[i]
             let exp = expectations[i]?.round(2)
-            XCTAssertEqual(res, exp)
-        }
-    }
-    
-    func testTotalMoneyLeft() {
-        // g
-        let input: [(total: NSDecimalNumber, currentAmount: NSDecimalNumber)] = [
-            (total: 9000, currentAmount: 1234),
-            (total: 7890, currentAmount: 4231),
-            (total: 923.13, currentAmount: 318.57)
-        ]
-        
-        let expectations: [NSDecimalNumber] = [
-            .init(value: 7766),
-            .init(value: 3659),
-            .init(value: 604.56)
-        ]
-        // w
-        let results: [NSDecimalNumber] = input.map {
-            budgetCalculations.calculateTotalMoneyLeft(
-                total: $0.total,
-                currentAmount: $0.currentAmount)
-        }
-        
-        // t
-        
-        for i in 0..<results.count {
-            XCTAssertNotNil(expectations[i])
-            let res = results[i]
-            let exp = expectations[i].round(2)
             XCTAssertEqual(res, exp)
         }
     }
