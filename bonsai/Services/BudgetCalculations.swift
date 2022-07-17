@@ -11,7 +11,6 @@ protocol BudgetCalculationsProtocol {
     func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
     func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
     func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
-    func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber
 }
 
 final class BudgetCalculations: BudgetCalculationsProtocol {
@@ -31,10 +30,6 @@ final class BudgetCalculations: BudgetCalculationsProtocol {
         let currentAmount = transactionAmounts
             .reduce(0, { $1.adding($0) })
         return currentAmount.round()
-    }
-    
-    func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber {
-        currentAmount.adding(totalSpend).round()
     }
 }
 

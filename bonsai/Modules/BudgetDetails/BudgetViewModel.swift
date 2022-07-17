@@ -23,6 +23,12 @@ struct BudgetViewModel: BudgetViewModelProtocol {
    init(budgetService: BudgetServiceProtocol, transactions: [Transaction]) {
       self.budgetService = budgetService
       self.transactions = transactions
+      /*
+       for manual test
+       1 delete app from simulator and uncomment createBudget()
+       2 create some transactions
+       */
+//      budgetService.createBudget(name: "Tailand", with: 9000, on: 30)
    }
    
    private var transactionsAmounts: [NSDecimalNumber] {
@@ -30,7 +36,7 @@ struct BudgetViewModel: BudgetViewModelProtocol {
    }
    
    var totalBudget: NSDecimalNumber {
-      budgetService.getTotalBudget(with: transactionsAmounts) ?? 0
+      budgetService.getTotalBudget() ?? 0
    }
    
    var totalMoneyLeft: NSDecimalNumber {
@@ -42,6 +48,6 @@ struct BudgetViewModel: BudgetViewModelProtocol {
    }
    
    var budgetDaily: NSDecimalNumber {
-      budgetService.getMoneyCanSpendDaily() ?? 0
+      budgetService.getMoneyCanSpendDaily(with: transactionsAmounts) ?? 0
    }
 }

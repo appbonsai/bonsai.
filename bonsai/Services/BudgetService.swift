@@ -8,9 +8,9 @@
 import Foundation
 
 protocol BudgetCalculationServiceProtocol {
-   func getTotalBudget(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber?
+   func getTotalBudget() -> NSDecimalNumber?
    func getTotalMoneySpent(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber?
-   func getMoneyCanSpendDaily() -> NSDecimalNumber?
+   func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber?
    func getTotalMoneyLeft(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber?
 }
 
@@ -44,20 +44,19 @@ final class BudgetService: BudgetServiceProtocol {
       budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
    }
    
-   func getTotalBudget(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
+   func getTotalBudget() -> NSDecimalNumber? {
       guard let budget = budgetRepository.getBudget() else {
          return nil
       }
-      let totalSpend = budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
-      let totalBudget = budgetCalculations.calculateBudgetTotalAmount(currentAmount: budget.amount, totalSpend: totalSpend)
-      return totalBudget
+      return budget.amount
    }
    
-   func getMoneyCanSpendDaily() -> NSDecimalNumber? {
-      guard let budget = budgetRepository.getBudget() else {
+   func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
+      guard let budget = budgetRepository.getBudget(),
+            let moneyLeft = getTotalMoneyLeft(with: transactionAmounts) else {
          return nil
       }
-      let dailyBudget = budgetCalculations.calculateMoneyCanSpendDaily(currentAmount: budget.amount, periodDays: budget.periodDays)
+      let dailyBudget = budgetCalculations.calculateMoneyCanSpendDaily(currentAmount: moneyLeft, periodDays: budget.periodDays)
       return dailyBudget
    }
    
@@ -68,8 +67,6 @@ final class BudgetService: BudgetServiceProtocol {
       let totalSpend = budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
       let newAmount = budgetCalculations.calculateTotalMoneyLeft(with: budget.amount, after: totalSpend)
       if let newAmount = newAmount {
-         budget.amount = newAmount
-         budgetRepository.update(budget: budget)
          return newAmount
       }
       return nil

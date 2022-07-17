@@ -109,7 +109,7 @@ struct BudgetDetails: View {
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails(
-         viewModel: BudgetViewModelAssembler(mainContext: MockDataTransaction.viewContext).assembly())
+         viewModel: BudgetViewModelAssembler().assembly())
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

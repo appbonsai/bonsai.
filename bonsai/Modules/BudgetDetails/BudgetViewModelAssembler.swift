@@ -15,8 +15,7 @@ struct BudgetViewModelAssembler: Assembler {
       let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
       do {
          let transactions = try mainContext.fetch(fetchRequest)
-         // MOCK transactions
-         self.transactions = MockDataTransaction().transactions
+         self.transactions = transactions
       } catch {
          
       }
