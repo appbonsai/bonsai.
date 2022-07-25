@@ -117,10 +117,12 @@ class BudgetCalculationsTests: XCTestCase {
 
         ]
         
+        let testDateToday: Date = .from(year: 2022, month: 7, day: 25)
+        
         let daysResults: [Int64] = input.map {
             budgetCalculations.calculateDayLeft(
                 fromDate: $0,
-                toDate: .from(year: 2022, month: 7, day: 25))
+                toDate: testDateToday)
         }
         
         let daysLeftExpected: [Int64] = [
