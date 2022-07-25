@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 protocol BudgetRepositoryProtocol {
-   func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) -> Budget
+   func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64, createdDate: Date) -> Budget
    func getBudget() -> Budget?
    func update(budget: Budget) -> Budget?
    func delete() 
@@ -22,12 +22,13 @@ final class BudgetRepository: BudgetRepositoryProtocol {
       self.context = context
    }
    
-   func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64) -> Budget {
+    func create(name: String, totalAmount: NSDecimalNumber, periodDays: Int64, createdDate: Date) -> Budget {
       let budget = Budget(
          context: context,
          name: name,
          totalAmount: totalAmount,
-         periodDays: periodDays)
+         periodDays: periodDays,
+         createdDate: createdDate)
       do {
          try context.save()
       } catch { }
