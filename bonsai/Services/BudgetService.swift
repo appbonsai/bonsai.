@@ -56,7 +56,7 @@ final class BudgetService: BudgetServiceProtocol {
               let moneyLeft = getTotalMoneyLeft(with: transactionAmounts) else {
             return nil
         }
-        let dayLeft = Calendar.autoupdatingCurrent.dateComponents([.day], from: budget.createdDate, to: .now).day ?? 0
+        let dayLeft = budgetCalculations.calculateDayLeft(fromDate: budget.createdDate, toDate: .now)
         let dailyBudget = budgetCalculations.calculateMoneyCanSpendDaily(currentAmount: moneyLeft, periodDays: budget.periodDays - Int64(dayLeft))
         return dailyBudget
     }
