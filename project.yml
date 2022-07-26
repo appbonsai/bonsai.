@@ -20,6 +20,19 @@ targets:
     dependencies:
       - package: swift-collections
         product: OrderedCollections
+  BudgetServiceTests:
+    platform: iOS
+    type: bundle.unit-test
+    sources:
+      - BudgetServiceTests/
+    dependencies:
+      - target: bonsai
+    scheme:
+      testTargets:
+        - BudgetServiceTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
 packages:
   swift-collections:
     url: https://github.com/apple/swift-collections
