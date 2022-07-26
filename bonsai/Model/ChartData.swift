@@ -8,12 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct ChartData {
+struct BarChartData {
     var piecesColor: Color
     var pieces: [ChartPiece]
     var legends: [ChartLegend]
     var bottomTitle: String
     var leftTitle: String
+}
+
+struct PieChartData {
+    var categoriesToDisplay: [Category]
 }
 
 /// Data for one piece of chart(one bar, one segment of pie, etc.)
