@@ -23,7 +23,8 @@ struct BudgetViewModel: BudgetViewModelProtocol {
    
    init(budgetService: BudgetServiceProtocol, transactions: [Transaction]) {
       self.budgetService = budgetService
-      self.transactions = transactions
+      let nonIncomeTransactions = transactions.filter { $0.type != .income }
+      self.transactions = nonIncomeTransactions
       /*
        for manual test
        1 delete app from simulator and uncomment createBudget()
