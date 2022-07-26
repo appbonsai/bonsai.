@@ -8,6 +8,7 @@
 import Foundation
 
 protocol BudgetViewModelProtocol {
+   var bugdetName: String { get }
    var totalBudget: NSDecimalNumber { get }
    var totalMoneyLeft: NSDecimalNumber { get }
    var totalMoneySpent: NSDecimalNumber { get }
@@ -17,7 +18,7 @@ protocol BudgetViewModelProtocol {
 
 struct BudgetViewModel: BudgetViewModelProtocol {
    
-   private let budgetService: BudgetCalculationServiceProtocol
+   private let budgetService: BudgetServiceProtocol
    public private(set) var transactions: [Transaction] = []
    
    init(budgetService: BudgetServiceProtocol, transactions: [Transaction]) {
@@ -28,11 +29,15 @@ struct BudgetViewModel: BudgetViewModelProtocol {
        1 delete app from simulator and uncomment createBudget()
        2 create some transactions
        */
-//      budgetService.createBudget(name: "Tailand", with: 9000, on: 30)
+      //      budgetService.createBudget(name: "Tailand", with: 9000, on: 30)
    }
    
    private var transactionsAmounts: [NSDecimalNumber] {
       transactions.map { $0.amount }
+   }
+   
+   var bugdetName: String {
+      budgetService.getBudget()?.name ?? "" 
    }
    
    var totalBudget: NSDecimalNumber {
