@@ -8,33 +8,35 @@
 import Foundation
 
 protocol BudgetCalculationsProtocol {
-    func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
-    func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
-    func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
-    func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber
+   // TODO: - bind calculateMoneyCanSpendDaily with timezone or timer or date for user to update daily budget
+   func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
+   func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
+   func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
+   func calculateDayLeft(fromDate: Date, toDate: Date) -> Int64
 }
 
 final class BudgetCalculations: BudgetCalculationsProtocol {
+   
+   func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber {
+      currentAmount.dividing(by: NSDecimalNumber(value: periodDays)).round()
+   }
+   
+   func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber? {
+      if spending > amount {
+         return nil
+      }
+      return amount.subtracting(spending).round()
+   }
+   
+   func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
+      let currentAmount = transactionAmounts
+         .reduce(0, { $1.adding($0) })
+      return currentAmount.round()
+   }
     
-    func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber {
-        currentAmount.dividing(by: NSDecimalNumber(value: periodDays)).round()
-    }
-    
-    func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber? {
-        if spending > amount {
-            return nil
-        }
-        return amount.subtracting(spending).round()
-    }
-    
-    func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
-        let currentAmount = transactionAmounts
-            .reduce(0, { $1.adding($0) })
-        return currentAmount.round()
-    }
-    
-    func calculateBudgetTotalAmount(currentAmount: NSDecimalNumber, totalSpend: NSDecimalNumber) -> NSDecimalNumber {
-        currentAmount.adding(totalSpend).round()
+    func calculateDayLeft(fromDate: Date, toDate: Date) -> Int64 {
+        let dayLeft = Calendar.autoupdatingCurrent.dateComponents([.day], from: fromDate, to: toDate).day ?? 0
+        return Int64(dayLeft)
     }
 }
 
