@@ -114,7 +114,6 @@ class BudgetCalculationsTests: XCTestCase {
             Date.from(year: 2022, month: 7, day: 15),
             Date.from(year: 2022, month: 7, day: 20),
             Date.from(year: 2022, month: 7, day: 25)
-
         ]
         
         let testDateToday: Date = .from(year: 2022, month: 7, day: 25)
@@ -141,18 +140,4 @@ class BudgetCalculationsTests: XCTestCase {
     
 }
 
-extension Date {
 
-    static func from(year: Int, month: Int, day: Int) -> Date? {
-        var calendar = Calendar(identifier: .gregorian)
-        var dateComponents = DateComponents()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = .autoupdatingCurrent
-        calendar = dateFormatter.calendar
-        dateComponents.year = year
-        dateComponents.month = month
-        dateComponents.day = day
-        return calendar.date(from: dateComponents) ?? nil
-    }
-}

@@ -26,11 +26,16 @@ extension Date {
     Used only for mocking date
     */
 
-   static func from(year: Int, month: Int, day: Int) -> Self {
-      var dateComponents = DateComponents()
-      dateComponents.year = year
-      dateComponents.month = month
-      dateComponents.day = day
-      return Calendar.current.date(from: dateComponents)!
-   }
+    static func from(year: Int, month: Int, day: Int) -> Date {
+        var calendar = Calendar(identifier: .gregorian)
+        var dateComponents = DateComponents()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = .autoupdatingCurrent
+        calendar = dateFormatter.calendar
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        return calendar.date(from: dateComponents) ?? Date()
+    }
 }
