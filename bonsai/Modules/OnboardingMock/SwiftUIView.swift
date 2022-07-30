@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 /*
  this view only for test to show autoRenewable/nonRenewable subscriptions
@@ -13,15 +14,26 @@ import SwiftUI
 
 struct OnboardingMockView: View {
     
-    @StateObject var store = StoreService()
+    @EnvironmentObject var storeService: StoreService
+    @State var isPurchased: Bool = false
+    
+    let product: Product
+    
+    init(product: Product) {
+        self.product = product
+    }
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
-}
-
-struct OnboardingMockView_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardingMockView()
+    
+    private func buy() async {
+        do {
+            if try await storeService.purchase(product) != nil {
+                withAnimation {
+                    isPurchased = true
+                }
+            }
+        } catch { }
     }
 }
