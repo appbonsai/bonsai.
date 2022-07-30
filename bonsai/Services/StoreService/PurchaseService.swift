@@ -8,6 +8,11 @@
 import Foundation
 import StoreKit
 
+/*
+ thanks to WWDC 2021 StoreKit2
+ https://developer.apple.com/videos/play/wwdc2021/10114/
+ */
+
 protocol StoreServiceProtocol {
     
 }
@@ -32,20 +37,47 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
 
     @Published private(set) var newSubscriptions: [Product]
     @Published private(set) var newNonRenewables: [Product]
-    
+    @Published private(set) var purchasedSubscriptions: [Product]
+    @Published private(set) var purchasedNonRenewableSubscriptions: [Product]
+    @Published private(set) var subscriptionGroupStatus: StoreKit.Product.SubscriptionInfo.RenewalState?
+
     private let productsId: [String: String] = [:]
+    
+    private var updateListeningTask: Task<Void, Error>? = nil
     
     init() {
         newSubscriptions = []
         newNonRenewables = []
+        purchasedSubscriptions = []
+        purchasedNonRenewableSubscriptions = []
         
+        updateListeningTask = listenForTransactions()
         Task {
             await requestProducts()
+            await updateCustomerProductStatus()
+        }
+    }
+    
+    deinit {
+        updateListeningTask?.cancel()
+    }
+    
+    private func listenForTransactions() -> Task<Void, Error> {
+        Task.detached { [self] in
+            for await result in StoreKit.Transaction.currentEntitlements {
+                do {
+                    let transation = try checkVerify(result)
+                    await updateCustomerProductStatus()
+                    await transation.finish()
+                } catch {
+                    print("Transaction failed verification")
+                }
+            }
         }
     }
     
     @MainActor
-    func requestProducts() async {
+    private func requestProducts() async {
         do {
             let storeProducts = try await Product.products(for: Set(productsId.keys))
             var newSubscriptions: [Product] = []
@@ -63,6 +95,7 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
             
             self.newSubscriptions = sortByPrice(newSubscriptions)
             self.newNonRenewables = sortByPrice(newNonRenewables)
+            
         } catch let error {
             print("Can not get product \(error.localizedDescription)")
         }
@@ -70,7 +103,6 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
     
     func purchase(_ product: Product) async throws -> StoreKit.Transaction? {
         let result = try await product.purchase()
-        
         switch result {
         case .success(let verification):
             let transaction = try checkVerify(verification)
@@ -94,12 +126,42 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
     
     @MainActor
     private func updateCustomerProductStatus() async {
+        var purchasedSubscriptions: [Product] = []
+        var purchasedNonRenewableSubscriptions: [Product] = []
+        
         for await result in StoreKit.Transaction.currentEntitlements {
-            
+            do {
+                let transaction = try checkVerify(result)
+                
+                switch transaction.productType {
+                case .autoRenewable:
+                    if let subscription = newSubscriptions.first(where: { product in product.id == transaction.productID }) {
+                        purchasedSubscriptions.append(subscription)
+                    }
+                case .nonRenewable:
+                    if let nonRenewable = newNonRenewables.first(where: { product in product.id == transaction.productID }), transaction.productID == "nonRenewing.standard" {
+                        
+                        let currentDate = Date()
+                        let expirationDate = Calendar(identifier: .gregorian)
+                            .date(byAdding: DateComponents(year: 1), to: transaction.purchaseDate)!
+                        if currentDate < expirationDate {
+                            purchasedNonRenewableSubscriptions.append(nonRenewable)
+                        }
+                    }
+                default: break
+                }
+                
+            } catch {
+                
+            }
         }
+        
+        self.purchasedSubscriptions = purchasedSubscriptions
+        self.purchasedNonRenewableSubscriptions = purchasedNonRenewableSubscriptions
+        subscriptionGroupStatus = try? await newSubscriptions.first?.subscription?.status.first?.state
     }
     
-    func sortByPrice(_ products: [Product]) -> [Product] {
+    private func sortByPrice(_ products: [Product]) -> [Product] {
         products.sorted(by: { return $0.price < $1.price })
     }
     
