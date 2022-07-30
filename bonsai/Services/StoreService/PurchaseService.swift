@@ -14,7 +14,9 @@ import StoreKit
  */
 
 protocol StoreServiceProtocol {
-    
+    func isPurchased(_ product: Product) async throws -> Bool
+    func tier(for productId: String) -> StoreService.SubscritionTier
+    func purchase(_ product: Product) async throws -> StoreKit.Transaction? 
 }
 
 final class StoreService: ObservableObject, StoreServiceProtocol {
@@ -41,11 +43,20 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
     @Published private(set) var purchasedNonRenewableSubscriptions: [Product]
     @Published private(set) var subscriptionGroupStatus: StoreKit.Product.SubscriptionInfo.RenewalState?
 
-    private let productsId: [String: String] = [:]
+    private let productsId: [String: String]
     
     private var updateListeningTask: Task<Void, Error>? = nil
     
     init() {
+        /*
+         Path to Products with info.plist will be ready after configure on dev account
+         */
+        if let path = Bundle.main.path(forResource: "Products", ofType: "plist"),
+           let plist = FileManager.default.contents(atPath: path) {
+            productsId = (try? PropertyListSerialization.propertyList(from: plist, format: nil)) as? [String: String] ?? [:]
+        } else {
+            productsId = [:]
+        }
         newSubscriptions = []
         newNonRenewables = []
         purchasedSubscriptions = []
@@ -165,7 +176,7 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
         products.sorted(by: { return $0.price < $1.price })
     }
     
-    private func isPurchased(_ product: Product) async throws -> Bool {
+    func isPurchased(_ product: Product) async throws -> Bool {
         switch product.type {
         case .autoRenewable:
             return purchasedSubscriptions.contains(product)
@@ -176,7 +187,7 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
         }
     }
     
-    private func tier(for productId: String) -> StoreService.SubscritionTier {
+    func tier(for productId: String) -> StoreService.SubscritionTier {
         switch productId {
         case "subscription.standard":
             return .standard
