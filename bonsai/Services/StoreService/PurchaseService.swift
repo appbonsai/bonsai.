@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import CryptoKit
 
 /*
  thanks to WWDC 2021 StoreKit2
@@ -171,14 +172,12 @@ final class StoreService: ObservableObject {
     }
     
     func isPurchased(_ product: Product) async throws -> Bool {
-        switch product.type {
-        case .autoRenewable:
-            return purchasedSubscriptions.contains(product)
-        case .nonRenewable:
-            return purchasedNonRenewableSubscriptions.contains(product)
-        default:
+        guard let result = await StoreKit.Transaction.latest(for: product.id)
+        else {
             return false
         }
+        let transaction = try checkVerify(result)
+        return transaction.revocationDate == nil && !transaction.isUpgraded
     }
     
     func tier(for productId: String) -> StoreService.SubscritionTier {
@@ -194,4 +193,16 @@ final class StoreService: ObservableObject {
         }
     }
     
+    private func isSignatureValid(transaction: StoreKit.Transaction) -> Bool {
+        guard let localID = AppStore.deviceVerificationID?.uuidString.lowercased() else {
+            return false
+        }
+        let combinedValue = transaction.deviceVerificationNonce.uuidString.lowercased() + localID
+        let hashedValue = SHA384.hash(data: Data(combinedValue.utf8))
+        if hashedValue == transaction.deviceVerification {
+            //VALID!
+            return true
+        }
+        return false
+    }
 }
