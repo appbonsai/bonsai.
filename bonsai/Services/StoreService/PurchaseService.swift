@@ -32,10 +32,8 @@ final class StoreService: ObservableObject {
         case failedVerification
     }
 
-    @Published private(set) var newSubscriptions: [Product]
-    @Published private(set) var newNonRenewables: [Product]
-    @Published private(set) var purchasedSubscriptions: [Product]
-    @Published private(set) var purchasedNonRenewableSubscriptions: [Product]
+    @Published private(set) var autoRenewableSubscriptions: [Product]
+    @Published private(set) var purchasedAutoRenewableSubscriptions: [Product] = []
     @Published private(set) var subscriptionGroupStatus: StoreKit.Product.SubscriptionInfo.RenewalState?
 
     private let productsId: [String: String]
@@ -52,10 +50,7 @@ final class StoreService: ObservableObject {
         } else {
             productsId = [:]
         }
-        newSubscriptions = []
-        newNonRenewables = []
-        purchasedSubscriptions = []
-        purchasedNonRenewableSubscriptions = []
+        autoRenewableSubscriptions = []
         
         updateListeningTask = listenForTransactions()
         Task {
@@ -87,20 +82,16 @@ final class StoreService: ObservableObject {
         do {
             let storeProducts = try await Product.products(for: Set(productsId.keys))
             var newSubscriptions: [Product] = []
-            var newNonRenewables: [Product] = []
             
             for product in storeProducts {
                 switch product.type {
                 case .autoRenewable:
                     newSubscriptions.append(product)
-                case .nonRenewable:
-                    newNonRenewables.append(product)
                 default: print("unknown product")
                 }
             }
             
-            self.newSubscriptions = sortByPrice(newSubscriptions)
-            self.newNonRenewables = sortByPrice(newNonRenewables)
+            self.autoRenewableSubscriptions = sortByPrice(newSubscriptions)
             
         } catch let error {
             print("Can not get product \(error.localizedDescription)")
@@ -133,7 +124,6 @@ final class StoreService: ObservableObject {
     @MainActor
     private func updateCustomerProductStatus() async {
         var purchasedSubscriptions: [Product] = []
-        var purchasedNonRenewableSubscriptions: [Product] = []
         
         for await result in StoreKit.Transaction.currentEntitlements {
             do {
@@ -141,18 +131,8 @@ final class StoreService: ObservableObject {
                 
                 switch transaction.productType {
                 case .autoRenewable:
-                    if let subscription = newSubscriptions.first(where: { product in product.id == transaction.productID }) {
+                    if let subscription = autoRenewableSubscriptions.first(where: { product in product.id == transaction.productID }) {
                         purchasedSubscriptions.append(subscription)
-                    }
-                case .nonRenewable:
-                    if let nonRenewable = newNonRenewables.first(where: { product in product.id == transaction.productID }), transaction.productID == "nonRenewing.standard" {
-                        
-                        let currentDate = Date()
-                        let expirationDate = Calendar(identifier: .gregorian)
-                            .date(byAdding: DateComponents(year: 1), to: transaction.purchaseDate)!
-                        if currentDate < expirationDate {
-                            purchasedNonRenewableSubscriptions.append(nonRenewable)
-                        }
                     }
                 default: break
                 }
@@ -162,9 +142,8 @@ final class StoreService: ObservableObject {
             }
         }
         
-        self.purchasedSubscriptions = purchasedSubscriptions
-        self.purchasedNonRenewableSubscriptions = purchasedNonRenewableSubscriptions
-        subscriptionGroupStatus = try? await newSubscriptions.first?.subscription?.status.first?.state
+        self.purchasedAutoRenewableSubscriptions = purchasedSubscriptions
+        subscriptionGroupStatus = try? await autoRenewableSubscriptions.first?.subscription?.status.first?.state
     }
     
     private func sortByPrice(_ products: [Product]) -> [Product] {
