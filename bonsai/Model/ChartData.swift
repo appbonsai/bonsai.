@@ -17,7 +17,24 @@ struct BarChartData {
 }
 
 struct PieChartData {
-    var categoriesToDisplay: [Category]
+    var pieChartSlices: [PieChartSliceData]
+    /// top title
+    var currentMonthName: String
+}
+
+struct PieChartSliceData: Identifiable {
+    let color: Color
+    let categoryTitle: String
+    let icon: Image
+    let amount: Double
+    let percentages: Double
+    var pieSlice: PieSlice? 
+    let id = UUID()
+}
+
+struct PieSlice {
+     var startDegree: Double
+     var endDegree: Double
 }
 
 /// Data for one piece of chart(one bar, one segment of pie, etc.)

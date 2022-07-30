@@ -1,5 +1,5 @@
 //
-//  PiePiece.swift
+//  PiePieceView.swift
 //  bonsai
 //
 //  Created by Максим Алексеев  on 14.07.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PiePiece: View {
+struct PiePieceView: View {
     var center: CGPoint
     var radius: CGFloat
     var startDegree: Double
@@ -34,6 +34,6 @@ struct PiePiece: View {
 
 struct PiePiece_Previews: PreviewProvider {
     static var previews: some View {
-        PiePiece(center: CGPoint(x: 100, y: 200), radius: 200, startDegree: 30, endDegree: 80, isTouched: true, accentColor: BonsaiColor.mainPurple)
+        PiePieceView(center: CGPoint(x: 100, y: 200), radius: 200, startDegree: 30, endDegree: 80, isTouched: true, accentColor: BonsaiColor.mainPurple)
     }
-}
+} 
