@@ -64,7 +64,7 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
     
     private func listenForTransactions() -> Task<Void, Error> {
         Task.detached { [self] in
-            for await result in StoreKit.Transaction.currentEntitlements {
+            for await result in StoreKit.Transaction.updates {
                 do {
                     let transation = try checkVerify(result)
                     await updateCustomerProductStatus()
@@ -163,6 +163,30 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
     
     private func sortByPrice(_ products: [Product]) -> [Product] {
         products.sorted(by: { return $0.price < $1.price })
+    }
+    
+    private func isPurchased(_ product: Product) async throws -> Bool {
+        switch product.type {
+        case .autoRenewable:
+            return purchasedSubscriptions.contains(product)
+        case .nonRenewable:
+            return purchasedNonRenewableSubscriptions.contains(product)
+        default:
+            return false
+        }
+    }
+    
+    private func tier(for productId: String) -> StoreService.SubscritionTier {
+        switch productId {
+        case "subscription.standard":
+            return .standard
+        case "subscription.premium":
+            return .premium
+        case "subscription.pro":
+            return .pro
+        default:
+            return .none
+        }
     }
     
 }
