@@ -25,6 +25,10 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
         case premium = 2
         case pro = 3
     }
+    
+    public enum StoreError: Error {
+        case failedVerification
+    }
 
     @Published private(set) var newSubscriptions: [Product]
     @Published private(set) var newNonRenewables: [Product]
@@ -64,8 +68,35 @@ final class StoreService: ObservableObject, StoreServiceProtocol {
         }
     }
     
-    func purchase(_ product: Product) async throws -> Transaction? {
-        return nil
+    func purchase(_ product: Product) async throws -> StoreKit.Transaction? {
+        let result = try await product.purchase()
+        
+        switch result {
+        case .success(let verification):
+            let transaction = try checkVerify(verification)
+            await updateCustomerProductStatus()
+            await transaction.finish()
+            return transaction
+        case .pending: return nil
+        case .userCancelled: return nil
+        default: return nil
+        }
+    }
+    
+    private func checkVerify<T>(_ result: VerificationResult<T>) throws -> T {
+        switch result {
+        case .unverified(_, _):
+            throw StoreService.StoreError.failedVerification
+        case .verified(let verified):
+            return verified
+        }
+    }
+    
+    @MainActor
+    private func updateCustomerProductStatus() async {
+        for await result in StoreKit.Transaction.currentEntitlements {
+            
+        }
     }
     
     func sortByPrice(_ products: [Product]) -> [Product] {
