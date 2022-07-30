@@ -13,13 +13,7 @@ import StoreKit
  https://developer.apple.com/videos/play/wwdc2021/10114/
  */
 
-protocol StoreServiceProtocol {
-    func isPurchased(_ product: Product) async throws -> Bool
-    func tier(for productId: String) -> StoreService.SubscritionTier
-    func purchase(_ product: Product) async throws -> StoreKit.Transaction? 
-}
-
-final class StoreService: ObservableObject, StoreServiceProtocol {
+final class StoreService: ObservableObject {
     
     public enum SubscritionTier: Int, Comparable {
         
