@@ -30,7 +30,7 @@ struct PieChartView: View {
                                          startDegree: slice.pieSlice?.startDegree ?? 0,
                                          endDegree: slice.pieSlice?.endDegree ?? 0,
                                          isTouched: sliceIsTouched(pieSliceData: slice, inPie: geo.frame(in: .local)),
-                                         accentColor: slice.color)
+                                         accentColor: slice.color, disabledColor: slice.disabledColor ?? BonsaiColor.ChartDisabledColors.c1)
                         }
                         .gesture(
                             DragGesture(minimumDistance: 0)
@@ -40,8 +40,8 @@ struct PieChartView: View {
                                     updateCurrentValue(pieSize: pieSize)
                                 })
                                 .onEnded({ _ in
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                        withAnimation(Animation.easeOut) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        withAnimation(Animation.easeInOut) {
                                             resetValues()
                                         }
                                     }
@@ -104,8 +104,8 @@ struct PieChartView: View {
         guard let angle = viewModel.angleAtTouchLocation(inPie: pieSize, touchLocation: touchLocation),
               let pieSlice = pieSliceData.pieSlice
         else { return false }
+        
         return pieSlice.startDegree < angle && pieSlice.endDegree > angle
-//        return viewModel.chartData.pieChartSlices.firstIndex(where: { $0.pieSlice!.startDegree < angle && $0.pieSlice!.endDegree > angle }) == index
      }
 }
 

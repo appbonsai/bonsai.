@@ -27,7 +27,7 @@ final class PieChartViewModel: ObservableObject {
         }
         return slices
     }
-    
+        
     // MARK: - Init
     init(mainContext: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
         let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
@@ -43,6 +43,7 @@ final class PieChartViewModel: ObservableObject {
         
         chartData = MockChartData.mockPieChartData
         setPieSlicesPosition()
+        setDisabledColors()
     }
     
     // MARK: - Private
@@ -59,11 +60,12 @@ final class PieChartViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Function
-    func mapCategoriesToChartData(categories: [Category]) {
-        
+    private func setDisabledColors() {
+        for i in 0..<chartData.pieChartSlices.count {
+            chartData.pieChartSlices[i].disabledColor = i > 9 ? BonsaiColor.ChartDisabledColors.colors.randomElement() : BonsaiColor.ChartDisabledColors.colors[i]
+        }
     }
-    
+    // MARK: - Function
     func getCategories() {
         transactions.forEach {
             categories.append($0.category)
