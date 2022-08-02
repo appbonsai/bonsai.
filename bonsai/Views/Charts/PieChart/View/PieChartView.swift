@@ -18,9 +18,19 @@ struct PieChartView: View {
             BonsaiColor.card
             
             VStack {
-                Text("$\(currentSliceData?.amount.formatted() ?? "0")")
+                Text(viewModel.chartData.currentMonthName)
+                    .foregroundColor(BonsaiColor.disabled)
+                    .font(BonsaiFont.title_headline_17)
+                    .padding(.bottom, 16)
+                
+                if let amount = currentSliceData?.amount.formatted() {
+                    Text("$\(amount)")
                         .font(BonsaiFont.title_28)
                         .foregroundColor(BonsaiColor.text)
+                } else {
+                    Text(" ")
+                        .font(BonsaiFont.title_28)
+                }
                 
                 GeometryReader { geo in
                     ForEach(viewModel.chartData.pieChartSlices) { slice in
@@ -63,6 +73,7 @@ struct PieChartView: View {
                 }
                 .aspectRatio(contentMode: .fit)
                 .padding(.horizontal, 79)
+                .padding(.top, 16)
                 
                 Text(currentSliceData?.categoryTitle ?? " ")
                     .foregroundColor(currentSliceData?.color)

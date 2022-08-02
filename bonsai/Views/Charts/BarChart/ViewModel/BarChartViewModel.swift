@@ -37,6 +37,6 @@ final class BarChartViewModel: ObservableObject {
     
     // MARK: - Init
     init() {
-//        chartData = MockChartData.mockBarChartData
+        chartData = MockChartData.mockBarChartData
     }
 }
