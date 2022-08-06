@@ -16,12 +16,7 @@ struct Onboarding: View {
             ZStack {
                 TabView(selection: $selection) {
                     OnboardingCard()
-                    
-                    Image("bonsai_2")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-                        .clipped()
+                    OnboardingCard()
                 }
             }
         }

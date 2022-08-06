@@ -9,35 +9,15 @@ import SwiftUI
 
 struct OnboardingCard: View {
     var body: some View {
-        
         VStack {
-            ZStack {
-                Image("bonsai_1")
-                    .resizable()
-                    .scaledToFill()
-                    .clipped()
-                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.9)
-                            
-                VStack(alignment: .leading) {
-                    Spacer()
-                    Text("Parturient Venenatis Etiam")
-                        .padding(.leading, 20)
-                        .padding(.bottom, 8)
-                        .foregroundColor(BonsaiColor.mainPurple)
-                        .font(
-                            .system(size: 28)
-                            .bold())
-                        .lineLimit(2)
-                    
-                    Text("Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation ve")
-                        .padding(.leading, 20)
-                        .foregroundColor(.white)
-                        .font(.body)
-                        .foregroundColor(.white)
-                }
+            OnboardingCardGradiented()
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.8, alignment: .bottom)
+            VStack {
+                Text("SOME SDKASODKALSD DSLD")
+                Text("SOME SDKASODKALSD DSLD")
             }
-            .padding(.top, -UIScreen.main.bounds.size.height * 0.2)
         }
+        .ignoresSafeArea()
     }
 }
 
