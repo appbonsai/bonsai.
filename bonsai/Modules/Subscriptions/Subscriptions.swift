@@ -9,8 +9,14 @@ import SwiftUI
 
 struct Subscriptions: View {
     var body: some View {
-        
         List {
+            HStack {
+                Image("bonsai_4")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.7)
+                    .clipped()
+            }
             HStack(alignment: .center) {
                 Spacer()
                 Text("Choose your plan")
@@ -26,9 +32,7 @@ struct Subscriptions: View {
                 
             } label: {
                 Text("Restore Purchases")
-            }
-
-            
+            }            
             HStack(alignment: .center) {
                 Spacer()
                 ZStack {
@@ -43,6 +47,9 @@ struct Subscriptions: View {
                 Spacer()
             }
         }
+        .frame(maxWidth: UIScreen.main.bounds.width)
+        .listStyle(GroupedListStyle())
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
