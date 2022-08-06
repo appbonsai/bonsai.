@@ -11,6 +11,8 @@ struct Subscriptions: View {
     
     @State var isSelected: Bool = false
     
+    let mockSubs = MockSubscriptions.subscriptions
+    
     var body: some View {
         ZStack {
             BonsaiColor.back
@@ -41,16 +43,12 @@ struct Subscriptions: View {
                     /*
                      product subscription
                      */
-                    SubscriptionCell()
+                    SubscriptionCell(subscription: mockSubs[index], isSelected: isSelected)
                         .padding(.bottom, 6)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
-                            
-                            /*
-                             product subscription
-                             update checkmark
-                             unselect another
-                             */
+                            isSelected = true
+                
                         }
                 }
                 .listRowBackground(BonsaiColor.back)
