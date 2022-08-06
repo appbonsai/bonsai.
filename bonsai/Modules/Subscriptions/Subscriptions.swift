@@ -20,6 +20,9 @@ struct Subscriptions: View {
             HStack(alignment: .center) {
                 Spacer()
                 Text("Choose your plan")
+                    .font(.system(size: 28))
+                    .bold()
+                    .foregroundColor(BonsaiColor.purple7)
                 Spacer()
             }
             ForEach(0..<4) { index in
@@ -27,16 +30,27 @@ struct Subscriptions: View {
                     .padding(.bottom, 6)
                     .listRowSeparator(.hidden)
             }
-            Text("By subscribing you agree to our Terms of Service and Privacy Policy.")
-                .lineLimit(3)
-                .frame(height: 50)
-                .listRowSeparator(.hidden)
+            
+            Group {
+                Text("By subscribing you agree to our ")
+                +
+                Text("Terms of Service ").foregroundColor(BonsaiColor.secondary) +
+                Text("and ") +
+                Text("Privacy Policy").foregroundColor(BonsaiColor.secondary) +
+                Text(".")
+            }
+            .font(.system(size: 12))
+            .lineLimit(3)
+            .frame(height: 50)
+            .listRowSeparator(.hidden)
             
             Button {
                 
             } label: {
                 HStack(alignment: .center) {
                     Text("Restore Purchases")
+                        .font(.system(size: 12))
+                        .foregroundColor(BonsaiColor.secondary)
                     Spacer()
                 }
             }
@@ -66,6 +80,7 @@ struct Subscriptions: View {
         }
     }
 }
+
 
 struct Subscriptions_Previews: PreviewProvider {
     static var previews: some View {
