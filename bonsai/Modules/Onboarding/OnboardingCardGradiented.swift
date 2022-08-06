@@ -15,7 +15,7 @@ struct OnboardingCardGradiented: View {
                 Image("bonsai_1")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.7)
+                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.75)
                     .clipped()
                     .overlay {
                         LinearGradient(

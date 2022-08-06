@@ -12,19 +12,17 @@ struct OnboardingCard: View {
         ZStack {
             VStack {
                 OnboardingCardGradiented()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.6, alignment: .bottom)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.5)
                 VStack(alignment: .leading) {
                     Text("Parturient Venenatis Etiam")
                         .bold()
                         .font(.system(size: 28))
                         .foregroundColor(BonsaiColor.mainPurple)
-                        .padding(.leading, 32)
-                        .padding(.trailing, 32)
+                        .padding([.leading, .trailing], 32)
                         .padding(.bottom, 8)
                     Text("Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation ve")
                         .font(.system(size: 15))
-                        .padding(.leading, 32)
-                        .padding(.trailing, 32)
+                        .padding([.leading, .trailing], 32)
                         .padding(.bottom, 40)
                 }
             }
