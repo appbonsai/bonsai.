@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct OnboardingCardGradiented: View {
+    
+    let image: String
+    
+    init(image: String) {
+        self.image = image
+    }
+    
     var body: some View {
         
         VStack {
             ZStack {
-                Image("bonsai_1")
+                Image(image)
                     .resizable()
                     .scaledToFill()
                     .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.75)
@@ -38,6 +45,6 @@ struct OnboardingCardGradiented: View {
 
 struct OnboardingCardGradiented_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingCardGradiented()
+        OnboardingCardGradiented(image: "bonsai_1")
     }
 }

@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct OnboardingCard: View {
+    
+    let image: String
+    
+    init(image: String) {
+        self.image = image
+    }
+    
     var body: some View {
         ZStack {
             VStack {
-                OnboardingCardGradiented()
+                OnboardingCardGradiented(image: image)
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.5)
                 VStack(alignment: .leading) {
                     Text("Parturient Venenatis Etiam")
@@ -34,6 +41,6 @@ struct OnboardingCard: View {
 
 struct OnboardingCard_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingCard()
+        OnboardingCard(image: "bonsai_1")
     }
 }

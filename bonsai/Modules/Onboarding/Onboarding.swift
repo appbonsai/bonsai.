@@ -9,18 +9,29 @@ import SwiftUI
 
 struct Onboarding: View {
     
-    @State private var selection = 1
+    @State private var selection = 0
+    
+    private var onboardingImages = [
+        "bonsai_1",
+        "bonsai_2",
+        "bonsai_3"
+    ]
     
     var body: some View {
         ZStack {
             VStack {
                 TabView(selection: $selection) {
-                    OnboardingCard()
-                    OnboardingCard()
+                    ForEach(0..<3) { index in
+                        OnboardingCard(image: onboardingImages[index])
+                            .tag(index)
+                    }
                 }
-               
                 Button {
-                    print("press")
+                    if selection != onboardingImages.count - 1 {
+                        selection += 1
+                    } else {
+                        // open MAIN SCREEN
+                    }
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 13)
