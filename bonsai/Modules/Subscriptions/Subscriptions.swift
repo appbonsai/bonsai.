@@ -14,12 +14,15 @@ struct Subscriptions: View {
     var body: some View {
         List {
             HStack {
-                Image("bonsai_4")
+                Image("undraw_japan_ubgk 1")
                     .resizable()
                     .scaledToFill()
                     .clipped()
+                    .padding([.leading, .trailing], 73)
             }
             .listRowSeparator(.hidden)
+            .padding(.bottom, 12)
+            .padding(.top, 40)
             HStack(alignment: .center) {
                 Spacer()
                 Text("Choose your plan")
@@ -28,6 +31,7 @@ struct Subscriptions: View {
                     .foregroundColor(BonsaiColor.purple7)
                 Spacer()
             }
+            .padding(.bottom, 12)
             ForEach(0..<4) { index in
                 /*
                  product subscription
@@ -40,7 +44,7 @@ struct Subscriptions: View {
                         /*
                          product subscription
                          update checkmark
-                         unselect another 
+                         unselect another
                          */
                     }
             }
@@ -55,7 +59,6 @@ struct Subscriptions: View {
             }
             .font(.system(size: 12))
             .lineLimit(3)
-            .frame(height: 50)
             .listRowSeparator(.hidden)
             
             Button {
@@ -83,15 +86,13 @@ struct Subscriptions: View {
                 }
                 Spacer()
             }
-            .padding(.top, 35)
+            .padding(.top, 17)
+            .padding(.bottom, 50)
         }
-        .ignoresSafeArea()
-        .listStyle(GroupedListStyle())
+        .listStyle(PlainListStyle())
         .listRowBackground(Color.clear)
-        .onAppear {
-            UITableView.appearance().separatorStyle = .none
-            UITableView.appearance().backgroundColor = .clear
-        }
+        .ignoresSafeArea()
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
