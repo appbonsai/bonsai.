@@ -14,9 +14,9 @@ struct Subscriptions: View {
                 Image("bonsai_4")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width * 0.7)
                     .clipped()
             }
+            .listRowSeparator(.hidden)
             HStack(alignment: .center) {
                 Spacer()
                 Text("Choose your plan")
@@ -24,15 +24,24 @@ struct Subscriptions: View {
             }
             ForEach(0..<4) { index in
                 SubscriptionCell()
+                    .padding(.bottom, 6)
+                    .listRowSeparator(.hidden)
             }
-            
             Text("By subscribing you agree to our Terms of Service and Privacy Policy.")
+                .lineLimit(3)
+                .frame(height: 50)
+                .listRowSeparator(.hidden)
             
             Button {
                 
             } label: {
-                Text("Restore Purchases")
-            }            
+                HStack(alignment: .center) {
+                    Text("Restore Purchases")
+                    Spacer()
+                }
+            }
+            .listRowSeparator(.hidden)
+            
             HStack(alignment: .center) {
                 Spacer()
                 ZStack {
@@ -46,10 +55,15 @@ struct Subscriptions: View {
                 }
                 Spacer()
             }
+            .padding(.top, 35)
         }
-        .frame(maxWidth: UIScreen.main.bounds.width)
+        .ignoresSafeArea()
         .listStyle(GroupedListStyle())
-        .edgesIgnoringSafeArea(.all)
+        .listRowBackground(Color.clear)
+        .onAppear {
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().backgroundColor = .clear
+        }
     }
 }
 
