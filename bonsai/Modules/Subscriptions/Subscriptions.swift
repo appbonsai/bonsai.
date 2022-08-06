@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Subscriptions: View {
+    
+    @State var isSelected: Bool = false
+    
     var body: some View {
         List {
             HStack {
@@ -26,9 +29,20 @@ struct Subscriptions: View {
                 Spacer()
             }
             ForEach(0..<4) { index in
+                /*
+                 product subscription
+                 */
                 SubscriptionCell()
                     .padding(.bottom, 6)
                     .listRowSeparator(.hidden)
+                    .onTapGesture {
+                        
+                        /*
+                         product subscription
+                         update checkmark
+                         unselect another 
+                         */
+                    }
             }
             
             Group {
