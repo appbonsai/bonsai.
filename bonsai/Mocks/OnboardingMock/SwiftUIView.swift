@@ -16,8 +16,7 @@ struct OnboardingMockView: View {
     init() {
         Purchases.logLevel = .debug
         Purchases.configure(
-            with:
-                Configuration.builder(withAPIKey: "some API")
+            with: Configuration.Builder(withAPIKey: Constants.apiKey)
                 .with(usesStoreKit2IfAvailable: true)
                 .build()
         )
@@ -52,10 +51,14 @@ class UserViewModel: ObservableObject {
     
     @Published var customerInfo: CustomerInfo? {
         didSet {
-            subscriptionsActive = customerInfo?.entitlements["some entitlementsID"]?.isActive == true
+            subscriptionsActive = customerInfo?.entitlements[Constants.entitlementID]?.isActive == true
         }
     }
     @Published var offerings: Offerings? = nil
     @Published var subscriptionsActive: Bool = false
     
 }
+
+
+
+
