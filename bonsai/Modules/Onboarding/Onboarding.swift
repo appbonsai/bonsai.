@@ -13,25 +13,20 @@ struct Onboarding: View {
     
     var body: some View {
         VStack {
-            TabView(selection: $selection) {
-                Image("bonsai_1")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-                    .clipped()
-                   
-                Image("bonsai_2")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-                    .clipped()
+            ZStack {
+                TabView(selection: $selection) {
+                    OnboardingCard()
                     
+                    Image("bonsai_2")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+                        .clipped()
+                }
             }
-            .tabViewStyle(PageTabViewStyle())
         }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         .animation(.easeInOut)
-        .padding(.top, 37 + 20)
-        .background(BonsaiColor.back)
         .ignoresSafeArea()
     }
 }
