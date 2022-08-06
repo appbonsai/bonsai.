@@ -15,8 +15,7 @@ struct OnboardingCardGradiented: View {
                 Image("bonsai_1")
                     .resizable()
                     .scaledToFill()
-                    .compositingGroup()
-                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+                    .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height * 0.7)
                     .clipped()
                     .overlay {
                         LinearGradient(
@@ -31,7 +30,8 @@ struct OnboardingCardGradiented: View {
     let graidients: Gradient =
         Gradient(stops: [
             .init(color: BonsaiColor.card.opacity(0), location: 0.2),
-            .init(color: BonsaiColor.card.opacity(1), location: 1)
+            .init(color: BonsaiColor.card.opacity(0.5), location: 0.5),
+            .init(color: .black.opacity(1), location: 1)
         ])
     
 }
