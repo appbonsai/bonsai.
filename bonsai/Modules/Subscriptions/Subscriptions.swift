@@ -28,7 +28,7 @@ struct Subscriptions: View {
                 .listRowBackground(BonsaiColor.back)
                 .listRowSeparator(.hidden)
                 .padding(.bottom, 12)
-                .padding(.top, 40)
+                .padding(.top, 20)
                 HStack(alignment: .center) {
                     Spacer()
                     Text("Choose your plan")
@@ -44,7 +44,6 @@ struct Subscriptions: View {
                      product subscription
                      */
                     SubscriptionCell(subscription: mockSubs[index], isSelected: isSelected)
-                        .padding(.bottom, 6)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
                             isSelected = true
@@ -92,10 +91,9 @@ struct Subscriptions: View {
                     }
                     Spacer()
                 }
+                .padding(.bottom, 30)
                 .listRowSeparator(.hidden)
                 .listRowBackground(BonsaiColor.back)
-                .padding(.top, 17)
-                .padding(.bottom, 50)
             }
             .onAppear {
                 UITableView.appearance().showsVerticalScrollIndicator = false

@@ -32,6 +32,7 @@ struct SubscriptionCell: View {
                         Text(subscription.periodName)
                             .foregroundColor(BonsaiColor.purple7)
                             .font(.system(size: 17))
+                            .bold()
                             .padding(.bottom, 2)
                         Text("\(subscription.price) per month")
                             .foregroundColor(BonsaiColor.purple3)
