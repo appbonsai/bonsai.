@@ -95,7 +95,10 @@ struct NewOperationView: View {
                   bonsai.Transaction(
                      context: moc,
                      amount: NSDecimalNumber(string: amount),
+                     title: title,
                      date: date,
+                     category: category ?? .notSpecified,
+                     account: .default,
                      type: selectedOperation.mappedToTransactionType,
                      tags: Set(tags)
                   )
