@@ -13,7 +13,7 @@ final class BarChartViewModel: ObservableObject {
     
     // MARK: - Functions
     func normalizedValue(value: Double) -> Double {
-        var allValues: [Double]    {
+        var allValues: [Double] {
             var values = [Double]()
             guard let chartData = chartData else {
                 return []
@@ -24,6 +24,7 @@ final class BarChartViewModel: ObservableObject {
             }
             return values
         }
+        
         guard let max = allValues.max() else {
             return 1
         }

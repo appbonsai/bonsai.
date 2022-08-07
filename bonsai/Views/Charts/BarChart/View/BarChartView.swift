@@ -49,7 +49,7 @@ struct BarChartView: View {
                         }
                         
                         // bars
-                        HStack(spacing: 12) {
+                        HStack(spacing: 10) {
                             if let chartData = viewModel.chartData {
                                 
                                 ForEach(Array(chartData.pieces.enumerated()), id: \.offset) { i, bar in
@@ -139,6 +139,6 @@ struct BarChartView: View {
 struct BarChartView_Previews: PreviewProvider {
     static var previews: some View {
         BarChartView(viewModel: BarChartViewModel())
-            .previewLayout(.fixed(width: 358, height: 325))
+            .previewLayout(.fixed(width: 343, height: 325))
     }
 }
