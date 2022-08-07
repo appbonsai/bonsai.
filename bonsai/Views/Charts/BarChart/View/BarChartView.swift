@@ -45,6 +45,7 @@ struct BarChartView: View {
                             BarDetailLabel(title: currentValue, color: piecesColor)
                                 .offset(x: labelOffset(in: geo.frame(in: .local).width))
                                 .animation(.easeIn)
+                                .padding(.bottom, 10)
                         }
                         
                         // bars

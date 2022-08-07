@@ -14,7 +14,7 @@ struct bonsaiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            PieChartView(viewModel: PieChartViewModel())
+            TabBar()
         }
     }
 }

@@ -42,7 +42,7 @@ struct TabBar: View {
                .tag(0)
             HomeContainerView()
                .tag(1)
-            ChartsContainerView()
+             ChartsView()
                .tag(2)
          }
          .animation(.easeInOut)
