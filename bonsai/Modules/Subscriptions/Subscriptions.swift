@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Subscriptions: View {
     
-    @State var id: String = (MockSubscriptions.subscriptions.first?.id ?? "")
+    @State var id: String = MockSubscriptions.subscriptions.first(where: { $0.isMostPopular })?.id ?? ""
 
     let mockSubs = MockSubscriptions.subscriptions
     
@@ -81,7 +81,7 @@ struct Subscriptions: View {
                         RoundedRectangle(cornerRadius: 13)
                             .frame(width: 192, height: 48)
                             .foregroundColor(BonsaiColor.mainPurple)
-                        Text("Get all feutures")
+                        Text("Get all features")
                             .foregroundColor(BonsaiColor.card)
                             .font(.system(size: 17))
                             .bold()
@@ -96,7 +96,7 @@ struct Subscriptions: View {
                 UITableView.appearance().showsVerticalScrollIndicator = false
             }
             .listStyle(PlainListStyle())
-            .ignoresSafeArea()
+            .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
         }
     }
 }
