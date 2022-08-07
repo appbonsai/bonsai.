@@ -25,12 +25,6 @@ struct BudgetViewModel: BudgetViewModelProtocol {
       self.budgetService = budgetService
       let nonIncomeTransactions = transactions.filter { $0.type != .income }
       self.transactions = nonIncomeTransactions
-      /*
-       for manual test
-       1 delete app from simulator and uncomment createBudget()
-       2 create some transactions
-       */
-      //      budgetService.createBudget(name: "Tailand", with: 9000, on: 30)
    }
    
    private var transactionsAmounts: [NSDecimalNumber] {
