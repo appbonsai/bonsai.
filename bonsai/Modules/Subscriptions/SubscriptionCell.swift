@@ -37,6 +37,21 @@ struct SubscriptionCell: View {
                             .foregroundColor(BonsaiColor.purple3)
                             .font(.system(size: 17))
                     }
+                    if subscription.isMostPopular {
+                        HStack {
+                            Spacer()
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 13)
+                                    .frame(width: 76, height: 22)
+                                    .foregroundColor(BonsaiColor.green)
+                                Text("Best value")
+                                    .foregroundColor(BonsaiColor.card)
+                                    .font(.system(size: 12))
+                            }
+                            .padding(.trailing, 4)
+                            .padding(.bottom, 38)
+                        }
+                    }
                     Spacer()
                 }
             }
