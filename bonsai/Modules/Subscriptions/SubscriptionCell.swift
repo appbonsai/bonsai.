@@ -10,11 +10,12 @@ import SwiftUI
 struct SubscriptionCell: View {
     
     private let subscription: Subscription
-    private let isSelected: Bool
+    private let id: String
+    private var isSelected: Bool { subscription.id == id }
     
-    init(subscription: Subscription, isSelected: Bool) {
+    init(subscription: Subscription, id: String) {
         self.subscription = subscription
-        self.isSelected = isSelected
+        self.id = id
     }
     
     var body: some View {
@@ -22,12 +23,21 @@ struct SubscriptionCell: View {
             .frame(height: 76)
             .foregroundColor(BonsaiColor.card)
             .overlay {
-                HStack(alignment: .center) {
-                    /*
-                     isSelected == change checkbox and cornerRadius
-                     */
+                RoundedRectangle(cornerRadius: 13)
+                    .stroke(
+                        { () -> Color in
+                            if isSelected {
+                                return BonsaiColor.mainPurple
+                            } else {
+                                return .clear
+                            }
+                        }(),
+                        lineWidth: 2
+                    )
+                HStack {
                     Image(isSelected ? "path_checked" : "path_checkbox")
                         .padding([.leading,.trailing], 18)
+                    
                     VStack(alignment: .leading) {
                         Text(subscription.periodName)
                             .foregroundColor(BonsaiColor.purple7)
@@ -61,6 +71,6 @@ struct SubscriptionCell: View {
 
 struct SubscriptionCell_Previews: PreviewProvider {
     static var previews: some View {
-        SubscriptionCell(subscription: MockSubscriptions.subscriptions.first!, isSelected: false)
+        SubscriptionCell(subscription: MockSubscriptions.subscriptions.first!, id: "")
     }
 }

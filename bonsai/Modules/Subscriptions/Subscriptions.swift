@@ -9,8 +9,8 @@ import SwiftUI
 
 struct Subscriptions: View {
     
-    @State var isSelected: Bool = false
-    
+    @State var id: String = (MockSubscriptions.subscriptions.first?.id ?? "")
+
     let mockSubs = MockSubscriptions.subscriptions
     
     var body: some View {
@@ -40,14 +40,11 @@ struct Subscriptions: View {
                 .listRowBackground(BonsaiColor.back)
                 .padding(.bottom, 12)
                 ForEach(0..<4) { index in
-                    /*
-                     product subscription
-                     */
-                    SubscriptionCell(subscription: mockSubs[index], isSelected: isSelected)
+                    SubscriptionCell(subscription: mockSubs[index], id: id)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
-                            isSelected = true
-                
+                            let subscription = mockSubs[index]
+                            id = subscription.id
                         }
                 }
                 .listRowBackground(BonsaiColor.back)
