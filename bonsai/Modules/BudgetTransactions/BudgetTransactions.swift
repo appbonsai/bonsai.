@@ -91,7 +91,7 @@ struct BudgetTransactions_Previews: PreviewProvider {
 
    static var previews: some View {
       BudgetTransactions(
-         transactions: MockDataTransaction.transactions, dragGestureOnChanged: { _ in }, dragGestureOnEnded: { })
+         transactions: MockDataTransaction().transactions, dragGestureOnChanged: { _ in }, dragGestureOnEnded: { })
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }
