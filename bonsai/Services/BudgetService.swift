@@ -15,6 +15,7 @@ protocol BudgetCalculationServiceProtocol {
 }
 
 protocol BudgetRepositoryServiceProtocol {
+   func getBudget() -> Budget?
    func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date) -> Budget
    func deleteBudget()
 }
@@ -34,6 +35,10 @@ final class BudgetService: BudgetServiceProtocol {
    
    func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date = Date()) -> Budget {
        budgetRepository.create(name: name, totalAmount: budgetAmount, periodDays: periodDays, createdDate: createdDate)
+   }
+    
+   func getBudget() -> Budget? {
+       budgetRepository.getBudget()
    }
    
    func deleteBudget() {

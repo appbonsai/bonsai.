@@ -23,16 +23,16 @@ struct BudgetDetails: View {
       ZStack {
          VStack {
             VStack(alignment: .leading) {
-               BudgetNameView()
+               BudgetNameView(name: viewModel.bugdetName)
                   .frame(height: 33)
                   .padding(.leading, 8)
-
+               
                Text("Handsome, you’re doing well!")
                   .font(BonsaiFont.body_15)
                   .foregroundColor(BonsaiColor.text)
                   .padding(.horizontal)
             }
-
+            
             HStack(alignment: .center, spacing: 16) {
                 // TODO: localization
                BudgetMoneyTitleView(title: "Money left", amount: viewModel.totalMoneyLeft)
@@ -40,11 +40,11 @@ struct BudgetDetails: View {
                BudgetMoneyTitleView(title: "Money spent", amount: viewModel.totalMoneySpent)
             }
             .frame(height: 63)
-
+            
             ZStack {
                Image(Asset.tree.name)
                   .resizable()
-
+               
                VStack {
                   HStack(alignment: .center, spacing: 16) {
                       // TODO: localization
@@ -57,9 +57,9 @@ struct BudgetDetails: View {
                   .frame(height: 116)
                   .padding(.horizontal, 16)
                   .padding(.top, -14)
-
+                  
                   Spacer()
-
+                  
                   BudgetDragUpView()
                      .gesture(
                         DragGesture()
@@ -88,12 +88,12 @@ struct BudgetDetails: View {
                }
             }
          }, dragGestureOnEnded: lockBudgetTransactionsOffset)
-            .offset(y: startOffsetY)
-            .offset(y: currentOffsetY)
-            .offset(y: endingOffsetY)
+         .offset(y: startOffsetY)
+         .offset(y: currentOffsetY)
+         .offset(y: endingOffsetY)
       }
    }
-
+   
    private func lockBudgetTransactionsOffset() {
       withAnimation(.spring()) {
          if currentOffsetY < -thresholdY {

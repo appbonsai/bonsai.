@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct BudgetViewModelAssembler: Assembler {
+struct BudgetViewModelAssembler {
    private var transactions: [Transaction] = []
 
    init(mainContext: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
@@ -17,7 +17,7 @@ struct BudgetViewModelAssembler: Assembler {
          let transactions = try mainContext.fetch(fetchRequest)
          self.transactions = transactions
       } catch {
-         
+         assertionFailure("Can not fetch transactions")
       }
    }
    
