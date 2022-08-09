@@ -21,23 +21,25 @@ struct Onboarding: View {
     
     var body: some View {
         VStack {
-            TabView(selection: $selection) {
-                ForEach(0..<onboardingImages.count, id: \.self) { index in
-                    OnboardingCard(image: onboardingImages[index])
-                        .tag(index)
-                }
-            }
+           if selection == 0 {
+              OnboardingCard(image: "bonsai_1")
+           } else if selection == 1 {
+              OnboardingCard(image: "bonsai_2")
+           } else if selection == 2 {
+              OnboardingCard(image: "bonsai_3")
+           }
+
             Button {
                 if selection != onboardingImages.count - 1 {
-                    withAnimation {
+                   withAnimation(.easeInOut(duration: 0.7)) {
                         selection += 1
                     }
-                    withAnimation(.easeInOut(duration: 0.3)) {
-                        fadein.toggle()
-                    }
-                    withAnimation(.easeInOut(duration: 0.6)) {
-                        fadein.toggle()
-                    }
+//                    withAnimation(.easeInOut(duration: 0.3)) {
+//                        fadein.toggle()
+//                    }
+//                    withAnimation(.easeInOut(duration: 0.6)) {
+//                        fadein.toggle()
+//                    }
                 } else {
                     // open MAIN SCREEN
                 }
