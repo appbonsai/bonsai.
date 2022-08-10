@@ -75,10 +75,15 @@ struct PieChartView: View {
                 .padding(.horizontal, 79)
                 .padding(.top, 16)
                 
-                Text(currentSliceData?.categoryTitle ?? " ")
-                    .foregroundColor(currentSliceData?.color)
-                    .font(BonsaiFont.title_headline_17)
-                    .padding(.top, 16)
+                if let currentSliceData = currentSliceData {
+                    Text(currentSliceData.categoryTitle)
+                        .foregroundColor(currentSliceData.color)
+                        .font(BonsaiFont.title_headline_17)
+                        .padding(.top, 16)
+                } else {
+                    Text(" ")
+                        .padding(.top, 16)
+                }
                 
                 HStack {
                     if let currentSliceData = currentSliceData {
