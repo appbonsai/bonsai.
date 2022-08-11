@@ -107,9 +107,4 @@ class BudgetCalculationsTests: XCTestCase {
         XCTAssertEqual(result, 701.12)
     }
     
-    func testTotalBudgetAmount() {
-        let result = budgetCalculations.calculateBudgetTotalAmount(currentAmount: 123.55, totalSpend: 26.44)
-        XCTAssertEqual(result, 149.99)
-    }
-    
 }

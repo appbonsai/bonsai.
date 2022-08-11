@@ -38,12 +38,14 @@ struct TabBar: View {
             }
          }
          TabView(selection: $selection) {
-            BudgetDetails(mainContext: MockDataTransaction.viewContext)
+            BudgetDetails(
+               viewModel: BudgetViewModelAssembler().assembly())
                .tag(0)
             HomeContainerView()
                .tag(1)
-            BudgetDetails(mainContext: MockDataTransaction.viewContext)
-               .tag(2)
+            BudgetDetails(
+               viewModel: BudgetViewModelAssembler().assembly())
+            .tag(2)
          }
          .animation(.easeInOut)
          .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
