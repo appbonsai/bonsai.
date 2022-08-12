@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RevenueCat
 
 @main
 struct bonsaiApp: App {
@@ -19,4 +20,10 @@ struct bonsaiApp: App {
             .environment(\.persistentContainer, dataController.container)
       }
    }
+   
+   init() {
+      Purchases.logLevel = .debug
+      Purchases.configure(withAPIKey: "appl_ccwfbkcrUyDDSxBwwExoLwsgGya")
+   }
+    
 }
