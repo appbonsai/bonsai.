@@ -58,7 +58,7 @@ enum BonsaiColor {
     static let purple5 = Color(hex: 0xCBC8FE)
     static let purple6 = Color(hex: 0xD8D6FF)
     static let purple7 = Color(hex: 0xE5E3FF)
-
+    
     /*
      UIKit 2 column
      */
