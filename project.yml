@@ -20,6 +20,8 @@ targets:
     dependencies:
       - package: swift-collections
         product: OrderedCollections
+      - package: purchases-ios
+        product: RevenueCat
   BudgetServiceTests:
     platform: iOS
     type: bundle.unit-test
