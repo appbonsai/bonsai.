@@ -44,7 +44,11 @@ struct Subscriptions: View {
             .padding(.bottom, 12)
             
             if currentOffering != nil {
+               ForEach(currentOffering!.availablePackages) { pkg in
+                  Text("\(pkg.storeProduct.subscriptionPeriod!.periodTitle) \(pkg.storeProduct.localizedPriceString)")
+               }
                ForEach(0..<currentOffering!.availablePackages.count, id: \.self) { index in
+                  
                   SubscriptionCell(subscription: mockSubs[index], id: id)
                      .listRowSeparator(.hidden)
                      .onTapGesture {
