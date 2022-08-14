@@ -58,10 +58,8 @@ struct Subscriptions: View {
                   subscription: subscription, id: id)
                .listRowSeparator(.hidden)
                .onTapGesture {
-                  let subscription = pkg.storeProduct.productIdentifier
-                  id = subscription
+                  id = pkg.storeProduct.productIdentifier
                }
-               
             }
             .listRowBackground(BonsaiColor.back)
             
@@ -102,10 +100,15 @@ struct Subscriptions: View {
                      .foregroundColor(BonsaiColor.mainPurple)
                      .onTapGesture {
                         
-                        let defaultPackage = purchaseService.availablePackages.first(where: { $0.storeProduct.subscriptionPeriod?.unit == .year })
-                        let package = purchaseService.availablePackages.first(where: { $0.storeProduct.productIdentifier == id })
-                        
-                        purchaseService.buy(package: id.isEmpty ? defaultPackage : package)
+                        let package = purchaseService
+                           .availablePackages
+                           .first(where: {
+                              id.isEmpty ?
+                              $0.storeProduct.subscriptionPeriod?.unit == .year :
+                              $0.storeProduct.productIdentifier == id
+                           })
+
+                        purchaseService.buy(package: package)
                      }
                   Text("Get all features")
                      .foregroundColor(BonsaiColor.card)
