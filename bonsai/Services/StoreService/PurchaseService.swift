@@ -12,6 +12,12 @@ import SwiftUI
 
 final class PurchaseService: ObservableObject {
    
+   private struct Pro {
+      static var typeName: String {
+         return String(describing: Self.self)
+      }
+   }
+   
    @Published var availablePackages: [Package] = []
    @Published var isSubscriptionActive = false
 
@@ -40,11 +46,12 @@ final class PurchaseService: ObservableObject {
          Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
             if let error = error {
             }
-            if customerInfo?.entitlements.all[Pro.typeName]?.isActive == true {
+            if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
+               self.isSubscriptionActive = allEntitlements.isActive
             }
             if let storeTransaction = storeTransaction {
             }
-         }         
+         }
       }
    }
    
@@ -52,7 +59,8 @@ final class PurchaseService: ObservableObject {
       Purchases.shared.restorePurchases { customerInfo, error in
          if let error = error {
          }
-         if let customerInfo = customerInfo, error == nil {
+         if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
+            self.isSubscriptionActive = allEntitlements.isActive
          }
       }
    }
@@ -73,9 +81,3 @@ final class PurchaseService: ObservableObject {
    }
 }
 
-
-struct Pro {
-   static var typeName: String {
-      return String(describing: Self.self)
-   }
-}
