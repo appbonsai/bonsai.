@@ -98,7 +98,11 @@ struct Subscriptions: View {
                      .frame(width: 192, height: 48)
                      .foregroundColor(BonsaiColor.mainPurple)
                      .onTapGesture {
-//                        purchaseService.buy(product: )
+                        
+                        if let package = purchaseService.availablePackages.first(where: { $0.storeProduct.productIdentifier == id }) {
+                           
+                           purchaseService.buy(package: package)
+                        }
                      }
                   Text("Get all features")
                      .foregroundColor(BonsaiColor.card)
