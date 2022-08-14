@@ -10,12 +10,9 @@ import RevenueCat
 
 struct Subscriptions: View {
    
-   @State var id: String = MockSubscriptions.subscriptions.first(where: { $0.isMostPopular })?.id ?? ""
-      
+   @State var id: String = ""
    @ObservedObject private var purchaseService = PurchaseService()
-   
-   let mockSubs = MockSubscriptions.subscriptions
-   
+      
    var body: some View {
       ZStack {
          BonsaiColor.back
@@ -43,24 +40,30 @@ struct Subscriptions: View {
             .listRowBackground(BonsaiColor.back)
             .padding(.bottom, 12)
             
-            ForEach(purchaseService.availablePackages) { pkg in
-               Text("\(pkg.storeProduct.subscriptionPeriod!.periodTitle) \(pkg.storeProduct.localizedPriceString)")
-            }
-            .refreshable {
+            ForEach(Array(purchaseService.availablePackages.enumerated()), id: \.offset) { index, pkg in
+               
+               let storeProduct = pkg.storeProduct
+               let productId = storeProduct.productIdentifier
+               let periodName = storeProduct.subscriptionPeriod!.periodTitle
+               let price = storeProduct.localizedPriceString
+               let isMostPopular = storeProduct.subscriptionPeriod?.unit == .year
+               
+               let subscription = Subscription(
+                  id: productId,
+                  periodName: periodName,
+                  price: price,
+                  isMostPopular: isMostPopular)
+               
+               SubscriptionCell(
+                  subscription: subscription, id: id)
+               .listRowSeparator(.hidden)
+               .onTapGesture {
+                  let subscription = pkg.storeProduct.productIdentifier
+                  id = subscription
+               }
                
             }
-            
-            
-//            ForEach(purchaseService.availablePackages) { index in
-//
-//                  SubscriptionCell(subscription: mockSubs[index], id: id)
-//                     .listRowSeparator(.hidden)
-//                     .onTapGesture {
-//                        let subscription = mockSubs[index]
-//                        id = subscription.id
-//                     }
-//               }
-//               .listRowBackground(BonsaiColor.back)
+            .listRowBackground(BonsaiColor.back)
             
             Group {
                Text("By subscribing you agree to our ")
@@ -106,11 +109,6 @@ struct Subscriptions: View {
             .listRowBackground(BonsaiColor.back)
          }
          .onAppear {
-//            Purchases.shared.getOfferings { offerings, error in
-//               if let offer = offerings?.current, error == nil {
-//                  currentOffering = offer
-//               }
-//            }
             UITableView.appearance().showsVerticalScrollIndicator = false
          }
          .listStyle(PlainListStyle())
@@ -118,7 +116,7 @@ struct Subscriptions: View {
       }
    }
    
-
+   
 }
 
 
