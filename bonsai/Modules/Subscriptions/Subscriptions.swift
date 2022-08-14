@@ -90,9 +90,6 @@ struct Subscriptions: View {
             }
             .listRowSeparator(.hidden)
             .listRowBackground(BonsaiColor.back)
-            .onTapGesture {
-               print("BUY")
-            }
             
             HStack(alignment: .center) {
                Spacer()
@@ -100,6 +97,9 @@ struct Subscriptions: View {
                   RoundedRectangle(cornerRadius: 13)
                      .frame(width: 192, height: 48)
                      .foregroundColor(BonsaiColor.mainPurple)
+                     .onTapGesture {
+//                        purchaseService.buy(product: )
+                     }
                   Text("Get all features")
                      .foregroundColor(BonsaiColor.card)
                      .font(.system(size: 17))

@@ -34,7 +34,7 @@ final class PurchaseService: ObservableObject {
       false
    }
    
-   private func buy(product: StoreProduct) -> AnyPublisher<StoreTransaction, Error> {
+   func buy(product: StoreProduct) -> AnyPublisher<StoreTransaction, Error> {
       Future { promise in
          Purchases.shared.purchase(product: product) { storeTransaction, customerInfo, error, bool in
             if let error = error {
@@ -47,7 +47,7 @@ final class PurchaseService: ObservableObject {
       }.eraseToAnyPublisher()
    }
    
-   private func restorePurchase() -> AnyPublisher<CustomerInfo, Error> {
+   func restorePurchase() -> AnyPublisher<CustomerInfo, Error> {
       Future { promise in
          Purchases.shared.restorePurchases { customerInfo, error in
             if let error = error {
