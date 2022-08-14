@@ -13,10 +13,12 @@ import SwiftUI
 final class PurchaseService: ObservableObject {
    
    @Published var availablePackages: [Package] = []
+   @Published var isSubscriptionActive = false
 
    private var disposeBag = Set<AnyCancellable>()
    
    init() {
+      checkIfUserSubscriptionStatus()
       getAvailablePackagesFromOfferings()
          .receive(on: RunLoop.main)
          .sink(receiveCompletion: { error in
@@ -27,21 +29,22 @@ final class PurchaseService: ObservableObject {
          .store(in: &disposeBag)
    }
    
-   private func checkIfUserSubscriptionStatus() -> Bool {
-      /*
-       check this status to correctly show subscriptions screen for users
-       */
-      false
+   private func checkIfUserSubscriptionStatus() {
+      Purchases.shared.getCustomerInfo { customerInfo, error in
+         self.isSubscriptionActive = customerInfo?.entitlements.all[Pro.typeName]?.isActive == true
+      }
    }
    
-   func buy(package: Package) {
-      Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
-         if let error = error {
-         }
-         if customerInfo?.entitlements.all["Pro"]?.isActive == true {
-         }
-         if let storeTransaction = storeTransaction {
-         }
+   func buy(package: Package?) {
+      if let package = package {
+         Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
+            if let error = error {
+            }
+            if customerInfo?.entitlements.all[Pro.typeName]?.isActive == true {
+            }
+            if let storeTransaction = storeTransaction {
+            }
+         }         
       }
    }
    
@@ -71,3 +74,8 @@ final class PurchaseService: ObservableObject {
 }
 
 
+struct Pro {
+   static var typeName: String {
+      return String(describing: Self.self)
+   }
+}
