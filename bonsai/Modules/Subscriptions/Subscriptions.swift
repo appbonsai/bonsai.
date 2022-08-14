@@ -11,7 +11,7 @@ import RevenueCat
 struct Subscriptions: View {
    
    @State var id: String = ""
-   @ObservedObject private var purchaseService = PurchaseService()
+   @EnvironmentObject private var purchaseService: PurchaseService
       
    var body: some View {
       ZStack {

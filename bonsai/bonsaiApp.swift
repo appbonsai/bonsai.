@@ -12,12 +12,14 @@ import RevenueCat
 struct bonsaiApp: App {
 
    @StateObject private var dataController = DataController.sharedInstance
+   @StateObject private var purchaseService = PurchaseService()
 
    var body: some Scene {
       WindowGroup {
          ContentView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environment(\.persistentContainer, dataController.container)
+            .environmentObject(purchaseService)
       }
    }
    
