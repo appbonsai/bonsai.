@@ -19,29 +19,40 @@ final class PurchaseService: ObservableObject {
    init() {
       getAvailablePackagesFromOfferings()
          .receive(on: RunLoop.main)
-         .sink { pgk in
-            self.availablePackages = pgk
-         }
+         .sink(receiveCompletion: { error in
+            print("error \(error)")
+         }, receiveValue: { pkg in
+            self.availablePackages = pkg
+         })
          .store(in: &disposeBag)
    }
    
    private func checkIfUserSubscriptionStatus() -> Bool {
+      /*
+       check this status to correctly show subscriptions screen for users
+       */
       false
    }
    
-   private func buy(product: StoreProduct) -> AnyPublisher<StoreTransaction, Never> {
+   private func buy(product: StoreProduct) -> AnyPublisher<StoreTransaction, Error> {
       Future { promise in
          Purchases.shared.purchase(product: product) { storeTransaction, customerInfo, error, bool in
+            if let error = error {
+               promise(.failure(error))
+            }
             if let storeTransaction = storeTransaction {
-               promise(.success(storeTransaction))               
+               promise(.success(storeTransaction))
             }
          }
       }.eraseToAnyPublisher()
    }
    
-   private func restorePurchase() -> AnyPublisher<CustomerInfo, Never> {
+   private func restorePurchase() -> AnyPublisher<CustomerInfo, Error> {
       Future { promise in
          Purchases.shared.restorePurchases { customerInfo, error in
+            if let error = error {
+               promise(.failure(error))
+            }
             if let customerInfo = customerInfo, error == nil {
                promise(.success(customerInfo))
             }
@@ -49,9 +60,12 @@ final class PurchaseService: ObservableObject {
       }.eraseToAnyPublisher()
    }
    
-   private func getAvailablePackagesFromOfferings() -> AnyPublisher<[Package], Never> {
+   private func getAvailablePackagesFromOfferings() -> AnyPublisher<[Package], Error> {
       Future { promise in
          Purchases.shared.getOfferings { offerings, error in
+            if let error = error {
+               promise(.failure(error))
+            }
             if let currentOffer = offerings?.current {
                let pakages = currentOffer.availablePackages
                promise(.success(pakages))

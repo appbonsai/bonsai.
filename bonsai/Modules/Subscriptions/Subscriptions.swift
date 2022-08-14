@@ -90,6 +90,9 @@ struct Subscriptions: View {
             }
             .listRowSeparator(.hidden)
             .listRowBackground(BonsaiColor.back)
+            .onTapGesture {
+               print("BUY")
+            }
             
             HStack(alignment: .center) {
                Spacer()
