@@ -35,33 +35,23 @@ final class PurchaseService: ObservableObject {
    }
    
    func buy(package: Package) {
-      
-         Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
-            if let error = error {
-               
-            }
-            
-            if customerInfo?.entitlements.all["Pro"]?.isActive == true {
-               
-            }
-            if let storeTransaction = storeTransaction {
-               
-            }
+      Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
+         if let error = error {
          }
-      
+         if customerInfo?.entitlements.all["Pro"]?.isActive == true {
+         }
+         if let storeTransaction = storeTransaction {
+         }
+      }
    }
    
-   func restorePurchase() -> AnyPublisher<CustomerInfo, Error> {
-      Future { promise in
-         Purchases.shared.restorePurchases { customerInfo, error in
-            if let error = error {
-               promise(.failure(error))
-            }
-            if let customerInfo = customerInfo, error == nil {
-               promise(.success(customerInfo))
-            }
+   func restorePurchase() {
+      Purchases.shared.restorePurchases { customerInfo, error in
+         if let error = error {
          }
-      }.eraseToAnyPublisher()
+         if let customerInfo = customerInfo, error == nil {
+         }
+      }
    }
    
    private func getAvailablePackagesFromOfferings() -> AnyPublisher<[Package], Error> {

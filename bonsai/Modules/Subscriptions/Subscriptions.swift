@@ -85,6 +85,9 @@ struct Subscriptions: View {
                   Text("Restore Purchases")
                      .font(.system(size: 12))
                      .foregroundColor(BonsaiColor.secondary)
+                     .onTapGesture {
+                        purchaseService.restorePurchase()
+                     }
                   Spacer()
                }
             }
