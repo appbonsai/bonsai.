@@ -25,7 +25,7 @@ final class PurchaseService: ObservableObject {
          .store(in: &disposeBag)
    }
    
-   func getAvailablePackagesFromOfferings() -> AnyPublisher<[Package], Never> {
+   private func getAvailablePackagesFromOfferings() -> AnyPublisher<[Package], Never> {
       Future { promise in
          Purchases.shared.getOfferings { offerings, error in
             if let currentOffer = offerings?.current {
