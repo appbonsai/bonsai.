@@ -7,23 +7,34 @@
 
 import Foundation
 import RevenueCat
+import Combine
+import SwiftUI
 
-final class PurchaseService {
+final class PurchaseService: ObservableObject {
+   
+   @Published var availablePackages: [Package] = []
+
+   private var disposeBag = Set<AnyCancellable>()
    
    init() {
-      
+      getAvailablePackagesFromOfferings()
+         .receive(on: RunLoop.main)
+         .sink { pgk in
+            self.availablePackages = pgk
+         }
+         .store(in: &disposeBag)
    }
    
-   func getOfferings() {
-      /*
-       dispatching on main any publisher
-       */
-      var availablePackages: [Package] = []
-      Purchases.shared.getOfferings { offerings, error in
-         if let currentOffer = offerings?.current {
-            availablePackages = currentOffer.availablePackages
+   func getAvailablePackagesFromOfferings() -> AnyPublisher<[Package], Never> {
+      Future { promise in
+         Purchases.shared.getOfferings { offerings, error in
+            if let currentOffer = offerings?.current {
+               let pakages = currentOffer.availablePackages
+               promise(.success(pakages))
+            }
          }
-      }
+      }.eraseToAnyPublisher()
+   
    }
 }
 

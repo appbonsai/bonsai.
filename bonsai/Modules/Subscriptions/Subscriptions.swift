@@ -11,8 +11,8 @@ import RevenueCat
 struct Subscriptions: View {
    
    @State var id: String = MockSubscriptions.subscriptions.first(where: { $0.isMostPopular })?.id ?? ""
-   
-   @State var currentOffering: Offering?
+      
+   @ObservedObject private var purchaseService = PurchaseService()
    
    let mockSubs = MockSubscriptions.subscriptions
    
@@ -43,21 +43,24 @@ struct Subscriptions: View {
             .listRowBackground(BonsaiColor.back)
             .padding(.bottom, 12)
             
-            if currentOffering != nil {
-               ForEach(currentOffering!.availablePackages) { pkg in
-                  Text("\(pkg.storeProduct.subscriptionPeriod!.periodTitle) \(pkg.storeProduct.localizedPriceString)")
-               }
-               ForEach(0..<currentOffering!.availablePackages.count, id: \.self) { index in
-                  
-                  SubscriptionCell(subscription: mockSubs[index], id: id)
-                     .listRowSeparator(.hidden)
-                     .onTapGesture {
-                        let subscription = mockSubs[index]
-                        id = subscription.id
-                     }
-               }
-               .listRowBackground(BonsaiColor.back)
+            ForEach(purchaseService.availablePackages) { pkg in
+               Text("\(pkg.storeProduct.subscriptionPeriod!.periodTitle) \(pkg.storeProduct.localizedPriceString)")
             }
+            .refreshable {
+               
+            }
+            
+            
+//            ForEach(purchaseService.availablePackages) { index in
+//
+//                  SubscriptionCell(subscription: mockSubs[index], id: id)
+//                     .listRowSeparator(.hidden)
+//                     .onTapGesture {
+//                        let subscription = mockSubs[index]
+//                        id = subscription.id
+//                     }
+//               }
+//               .listRowBackground(BonsaiColor.back)
             
             Group {
                Text("By subscribing you agree to our ")
@@ -103,11 +106,11 @@ struct Subscriptions: View {
             .listRowBackground(BonsaiColor.back)
          }
          .onAppear {
-            Purchases.shared.getOfferings { offerings, error in
-               if let offer = offerings?.current, error == nil {
-                  currentOffering = offer
-               }
-            }
+//            Purchases.shared.getOfferings { offerings, error in
+//               if let offer = offerings?.current, error == nil {
+//                  currentOffering = offer
+//               }
+//            }
             UITableView.appearance().showsVerticalScrollIndicator = false
          }
          .listStyle(PlainListStyle())
@@ -115,11 +118,7 @@ struct Subscriptions: View {
       }
    }
    
-   func test() {
-      if currentOffering != nil {
-         
-      }
-   }
+
 }
 
 
