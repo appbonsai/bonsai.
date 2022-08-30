@@ -110,7 +110,7 @@ struct Subscriptions: View {
 
                         purchaseService.buy(package: package)
                      }
-                  Text("Get all features")
+                  Text("Try for free")
                      .foregroundColor(BonsaiColor.card)
                      .font(.system(size: 17))
                      .bold()
