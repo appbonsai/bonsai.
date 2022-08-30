@@ -34,7 +34,7 @@ struct BudgetDetails: View {
             }
             
             HStack(alignment: .center, spacing: 16) {
-               // TODO: localization
+                // TODO: localization
                BudgetMoneyTitleView(title: "Money left", amount: viewModel.totalMoneyLeft)
                   .padding(.leading, 16)
                BudgetMoneyTitleView(title: "Money spent", amount: viewModel.totalMoneySpent)
@@ -47,10 +47,10 @@ struct BudgetDetails: View {
                
                VStack {
                   HStack(alignment: .center, spacing: 16) {
-                     // TODO: localization
+                      // TODO: localization
                      BudgetMoneyCardView(title: "Total budget", amount: viewModel.totalBudget)
                         .shadow(color: .black, radius: 7, x: 0, y: 4)
-                     
+
                      BudgetMoneyCardView(title: "Daily budget", amount: viewModel.budgetDaily)
                         .shadow(color: .black, radius: 7, x: 0, y: 4)
                   }
@@ -79,7 +79,7 @@ struct BudgetDetails: View {
          .padding(.top, 38)
          .background(BonsaiColor.back)
          .ignoresSafeArea()
-         
+
          BudgetTransactions(transactions: viewModel.transactions, dragGestureOnChanged: { value in
             withAnimation(.spring()) {
                currentOffsetY = value.location.y
@@ -110,8 +110,8 @@ struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails(
          viewModel: BudgetViewModelAssembler().assembly())
-      .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-      .previewDisplayName("iPhone 12")
+         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+         .previewDisplayName("iPhone 12")
    }
 }
 

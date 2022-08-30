@@ -107,4 +107,37 @@ class BudgetCalculationsTests: XCTestCase {
         XCTAssertEqual(result, 701.12)
     }
     
+    func testCalculateDayLeftFromCreatingBudget() {
+        
+        let input: [Date] = [
+            Date.from(year: 2022, month: 7, day: 10),
+            Date.from(year: 2022, month: 7, day: 15),
+            Date.from(year: 2022, month: 7, day: 20),
+            Date.from(year: 2022, month: 7, day: 25)
+        ]
+        
+        let testDateToday: Date = .from(year: 2022, month: 7, day: 25)
+        
+        let daysResults: [Int64] = input.map {
+            budgetCalculations.calculateDayLeft(
+                fromDate: $0,
+                toDate: testDateToday)
+        }
+        
+        let daysLeftExpected: [Int64] = [
+            .init(15),
+            .init(10),
+            .init(5),
+            .init(0)
+        ]
+        
+        for i in 0..<daysResults.count {
+            let res = daysResults[i]
+            let exp = daysLeftExpected[i]
+            XCTAssertEqual(res, exp)
+        }
+    }
+    
 }
+
+
