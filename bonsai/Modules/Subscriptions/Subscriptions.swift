@@ -63,12 +63,17 @@ struct Subscriptions: View {
             }
             .listRowBackground(BonsaiColor.back)
             
+            let termsOfServiceUrl = "https://duckduckgo.com"
+            let termsOfServicelink = "[Terms of Service](\(termsOfServiceUrl))"
+            
+            let privacyPolicyUrl = "https://duckduckgo.com"
+            let privacyPolicylink = "[Privacy Policy](\(privacyPolicyUrl))"
+            
             Group {
-               Text("By subscribing you agree to our ")
-               +
-               Text("Terms of Service ").foregroundColor(BonsaiColor.secondary) +
-               Text("and ") +
-               Text("Privacy Policy").foregroundColor(BonsaiColor.secondary) +
+               Text("By subscribing you agree to our ") +
+               Text(.init(termsOfServicelink)).foregroundColor(BonsaiColor.secondary) +
+               Text(" and ") +
+               Text(.init(privacyPolicylink)).foregroundColor(BonsaiColor.secondary) +
                Text(".")
             }
             .font(.system(size: 12))
