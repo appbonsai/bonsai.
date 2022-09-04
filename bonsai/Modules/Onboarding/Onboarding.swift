@@ -16,6 +16,7 @@ struct OnboardingDataSource {
 struct Onboarding: View {
     
     @State private var selection = 0
+    @State var isPresentingMainScreen = false
     
     private let dataSource: [OnboardingDataSource] = [
         .init(
@@ -31,9 +32,11 @@ struct Onboarding: View {
             title: "Where can I get some?",
             description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
     ]
-    
+
     var body: some View {
+        NavigationView {
         VStack {
+            NavigationLink(destination: TabBar(), isActive: $isPresentingMainScreen) { }
             ZStack {
                 
                 if selection == 0 {
@@ -53,7 +56,7 @@ struct Onboarding: View {
                                 selection += 1
                             }
                         } else {
-                            // open MAIN SCREEN
+                            isPresentingMainScreen = true
                         }
                     } label: {
                         ZStack {
@@ -72,6 +75,7 @@ struct Onboarding: View {
             
         }
         .ignoresSafeArea()
+        }
     }
     
 }
