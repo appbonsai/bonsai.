@@ -10,7 +10,6 @@ import SwiftUI
 struct CategoryIconView: View {
    let isSelected: Bool
    let icon: Image
-   let color: Color
 
    var body: some View {
       ZStack {
@@ -36,8 +35,7 @@ struct CategoryIconView_Previews: PreviewProvider {
    static var previews: some View {
       CategoryIconView(
          isSelected: true,
-         icon: Category.Icon.gameController.img,
-         color: BonsaiColor.green
+         icon: Category.Icon.gameController.img
       )
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")

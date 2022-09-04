@@ -63,19 +63,19 @@ struct CreateCategoryView: View {
                   VStack(spacing: 16) {
 
                      CategoryPreviewView(
-                        color: colors.first(where: \.value)?.key.color ?? Color.green.color,
+                        gradient: (colors.first(where: \.value)?.key ?? Color.green).asGradient,
                         image: icons.first(where: \.value)?.key.img ?? Icon.gameController.img
                      )
-                        .padding([.top], 16)
+                     .padding([.top], 16)
 
                      CategoryNewTitleView(
                         title: $title,
                         placeholder: "Category Name"
                      )
-                        .frame(height: 56, alignment: .center)
-                        .background(SwiftUI.Color(hex: 0x3d3c4d))
-                        .cornerRadius(13)
-                        .padding([.bottom, .leading, .trailing], 16)
+                     .frame(height: 56, alignment: .center)
+                     .background(SwiftUI.Color(hex: 0x3d3c4d))
+                     .cornerRadius(13)
+                     .padding([.bottom, .leading, .trailing], 16)
                   } // VStack
                   .background(BonsaiColor.card)
                   .cornerRadius(13)
@@ -84,10 +84,9 @@ struct CreateCategoryView: View {
                      .cornerRadius(13)
 
                   CategoryIconSelectorView(
-                     icons: $icons,
-                     selectedColor: colors.first(where: \.value)?.key.color
+                     icons: $icons
                   )
-                     .cornerRadius(13)
+                  .cornerRadius(13)
 
                } // VStack
                .padding([.leading, .trailing], 16)
@@ -102,9 +101,9 @@ struct CreateCategoryView: View {
                   confirmationPresented = true
                }) {
                   Text("Cancel")
-                       .foregroundColor(BonsaiColor.secondary)
+                     .foregroundColor(BonsaiColor.secondary)
                }
-                // TODO: Localize
+               // TODO: Localize
                .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
                   Button("Discard Changes", role: .destructive, action: {
                      isPresented = false
@@ -115,9 +114,9 @@ struct CreateCategoryView: View {
                Button(action: {
                   guard let color = colors.first(where: \.value)?.key,
                         let icon = icons.first(where: \.value)?.key else {
-                           assertionFailure("color or icon were nil, save is not allowed")
-                           return
-                        }
+                     assertionFailure("color or icon were nil, save is not allowed")
+                     return
+                  }
                   Category(
                      context: moc,
                      title: title,
@@ -129,12 +128,12 @@ struct CreateCategoryView: View {
                   } catch (let e) {
                      assertionFailure(e.localizedDescription)
                   }
-                   isPresented = false
+                  isPresented = false
                }) {
-                   Text("Done")
-                       .if($title.wrappedValue.isEmpty == false, transform: { text in
-                           text.foregroundColor(BonsaiColor.secondary)
-                       })
+                  Text("Done")
+                     .if($title.wrappedValue.isEmpty == false, transform: { text in
+                        text.foregroundColor(BonsaiColor.secondary)
+                     })
                }
                .disabled($title.wrappedValue.isEmpty)
             }
