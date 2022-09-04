@@ -46,6 +46,7 @@ final class PurchaseService: ObservableObject {
          Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
             if let error = error {
             }
+             
             if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
                self.isSubscriptionActive = allEntitlements.isActive
             }
@@ -61,6 +62,8 @@ final class PurchaseService: ObservableObject {
          }
          if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
             self.isSubscriptionActive = allEntitlements.isActive
+         } else {
+            // send an alert
          }
       }
    }
