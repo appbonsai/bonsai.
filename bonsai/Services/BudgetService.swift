@@ -15,8 +15,8 @@ protocol BudgetCalculationServiceProtocol {
 }
 
 protocol BudgetRepositoryServiceProtocol {
-   func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64) -> Budget
    func getBudget() -> Budget?
+   func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date) -> Budget
    func deleteBudget()
 }
 
@@ -33,12 +33,12 @@ final class BudgetService: BudgetServiceProtocol {
       self.budgetCalculations = budgetCalculations
    }
    
-   func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64) -> Budget {
-      budgetRepository.create(name: name, totalAmount: budgetAmount, periodDays: periodDays)
+   func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date = Date()) -> Budget {
+       budgetRepository.create(name: name, totalAmount: budgetAmount, periodDays: periodDays, createdDate: createdDate)
    }
-   
+    
    func getBudget() -> Budget? {
-      budgetRepository.getBudget()
+       budgetRepository.getBudget()
    }
    
    func deleteBudget() {
@@ -56,14 +56,15 @@ final class BudgetService: BudgetServiceProtocol {
       return budget.amount
    }
    
-   func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
-      guard let budget = budgetRepository.getBudget(),
-            let moneyLeft = getTotalMoneyLeft(with: transactionAmounts) else {
-         return nil
-      }
-      let dailyBudget = budgetCalculations.calculateMoneyCanSpendDaily(currentAmount: moneyLeft, periodDays: budget.periodDays)
-      return dailyBudget
-   }
+    func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
+        guard let budget = budgetRepository.getBudget(),
+              let moneyLeft = getTotalMoneyLeft(with: transactionAmounts) else {
+            return nil
+        }
+        let dayLeft = budgetCalculations.calculateDayLeft(fromDate: budget.createdDate, toDate: .now)
+        let dailyBudget = budgetCalculations.calculateMoneyCanSpendDaily(currentAmount: moneyLeft, periodDays: budget.periodDays - Int64(dayLeft))
+        return dailyBudget
+    }
    
    func getTotalMoneyLeft(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
       guard let budget = budgetRepository.getBudget() else {

@@ -12,6 +12,7 @@ protocol BudgetCalculationsProtocol {
    func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber
    func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
    func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
+   func calculateDayLeft(fromDate: Date, toDate: Date) -> Int64
 }
 
 final class BudgetCalculations: BudgetCalculationsProtocol {
@@ -32,5 +33,10 @@ final class BudgetCalculations: BudgetCalculationsProtocol {
          .reduce(0, { $1.adding($0) })
       return currentAmount.round()
    }
+    
+    func calculateDayLeft(fromDate: Date, toDate: Date) -> Int64 {
+        let dayLeft = Calendar.autoupdatingCurrent.dateComponents([.day], from: fromDate, to: toDate).day ?? 0
+        return Int64(dayLeft)
+    }
 }
 
