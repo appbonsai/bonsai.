@@ -49,7 +49,6 @@ struct TabBar: View {
          }
          .animation(.easeInOut)
          .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-         .navigationBarHidden(true)
       }
       .padding(.top, 37 + 20)
       .background(BonsaiColor.back)

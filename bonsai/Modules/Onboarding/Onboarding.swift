@@ -16,7 +16,7 @@ struct OnboardingDataSource {
 struct Onboarding: View {
     
     @State private var selection = 0
-    @State var isPresentingMainScreen = false
+    @State var isPresenting = false
     
     private let dataSource: [OnboardingDataSource] = [
         .init(
@@ -36,7 +36,11 @@ struct Onboarding: View {
     var body: some View {
         NavigationView {
         VStack {
-            NavigationLink(destination: TabBar(), isActive: $isPresentingMainScreen) { }
+            /*
+             open TabBar() || Subscriptions()
+             */
+            NavigationLink(
+                destination: TabBar().navigationBarHidden(true), isActive: $isPresenting) { }
             ZStack {
                 
                 if selection == 0 {
@@ -56,7 +60,7 @@ struct Onboarding: View {
                                 selection += 1
                             }
                         } else {
-                            isPresentingMainScreen = true
+                            isPresenting = true
                         }
                     } label: {
                         ZStack {
