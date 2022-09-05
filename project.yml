@@ -21,6 +21,8 @@ targets:
     dependencies:
       - package: swift-collections
         product: OrderedCollections
+      - package: purchases-ios
+        product: RevenueCat
   BudgetServiceTests:
     platform: iOS
     type: bundle.unit-test
@@ -39,3 +41,6 @@ packages:
   swift-collections:
     url: https://github.com/apple/swift-collections
     from: 1.0.0
+  purchases-ios:
+    url: https://github.com/RevenueCat/purchases-ios
+    from: 4.0.0

@@ -11,7 +11,9 @@ struct SubscriptionCell: View {
     
     private let subscription: Subscription
     private let id: String
-    private var isSelected: Bool { subscription.id == id }
+    private var isSelected: Bool {
+       id.isEmpty ? subscription.isMostPopular : subscription.id == id
+    }
     
     init(subscription: Subscription, id: String) {
         self.subscription = subscription
