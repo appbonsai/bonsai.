@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryColorView: View {
    let isSelected: Bool
-   let color: Color
+   let gradient: LinearGradient
 
    var body: some View {
       ZStack {
@@ -18,20 +18,20 @@ struct CategoryColorView: View {
                .foregroundColor(BonsaiColor.prompt)
                .frame(width: 44, height: 44)
          }
-         Circle()
-            .foregroundColor(BonsaiColor.card)
-            .frame(width: 40, height: 40)
-         Circle()
-            .foregroundColor(color)
+         gradient
             .frame(width: 36, height: 36)
+            .mask(
+               Circle()
+                  .frame(width: 36, height: 36)
+            )
       }
    }
 }
 
 struct CategoryColorView_Previews: PreviewProvider {
    static var previews: some View {
-      CategoryColorView(isSelected: true, color: BonsaiColor.green)
-         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-         .previewDisplayName("iPhone 12")
+      CategoryColorView(isSelected: false, gradient: Category.Color.g2.asGradient)
+         .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
+         .previewDisplayName("iPhone 13")
    }
 }

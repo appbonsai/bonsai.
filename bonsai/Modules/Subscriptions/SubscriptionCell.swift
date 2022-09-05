@@ -42,7 +42,7 @@ struct SubscriptionCell: View {
                     
                     VStack(alignment: .leading) {
                         Text(subscription.periodName)
-                            .foregroundColor(BonsaiColor.purple7)
+                            .foregroundColor(BonsaiColor.text)
                             .font(.system(size: 17))
                             .bold()
                             .padding(.bottom, 2)

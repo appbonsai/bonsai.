@@ -22,10 +22,16 @@ struct bonsaiApp: App {
             .environmentObject(purchaseService)
       }
    }
-   
-   init() {
-      Purchases.logLevel = .debug
-      Purchases.configure(withAPIKey: "appl_ccwfbkcrUyDDSxBwwExoLwsgGya")
-   }
-    
+
+    init() {
+        Purchases.logLevel = .debug
+
+        if let path = Bundle.main.path(forResource: "keys", ofType: "plist"),
+           let keys = NSDictionary(contentsOfFile: path),
+           let revenueCatApiKey = keys["revenueCatApiKey"] as? String {
+            Purchases.configure(withAPIKey: revenueCatApiKey)
+        } else {
+            assert(false)
+        }
+    }
 }

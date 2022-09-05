@@ -11,7 +11,6 @@ import OrderedCollections
 struct CategoryIconSelectorView: View {
 
    @Binding private(set) var icons: OrderedDictionary<Category.Icon, Bool>
-   private(set) var selectedColor: Color?
 
    private let grid = [
       GridItem(.flexible()),
@@ -28,8 +27,7 @@ struct CategoryIconSelectorView: View {
             let isSelected = icons[iconName] ?? false
             CategoryIconView(
                isSelected: isSelected,
-               icon: iconName.img,
-               color: selectedColor ?? BonsaiColor.green
+               icon: iconName.img
             )
                .frame(width: 44, height: 44, alignment: .center)
                .onTapGesture {
@@ -62,8 +60,7 @@ struct CategoryIconSelectorView_Previews: PreviewProvider {
 
    static var previews: some View {
       CategoryIconSelectorView(
-         icons: .constant(icons),
-         selectedColor: BonsaiColor.green
+         icons: .constant(icons)
       )
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")

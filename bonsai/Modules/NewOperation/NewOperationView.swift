@@ -25,6 +25,8 @@ struct NewOperationView: View {
    @State var isCalendarOpened: Bool = false
    @State private var confirmationPresented: Bool = false
 
+   let iconSizeSide: CGFloat = 20
+
    @Namespace var calendarID
 
    init(isPresented: Binding<Bool>) {
@@ -54,7 +56,7 @@ struct NewOperationView: View {
                         )
                         .cornerRadius(13)
                         .padding([.top], 12)
-                        CategoryView(category: $category)
+                        CategoryView(category: $category, iconSizeSide: 24)
                            .cornerRadius(13, corners: [.topLeft, .topRight])
                            .padding([.top], 16)
                            .onTapGesture {

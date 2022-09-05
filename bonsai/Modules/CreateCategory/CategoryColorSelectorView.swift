@@ -12,13 +12,21 @@ struct CategoryColorSelectorView: View {
 
    @Binding private(set) var colors: OrderedDictionary<Category.Color, Bool>
 
+   private let grid = [
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible()),
+      GridItem(.flexible())
+   ]
+
    var body: some View {
-      LazyHGrid(rows: [GridItem(.flexible())]) {
+      LazyVGrid(columns: grid) {
          ForEach($colors.wrappedValue.keys) { color in
             let isSelected = colors[color] ?? false
             CategoryColorView(
                isSelected: isSelected,
-               color: color.color
+               gradient: color.asGradient
             )
                .frame(width: 44, height: 44, alignment: .center)
                .onTapGesture {
@@ -50,7 +58,7 @@ struct CategoryColorSelectorView_Previews: PreviewProvider {
 
    static var previews: some View {
       CategoryColorSelectorView(colors: .constant(colors))
-         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-         .previewDisplayName("iPhone 12")
+         .previewDevice(PreviewDevice(rawValue: "iPhone 13"))
+         .previewDisplayName("iPhone 13")
    }
 }

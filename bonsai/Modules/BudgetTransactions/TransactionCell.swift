@@ -17,9 +17,10 @@ struct TransactionCell: View {
 
    var body: some View {
       HStack {
-         item.category.icon.img
-            .renderingMode(.template)
-            .foregroundColor(item.category.color.color)
+         item.category.color.asGradient
+            .mask(item.category.icon.img)
+            .frame(width: 22, height: 22)
+            .padding()
          Text(item.category.title)
             .font(BonsaiFont.body_17)
             .foregroundColor(Color.white)
@@ -27,7 +28,7 @@ struct TransactionCell: View {
          Text("-\(item.amount)")
             .font(BonsaiFont.body_17)
             .foregroundColor(Color.white)
-      }.background(Color.clear)
+      }
 
    }
 }

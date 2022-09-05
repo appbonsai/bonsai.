@@ -9,14 +9,16 @@ import SwiftUI
 
 struct CategoryPreviewView: View {
 
-   var color: Color
+   var gradient: LinearGradient
    var image: Image
 
    var body: some View {
       ZStack {
-         Circle()
+         gradient
             .frame(width: 100, height: 100, alignment: .center)
-            .foregroundColor(color)
+            .mask(Circle()
+               .frame(width: 100, height: 100, alignment: .center)
+               .foregroundColor(.white))
          image
             .resizable()
             .scaledToFit()
@@ -29,7 +31,7 @@ struct CategoryPreviewView: View {
 struct CategoryPreviewView_Previews: PreviewProvider {
    static var previews: some View {
       CategoryPreviewView(
-         color: Category.Color.green.color,
+         gradient: Category.Color.g5.asGradient,
          image: Category.Icon.gameController.img
       )
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
