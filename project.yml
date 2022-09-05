@@ -23,8 +23,6 @@ targets:
         product: OrderedCollections
       - package: purchases-ios
         product: RevenueCat
-      - package: DotEnv
-        product: DotEnv
   BudgetServiceTests:
     platform: iOS
     type: bundle.unit-test
@@ -46,6 +44,3 @@ packages:
   purchases-ios:
     url: https://github.com/RevenueCat/purchases-ios
     from: 4.0.0
-  DotEnv:
-    url: https://github.com/swiftpackages/DotEnv.git
-    from: 3.0.0

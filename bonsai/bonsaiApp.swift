@@ -7,7 +7,6 @@
 
 import SwiftUI
 import RevenueCat
-import DotEnv
 
 @main
 struct bonsaiApp: App {
