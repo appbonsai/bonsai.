@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RevenueCat
+import DotEnv
 
 @main
 struct bonsaiApp: App {
@@ -24,8 +25,14 @@ struct bonsaiApp: App {
    }
    
    init() {
-      Purchases.logLevel = .debug
-      Purchases.configure(withAPIKey: "appl_ccwfbkcrUyDDSxBwwExoLwsgGya")
+       Purchases.logLevel = .debug
+       do {
+           let file = try DotEnv.read(path: "/Users/antonhoang/Desktop/bonsai./bonsai/env.text")
+           let key = file.lines.first?.value ?? ""
+           defer { Purchases.configure(withAPIKey: key) }
+       } catch let error {
+           print(error.localizedDescription)
+       }
    }
     
 }
