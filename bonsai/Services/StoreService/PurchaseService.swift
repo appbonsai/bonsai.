@@ -41,18 +41,21 @@ final class PurchaseService: ObservableObject {
       }
    }
    
-   func buy(package: Package?) {
-      if let package = package {
-         Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
-            if let error = error {
-                assert(false, error.localizedDescription)
-            }
-             
-            if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
-               self.isSubscriptionActive = allEntitlements.isActive
-            }
-         }
-      }
+    func buy(package: Package?, completion: @escaping () -> Void) {
+        completion()
+//
+//      if let package = package {
+//         Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
+//            if let error = error {
+////                assert(false, error.localizedDescription)
+//            }
+//             
+//            if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
+//               self.isSubscriptionActive = allEntitlements.isActive
+//            }
+//             completion()
+//         }
+//      }
    }
    
    func restorePurchase() {

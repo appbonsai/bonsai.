@@ -29,6 +29,9 @@ struct AllSet: View {
                             .padding([.leading, .trailing], 28)
                     }
                 })
+            .frame(height: 400, alignment: .center)
+            .cornerRadius(13)
+            .padding([.leading, .trailing], 16)
     }
 }
 

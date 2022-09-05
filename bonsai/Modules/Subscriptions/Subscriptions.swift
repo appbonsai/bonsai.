@@ -11,6 +11,8 @@ import RevenueCat
 struct Subscriptions: View {
    
    @State var id: String = ""
+    @State var showAllSet: Bool = false
+
    @EnvironmentObject private var purchaseService: PurchaseService
       
    var body: some View {
@@ -113,7 +115,14 @@ struct Subscriptions: View {
                               $0.storeProduct.productIdentifier == id
                            })
 
-                        purchaseService.buy(package: package)
+                         purchaseService.buy(package: package, completion: {
+                             
+                             showAllSet = true
+                             
+                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                 showAllSet = false
+                             }
+                         })
                      }
                   Text("Try for free")
                      .foregroundColor(BonsaiColor.card)
@@ -131,9 +140,20 @@ struct Subscriptions: View {
          }
          .listStyle(PlainListStyle())
          .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
+          
+          AllSet()
+              .offset(y: showAllSet ?
+                      0 :
+                    UIScreen.main.bounds.height)
+              .animation(
+                .interpolatingSpring(
+                    mass: 1,
+                    stiffness: 50,
+                    damping: 10,
+                    initialVelocity: 0
+                ))
       }
    }
-   
    
 }
 
