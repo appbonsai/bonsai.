@@ -34,7 +34,7 @@ struct Subscriptions: View {
                Text("Choose your plan")
                   .font(.system(size: 28))
                   .bold()
-                  .foregroundColor(BonsaiColor.purple7)
+                  .foregroundColor(BonsaiColor.purple6)
                Spacer()
             }
             .listRowBackground(BonsaiColor.back)
