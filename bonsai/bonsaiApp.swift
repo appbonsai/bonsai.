@@ -23,16 +23,16 @@ struct bonsaiApp: App {
             .environmentObject(purchaseService)
       }
    }
-   
-   init() {
-       Purchases.logLevel = .debug
-       do {
-           let file = try DotEnv.read(path: "/Users/antonhoang/Desktop/bonsai./bonsai/env.text")
-           let key = file.lines.first?.value ?? ""
-           defer { Purchases.configure(withAPIKey: key) }
-       } catch let error {
-           print(error.localizedDescription)
-       }
-   }
-    
+
+    init() {
+        Purchases.logLevel = .debug
+
+        if let path = Bundle.main.path(forResource: "keys", ofType: "plist"),
+           let keys = NSDictionary(contentsOfFile: path),
+           let revenueCatApiKey = keys["revenueCatApiKey"] as? String {
+            Purchases.configure(withAPIKey: revenueCatApiKey)
+        } else {
+            assert(false)
+        }
+    }
 }
