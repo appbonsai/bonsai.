@@ -1,0 +1,44 @@
+/* 
+  Localizable.strings
+  bonsai
+
+  Created by antuan.khoanh on 06/09/2022.
+  
+*/
+
+"Money_left" = "남은 돈";
+"Money_spent" = "사용한 돈";
+"Total_budget" = "총 예산";
+"Daily_budget" = "일일 예산";
+"Budget_greeting" = "잘생겼다, 잘하고 있어!";
+"Drag_up_hint" = "마지막 작업을 보려면 위로 드래그하십시오.";
+"Home_category" = "가장 비싼 카테고리";
+"Revenue_title" = "수익";
+"Expense_title" = "비용";
+"Budget_title" = "예산";
+"Target_title" = "대상";
+
+//할 것:
+"Onboarding_1_title" = "";
+"Onboarding_2_title" = "";
+"Onboarding_3_title" = "";
+//할 것:
+"Onboarding_1_text" = "";
+"Onboarding_2_text" = "";
+"Onboarding_3_text" = "";
+
+"Continue_button" = "계속";
+"Try_for_free" = "무료 체험";
+"AllSet_title" = "AllSet";
+
+//할 것:
+"AllSet_text" = "AllSet 텍스트";
+
+"Best_value" = "최상의 값";
+"Choose_your_plan" = "계획 선택";
+
+"Subscription_description" = "구독하면 당사의 ";
+"Merge_And" = "및 ";
+"Terms_of_Service" = "서비스 약관";
+"Privacy_Policy" = "개인 정보 보호 정책";
+"Restore_Purchases" = "구매 복원";
