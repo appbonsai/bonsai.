@@ -8,3 +8,37 @@
 
 "Money_left" = "Money left";
 "Money_spent" = "Money spent";
+"Total_budget" = "Total budget";
+"Daily_budget" = "Daily budget";
+"Budget_greeting" = "Handsome, you are doing well!";
+"Drag_up_hint" = "Drag up to see your last operations";
+"Home_category" = "The most expensive categories";
+"Revenue" = "Revenue";
+"Expenses" = "Expenses";
+"Budget" = "Budget";
+"Target" = "target";
+
+//TODO:
+"Onboarding_1_title" = "";
+"Onboarding_2_title" = "";
+"Onboarding_3_title" = "";
+//TODO:
+"Onboarding_1_text" = "";
+"Onboarding_2_text" = "";
+"Onboarding_3_text" = "";
+
+"Continue" = "Continue";
+"Try_for_free" = "Try for free";
+"AllSet" = "AllSet";
+
+//TODO:
+"AllSet_text" = "AllSet text";
+
+"Best_value" = "Best value";
+"Choose_your_plan" = "Choose_your_plan";
+
+"Subscription_description" = "By subscribing you agree to our ";
+"And" = " and ";
+"Terms_of_Service" = "Terms of Service";
+"Privacy_Policy" = "Privacy Policy";
+"Restore_Purchases" = "Restore Purchases";
