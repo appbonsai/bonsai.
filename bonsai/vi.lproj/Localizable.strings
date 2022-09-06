@@ -6,17 +6,17 @@
   
 */
 
-"Money_left" = "Money left";
-"Money_spent" = "Money spent";
-"Total_budget" = "Total budget";
-"Daily_budget" = "Daily budget";
-"Budget_greeting" = "Handsome, you are doing well!";
-"Drag_up_hint" = "Drag up to see your last operations";
-"Home_category" = "The most expensive categories";
-"Revenue" = "Revenue";
-"Expenses" = "Expenses";
-"Budget" = "Budget";
-"Target" = "of target";
+"Money_left" = "Tiền còn lại";
+"Money_spent" = "Tiền đã tiêu";
+"Total_budget" = "Ngân sách tổng thể";
+"Daily_budget" = "Ngân sách hàng ngày";
+"Budget_greeting" = "Hey, bạn đang làm tốt!";
+"Drag_up_hint" = "Kéo lên để xem các thao tác cuối cùng của bạn";
+"Home_category" = "Các thể loại đắt tiền nhất";
+"Revenue" = "Huê lợi";
+"Expenses" = "Chi phí";
+"Budget" = "Ngân sách";
+"Target" = "của mục tiêu";
 
 //TODO:
 "Onboarding_1_title" = "";
@@ -27,18 +27,19 @@
 "Onboarding_2_text" = "";
 "Onboarding_3_text" = "";
 
-"Continue" = "Continue";
-"Try_for_free" = "Try for free";
-"AllSet" = "AllSet";
+"Continue" = "Tiếp tục";
+"Try_for_free" = "Thử miễn phí";
+"AllSet" = "Tất cả các thiết lập";
 
 //TODO:
-"AllSet_text" = "AllSet text";
+"AllSet_text" = "Tất cả các thiết lập
+ text";
 
-"Best_value" = "Best value";
-"Choose_your_plan" = "Choose your plan";
+"Best_value" = "Giá trị tốt nhất";
+"Choose_your_plan" = "Chọn kế hoạch của bạn";
 
-"Subscription_description" = "By subscribing you agree to our ";
-"And" = " and ";
-"Terms_of_Service" = "Terms of Service";
-"Privacy_Policy" = "Privacy Policy";
-"Restore_Purchases" = "Restore Purchases";
+"Subscription_description" = "Bằng cách đăng ký, bạn đồng ý với  ";
+"And" = " và ";
+"Terms_of_Service" = "Điều khoản dịch vụ ";
+"Privacy_Policy" = "Chính sách quyền riêng tư";
+"Restore_Purchases" = "Khôi phục các giao dịch mua";
