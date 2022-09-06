@@ -34,9 +34,9 @@ struct BudgetDetails: View {
             }
             HStack(alignment: .center, spacing: 16) {
                 // TODO: localization
-                BudgetMoneyTitleView(title: LocalizeService.moneyLeft, amount: viewModel.totalMoneyLeft)
+                BudgetMoneyTitleView(title: LocalizeService.Money_left, amount: viewModel.totalMoneyLeft)
                   .padding(.leading, 16)
-                BudgetMoneyTitleView(title: LocalizeService.moneySpent, amount: viewModel.totalMoneySpent)
+                BudgetMoneyTitleView(title: LocalizeService.Money_spent, amount: viewModel.totalMoneySpent)
             }
             .frame(height: 63)
             

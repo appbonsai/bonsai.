@@ -8,3 +8,37 @@
 
 "Money_left" = "Осталось денег";
 "Money_spent" = "Денег потрачено";
+"Total_budget" = "Общий бюджет";
+"Daily_budget" = "Ежедневный бюджет";
+"Budget_greeting" = "Эй, а ты хорош!";
+"Drag_up_hint" = "Свайпни вверх чтобы увидеть транзакции";
+"Home_category" = "Самые затратные категории";
+"Revenue" = "Доход";
+"Expenses" = "Расход";
+"Budget" = "Бюджет";
+"Target" = "цель";
+
+//TODO:
+"Onboarding_1_title" = "";
+"Onboarding_2_title" = "";
+"Onboarding_3_title" = "";
+//TODO:
+"Onboarding_1_text" = "";
+"Onboarding_2_text" = "";
+"Onboarding_3_text" = "";
+
+"Continue" = "Продолжить";
+"Try_for_free" = "Попробывать бесплатно";
+"AllSet" = "Все готово";
+
+//TODO:
+"AllSet_text" = "Все готово текст";
+
+"Best_value" = "Лучшее предложение";
+"Choose_your_plan" = "Выбери свой план";
+
+"Subscription_description" = "Подписываясь, вы соглашаетесь с нашими ";
+"And" = " и ";
+"Terms_of_Service" = "условиями обслуживания";
+"Privacy_Policy" = "политикой конфиденциальности";
+"Restore_Purchases" = "Восстановить покупки";
