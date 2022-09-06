@@ -35,27 +35,25 @@ final class PurchaseService: ObservableObject {
          .store(in: &disposeBag)
    }
    
-   private func checkIfUserSubscriptionStatus() {
+   func checkIfUserSubscriptionStatus() {
       Purchases.shared.getCustomerInfo { customerInfo, error in
          self.isSubscriptionActive = customerInfo?.entitlements.all[Pro.typeName]?.isActive == true
       }
    }
    
     func buy(package: Package?, completion: @escaping () -> Void) {
-        completion()
-//
-//      if let package = package {
-//         Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
-//            if let error = error {
-////                assert(false, error.localizedDescription)
-//            }
-//             
-//            if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
-//               self.isSubscriptionActive = allEntitlements.isActive
-//            }
-//             completion()
-//         }
-//      }
+      if let package = package {
+         Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
+            if let error = error {
+                assert(false, error.localizedDescription)
+            }
+             
+            if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
+               self.isSubscriptionActive = allEntitlements.isActive
+                completion()
+            }
+         }
+      }
    }
    
    func restorePurchase() {

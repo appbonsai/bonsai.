@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeContainerView: View {
 
    @State private var isNewOperationPresented = false
-
+    
    var body: some View {
       ZStack {
          BonsaiColor.back

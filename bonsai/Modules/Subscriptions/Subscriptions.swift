@@ -12,8 +12,13 @@ struct Subscriptions: View {
    
    @State var id: String = ""
     @State var showAllSet: Bool = false
+    @Binding var isPresented: Bool
 
    @EnvironmentObject private var purchaseService: PurchaseService
+    
+    init(isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+    }
       
    var body: some View {
       ZStack {
@@ -121,6 +126,7 @@ struct Subscriptions: View {
                              
                              DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                                  showAllSet = false
+                                 isPresented = false
                              }
                          })
                      }
@@ -160,6 +166,6 @@ struct Subscriptions: View {
 
 struct Subscriptions_Previews: PreviewProvider {
    static var previews: some View {
-      Subscriptions()
+       Subscriptions(isPresented: .constant(false))
    }
 }
