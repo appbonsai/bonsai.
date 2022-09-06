@@ -18,7 +18,7 @@ struct BudgetDetails: View {
    init(viewModel: BudgetViewModelProtocol) {
       self.viewModel = viewModel
    }
-   
+       
    var body: some View {
       ZStack {
          VStack {
@@ -32,12 +32,11 @@ struct BudgetDetails: View {
                   .foregroundColor(BonsaiColor.text)
                   .padding(.horizontal)
             }
-            
             HStack(alignment: .center, spacing: 16) {
                 // TODO: localization
-               BudgetMoneyTitleView(title: "Money left", amount: viewModel.totalMoneyLeft)
+                BudgetMoneyTitleView(title: LocalizeService.moneyLeft, amount: viewModel.totalMoneyLeft)
                   .padding(.leading, 16)
-               BudgetMoneyTitleView(title: "Money spent", amount: viewModel.totalMoneySpent)
+                BudgetMoneyTitleView(title: LocalizeService.moneySpent, amount: viewModel.totalMoneySpent)
             }
             .frame(height: 63)
             
