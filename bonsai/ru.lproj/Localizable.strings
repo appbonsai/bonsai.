@@ -13,10 +13,10 @@
 "Budget_greeting" = "Эй, а ты хорош!";
 "Drag_up_hint" = "Свайпни вверх чтобы увидеть транзакции";
 "Home_category" = "Самые затратные категории";
-"Revenue" = "Доход";
-"Expenses" = "Расход";
-"Budget" = "Бюджет";
-"Target" = "от цели";
+"Revenue_title" = "Доход";
+"Expenses_title" = "Расход";
+"Budget_title" = "Бюджет";
+"Target_title" = "от цели";
 
 //TODO:
 "Onboarding_1_title" = "";
@@ -27,9 +27,9 @@
 "Onboarding_2_text" = "";
 "Onboarding_3_text" = "";
 
-"Continue" = "Продолжить";
+"Continue_button" = "Продолжить";
 "Try_for_free" = "Попробывать бесплатно";
-"AllSet" = "Все готово";
+"AllSet_title" = "Все готово";
 
 //TODO:
 "AllSet_text" = "Все готово текст";
@@ -38,7 +38,7 @@
 "Choose_your_plan" = "Выбери свой план";
 
 "Subscription_description" = "Подписываясь, вы соглашаетесь с нашими ";
-"And" = " и ";
+"Merge_And" = " и ";
 "Terms_of_Service" = "условиями обслуживания";
 "Privacy_Policy" = "политикой конфиденциальности";
 "Restore_Purchases" = "Восстановить покупки";

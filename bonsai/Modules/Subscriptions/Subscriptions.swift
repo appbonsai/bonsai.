@@ -72,7 +72,7 @@ struct Subscriptions: View {
             Group {
                 Text(LocalizeService.Subscription_description) +
                Text(.init(termsOfServicelink)).foregroundColor(BonsaiColor.secondary) +
-                Text(LocalizeService.And) +
+                Text(LocalizeService.Merge_And) +
                Text(.init(privacyPolicylink)).foregroundColor(BonsaiColor.secondary) +
                Text(".")
             }

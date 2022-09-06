@@ -13,10 +13,10 @@
 "Budget_greeting" = "Handsome, you are doing well!";
 "Drag_up_hint" = "Drag up to see your last operations";
 "Home_category" = "The most expensive categories";
-"Revenue" = "Revenue";
-"Expenses" = "Expenses";
-"Budget" = "Budget";
-"Target" = "of target";
+"Revenue_title" = "Revenue";
+"Expenses_title" = "Expenses";
+"Budget_title" = "Budget";
+"Target_title" = "of target";
 
 //TODO:
 "Onboarding_1_title" = "";
@@ -27,9 +27,9 @@
 "Onboarding_2_text" = "";
 "Onboarding_3_text" = "";
 
-"Continue" = "Continue";
+"Continue_button" = "Continue";
 "Try_for_free" = "Try for free";
-"AllSet" = "AllSet";
+"AllSet_title" = "AllSet";
 
 //TODO:
 "AllSet_text" = "AllSet text";
@@ -38,7 +38,7 @@
 "Choose_your_plan" = "Choose your plan";
 
 "Subscription_description" = "By subscribing you agree to our ";
-"And" = " and ";
+"Merge_And" = " and ";
 "Terms_of_Service" = "Terms of Service";
 "Privacy_Policy" = "Privacy Policy";
 "Restore_Purchases" = "Restore Purchases";

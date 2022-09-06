@@ -14,10 +14,10 @@
 "Drag_up_hint" = "Przeciągnij w górę, aby zobaczyć swoje ostatnie operacje";
 "Home_category" = "Najdroższe kategorie";
 
-"Revenue" = "Przychody";
-"Expenses" = "Wydatki";
-"Budget" = "Budżet";
-"Target" = "docelowej";
+"Revenue_title" = "Przychody";
+"Expenses_title" = "Wydatki";
+"Budget_title" = "Budżet";
+"Target_title" = "docelowej";
 
 //TODO:
 "Onboarding_1_title" = "";
@@ -28,9 +28,9 @@
 "Onboarding_2_text" = "";
 "Onboarding_3_text" = "";
 
-"Continue" = "Kontynuuj";
+"Continue_button" = "Kontynuuj";
 "Try_for_free" = "Wypróbuj za darmo";
-"AllSet" = "Wszystkie Zestawy";
+"AllSet_title" = "Wszystkie Zestawy";
 
 //TODO:
 "AllSet_text" = "Wszystkie Zestawy text";
@@ -39,7 +39,7 @@
 "Choose_your_plan" = "Wybierz swój plan";
 
 "Subscription_description" = "Subskrybując wyrażasz zgodę na nasze ";
-"And" = " i ";
+"Merge_And" = " i ";
 "Terms_of_Service" = "Warunki korzystania z usługi";
 "Privacy_Policy" = "Polityka prywatności";
 "Restore_Purchases" = "Przywróć zakupy";

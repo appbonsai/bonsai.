@@ -13,10 +13,10 @@
 "Budget_greeting" = "Слава Україні!";
 "Drag_up_hint" = "Свайпни до гори щоб побачити останні операції";
 "Home_category" = "Найвитратніші категорії";
-"Revenue" = "Дохід";
-"Expenses" = "Витрати";
-"Budget" = "Бюджет";
-"Target" = "від мети";
+"Revenue_title" = "Дохід";
+"Expenses_title" = "Витрати";
+"Budget_title" = "Бюджет";
+"Target_title" = "від мети";
 
 //TODO:
 "Onboarding_1_title" = "";
@@ -27,9 +27,9 @@
 "Onboarding_2_text" = "";
 "Onboarding_3_text" = "";
 
-"Continue" = "Продовжити";
+"Continue_button" = "Продовжити";
 "Try_for_free" = "Спробувати безкоштовно";
-"AllSet" = "Все готово";
+"AllSet_title" = "Все готово";
 
 //TODO:
 "AllSet_text" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";
@@ -38,7 +38,7 @@
 "Choose_your_plan" = "Обері свій план";
 
 "Subscription_description" = "Підписуючись, ви погоджуєтесь з нашими ";
-"And" = " та ";
+"Merge_And" = " та ";
 "Terms_of_Service" = "умовами обслуговування";
 "Privacy_Policy" = "політикою конфіденційності";
 "Restore_Purchases" = "Відновити покупки";
