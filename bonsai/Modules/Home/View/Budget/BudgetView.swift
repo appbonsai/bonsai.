@@ -13,7 +13,7 @@ struct BudgetView: View {
             BudgetHeaderView()
                 .padding(.horizontal, -16)
             
-            Text("The most expensive categories")
+            Text(LocalizeService.Home_category)
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor(BonsaiColor.text)
                 .padding(.top, 16)

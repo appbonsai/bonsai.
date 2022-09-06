@@ -16,7 +16,7 @@
 "Revenue" = "Revenue";
 "Expenses" = "Expenses";
 "Budget" = "Budget";
-"Target" = "target";
+"Target" = "of target";
 
 //TODO:
 "Onboarding_1_title" = "";
@@ -35,7 +35,7 @@
 "AllSet_text" = "AllSet text";
 
 "Best_value" = "Best value";
-"Choose_your_plan" = "Choose_your_plan";
+"Choose_your_plan" = "Choose your plan";
 
 "Subscription_description" = "By subscribing you agree to our ";
 "And" = " and ";

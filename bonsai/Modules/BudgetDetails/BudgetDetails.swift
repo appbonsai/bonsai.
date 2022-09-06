@@ -27,7 +27,7 @@ struct BudgetDetails: View {
                   .frame(height: 33)
                   .padding(.leading, 8)
                
-               Text("Handsome, you’re doing well!")
+                Text(LocalizeService.Budget_greeting)
                   .font(BonsaiFont.body_15)
                   .foregroundColor(BonsaiColor.text)
                   .padding(.horizontal)
@@ -47,10 +47,10 @@ struct BudgetDetails: View {
                VStack {
                   HStack(alignment: .center, spacing: 16) {
                       // TODO: localization
-                     BudgetMoneyCardView(title: "Total budget", amount: viewModel.totalBudget)
+                      BudgetMoneyCardView(title: LocalizeService.Total_budget, amount: viewModel.totalBudget)
                         .shadow(color: .black, radius: 7, x: 0, y: 4)
 
-                     BudgetMoneyCardView(title: "Daily budget", amount: viewModel.budgetDaily)
+                     BudgetMoneyCardView(title: LocalizeService.Daily_budget, amount: viewModel.budgetDaily)
                         .shadow(color: .black, radius: 7, x: 0, y: 4)
                   }
                   .frame(height: 116)
