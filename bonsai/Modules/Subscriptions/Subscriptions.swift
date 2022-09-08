@@ -9,11 +9,9 @@ import SwiftUI
 import RevenueCat
 
 struct Subscriptions: View {
-   
+   @State var isShowActivityIndicator = false
    @State var id: String = ""
-    @State var showAllSet: Bool = false
-    @Binding var isPresented: Bool
-
+   @Binding var isPresented: Bool
    @EnvironmentObject private var purchaseService: PurchaseService
     
     init(isPresented: Binding<Bool>) {
@@ -96,7 +94,11 @@ struct Subscriptions: View {
                      .font(.system(size: 12))
                      .foregroundColor(BonsaiColor.secondary)
                      .onTapGesture {
-                        purchaseService.restorePurchase()
+                         isShowActivityIndicator = true
+                         purchaseService.restorePurchase {
+                             isShowActivityIndicator = false
+                             isPresented = false
+                         }
                      }
                   Spacer()
                }
@@ -120,14 +122,10 @@ struct Subscriptions: View {
                               $0.storeProduct.productIdentifier == id
                            })
 
+                         isShowActivityIndicator = true
                          purchaseService.buy(package: package, completion: {
-                             
-                             showAllSet = true
-                             
-                             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                 showAllSet = false
-                                 isPresented = false
-                             }
+                            isShowActivityIndicator = false
+                            isPresented = false
                          })
                      }
                   Text("Try for free")
@@ -147,17 +145,8 @@ struct Subscriptions: View {
          .listStyle(PlainListStyle())
          .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
           
-          AllSet()
-              .offset(y: showAllSet ?
-                      0 :
-                    UIScreen.main.bounds.height)
-              .animation(
-                .interpolatingSpring(
-                    mass: 1,
-                    stiffness: 50,
-                    damping: 10,
-                    initialVelocity: 0
-                ))
+          Spinner()
+              .opacity(isShowActivityIndicator ? 1 : 0)
       }
    }
    

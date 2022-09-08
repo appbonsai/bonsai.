@@ -10,7 +10,7 @@ import Combine
 import CoreData
 import SwiftUI
 
-class LimitedFunctionalityService: ObservableObject {
+class LimitedFunctionalityService {
     var purchaseService: PurchaseService
     var mainContext: NSManagedObjectContext
         
@@ -30,12 +30,12 @@ class LimitedFunctionalityService: ObservableObject {
         }
     }
     
-    func isShowLimited() -> Bool {
-        checkLimitedTransactions(currentCount: getTransactionsCount()) && purchaseService.isSubscriptionActive
+    func isShowLimitedForTransactions() -> Bool {
+        checkLimitedTransactions(currentCount: getTransactionsCount()) && !purchaseService.isSubscriptionActive
     }
     
     func checkLimitedTransactions(currentCount: Int) -> Bool {
-        let limitedTransaction = 3
+        let limitedTransaction = 1
         return currentCount >= limitedTransaction
     }
     

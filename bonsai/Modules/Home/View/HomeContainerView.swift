@@ -11,13 +11,26 @@ import SwiftUI
 struct HomeContainerView: View {
 
    @State private var isNewOperationPresented = false
+    @State private var isSubscriptionPresented = false
+    @State var showAllSet: Bool = false
+
+    private let limitedFunctionalityService: LimitedFunctionalityService
+    
+    init(limitedFunctionalityService: LimitedFunctionalityService) {
+        self.limitedFunctionalityService = limitedFunctionalityService
+    }
     
    var body: some View {
       ZStack {
          BonsaiColor.back
          ActionScrollView { completion in
-            isNewOperationPresented = true
-            completion()
+             if limitedFunctionalityService.isShowLimitedForTransactions() {
+                 isSubscriptionPresented = true
+                 completion()
+             } else {
+                 isNewOperationPresented = true
+                 completion()
+             }
          } progress: { state in
             if case .increasing(let offset) = state {
                ZStack {
@@ -65,11 +78,26 @@ struct HomeContainerView: View {
       .popover(isPresented: $isNewOperationPresented) {
          NewOperationView(isPresented: $isNewOperationPresented)
       }
+      .popover(isPresented: $isSubscriptionPresented) {
+         Subscriptions(isPresented: $isSubscriptionPresented)
+      }
+       
+       AllSet()
+           .offset(y: showAllSet ?
+                   0 :
+                 UIScreen.main.bounds.height)
+           .animation(
+             .interpolatingSpring(
+                 mass: 1,
+                 stiffness: 50,
+                 damping: 10,
+                 initialVelocity: 0
+             ))
    }
 }
 
 struct HomeContainerView_Previews: PreviewProvider {
    static var previews: some View {
-      HomeContainerView()
+       HomeContainerView(limitedFunctionalityService: LimitedFunctionalityService(purchaseService: PurchaseService()))
    }
 }

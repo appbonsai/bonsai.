@@ -56,13 +56,14 @@ final class PurchaseService: ObservableObject {
       }
    }
    
-   func restorePurchase() {
+    func restorePurchase(completion: @escaping () -> Void) {
       Purchases.shared.restorePurchases { customerInfo, error in
          if let error = error {
              assert(false, error.localizedDescription)
          }
          if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
             self.isSubscriptionActive = allEntitlements.isActive
+             completion()
          } else {
             self.isSubscriptionActive = false
          }
