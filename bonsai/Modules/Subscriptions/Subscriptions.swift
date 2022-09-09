@@ -13,12 +13,13 @@ struct Subscriptions: View {
    @State var id: String = ""
    @Binding var isPresented: Bool
    @EnvironmentObject private var purchaseService: PurchaseService
-    
+
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
     }
       
    var body: some View {
+       LoadingView(isShowing: $isShowActivityIndicator) {
       ZStack {
          BonsaiColor.back
             .ignoresSafeArea()
@@ -145,8 +146,7 @@ struct Subscriptions: View {
          .listStyle(PlainListStyle())
          .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
           
-          Spinner()
-              .opacity(isShowActivityIndicator ? 1 : 0)
+          }
       }
    }
    
@@ -158,3 +158,5 @@ struct Subscriptions_Previews: PreviewProvider {
        Subscriptions(isPresented: .constant(false))
    }
 }
+
+
