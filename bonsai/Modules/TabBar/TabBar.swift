@@ -43,7 +43,7 @@ struct TabBar: View {
             BudgetDetails(
                viewModel: BudgetViewModelAssembler().assembly())
                .tag(0)
-             HomeContainerView(limitedFunctionalityService: LimitedFunctionalityService(purchaseService: PurchaseService()))
+             HomeContainerView()
                .tag(1)
             BudgetDetails(
                viewModel: BudgetViewModelAssembler().assembly())

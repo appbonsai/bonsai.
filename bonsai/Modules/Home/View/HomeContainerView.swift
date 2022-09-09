@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct HomeContainerView: View {
 
@@ -14,17 +15,25 @@ struct HomeContainerView: View {
     @State private var isSubscriptionPresented = false
     @State var showAllSet: Bool = false
 
-    private let limitedFunctionalityService: LimitedFunctionalityService
+    @EnvironmentObject var purchaseService: PurchaseService
     
-    init(limitedFunctionalityService: LimitedFunctionalityService) {
-        self.limitedFunctionalityService = limitedFunctionalityService
+    private var isLimitedTransaction: Bool {
+        let limitedTransactions = 1
+        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        do {
+            let context = DataController.sharedInstance.container.viewContext
+            let transactions = try context.fetch(fetchRequest)
+            return transactions.count >= limitedTransactions && !purchaseService.isSubscriptionActive
+        } catch {
+            return purchaseService.isSubscriptionActive
+        }
     }
     
    var body: some View {
       ZStack {
          BonsaiColor.back
          ActionScrollView { completion in
-             if limitedFunctionalityService.isShowLimitedForTransactions() {
+             if isLimitedTransaction {
                  isSubscriptionPresented = true
                  completion()
              } else {
@@ -98,6 +107,6 @@ struct HomeContainerView: View {
 
 struct HomeContainerView_Previews: PreviewProvider {
    static var previews: some View {
-       HomeContainerView(limitedFunctionalityService: LimitedFunctionalityService(purchaseService: PurchaseService()))
+       HomeContainerView()
    }
 }
