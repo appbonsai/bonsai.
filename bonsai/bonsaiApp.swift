@@ -29,9 +29,7 @@ struct bonsaiApp: App {
            let keys = NSDictionary(contentsOfFile: path),
            let revenueCatApiKey = keys["revenueCatApiKey"] as? String {
             Purchases.configure(withAPIKey: revenueCatApiKey)
-        } else {
-            assert(false)
-        }
+        } 
     }
 }
 

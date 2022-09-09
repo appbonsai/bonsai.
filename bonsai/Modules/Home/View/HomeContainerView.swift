@@ -73,6 +73,18 @@ struct HomeContainerView: View {
             .padding(.horizontal, 16)
             .padding(.top, 38)
          }
+          
+          AllSet()
+              .offset(y: showAllSet ?
+                      0 :
+                        UIScreen.main.bounds.height)
+              .animation(
+                .interpolatingSpring(
+                    mass: 1,
+                    stiffness: 50,
+                    damping: 10,
+                    initialVelocity: 0
+                ))
       }
       .ignoresSafeArea()
       .popover(isPresented: $isNewOperationPresented) {
@@ -81,18 +93,6 @@ struct HomeContainerView: View {
       .popover(isPresented: $isSubscriptionPresented) {
          Subscriptions(isPresented: $isSubscriptionPresented)
       }
-       
-       AllSet()
-           .offset(y: showAllSet ?
-                   0 :
-                 UIScreen.main.bounds.height)
-           .animation(
-             .interpolatingSpring(
-                 mass: 1,
-                 stiffness: 50,
-                 damping: 10,
-                 initialVelocity: 0
-             ))
    }
 }
 

@@ -45,7 +45,7 @@ final class PurchaseService: ObservableObject {
       if let package = package {
          Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
             if let error = error {
-                assert(false, error.localizedDescription)
+                print(error.localizedDescription)
             }
              
             if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
@@ -59,7 +59,7 @@ final class PurchaseService: ObservableObject {
     func restorePurchase(completion: @escaping () -> Void) {
       Purchases.shared.restorePurchases { customerInfo, error in
          if let error = error {
-             assert(false, error.localizedDescription)
+             print(error.localizedDescription)
          }
          if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
             self.isSubscriptionActive = allEntitlements.isActive

@@ -12,7 +12,7 @@ struct BudgetDetails: View {
    @State var startOffsetY: CGFloat = UIScreen.main.bounds.height
    @State var currentOffsetY: CGFloat = 0
    @State var endingOffsetY: CGFloat = 0
-   private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.8) / 2
+   private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.2) / 2
    private let viewModel: BudgetViewModelProtocol
    
    init(viewModel: BudgetViewModelProtocol) {
@@ -82,7 +82,7 @@ struct BudgetDetails: View {
 
          BudgetTransactions(transactions: viewModel.transactions, dragGestureOnChanged: { value in
             withAnimation(.spring()) {
-               currentOffsetY = value.location.y
+                currentOffsetY = value.location.y - (TabBar.topPadding)
                if currentOffsetY < 0 {
                   currentOffsetY = 0
                }

@@ -25,8 +25,9 @@ class LimitedFunctionalityService {
         do {
             let transactions = try mainContext.fetch(fetchRequest)
             return transactions.count
-        } catch {
-            assert(false)
+        } catch let error {
+            print(error.localizedDescription)
+            return 0
         }
     }
     
