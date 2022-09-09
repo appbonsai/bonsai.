@@ -18,14 +18,15 @@ struct HomeContainerView: View {
     @EnvironmentObject var purchaseService: PurchaseService
     
     private var isLimitedTransaction: Bool {
+        let isUserSubscribed = purchaseService.isSubscriptionActive
         let limitedTransactions = 1
         let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {
             let context = DataController.sharedInstance.container.viewContext
             let transactions = try context.fetch(fetchRequest)
-            return transactions.count >= limitedTransactions && !purchaseService.isSubscriptionActive
+            return transactions.count >= limitedTransactions && !isUserSubscribed
         } catch {
-            return purchaseService.isSubscriptionActive
+            return isUserSubscribed
         }
     }
     
