@@ -63,15 +63,16 @@ struct BudgetDetails: View {
                   BudgetDragUpView()
                      .gesture(
                         DragGesture()
-                           .onChanged{ value in
-                              withAnimation(.spring()) {
-                                 currentOffsetY = value.translation.height - BudgetDragUpView.height
-                              }
-                           }
-                           .onEnded { _ in
-                              lockBudgetTransactionsOffset()
-                           }
-                     )
+                            .onChanged{ value in
+                                withAnimation(.spring()) {
+                                    currentOffsetY = value.translation.height - BudgetDragUpView.height
+                                }
+                            }
+                            .onEnded { _ in
+                                lockBudgetTransactionsOffset()
+                            }
+                       )
+                   
                }
             }
             .padding(.top, 16)
