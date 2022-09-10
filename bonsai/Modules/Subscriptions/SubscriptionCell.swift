@@ -35,7 +35,7 @@ struct SubscriptionCell: View {
                             }
                         }(),
                         lineWidth: 2
-                    )
+                    ).shimmering(duration: subscription.isMostPopular ? 3 : 0)
                 HStack {
                     Image(isSelected ? "path_checked" : "path_checkbox")
                         .padding([.leading,.trailing], 18)
@@ -64,6 +64,7 @@ struct SubscriptionCell: View {
                             .padding(.trailing, 4)
                             .padding(.bottom, 38)
                         }
+                        .shimmering(duration: 3)
                     }
                     Spacer()
                 }

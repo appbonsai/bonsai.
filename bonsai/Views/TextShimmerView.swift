@@ -40,7 +40,7 @@ public struct Shimmer: ViewModifier {
     struct GradientMask: View {
         let phase: CGFloat
         let centerColor = Color.black
-        let edgeColor = Color.black.opacity(0.3)
+        let edgeColor = Color.black.opacity(0.7)
 
         var body: some View {
             LinearGradient(gradient:

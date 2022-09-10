@@ -11,7 +11,7 @@ struct ContentView: View {
 
    var body: some View {
        Onboarding()
-//       Subscriptions()
+//       Subscriptions(isPresented: .constant(true))
 //      TabBar()
    }
 }
