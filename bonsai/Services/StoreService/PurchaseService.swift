@@ -20,6 +20,7 @@ final class PurchaseService: ObservableObject {
    
    @Published var availablePackages: [Package] = []
    @Published var isSubscriptionActive = false
+   @Published var isShownAllSet = false
 
    private var disposeBag = Set<AnyCancellable>()
    
@@ -50,6 +51,7 @@ final class PurchaseService: ObservableObject {
              
             if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
                self.isSubscriptionActive = allEntitlements.isActive
+                self.isShownAllSet = allEntitlements.isActive
                 completion()
             }
          }
@@ -63,6 +65,7 @@ final class PurchaseService: ObservableObject {
          }
          if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
             self.isSubscriptionActive = allEntitlements.isActive
+             self.isShownAllSet = allEntitlements.isActive
              completion()
          } else {
             self.isSubscriptionActive = false

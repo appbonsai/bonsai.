@@ -31,78 +31,74 @@ struct HomeContainerView: View {
     }
     
    var body: some View {
-      ZStack {
-         BonsaiColor.back
-         ActionScrollView { completion in
-             if isLimitedTransaction {
-                 isSubscriptionPresented = true
-                 completion()
-             } else {
-                 isNewOperationPresented = true
-                 completion()
-             }
-         } progress: { state in
-            if case .increasing(let offset) = state {
-               ZStack {
-                  Circle()
-                     .foregroundColor(BonsaiColor.mainPurple)
-                     .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
-                  BonsaiImage.plus
-                     .resizable()
-                     .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
-                     .foregroundColor(.white)
+       LoadingAllSet(isShowing: $purchaseService.isShownAllSet) {
+           
+           ZStack {
+               BonsaiColor.back
+               ActionScrollView { completion in
+                   if isLimitedTransaction {
+                       isSubscriptionPresented = true
+                       completion()
+                   } else {
+                       isNewOperationPresented = true
+                       completion()
+                   }
+               } progress: { state in
+                   if case .increasing(let offset) = state {
+                       ZStack {
+                           Circle()
+                               .foregroundColor(BonsaiColor.mainPurple)
+                               .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
+                           BonsaiImage.plus
+                               .resizable()
+                               .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
+                               .foregroundColor(.white)
+                       }
+                   } else {
+                       BonsaiImage.plus
+                           .resizable()
+                           .frame(width: 20, height: 20, alignment: .center)
+                   }
+               } content: {
+                   VStack(alignment: .leading) {
+                       Text("$2,452.00")
+                           .font(.system(size: 34))
+                           .frame(maxWidth: .infinity, alignment: .leading)
+                           .foregroundColor(.white)
+                       HStack(alignment: .center, spacing: 16) {
+                           BalanceFlowView()
+                           BalanceFlowView()
+                       }
+                       .frame(height: 116)
+                       
+                       Text("Budget")
+                           .font(BonsaiFont.title_20)
+                           .foregroundColor(.white)
+                           .padding(.top, 32)
+                       
+                       BudgetView()
+                           .frame(height: 320)
+                           .cornerRadius(13)
+                       
+                       Spacer()
+                   }
+                   .padding(.horizontal, 16)
+                   .padding(.top, 38)
                }
-            } else {
-               BonsaiImage.plus
-                  .resizable()
-                  .frame(width: 20, height: 20, alignment: .center)
-            }
-         } content: {
-            VStack(alignment: .leading) {
-               Text("$2,452.00")
-                  .font(.system(size: 34))
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                  .foregroundColor(.white)
-               HStack(alignment: .center, spacing: 16) {
-                  BalanceFlowView()
-                  BalanceFlowView()
-               }
-               .frame(height: 116)
-
-               Text("Budget")
-                  .font(BonsaiFont.title_20)
-                  .foregroundColor(.white)
-                  .padding(.top, 32)
-
-               BudgetView()
-                  .frame(height: 320)
-                  .cornerRadius(13)
-
-               Spacer()
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 38)
-         }
-          
-          AllSet()
-              .offset(y: showAllSet ?
-                      0 :
-                        UIScreen.main.bounds.height)
-              .animation(
-                .interpolatingSpring(
-                    mass: 1,
-                    stiffness: 50,
-                    damping: 10,
-                    initialVelocity: 0
-                ))
-      }
-      .ignoresSafeArea()
-      .popover(isPresented: $isNewOperationPresented) {
-         NewOperationView(isPresented: $isNewOperationPresented)
-      }
-      .popover(isPresented: $isSubscriptionPresented) {
-         Subscriptions(isPresented: $isSubscriptionPresented)
-      }
+           }
+           .ignoresSafeArea()
+           .popover(isPresented: $isNewOperationPresented) {
+               NewOperationView(isPresented: $isNewOperationPresented)
+           }
+           .popover(isPresented: $isSubscriptionPresented) {
+               Subscriptions(isPresented: $isSubscriptionPresented)
+           }
+       }
+       .onAppear {
+           DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+               purchaseService.isShownAllSet = false
+           }
+       }
    }
 }
 
