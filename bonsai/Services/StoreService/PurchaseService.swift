@@ -68,9 +68,7 @@ final class PurchaseService: ObservableObject {
             self.isSubscriptionActive = allEntitlements.isActive
              self.isShownAllSet = allEntitlements.isActive
              completion()
-         } else {
-            self.isSubscriptionActive = false
-         }
+         } 
       }
    }
    

@@ -17,19 +17,21 @@ struct HomeContainerView: View {
 
     @EnvironmentObject var purchaseService: PurchaseService
     
-    private var isLimitedTransaction: Bool {
-        let isUserSubscribed = purchaseService.isSubscriptionActive
-        if isUserSubscribed {
-            return isUserSubscribed
+    private var isPremium: Bool {
+        if let country = Locale.current.regionCode, country == "UA" {
+            return true
+        }
+        if purchaseService.isSubscriptionActive {
+            return true
         }
         let limitedTransactions = 1
         let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {
             let context = DataController.sharedInstance.container.viewContext
-            let transactions = try context.fetch(fetchRequest)
-            return transactions.count >= limitedTransactions && !isUserSubscribed
+            let transactions = try context.fetch(fetchRequest).count
+            return transactions <= limitedTransactions
         } catch {
-            return isUserSubscribed
+            return true
         }
     }
     
@@ -39,11 +41,11 @@ struct HomeContainerView: View {
            ZStack {
                BonsaiColor.back
                ActionScrollView { completion in
-                   if isLimitedTransaction {
-                       isSubscriptionPresented = true
+                   if isPremium {
+                       isNewOperationPresented = true
                        completion()
                    } else {
-                       isNewOperationPresented = true
+                       isSubscriptionPresented = true
                        completion()
                    }
                } progress: { state in
