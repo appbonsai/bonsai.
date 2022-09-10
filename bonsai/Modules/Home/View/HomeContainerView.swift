@@ -19,6 +19,9 @@ struct HomeContainerView: View {
     
     private var isLimitedTransaction: Bool {
         let isUserSubscribed = purchaseService.isSubscriptionActive
+        if isUserSubscribed {
+            return isUserSubscribed
+        }
         let limitedTransactions = 1
         let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {

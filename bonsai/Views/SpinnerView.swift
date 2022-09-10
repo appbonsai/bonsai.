@@ -19,6 +19,11 @@ struct Spinner: View {
     @State var rotationDegreeS1 = initialDegree
     @State var rotationDegreeS2 = initialDegree
     @State var rotationDegreeS3 = initialDegree
+    
+    @State var progressValue = 1
+    @State var isProgressDone = false
+
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         ZStack {
@@ -32,7 +37,19 @@ struct Spinner: View {
 
                 // S1
                 SpinnerCircle(start: spinnerStart, end: spinnerEndS1, rotation: rotationDegreeS1, color: BonsaiColor.green)
-
+                
+                Text(isProgressDone ? "Preparing..." : "\(String(progressValue)) %")
+                    .font(BonsaiFont.body_17)
+                    .onReceive(timer) { _ in
+                        if self.progressValue >= 1 && self.progressValue < 100 {
+                            self.progressValue += Int.random(in: 3...4)
+                        }
+                        if progressValue > 100 {
+                            self.progressValue = 100
+                            self.isProgressDone = true
+                        }
+                    }
+                
             }.frame(width: 120, height: 120)
         }
         .onAppear() {
