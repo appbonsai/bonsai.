@@ -67,7 +67,7 @@ struct SelectCurrencyPage: View {
                   }
                }
                .buttonStyle(PrimaryButtonStyle())
-               .padding([.top], 16)
+               .padding([.top, .bottom], 16)
                .disabled(selectedCurrency == nil)
             } // VStack
          } // ZStack
