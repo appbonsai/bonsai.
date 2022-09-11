@@ -1,0 +1,35 @@
+/* 
+  Localizable.strings
+  bonsai
+
+  Created by antuan.khoanh on 06/09/2022.
+  
+*/
+
+"Money_left" = "残金";
+"Money_spent" = "費やしたお金";
+"Total_budget" = "総予算";
+"Daily_budget" = "日の予算";
+"Budget_greeting" = "ハンサム、あなたは元気です!";
+"Drag_up_hint" = "上にドラッグして最後の操作を表示";
+"Home_category" = "最も高価なカテゴリ";
+"Revenue_title" = "収益";
+"Expenses_title" = "経費";
+"Budget_title" = "予算";
+"Target_title" = "ターゲットの";
+
+"Continue_button" = "続行";
+"Try_for_free" = "無料で試す";
+"AllSet_title" = "オールセット";
+
+// TODO:
+"AllSet_text" = "オールセット テキスト";
+
+"Best_value" = "最高値";
+"Choose_your_plan" = "プランを選択してください";
+
+"Subscription_description" = "購読することにより、あなたは私たちに同意するものとします";
+"Merge_And" = "および";
+"Terms_of_Service" = "利用規約";
+"Privacy_Policy" = "プライバシー ポリシー";
+"Restore_Purchases" = "購入の復元";
