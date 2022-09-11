@@ -22,6 +22,12 @@
 "Try_for_free" = "Prova gratuitamente";
 "AllSet_title" = "AllSet";
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Choose";
+"SelectCurrencyPage.Confirm" = "Confirm";
+"SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
+
 //DA FARE:
 "AllSet_text" = "AllSet testo";
 

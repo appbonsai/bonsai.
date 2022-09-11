@@ -23,6 +23,12 @@
 "Try_for_free" = "免费试用";
 "AllSet_title" = "全集";
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Choose";
+"SelectCurrencyPage.Confirm" = "Confirm";
+"SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
+
 //TODO:
 "AllSet_text" = "全集 text";
 

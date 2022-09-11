@@ -23,6 +23,12 @@
 "Try_for_free" = "무료 체험";
 "AllSet_title" = "AllSet";
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Choose";
+"SelectCurrencyPage.Confirm" = "Confirm";
+"SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
+
 //할 것:
 "AllSet_text" = "AllSet 텍스트";
 

@@ -22,6 +22,12 @@
 "Try_for_free" = "無料で試す";
 "AllSet_title" = "オールセット";
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Choose";
+"SelectCurrencyPage.Confirm" = "Confirm";
+"SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
+
 // TODO:
 "AllSet_text" = "オールセット テキスト";
 

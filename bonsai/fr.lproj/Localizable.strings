@@ -23,6 +23,12 @@
 "Try_for_free" = "Essayez gratuitement" ;
 "AllSet_title" = "AllSet" ;
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Choose";
+"SelectCurrencyPage.Confirm" = "Confirm";
+"SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
+
 //FAIRE:
 "AllSet_text" = "Texte AllSet" ;
 

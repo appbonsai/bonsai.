@@ -24,6 +24,12 @@
 "Try_for_free" = "Wypróbuj za darmo";
 "AllSet_title" = "Wszystkie Zestawy";
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Choose";
+"SelectCurrencyPage.Confirm" = "Confirm";
+"SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
+
 //TODO:
 "AllSet_text" = "Wszystkie Zestawy text";
 
