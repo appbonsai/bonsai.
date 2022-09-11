@@ -22,8 +22,7 @@ struct CurrencyCellView: View {
             )
          Spacer()
       }
-      .padding([.vertical, .leading], 20)
-      .cornerRadius(13)
+      .padding(16)
       .overlay(
          RoundedRectangle(cornerRadius: 13)
             .stroke(

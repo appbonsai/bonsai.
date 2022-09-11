@@ -34,13 +34,14 @@ struct SelectCurrencyPage: View {
             VStack {
                ScrollViewReader { reader in
                   ScrollView(.vertical, showsIndicators: true) {
-                     VStack(spacing: 8) {
+                     VStack(alignment: .center, spacing: 8) {
                         ForEach(currencies) { currency in
                            CurrencyCellView(
                               isSelected: currency == selectedCurrency,
                               currency: currency
                            )
                            .id(currency)
+                           .padding(.horizontal, 16)
                            .onTapGesture {
                               selectedCurrency = currency
                               withAnimation {
@@ -49,7 +50,6 @@ struct SelectCurrencyPage: View {
                            }
                         }
                      } // VStack
-                     .padding([.top, .leading, .trailing], 16)
                      .onAppear {
                         if let selectedCurrency = selectedCurrency {
                            reader.scrollTo(selectedCurrency, anchor: .center)
