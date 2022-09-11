@@ -20,10 +20,6 @@ struct AmountView: View {
          Text(currency.symbol)
             .foregroundColor(operation.viewModel.color)
             .padding([.leading, .top, .bottom], 16)
-//         BonsaiImage.amount
-//            .renderingMode(.template)
-//            .foregroundColor(operation.viewModel.color)
-//            .padding([.leading, .top, .bottom], 16)
          TextField("", text: $text)
             .font(BonsaiFont.body_17)
             .foregroundColor(operation.viewModel.color)
