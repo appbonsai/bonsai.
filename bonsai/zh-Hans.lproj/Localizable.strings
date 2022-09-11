@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  bonsai
+
+  Created by antuan.khoanh on 06/09/2022.
+  
+*/
+
+"Money_left" = "剩下的钱";
+"Money_spent" = "花费的钱";
+"Total_budget" = "总预算";
+"Daily_budget" = "每日预算";
+"Budget_greeting" = "帅哥，你干得不错！";
+"Drag_up_hint" = "向上拖动以查看您最近的操作";
+"Home_category" = "最贵的类别";
+
+"Revenue_title" = "收入";
+"Expenses_title" = "费用";
+"Budget_title" = "预算";
+"Target_title" = "目标";
+
+"Continue_button" = "继续";
+"Try_for_free" = "免费试用";
+"AllSet_title" = "全集";
+
+//TODO:
+"AllSet_text" = "全集 text";
+
+"Best_value" = "最佳价值";
+"Choose_your_plan" = "选择你的计划";
+
+"Subscription_description" = "订阅即表示您同意我们的 ";
+"Merge_And" = " 和 ";
+"Terms_of_Service" = "服务条款";
+"Privacy_Policy" = "隐私政策";
+"Restore_Purchases" = "恢复购买";
