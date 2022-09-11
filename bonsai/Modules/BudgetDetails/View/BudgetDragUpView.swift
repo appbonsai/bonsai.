@@ -15,8 +15,9 @@ struct BudgetDragUpView: View {
               .renderingMode(.template)
               .foregroundColor(Color.white)
               .padding(.bottom, 5)
-            Text("Drag up to see your last operations")
-                .shimmering(duration: 3.5)
+            Text(L.Drag_up_hint)
+                .font(BonsaiFont.body_17)
+                .foregroundColor(BonsaiColor.text)
         }
         .frame(height: Self.height)
     }

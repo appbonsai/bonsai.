@@ -67,7 +67,7 @@ struct Onboarding: View {
                             RoundedRectangle(cornerRadius: 13)
                                 .frame(width: 192, height: 48)
                                 .foregroundColor(BonsaiColor.mainPurple)
-                            Text("Continue")
+                            Text(L.Continue_button)
                                 .foregroundColor(BonsaiColor.card)
                                 .font(.system(size: 17))
                                 .bold()

@@ -57,7 +57,7 @@ struct SubscriptionCell: View {
                                 RoundedRectangle(cornerRadius: 13)
                                     .frame(width: 76, height: 22)
                                     .foregroundColor(BonsaiColor.green)
-                                Text("Best value")
+                                Text(L.Best_value)
                                     .foregroundColor(BonsaiColor.card)
                                     .font(.system(size: 12))
                             }

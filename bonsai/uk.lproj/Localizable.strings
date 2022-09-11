@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  bonsai
+
+  Created by antuan.khoanh on 06/09/2022.
+  
+*/
+
+"Money_left" = "Грошей залишилось";
+"Money_spent" = "Грошей витрачено";
+"Total_budget" = "Загальний бюджет";
+"Daily_budget" = "Щоденний бюджет";
+"Budget_greeting" = "Слава Україні!";
+"Drag_up_hint" = "Свайпни до гори щоб побачити останні операції";
+"Home_category" = "Найвитратніші категорії";
+"Revenue_title" = "Дохід";
+"Expenses_title" = "Витрати";
+"Budget_title" = "Бюджет";
+"Target_title" = "від мети";
+
+
+"Continue_button" = "Продовжити";
+"Try_for_free" = "Спробувати безкоштовно";
+"AllSet_title" = "Все готово";
+
+//TODO:
+"AllSet_text" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";
+
+"Best_value" = "Найкраща пропозиція";
+"Choose_your_plan" = "Обері свій план";
+
+"Subscription_description" = "Підписуючись, ви погоджуєтесь з нашими ";
+"Merge_And" = " та ";
+"Terms_of_Service" = "умовами обслуговування";
+"Privacy_Policy" = "політикою конфіденційності";
+"Restore_Purchases" = "Відновити покупки";

@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  bonsai
+
+  Created by antuan.khoanh on 06/09/2022.
+  
+*/
+
+"Money_left" = "Pozostałe pieniądze";
+"Money_spent" = "Wydane pieniądze";
+"Total_budget" = "Całkowity budżet";
+"Daily_budget" = "Budżet dzienny";
+"Budget_greeting" = "Przystojniaku, dobrze ci idzie!";
+"Drag_up_hint" = "Przeciągnij w górę, aby zobaczyć swoje ostatnie operacje";
+"Home_category" = "Najdroższe kategorie";
+
+"Revenue_title" = "Przychody";
+"Expenses_title" = "Wydatki";
+"Budget_title" = "Budżet";
+"Target_title" = "docelowej";
+
+
+"Continue_button" = "Kontynuuj";
+"Try_for_free" = "Wypróbuj za darmo";
+"AllSet_title" = "Wszystkie Zestawy";
+
+//TODO:
+"AllSet_text" = "Wszystkie Zestawy text";
+
+"Best_value" = "Najlepsza wartość";
+"Choose_your_plan" = "Wybierz swój plan";
+
+"Subscription_description" = "Subskrybując wyrażasz zgodę na nasze ";
+"Merge_And" = " i ";
+"Terms_of_Service" = "Warunki korzystania z usługi";
+"Privacy_Policy" = "Polityka prywatności";
+"Restore_Purchases" = "Przywróć zakupy";
