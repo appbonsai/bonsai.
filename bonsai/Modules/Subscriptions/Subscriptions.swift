@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import RevenueCat
 
 struct Subscriptions: View {
    
-   @State var id: String = MockSubscriptions.subscriptions.first(where: { $0.isMostPopular })?.id ?? ""
-   
-   let mockSubs = MockSubscriptions.subscriptions
-   
+   @State var id: String = ""
+   @EnvironmentObject private var purchaseService: PurchaseService
+      
    var body: some View {
       ZStack {
          BonsaiColor.back
@@ -34,21 +34,34 @@ struct Subscriptions: View {
                Text("Choose your plan")
                   .font(.system(size: 28))
                   .bold()
-                  .foregroundColor(BonsaiColor.purple7)
+                  .foregroundColor(BonsaiColor.purple6)
                Spacer()
             }
             .listRowBackground(BonsaiColor.back)
             .padding(.bottom, 12)
-            ForEach(0..<4) { index in
-               SubscriptionCell(subscription: mockSubs[index], id: id)
-                  .listRowSeparator(.hidden)
-                  .onTapGesture {
-                     let subscription = mockSubs[index]
-                     id = subscription.id
-                  }
+            
+            ForEach(Array(purchaseService.availablePackages.enumerated()), id: \.offset) { index, pkg in
+               
+               let storeProduct = pkg.storeProduct
+               let productId = storeProduct.productIdentifier
+               let periodName = storeProduct.subscriptionPeriod!.periodTitle
+               let price = storeProduct.localizedPriceString
+               let isMostPopular = storeProduct.subscriptionPeriod?.unit == .year
+               
+               let subscription = Subscription(
+                  id: productId,
+                  periodName: periodName,
+                  price: price,
+                  isMostPopular: isMostPopular)
+               
+               SubscriptionCell(
+                  subscription: subscription, id: id)
+               .listRowSeparator(.hidden)
+               .onTapGesture {
+                  id = pkg.storeProduct.productIdentifier
+               }
             }
             .listRowBackground(BonsaiColor.back)
-            
             
             let termsOfServiceUrl = "https://duckduckgo.com"
             let termsOfServicelink = "[Terms of Service](\(termsOfServiceUrl))"
@@ -75,6 +88,9 @@ struct Subscriptions: View {
                   Text("Restore Purchases")
                      .font(.system(size: 12))
                      .foregroundColor(BonsaiColor.secondary)
+                     .onTapGesture {
+                        purchaseService.restorePurchase()
+                     }
                   Spacer()
                }
             }
@@ -87,7 +103,19 @@ struct Subscriptions: View {
                   RoundedRectangle(cornerRadius: 13)
                      .frame(width: 192, height: 48)
                      .foregroundColor(BonsaiColor.mainPurple)
-                  Text("Get all features")
+                     .onTapGesture {
+                        
+                        let package = purchaseService
+                           .availablePackages
+                           .first(where: {
+                              id.isEmpty ?
+                              $0.storeProduct.subscriptionPeriod?.unit == .year :
+                              $0.storeProduct.productIdentifier == id
+                           })
+
+                        purchaseService.buy(package: package)
+                     }
+                  Text("Try for free")
                      .foregroundColor(BonsaiColor.card)
                      .font(.system(size: 17))
                      .bold()
@@ -105,6 +133,8 @@ struct Subscriptions: View {
          .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
       }
    }
+   
+   
 }
 
 

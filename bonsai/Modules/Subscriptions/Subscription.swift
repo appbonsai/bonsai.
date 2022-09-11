@@ -8,7 +8,7 @@
 import Foundation
 
 struct Subscription {
-    let id: String = UUID().uuidString
+    let id: String
     let periodName: String
     let price: String
     let isMostPopular: Bool

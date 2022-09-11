@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  bonsai
+
+  Created by antuan.khoanh on 06/09/2022.
+  
+*/
+
+"Money_left" = "Осталось денег";
+"Money_spent" = "Денег потрачено";
