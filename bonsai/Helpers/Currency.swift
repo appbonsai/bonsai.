@@ -8,68 +8,68 @@
 import Foundation
 import OrderedCollections
 
-struct Currency: Hashable, Identifiable, Comparable, Equatable {
+public struct Currency: Hashable, Identifiable, Comparable, Equatable {
 
-    // for example 'US Dollar'
-    let localizedName: String
+   // for example 'US Dollar'
+   let localizedName: String
 
-    // for example 'USD'
-    let code: String
+   // for example 'USD'
+   let code: String
 
-    // for example '$'
-    let symbol: String
+   // for example '$'
+   let symbol: String
 
-    init?(locale: Locale) {
-        if let code = locale.currencyCode {
-            self.code = code
-            self.symbol = locale.currencySymbol ?? code
-            self.localizedName = (locale.localizedString(forCurrencyCode: code) ?? code).capitalizingFirstLetter()
-        } else {
-            return nil
-        }
-    }
+   init?(locale: Locale) {
+      if let code = locale.currencyCode {
+         self.code = code
+         self.symbol = locale.currencySymbol ?? code
+         self.localizedName = (locale.localizedString(forCurrencyCode: code) ?? code).capitalizingFirstLetter()
+      } else {
+         return nil
+      }
+   }
 
-    init(code: String, locale: Locale) {
-        self.code = code
-        self.symbol = locale.currencySymbol ?? code
-        self.localizedName = locale.localizedString(forCurrencyCode: code) ?? code
-    }
+   init(code: String, locale: Locale) {
+      self.code = code
+      self.symbol = locale.currencySymbol ?? code
+      self.localizedName = locale.localizedString(forCurrencyCode: code) ?? code
+   }
 
-    static var current: Currency {
-        Currency(locale: Locale.current) ?? `default`
-    }
+   static var current: Currency {
+      Currency(locale: Locale.current) ?? `default`
+   }
 
-    static var `default`: Currency {
-        Currency(code: "USD", locale: Locale(identifier: "US"))
-    }
+   static var `default`: Currency {
+      Currency(code: "USD", locale: Locale(identifier: "US"))
+   }
 
-    static var allAvailableCurrencies: OrderedSet<Currency> {
-        var set = OrderedSet(Locale.availableIdentifiers.compactMap { id in
-            Currency.init(locale: Locale(identifier: id))
-        })
-        set.sort()
-        return set
-    }
+   static var allAvailableCurrencies: OrderedSet<Currency> {
+      var set = OrderedSet(Locale.availableIdentifiers.compactMap { id in
+         Currency.init(locale: Locale(identifier: id))
+      })
+      set.sort()
+      return set
+   }
 
-    // MARK: - Identifiable
+   // MARK: - Identifiable
 
-    var id: String { code }
+   public var id: String { code }
 
-    // MARK: - Comparable
+   // MARK: - Comparable
 
-    static func < (lhs: Currency, rhs: Currency) -> Bool {
-        lhs.localizedName < rhs.localizedName
-    }
+   public static func < (lhs: Currency, rhs: Currency) -> Bool {
+      lhs.localizedName < rhs.localizedName
+   }
 
-    // MARK: - Hashable
+   // MARK: - Hashable
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(code)
-    }
+   public func hash(into hasher: inout Hasher) {
+      hasher.combine(code)
+   }
 
-    // MARK: - Equatable
+   // MARK: - Equatable
 
-    static func == (lhs: Currency, rhs: Currency) -> Bool {
-        lhs.code == rhs.code
-    }
+   public static func == (lhs: Currency, rhs: Currency) -> Bool {
+      lhs.code == rhs.code
+   }
 }
