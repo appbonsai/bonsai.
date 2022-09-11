@@ -63,7 +63,8 @@ struct HomeContainerView: View {
       }
       .ignoresSafeArea()
       .popover(isPresented: $isNewOperationPresented) {
-         NewOperationView(isPresented: $isNewOperationPresented)
+          SelectCurrencyPage(isPresented: $isNewOperationPresented, currencies: Currency.allAvailableCurrencies, selectedCurrency: .current)
+//         NewOperationView(isPresented: $isNewOperationPresented)
       }
    }
 }
