@@ -8,3 +8,29 @@
 
 "Money_left" = "Money left";
 "Money_spent" = "Money spent";
+"Total_budget" = "Total budget";
+"Daily_budget" = "Daily budget";
+"Budget_greeting" = "Hey, you are doing well!";
+"Drag_up_hint" = "Drag up to see your last operations";
+"Home_category" = "The most expensive categories";
+"Revenue_title" = "Revenue";
+"Expenses_title" = "Expenses";
+"Budget_title" = "Budget";
+"Target_title" = "of target";
+
+
+"Continue_button" = "Continue";
+"Try_for_free" = "Try for free";
+"AllSet_title" = "All set";
+
+//TODO:
+"AllSet_text" = "AllSet text";
+
+"Best_value" = "Best value";
+"Choose_your_plan" = "Choose your plan";
+
+"Subscription_description" = "By subscribing you agree to our ";
+"Merge_And" = " and ";
+"Terms_of_Service" = "Terms of Service";
+"Privacy_Policy" = "Privacy Policy";
+"Restore_Purchases" = "Restore Purchases";
