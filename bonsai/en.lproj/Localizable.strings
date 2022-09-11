@@ -10,7 +10,7 @@
 "Money_spent" = "Money spent";
 "Total_budget" = "Total budget";
 "Daily_budget" = "Daily budget";
-"Budget_greeting" = "Handsome, you are doing well!";
+"Budget_greeting" = "Hey, you are doing well!";
 "Drag_up_hint" = "Drag up to see your last operations";
 "Home_category" = "The most expensive categories";
 "Revenue_title" = "Revenue";
@@ -18,18 +18,10 @@
 "Budget_title" = "Budget";
 "Target_title" = "of target";
 
-//TODO:
-"Onboarding_1_title" = "";
-"Onboarding_2_title" = "";
-"Onboarding_3_title" = "";
-//TODO:
-"Onboarding_1_text" = "";
-"Onboarding_2_text" = "";
-"Onboarding_3_text" = "";
 
 "Continue_button" = "Continue";
 "Try_for_free" = "Try for free";
-"AllSet_title" = "AllSet";
+"AllSet_title" = "All set";
 
 //TODO:
 "AllSet_text" = "AllSet text";

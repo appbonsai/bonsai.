@@ -18,14 +18,6 @@
 "Budget_title" = "예산";
 "Target_title" = "대상";
 
-//할 것:
-"Onboarding_1_title" = "";
-"Onboarding_2_title" = "";
-"Onboarding_3_title" = "";
-//할 것:
-"Onboarding_1_text" = "";
-"Onboarding_2_text" = "";
-"Onboarding_3_text" = "";
 
 "Continue_button" = "계속";
 "Try_for_free" = "무료 체험";

@@ -19,15 +19,6 @@
 "Budget_title" = "预算";
 "Target_title" = "目标";
 
-//TODO:
-"Onboarding_1_title" = "";
-"Onboarding_2_title" = "";
-"Onboarding_3_title" = "";
-//TODO:
-"Onboarding_1_text" = "";
-"Onboarding_2_text" = "";
-"Onboarding_3_text" = "";
-
 "Continue_button" = "继续";
 "Try_for_free" = "免费试用";
 "AllSet_title" = "全集";

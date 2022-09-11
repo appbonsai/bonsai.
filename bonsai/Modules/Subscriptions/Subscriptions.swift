@@ -31,7 +31,7 @@ struct Subscriptions: View {
             .padding(.top, 20)
             HStack(alignment: .center) {
                Spacer()
-                Text(LocalizeService.Choose_your_plan)
+                Text(L.Choose_your_plan)
                   .font(.system(size: 28))
                   .bold()
                   .foregroundColor(BonsaiColor.purple6)
@@ -64,15 +64,15 @@ struct Subscriptions: View {
             .listRowBackground(BonsaiColor.back)
             
             let termsOfServiceUrl = "https://duckduckgo.com"
-             let termsOfServicelink = "[\(LocalizeService.Terms_of_Service)](\(termsOfServiceUrl))"
+             let termsOfServicelink = "[\(L.Terms_of_Service)](\(termsOfServiceUrl))"
             
             let privacyPolicyUrl = "https://duckduckgo.com"
-             let privacyPolicylink = "[\(LocalizeService.Privacy_Policy)](\(privacyPolicyUrl))"
+             let privacyPolicylink = "[\(L.Privacy_Policy)](\(privacyPolicyUrl))"
             
             Group {
-                Text(LocalizeService.Subscription_description) +
+                Text(L.Subscription_description) +
                Text(.init(termsOfServicelink)).foregroundColor(BonsaiColor.secondary) +
-                Text(LocalizeService.Merge_And) +
+                Text(L.Merge_And) +
                Text(.init(privacyPolicylink)).foregroundColor(BonsaiColor.secondary) +
                Text(".")
             }
@@ -85,7 +85,7 @@ struct Subscriptions: View {
                
             } label: {
                HStack(alignment: .center) {
-                   Text(LocalizeService.Restore_Purchases)
+                   Text(L.Restore_Purchases)
                      .font(.system(size: 12))
                      .foregroundColor(BonsaiColor.secondary)
                      .onTapGesture {
@@ -115,7 +115,7 @@ struct Subscriptions: View {
 
                         purchaseService.buy(package: package)
                      }
-                   Text(LocalizeService.Try_for_free)
+                   Text(L.Try_for_free)
                      .foregroundColor(BonsaiColor.card)
                      .font(.system(size: 17))
                      .bold()

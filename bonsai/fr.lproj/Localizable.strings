@@ -18,14 +18,6 @@
 "Budget_title" = "Budget" ;
 "Target_title" = "de la cible" ;
 
-//FAIRE:
-"Onboarding_1_title" = "" ;
-"Onboarding_2_title" = "" ;
-"Onboarding_3_title" = "" ;
-//FAIRE:
-"Onboarding_1_text" = "" ;
-"Onboarding_2_text" = "" ;
-"Onboarding_3_text" = "" ;
 
 "Continue_button" = "Continuer" ;
 "Try_for_free" = "Essayez gratuitement" ;

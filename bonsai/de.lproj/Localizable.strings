@@ -17,15 +17,6 @@
 "Budget_title" = "Budget";
 "Target_title" = "von Ziel";
 
-//MACHEN:
-"Onboarding_1_title" = "";
-"Onboarding_2_title" = "";
-"Onboarding_3_title" = "";
-//MACHEN:
-"Onboarding_1_text" = "";
-"Onboarding_2_text" = "";
-"Onboarding_3_text" = "";
-
 "Continue_button" = "Weiter";
 "Try_for_free" = "Kostenlos testen";
 "AllSet_title" = "AllSet";

@@ -18,14 +18,6 @@
 "Budget_title" = "Presupuesto";
 "Target_title" = "del objetivo";
 
-//QUE HACER:
-"Onboarding_1_title" = "";
-"Onboarding_2_title" = "";
-"Onboarding_3_title" = "";
-//QUE HACER:
-"Onboarding_1_text" = "";
-"Onboarding_2_text" = "";
-"Onboarding_3_text" = "";
 
 "Continue_button" = "Continuar";
 "Try_for_free" = "Pruébelo gratis";

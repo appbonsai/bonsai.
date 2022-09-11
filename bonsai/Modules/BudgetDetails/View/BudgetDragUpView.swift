@@ -15,7 +15,7 @@ struct BudgetDragUpView: View {
               .renderingMode(.template)
               .foregroundColor(Color.white)
               .padding(.bottom, 5)
-            Text(LocalizeService.Drag_up_hint)
+            Text(L.Drag_up_hint)
                 .font(BonsaiFont.body_17)
                 .foregroundColor(BonsaiColor.text)
         }

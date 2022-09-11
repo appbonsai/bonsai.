@@ -7,6 +7,8 @@
 
 import Foundation
 
+typealias L = LocalizeService
+
 class LocalizeService {
     static let Money_left = "Money_left".localized()
     static let Money_spent = "Money_spent".localized()

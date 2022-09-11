@@ -19,14 +19,6 @@
 "Budget_title" = "Budżet";
 "Target_title" = "docelowej";
 
-//TODO:
-"Onboarding_1_title" = "";
-"Onboarding_2_title" = "";
-"Onboarding_3_title" = "";
-//TODO:
-"Onboarding_1_text" = "";
-"Onboarding_2_text" = "";
-"Onboarding_3_text" = "";
 
 "Continue_button" = "Kontynuuj";
 "Try_for_free" = "Wypróbuj za darmo";
