@@ -36,8 +36,23 @@ public struct Currency: Hashable, Identifiable, Comparable, Equatable {
    }
 
    static var current: Currency {
-      Currency(locale: Locale.current) ?? `default`
+      get {
+         var defaultCurrency: Currency {
+            Currency(locale: Locale.current) ?? `default`
+         }
+         if let userPreferenceCurrencyCode = userPreferenceCurrencyCode {
+            return .allAvailableCurrencies.first(where: { $0.code == userPreferenceCurrencyCode }) ?? defaultCurrency
+         } else {
+            return defaultCurrency
+         }
+      }
+      set {
+         userPreferenceCurrencyCode = newValue.code
+      }
    }
+
+   @UserDefault("Currency.userPreferenceCurrencyCode")
+   static var userPreferenceCurrencyCode: String?
 
    static var `default`: Currency {
       Currency(code: "USD", locale: Locale(identifier: "US"))

@@ -16,6 +16,7 @@ struct NewOperationView: View {
 
    @State var selectedOperation: OperationType = .expense
    @State var amount: String = ""
+   @State var currency: Currency = .current
    @State var category: Category?
    @State var title: String = ""
    @State var tags: OrderedSet<Tag> = []
@@ -52,6 +53,7 @@ struct NewOperationView: View {
                         .padding([.bottom], 12)
                         AmountView(
                            operation: selectedOperation,
+                           currency: currency,
                            text: $amount
                         )
                         .cornerRadius(13)
@@ -102,7 +104,8 @@ struct NewOperationView: View {
                      category: category ?? .notSpecified,
                      account: .default,
                      type: selectedOperation.mappedToTransactionType,
-                     tags: Set(tags)
+                     tags: Set(tags),
+                     currency: currency
                   )
                   do {
                      try moc.save()

@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeContainerView: View {
 
    @State private var isNewOperationPresented = false
+   @State private var isCurrencySelectionPresented = false
 
    var body: some View {
       ZStack {
@@ -63,8 +64,19 @@ struct HomeContainerView: View {
       }
       .ignoresSafeArea()
       .popover(isPresented: $isNewOperationPresented) {
-          SelectCurrencyPage(isPresented: $isNewOperationPresented, currencies: Currency.allAvailableCurrencies, selectedCurrency: .current)
-//         NewOperationView(isPresented: $isNewOperationPresented)
+         NewOperationView(isPresented: $isNewOperationPresented)
+      }
+      .popover(isPresented: $isCurrencySelectionPresented) {
+         SelectCurrencyPage(
+            isPresented: $isCurrencySelectionPresented,
+            currencies: Currency.allAvailableCurrencies,
+            selectedCurrency: .current
+         )
+      }
+      .onAppear {
+         if Currency.userPreferenceCurrencyCode == nil {
+            isCurrencySelectionPresented = true
+         }
       }
    }
 }
