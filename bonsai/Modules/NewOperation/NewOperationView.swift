@@ -16,7 +16,7 @@ struct NewOperationView: View {
 
    @State var selectedOperation: OperationType = .expense
    @State var amount: String = ""
-   @State var currency: Currency = .current
+   @State var currency: Currency.Validated = .current
    @State var category: Category?
    @State var title: String = ""
    @State var tags: OrderedSet<Tag> = []

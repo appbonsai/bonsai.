@@ -46,9 +46,9 @@ public class Transaction: NSManagedObject, Identifiable {
          }
       }
    }
-   public var currency: Currency {
+   public var currency: Currency.Validated {
       get {
-         Currency.allAvailableCurrencies.first(where: { $0.code == currencyCode }) ?? .current
+         Currency.Validated.all.first(where: { $0.code == currencyCode }) ?? .current
       }
       set {
          currencyCode = newValue.code
@@ -65,7 +65,7 @@ public class Transaction: NSManagedObject, Identifiable {
       account: Account = .`default`,
       type: `Type`,
       tags: Set<Tag>,
-      currency: Currency = .current
+      currency: Currency.Validated = .current
    ) {
       self.init(context: context)
       self.id = id

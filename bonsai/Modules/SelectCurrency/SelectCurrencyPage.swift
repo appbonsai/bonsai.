@@ -10,11 +10,14 @@ import OrderedCollections
 
 struct SelectCurrencyPage: View {
 
-   @State var currencies: OrderedSet<Currency>
-   @State var selectedCurrency: Currency?
+   @State var currencies: OrderedSet<Currency.Validated>
+   @State var selectedCurrency: Currency.Validated?
    @Binding var isPresented: Bool
 
-   init(isPresented: Binding<Bool>, currencies: OrderedSet<Currency>, selectedCurrency: Currency? = nil) {
+   init(isPresented: Binding<Bool>,
+        currencies: OrderedSet<Currency.Validated>,
+        selectedCurrency: Currency.Validated? = nil
+   ) {
       self._isPresented = isPresented
       self._currencies = State(initialValue: currencies)
       self._selectedCurrency = State(initialValue: selectedCurrency)
@@ -56,7 +59,7 @@ struct SelectCurrencyPage: View {
                } // ScrollViewReader
                Button {
                   if let selectedCurrency = selectedCurrency {
-                     Currency.current = selectedCurrency
+                     Currency.Validated.current = selectedCurrency
                   }
                   isPresented = false
                } label: {
@@ -81,7 +84,7 @@ struct SelectCurrencyPage_Previews: PreviewProvider {
    static var previews: some View {
       SelectCurrencyPage(
          isPresented: .constant(true),
-         currencies: Currency.allAvailableCurrencies,
+         currencies: Currency.Validated.all,
          selectedCurrency: nil
       )
       .previewDevice(PreviewDevice(rawValue: "iPhone 13"))

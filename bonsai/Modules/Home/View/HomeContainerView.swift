@@ -69,14 +69,14 @@ struct HomeContainerView: View {
       .popover(isPresented: $isCurrencySelectionPresented) {
          SelectCurrencyPage(
             isPresented: $isCurrencySelectionPresented,
-            currencies: Currency.allAvailableCurrencies,
+            currencies: Currency.Validated.all,
             selectedCurrency: .current
          )
       }
       .onAppear {
-         if Currency.userPreferenceCurrencyCode == nil {
+//         if Currency.userPreferenceCurrencyCode == nil {
             isCurrencySelectionPresented = true
-         }
+//         }
       }
    }
 }

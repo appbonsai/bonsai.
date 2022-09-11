@@ -10,7 +10,7 @@ import SwiftUI
 struct AmountView: View {
 
    let operation: Operation
-   let currency: Currency
+   let currency: Currency.Validated
 
    @Binding var text: String
    private let characterLimit = 16

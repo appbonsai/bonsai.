@@ -9,33 +9,33 @@ import SwiftUI
 
 struct CurrencyCellView: View {
 
-    let isSelected: Bool
-    let currency: Currency
+   let isSelected: Bool
+   let currency: Currency.Validated
 
-    var body: some View {
-        HStack() {
-            Text("\(currency.symbol) - \(currency.localizedName)")
-                .foregroundColor(
-                   isSelected
-                   ? BonsaiColor.mainPurple
-                   : BonsaiColor.text
-                )
-            Spacer()
-        }
-        .padding([.vertical, .leading], 20)
-        .cornerRadius(13)
-        .overlay(
-           RoundedRectangle(cornerRadius: 13)
-              .stroke(
-                 BonsaiColor.mainPurple,
-                 lineWidth: isSelected ? 2 : 0
-              )
-        )
-    }
+   var body: some View {
+      HStack() {
+         Text("\(currency.localizedName) (\(currency.symbol))")
+            .foregroundColor(
+               isSelected
+               ? BonsaiColor.mainPurple
+               : BonsaiColor.text
+            )
+         Spacer()
+      }
+      .padding([.vertical, .leading], 20)
+      .cornerRadius(13)
+      .overlay(
+         RoundedRectangle(cornerRadius: 13)
+            .stroke(
+               BonsaiColor.mainPurple,
+               lineWidth: isSelected ? 2 : 0
+            )
+      )
+   }
 }
 
 struct CurrencyCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        CurrencyCellView(isSelected: false, currency: .current)
-    }
+   static var previews: some View {
+      CurrencyCellView(isSelected: false, currency: .default)
+   }
 }
