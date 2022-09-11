@@ -19,7 +19,6 @@ struct SelectCurrencyPage: View {
       self._currencies = State(initialValue: currencies)
       self._selectedCurrency = State(initialValue: selectedCurrency)
       let navBarAppearance = UINavigationBar.appearance()
-      navBarAppearance.isTranslucent = false
       navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
       navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
    }
@@ -47,7 +46,7 @@ struct SelectCurrencyPage: View {
                            }
                         }
                      } // VStack
-                     .padding([.leading, .trailing], 16)
+                     .padding([.top, .leading, .trailing], 16)
                      .onAppear {
                         if let selectedCurrency = selectedCurrency {
                            reader.scrollTo(selectedCurrency, anchor: .center)
