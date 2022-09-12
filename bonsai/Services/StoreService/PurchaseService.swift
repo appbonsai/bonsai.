@@ -30,7 +30,12 @@ final class PurchaseService: ObservableObject {
          .sink(receiveCompletion: { error in
             print("error \(error)")
          }, receiveValue: { pkg in
-            self.availablePackages = pkg
+             if let bestValueIndex = pkg.firstIndex(where: { $0.storeProduct.subscriptionPeriod?.unit == .year }) {
+                 self.availablePackages = pkg
+                 self.availablePackages.swapAt(bestValueIndex, 0)
+             } else {
+                 self.availablePackages = pkg
+             }
          })
          .store(in: &disposeBag)
    }
