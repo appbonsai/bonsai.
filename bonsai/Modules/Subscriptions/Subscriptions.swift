@@ -35,14 +35,14 @@ struct Subscriptions: View {
                         HStack {
                             BonsaiImage.xmarkSquare
                                 .renderingMode(.template)
-                                .foregroundColor(BonsaiColor.purple4)
-                                .font(.system(size: 34))
+                                .foregroundColor(BonsaiColor.mainPurple)
+                                .font(.system(size: 28))
                             
                             Spacer()
                         }
                         Spacer()
                     }.onTapGesture {
-                        
+                        isPresented = false
                     }
                 }
             }
