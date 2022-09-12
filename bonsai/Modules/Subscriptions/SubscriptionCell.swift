@@ -55,7 +55,7 @@ struct SubscriptionCell: View {
                             Spacer()
                             ZStack {
                                 RoundedRectangle(cornerRadius: 13)
-                                    .frame(width: 76, height: 22)
+                                    .frame(width: L.Best_value.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
                                     .foregroundColor(BonsaiColor.green)
                                 Text(L.Best_value)
                                     .foregroundColor(BonsaiColor.card)

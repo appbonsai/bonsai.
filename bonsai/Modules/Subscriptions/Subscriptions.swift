@@ -126,7 +126,7 @@ struct Subscriptions: View {
                Spacer()
                ZStack {
                   RoundedRectangle(cornerRadius: 13)
-                     .frame(width: 192, height: 48)
+                       .frame(width: continueWidthButton(), height: 48)
                      .foregroundColor(BonsaiColor.mainPurple)
                      .onTapGesture {
                         
@@ -144,6 +144,7 @@ struct Subscriptions: View {
                             isPresented = false
                          })
                      }
+                     
                    Text(L.Try_for_free)
                      .foregroundColor(BonsaiColor.card)
                      .font(.system(size: 17))
@@ -165,6 +166,12 @@ struct Subscriptions: View {
       }
        
    }
+    
+    private func continueWidthButton() -> CGFloat {
+        let flexibleWidth: CGFloat = L.Try_for_free.widthOfString(usingFont: .systemFont(ofSize: 17), inset: 20)
+        let standart: CGFloat = 192
+        return flexibleWidth > standart ? flexibleWidth : standart
+    }
    
 }
 
