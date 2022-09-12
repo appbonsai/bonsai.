@@ -99,11 +99,6 @@ struct HomeContainerView: View {
                Subscriptions(isPresented: $isSubscriptionPresented)
            }
        }
-       .onAppear {
-           DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-               purchaseService.isShownAllSet = false
-           }
-       }
    }
 }
 
