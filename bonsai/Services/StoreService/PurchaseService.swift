@@ -20,6 +20,7 @@ final class PurchaseService: ObservableObject {
    
    @Published var availablePackages: [Package] = []
    @Published var isSubscriptionActive = false
+   @Published var isShownAllSet = false
 
    private var disposeBag = Set<AnyCancellable>()
    
@@ -40,36 +41,39 @@ final class PurchaseService: ObservableObject {
          .store(in: &disposeBag)
    }
    
-   private func checkIfUserSubscriptionStatus() {
+   func checkIfUserSubscriptionStatus() {
       Purchases.shared.getCustomerInfo { customerInfo, error in
          self.isSubscriptionActive = customerInfo?.entitlements.all[Pro.typeName]?.isActive == true
       }
    }
    
-   func buy(package: Package?) {
+    func buy(package: Package?, completion: @escaping () -> Void) {
       if let package = package {
          Purchases.shared.purchase(package: package) { storeTransaction, customerInfo, error, bool in
             if let error = error {
-                assert(false, error.localizedDescription)
+                print(error.localizedDescription)
+                completion()
             }
-             
             if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
                self.isSubscriptionActive = allEntitlements.isActive
+                self.isShownAllSet = allEntitlements.isActive
+                completion()
             }
          }
       }
    }
    
-   func restorePurchase() {
+    func restorePurchase(completion: @escaping () -> Void) {
       Purchases.shared.restorePurchases { customerInfo, error in
          if let error = error {
-             assert(false, error.localizedDescription)
+             print(error.localizedDescription)
+             completion()
          }
          if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
             self.isSubscriptionActive = allEntitlements.isActive
-         } else {
-            self.isSubscriptionActive = false
-         }
+             self.isShownAllSet = allEntitlements.isActive
+             completion()
+         } 
       }
    }
    

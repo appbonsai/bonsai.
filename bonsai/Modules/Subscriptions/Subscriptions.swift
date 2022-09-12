@@ -9,11 +9,17 @@ import SwiftUI
 import RevenueCat
 
 struct Subscriptions: View {
-   
+   @State var isShowActivityIndicator = false
    @State var id: String = ""
+   @Binding var isPresented: Bool
    @EnvironmentObject private var purchaseService: PurchaseService
+
+    init(isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+    }
       
    var body: some View {
+       LoadingView(isShowing: $isShowActivityIndicator) {
       ZStack {
          BonsaiColor.back
             .ignoresSafeArea()
@@ -104,7 +110,11 @@ struct Subscriptions: View {
                      .font(.system(size: 12))
                      .foregroundColor(BonsaiColor.secondary)
                      .onTapGesture {
-                        purchaseService.restorePurchase()
+                         isShowActivityIndicator = true
+                         purchaseService.restorePurchase {
+                             isShowActivityIndicator = false
+                             isPresented = false
+                         }
                      }
                   Spacer()
                }
@@ -128,7 +138,11 @@ struct Subscriptions: View {
                               $0.storeProduct.productIdentifier == id
                            })
 
-                        purchaseService.buy(package: package)
+                         isShowActivityIndicator = true
+                         purchaseService.buy(package: package, completion: {
+                            isShowActivityIndicator = false
+                            isPresented = false
+                         })
                      }
                    Text(L.Try_for_free)
                      .foregroundColor(BonsaiColor.card)
@@ -146,16 +160,19 @@ struct Subscriptions: View {
          }
          .listStyle(PlainListStyle())
          .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
+          
+          }
       }
        
    }
-   
    
 }
 
 
 struct Subscriptions_Previews: PreviewProvider {
    static var previews: some View {
-      Subscriptions()
+       Subscriptions(isPresented: .constant(false))
    }
 }
+
+
