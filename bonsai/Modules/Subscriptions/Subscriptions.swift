@@ -19,11 +19,26 @@ struct Subscriptions: View {
             .ignoresSafeArea()
          List {
             HStack {
-               Image("undraw_japan_ubgk 1")
-                  .resizable()
-                  .scaledToFill()
-                  .clipped()
-                  .padding([.leading, .trailing], 73)
+                ZStack {
+                    Image("undraw_japan_ubgk 1")
+                        .resizable()
+                        .scaledToFill()
+                        .clipped()
+                        .padding([.leading, .trailing], 73)
+                    VStack {
+                        HStack {
+                            BonsaiImage.xmarkSquare
+                                .renderingMode(.template)
+                                .foregroundColor(BonsaiColor.purple4)
+                                .font(.system(size: 34))
+                            
+                            Spacer()
+                        }
+                        Spacer()
+                    }.onTapGesture {
+                        
+                    }
+                }
             }
             .listRowBackground(BonsaiColor.back)
             .listRowSeparator(.hidden)
@@ -132,6 +147,7 @@ struct Subscriptions: View {
          .listStyle(PlainListStyle())
          .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
       }
+       
    }
    
    
