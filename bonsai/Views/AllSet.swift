@@ -27,6 +27,20 @@ struct AllSet: View {
                         Text("Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim ")
                             .font(.system(size: 17))
                             .padding([.leading, .trailing], 28)
+                        
+                        ZStack {
+                        RoundedRectangle(cornerRadius: 13)
+                           .frame(width: 192, height: 48)
+                           .foregroundColor(BonsaiColor.mainPurple)
+                           .onTapGesture {
+                               
+                           }
+                           .padding(.bottom, 24)
+                            Text("Close")
+                                .foregroundColor(BonsaiColor.card)
+                                .font(.system(size: 17))
+                                .bold()
+                        }
                     }
                 })
             .frame(height: 400, alignment: .center)
