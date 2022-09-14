@@ -179,6 +179,7 @@ struct Subscriptions: View {
 struct Subscriptions_Previews: PreviewProvider {
    static var previews: some View {
        Subscriptions(isPresented: .constant(false))
+           .environmentObject(PurchaseService())
    }
 }
 

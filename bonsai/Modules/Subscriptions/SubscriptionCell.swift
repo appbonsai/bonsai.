@@ -21,11 +21,11 @@ struct SubscriptionCell: View {
     }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 13)
-            .frame(height: 76)
+        RoundedRectangle(cornerRadius: 8)
+            .frame(height: 66)
             .foregroundColor(BonsaiColor.card)
             .overlay {
-                RoundedRectangle(cornerRadius: 13)
+                RoundedRectangle(cornerRadius: 8)
                     .stroke(
                         { () -> Color in
                             if isSelected {
@@ -38,34 +38,53 @@ struct SubscriptionCell: View {
                     ).shimmering(duration: subscription.isMostPopular ? 3 : 0)
                 HStack {
                     Image(isSelected ? "path_checked" : "path_checkbox")
-                        .padding([.leading,.trailing], 18)
+                        .padding(.leading, 18)
+                        .padding(.trailing, 10)
                     
                     VStack(alignment: .leading) {
-                        Text(subscription.periodName)
-                            .foregroundColor(BonsaiColor.text)
-                            .font(.system(size: 17))
-                            .bold()
-                            .padding(.bottom, 2)
-                        Text("\(subscription.price) / month")
-                            .foregroundColor(BonsaiColor.purple3)
-                            .font(.system(size: 17))
-                    }
-                    if subscription.isMostPopular {
                         HStack {
+                            Text(subscription.periodName)
+                                .foregroundColor(BonsaiColor.text)
+                                .font(.system(size: 17))
+                                .bold()
+                                .padding(.bottom, 2)
+                            if subscription.isMostPopular {
                             Spacer()
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 13)
-                                    .frame(width: L.Best_value.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
-                                    .foregroundColor(BonsaiColor.green)
-                                Text(L.Best_value)
-                                    .foregroundColor(BonsaiColor.card)
-                                    .font(.system(size: 12))
+                                HStack {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .frame(width: L.Best_value.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
+                                            .foregroundColor(BonsaiColor.green)
+                                        Text(L.Best_value)
+                                            .foregroundColor(BonsaiColor.card)
+                                            .font(.system(size: 12))
+                                    }
+                                }
+                                .padding(.bottom, 2)
+                                .shimmering(duration: 3)
                             }
-                            .padding(.trailing, 4)
-                            .padding(.bottom, 38)
                         }
-                        .shimmering(duration: 3)
+                        HStack {
+                            RoundedRectangle(cornerRadius: 8)
+                                .frame(width: 60, height: 20)
+                                .foregroundColor(BonsaiColor.blueLight)
+                                .overlay {
+                                    Text("-24%")
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 17))
+                                }
+                                Text("\(subscription.price) / month")
+                                    .foregroundColor(BonsaiColor.purple3)
+                                    .font(.system(size: 17))
+                            Spacer()
+                                Text("$53.99")
+                                .foregroundColor(BonsaiColor.purple3)
+                                .font(.system(size: 17))
+                        }
+                        .padding(.top, -4)
+                        .padding(.bottom, 4)
                     }
+                    
                     Spacer()
                 }
             }
