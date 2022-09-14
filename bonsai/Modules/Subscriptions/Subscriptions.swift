@@ -62,21 +62,24 @@ struct Subscriptions: View {
             .padding(.bottom, 12)
             
             ForEach(Array(purchaseService.availablePackages.enumerated()), id: \.offset) { index, pkg in
-               
+
                let storeProduct = pkg.storeProduct
                let productId = storeProduct.productIdentifier
                let periodName = storeProduct.subscriptionPeriod!.periodTitle
-               let price = storeProduct.localizedPriceString
+               let fullPrice = storeProduct.localizedPriceString
+               let pricePerMonth = storeProduct.priceFormatter?.string(from: storeProduct.pricePerMonth ?? .zero) ?? ""
+                
                let isMostPopular = storeProduct.subscriptionPeriod?.unit == .year
-               
-               let subscription = Subscription(
-                  id: productId,
-                  periodName: periodName,
-                  price: price,
-                  isMostPopular: isMostPopular)
-               
-               SubscriptionCell(
-                  subscription: subscription, id: id)
+
+                let subscription = Subscription(
+                    id: productId,
+                    periodName: periodName,
+                    fullPrice: fullPrice,
+                    pricePerMonth: pricePerMonth,
+                    isMostPopular: isMostPopular)
+                SubscriptionCell(
+                    subscription: subscription, id: id
+                )
                .listRowSeparator(.hidden)
                .onTapGesture {
                   id = pkg.storeProduct.productIdentifier
@@ -171,6 +174,12 @@ struct Subscriptions: View {
         let flexibleWidth: CGFloat = L.Try_for_free.widthOfString(usingFont: .systemFont(ofSize: 17), inset: 20)
         let standart: CGFloat = 192
         return flexibleWidth > standart ? flexibleWidth : standart
+    }
+    
+    func test(pkg: StoreProduct) {
+  
+        
+        let pricePerMonth = pkg.priceFormatter?.string(from: pkg.pricePerMonth ?? .zero)
     }
    
 }

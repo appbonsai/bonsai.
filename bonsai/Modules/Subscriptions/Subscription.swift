@@ -10,6 +10,7 @@ import Foundation
 struct Subscription {
     let id: String
     let periodName: String
-    let price: String
+    let fullPrice: String
+    let pricePerMonth: String
     let isMostPopular: Bool
 }

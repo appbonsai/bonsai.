@@ -73,11 +73,11 @@ struct SubscriptionCell: View {
                                         .foregroundColor(.white)
                                         .font(.system(size: 17))
                                 }
-                                Text("\(subscription.price) / month")
+                                Text("\(subscription.pricePerMonth) / month")
                                     .foregroundColor(BonsaiColor.purple3)
                                     .font(.system(size: 17))
                             Spacer()
-                                Text("$53.99")
+                            Text("\(subscription.fullPrice)")
                                 .foregroundColor(BonsaiColor.purple3)
                                 .font(.system(size: 17))
                         }
