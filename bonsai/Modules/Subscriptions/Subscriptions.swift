@@ -60,32 +60,17 @@ struct Subscriptions: View {
             }
             .listRowBackground(BonsaiColor.back)
             .padding(.bottom, 12)
-            
-            ForEach(Array(purchaseService.availablePackages.enumerated()), id: \.offset) { index, pkg in
-
-               let storeProduct = pkg.storeProduct
-               let productId = storeProduct.productIdentifier
-               let periodName = storeProduct.subscriptionPeriod!.periodTitle
-               let fullPrice = storeProduct.localizedPriceString
-               let pricePerMonth = storeProduct.priceFormatter?.string(from: storeProduct.pricePerMonth ?? .zero) ?? ""
-                
-               let isMostPopular = storeProduct.subscriptionPeriod?.unit == .year
-
-                let subscription = Subscription(
-                    id: productId,
-                    periodName: periodName,
-                    fullPrice: fullPrice,
-                    pricePerMonth: pricePerMonth,
-                    isMostPopular: isMostPopular)
-                SubscriptionCell(
+             
+             ForEach(Array(purchaseService.availablePackages.1.enumerated()), id: \.offset) { index, subscription in
+                 SubscriptionCell(
                     subscription: subscription, id: id
-                )
-               .listRowSeparator(.hidden)
-               .onTapGesture {
-                  id = pkg.storeProduct.productIdentifier
-               }
-            }
-            .listRowBackground(BonsaiColor.back)
+                 )
+                 .listRowSeparator(.hidden)
+                 .onTapGesture {
+                     id = subscription.id
+                 }
+             }
+             .listRowBackground(BonsaiColor.back)
             
             let termsOfServiceUrl = "https://duckduckgo.com"
              let termsOfServicelink = "[\(L.Terms_of_Service)](\(termsOfServiceUrl))"
@@ -134,7 +119,7 @@ struct Subscriptions: View {
                      .onTapGesture {
                         
                         let package = purchaseService
-                           .availablePackages
+                             .availablePackages.0
                            .first(where: {
                               id.isEmpty ?
                               $0.storeProduct.subscriptionPeriod?.unit == .year :

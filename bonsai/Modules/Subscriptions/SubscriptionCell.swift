@@ -69,7 +69,7 @@ struct SubscriptionCell: View {
                                 .frame(width: 60, height: 20)
                                 .foregroundColor(BonsaiColor.blueLight)
                                 .overlay {
-                                    Text("-24%")
+                                    Text("-\(subscription.discount)")
                                         .foregroundColor(.white)
                                         .font(.system(size: 17))
                                 }
@@ -77,7 +77,7 @@ struct SubscriptionCell: View {
                                     .foregroundColor(BonsaiColor.purple3)
                                     .font(.system(size: 17))
                             Spacer()
-                            Text("\(subscription.fullPrice)")
+                            Text(subscription.fullPrice)
                                 .foregroundColor(BonsaiColor.purple3)
                                 .font(.system(size: 17))
                         }

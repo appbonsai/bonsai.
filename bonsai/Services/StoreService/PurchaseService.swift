@@ -18,9 +18,11 @@ final class PurchaseService: ObservableObject {
       }
    }
    
-   @Published var availablePackages: [Package] = []
+   @Published var availablePackages: ([Package], [Subscription]) = ([], [])
    @Published var isSubscriptionActive = false
    @Published var isShownAllSet = false
+    
+   private let subscriptionViewModel: SubscriptionViewModel = .init()
 
    private var disposeBag = Set<AnyCancellable>()
    
@@ -30,13 +32,10 @@ final class PurchaseService: ObservableObject {
          .receive(on: RunLoop.main)
          .sink(receiveCompletion: { error in
             print("error \(error)")
-         }, receiveValue: { pkg in
-             if let bestValueIndex = pkg.firstIndex(where: { $0.storeProduct.subscriptionPeriod?.unit == .year }) {
-                 self.availablePackages = pkg
-                 self.availablePackages.swapAt(bestValueIndex, 0)
-             } else {
-                 self.availablePackages = pkg
-             }
+         }, receiveValue: { [weak self] pkg in
+             
+             let subscriptions = self?.subscriptionViewModel.setSubscriptions(packages: pkg) ?? []
+             self?.availablePackages = (pkg, subscriptions)
          })
          .store(in: &disposeBag)
    }
