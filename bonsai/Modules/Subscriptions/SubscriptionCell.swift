@@ -64,15 +64,18 @@ struct SubscriptionCell: View {
                                 .shimmering(duration: 3)
                             }
                         }
+                        
                         HStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .frame(width: 60, height: 20)
-                                .foregroundColor(BonsaiColor.blueLight)
-                                .overlay {
-                                    Text("-\(subscription.discount)")
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 17))
-                                }
+                            if !subscription.isDiscountZero {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .frame(width: 60, height: 20)
+                                    .foregroundColor(BonsaiColor.blueLight)
+                                    .overlay {
+                                        Text("-\(subscription.discount)")
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 17))
+                                    }
+                            }
                                 Text("\(subscription.pricePerMonth) / month")
                                     .foregroundColor(BonsaiColor.purple3)
                                     .font(.system(size: 17))

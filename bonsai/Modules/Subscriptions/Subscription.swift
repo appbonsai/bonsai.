@@ -15,6 +15,7 @@ struct Subscription {
     let pricePerMonth: String
     let isMostPopular: Bool
     let discount: String
+    let isDiscountZero: Bool
 }
 
 struct SubscriptionViewModel {
@@ -56,7 +57,8 @@ struct SubscriptionViewModel {
                     fullPrice: fullPrice,
                     pricePerMonth: pricePerMonthDescription,
                     isMostPopular: isMostPopular,
-                    discount: discountDescription)
+                    discount: discountDescription,
+                    isDiscountZero: discount.isEqual(to: 0))
             }
             return Subscription(
                 id: productId,
@@ -64,7 +66,8 @@ struct SubscriptionViewModel {
                 fullPrice: fullPrice,
                 pricePerMonth: pricePerMonthDescription,
                 isMostPopular: isMostPopular,
-                discount: "")
+                discount: "",
+                isDiscountZero: false)
         }
             
         return subscriptions.sorted(by: { $1.discount < $0.discount })
