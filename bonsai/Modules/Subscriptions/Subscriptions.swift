@@ -52,16 +52,33 @@ struct Subscriptions: View {
             .padding(.top, 20)
             HStack(alignment: .center) {
                Spacer()
-                Text(L.Choose_your_plan)
-                  .font(.system(size: 28))
-                  .bold()
-                  .foregroundColor(BonsaiColor.purple6)
+                VStack(alignment: .center) {
+                    
+                    Text(L.Choose_your_plan)
+                        .font(.system(size: 24))
+                        .bold()
+                        .foregroundColor(BonsaiColor.purple6)
+                    
+                    Text("With a premium subscription you get unlimited access to the functionality.")
+                        .font(.system(size: 17))
+                        .foregroundColor(BonsaiColor.purple6)
+                        .padding(.top, -2)
+                    
+                    let learnMore = Text("Learn more")
+                        .font(.system(size: 17))
+                        .bold()
+                        .foregroundColor(BonsaiColor.secondary)
+                    
+                    learnMore.onTapGesture {
+                        print("open premium features")
+                    }
+                }
                Spacer()
             }
             .listRowBackground(BonsaiColor.back)
             .padding(.bottom, 12)
              
-             ForEach(Array(purchaseService.availablePackages.1.enumerated()), id: \.offset) { index, subscription in
+             ForEach(Array(purchaseService.viewModel.createSubscriptions().enumerated()), id: \.offset) { index, subscription in
                  SubscriptionCell(
                     subscription: subscription, id: id
                  )
@@ -119,7 +136,7 @@ struct Subscriptions: View {
                      .onTapGesture {
                         
                         let package = purchaseService
-                             .availablePackages.0
+                             .viewModel.packages
                            .first(where: {
                               id.isEmpty ?
                               $0.storeProduct.subscriptionPeriod?.unit == .year :

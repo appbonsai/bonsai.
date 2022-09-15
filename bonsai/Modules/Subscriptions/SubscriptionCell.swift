@@ -56,7 +56,7 @@ struct SubscriptionCell: View {
                                             .frame(width: L.Best_value.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
                                             .foregroundColor(BonsaiColor.green)
                                         Text(L.Best_value)
-                                            .foregroundColor(BonsaiColor.card)
+                                            .foregroundColor(.black)
                                             .font(.system(size: 12))
                                     }
                                 }
