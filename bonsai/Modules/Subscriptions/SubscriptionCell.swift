@@ -58,6 +58,7 @@ struct SubscriptionCell: View {
                                         Text(L.Best_value)
                                             .foregroundColor(.black)
                                             .font(.system(size: 12))
+                                            .bold()
                                     }
                                 }
                                 .padding(.bottom, 2)
@@ -68,17 +69,18 @@ struct SubscriptionCell: View {
                         HStack {
                             if !subscription.isDiscountZero {
                                 RoundedRectangle(cornerRadius: 8)
-                                    .frame(width: 60, height: 20)
+                                    .frame(width: 50, height: 20)
                                     .foregroundColor(BonsaiColor.blueLight)
                                     .overlay {
                                         Text("-\(subscription.discount)")
                                             .foregroundColor(.white)
-                                            .font(.system(size: 17))
+                                            .font(.system(size: 14))
+                                            .bold()
                                     }
                             }
                                 Text("\(subscription.pricePerMonth) / month")
                                     .foregroundColor(BonsaiColor.purple3)
-                                    .font(.system(size: 17))
+                                    .font(.system(size: 14))
                             Spacer()
                             Text(subscription.fullPrice)
                                 .foregroundColor(BonsaiColor.purple3)

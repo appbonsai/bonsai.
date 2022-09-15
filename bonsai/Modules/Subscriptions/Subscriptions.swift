@@ -27,7 +27,7 @@ struct Subscriptions: View {
             HStack {
                 ZStack {
                     GifImage("3")
-                        .frame(width: 378, height: 210)
+                        .frame(height: 190)
                     
 //                    Image("undraw_japan_ubgk 1")
 //                        .resizable()
@@ -58,11 +58,12 @@ struct Subscriptions: View {
                 VStack(alignment: .center) {
                     
                     Text(L.Choose_your_plan)
-                        .font(.system(size: 24))
+                        .font(.system(size: 17))
                         .bold()
                         .foregroundColor(BonsaiColor.purple6)
                     
                     Text("With a premium subscription you get unlimited access to the functionality.")
+                        .frame(height: 50, alignment: .center)
                         .font(.system(size: 17))
                         .foregroundColor(BonsaiColor.purple6)
                         .padding(.top, -2)
@@ -105,7 +106,7 @@ struct Subscriptions: View {
                Text(.init(privacyPolicylink)).foregroundColor(BonsaiColor.secondary) +
                Text(".")
             }
-            .font(.system(size: 12))
+            .font(.system(size: 14))
             .lineLimit(3)
             .listRowSeparator(.hidden)
             .listRowBackground(BonsaiColor.back)
@@ -115,7 +116,7 @@ struct Subscriptions: View {
             } label: {
                HStack(alignment: .center) {
                    Text(L.Restore_Purchases)
-                     .font(.system(size: 12))
+                     .font(.system(size: 14))
                      .foregroundColor(BonsaiColor.secondary)
                      .onTapGesture {
                          isShowActivityIndicator = true
