@@ -26,11 +26,14 @@ struct Subscriptions: View {
          List {
             HStack {
                 ZStack {
-                    Image("undraw_japan_ubgk 1")
-                        .resizable()
-                        .scaledToFill()
-                        .clipped()
-                        .padding([.leading, .trailing], 73)
+                    GifImage("3")
+                        .frame(width: 378, height: 210)
+                    
+//                    Image("undraw_japan_ubgk 1")
+//                        .resizable()
+//                        .scaledToFill()
+//                        .clipped()
+//                        .padding([.leading, .trailing], 73)
                     VStack {
                         HStack {
                             BonsaiImage.xmarkSquare
@@ -178,12 +181,6 @@ struct Subscriptions: View {
         return flexibleWidth > standart ? flexibleWidth : standart
     }
     
-    func test(pkg: StoreProduct) {
-  
-        
-        let pricePerMonth = pkg.priceFormatter?.string(from: pkg.pricePerMonth ?? .zero)
-    }
-   
 }
 
 
