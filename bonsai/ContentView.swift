@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
 
    var body: some View {
-       Subscriptions(isPresented: .constant(true))
+       PremiumFeature()
+//       Subscriptions(isPresented: .constant(true))
 //       AllSet()
 //      TabBar()
    }
