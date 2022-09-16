@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct PremiumFeature: View {
+    @Binding var isPresented: Bool
+
+    init(isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+    }
+    
     var body: some View {
-        
         VStack {
             ZStack {
-                GifImage("2")
-                    .frame(width: 200, height: 90)
+                GifImage("4")
+                    .frame(height: 190)
             }
             VStack(alignment: .center) {
                 Text("With a premium subscription you get unlimited access to the functionality.")
@@ -34,11 +39,11 @@ struct PremiumFeature: View {
                 .listStyle(.automatic)
             }
         }
-        }
+    }
     }
 
 struct PremiumFeature_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumFeature()
+        PremiumFeature(isPresented: .constant(true))
     }
 }

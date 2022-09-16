@@ -12,6 +12,8 @@ struct Subscriptions: View {
    @State var isShowActivityIndicator = false
    @State var id: String = ""
    @Binding var isPresented: Bool
+    @State var isFeaturePremiumPresented: Bool = false
+
    @EnvironmentObject private var purchaseService: PurchaseService
 
     init(isPresented: Binding<Bool>) {
@@ -74,6 +76,8 @@ struct Subscriptions: View {
                         .foregroundColor(BonsaiColor.secondary)
                     
                     learnMore.onTapGesture {
+                        isFeaturePremiumPresented = true
+                        
                         print("open premium features")
                     }
                 }
@@ -172,8 +176,12 @@ struct Subscriptions: View {
          .edgesIgnoringSafeArea([.bottom, .leading, .trailing])
           
           }
+  
       }
-       
+       .popover(isPresented: $isFeaturePremiumPresented) {
+           PremiumFeature(isPresented: $isFeaturePremiumPresented)
+       }
+ 
    }
     
     private func continueWidthButton() -> CGFloat {
