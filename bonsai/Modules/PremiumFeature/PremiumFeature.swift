@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PremiumFeature: View {
     @Binding var isPresented: Bool
+    @State var isPresentedPremiumDescription: Bool = false
 
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
@@ -31,6 +32,7 @@ struct PremiumFeature: View {
                     PremiumFeatureCell(premium: premium)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
+                            isPresentedPremiumDescription = true
                         }
                 }
                 .onAppear {
@@ -39,8 +41,11 @@ struct PremiumFeature: View {
                 .listStyle(.automatic)
             }
         }
+        .popover(isPresented: $isPresentedPremiumDescription) {
+            PremiumDescription(isPresented: $isPresentedPremiumDescription)
+        }
     }
-    }
+}
 
 struct PremiumFeature_Previews: PreviewProvider {
     static var previews: some View {
