@@ -11,6 +11,8 @@ struct PremiumFeatureCell: View {
     
     private let premium: Premium
     
+    private var isSelected: Bool = false
+    
     init(premium: Premium) {
         self.premium = premium
     }
@@ -18,17 +20,24 @@ struct PremiumFeatureCell: View {
     var body: some View {
         HStack {
             Image(Asset.accountBalanceWallet.name)
-                .frame(width: 50, height: 50, alignment: .topLeading)
+                .padding(.bottom, 18)
+                .padding([.trailing], 10)
             
             VStack(alignment: .leading) {
                 Text(premium.name)
-                    .padding(.bottom, 4)
+                    .font(.system(size: 17))
+                    .bold()
                 Text(premium.description)
+                    .font(.system(size: 14))
+                Rectangle()
+                    .frame(height: 1)
             }
+            BonsaiImage.chevronForward
+                .renderingMode(.template)
+                .foregroundColor(Color.white)
         }
-        
-        
     }
+
 }
 
 struct PremiumFeatureCell_Previews: PreviewProvider {
@@ -45,7 +54,7 @@ struct Premium {
 
 let mockPremiums: [Premium] = [
     .init(name: "Unlimeted transactions", description: "You can create unlimeted transactions, You can create unlimeted transactions, You can create unlimeted transactions", icon: ""),
-    .init(name: "Flexible budget", description: "Set flexible period days for budget", icon: ""),
-    .init(name: "Unlimited budget", description: "Create unlimited budget for your needs", icon: ""),
+    .init(name: "Flexible budget", description: "Set flexible period days for budget,Set flexible period days for budget, Set flexible period days for budget", icon: ""),
+    .init(name: "Unlimited budget", description: "Create unlimited budget for your needs, Create unlimited budget for your needs", icon: ""),
     .init(name: "Customize app", description: "Customize home background with your favourite tree, change icon of the app", icon: "")
 ]
