@@ -50,7 +50,7 @@ struct PremiumDescription: View {
                 }
             }
             .padding()
-        }
+        }.ignoresSafeArea()
     }
 }
 

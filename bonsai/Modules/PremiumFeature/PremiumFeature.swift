@@ -17,12 +17,12 @@ struct PremiumFeature: View {
     
     var body: some View {
         ZStack {
-           BonsaiColor.back
+            Color.black
               .ignoresSafeArea()
         VStack {
             ZStack {
-                GifImage("4")
-                    .frame(height: 190)
+                GifImage("5555")
+                    .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.width / 2)
             }
 
             ScrollView(showsIndicators: false) {
@@ -30,6 +30,7 @@ struct PremiumFeature: View {
                     Text("With a premium subscription you get unlimited access to the functionality.")
                         .font(.system(size: 17))
                         .foregroundColor(BonsaiColor.purple6)
+                        .padding([.top, .bottom], 12)
                 }
                 .padding([.leading, .trailing], 12)
                 
@@ -41,7 +42,7 @@ struct PremiumFeature: View {
                         }
                 }
             }
-            .padding(.bottom, 12)
+            .padding([.top, .bottom], 12)
         }
         .popover(isPresented: $isPresentedPremiumDescription) {
             PremiumDescription(isPresented: $isPresentedPremiumDescription)
