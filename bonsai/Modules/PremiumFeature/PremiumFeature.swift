@@ -21,13 +21,15 @@ struct PremiumFeature: View {
                 GifImage("4")
                     .frame(height: 190)
             }
-            VStack(alignment: .center) {
-                Text("With a premium subscription you get unlimited access to the functionality.")
-                    .frame(height: 50, alignment: .center)
-                    .font(.system(size: 17))
-                    .foregroundColor(BonsaiColor.purple6)
-            }
-            List {
+
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .center) {
+                    Text("With a premium subscription you get unlimited access to the functionality.")
+                        .font(.system(size: 17))
+                        .foregroundColor(BonsaiColor.purple6)
+                }
+                .padding([.leading, .trailing], 12)
+                
                 ForEach(Array(mockPremiums.enumerated()), id: \.offset) { index, premium in
                     PremiumFeatureCell(premium: premium)
                         .listRowSeparator(.hidden)
@@ -35,11 +37,8 @@ struct PremiumFeature: View {
                             isPresentedPremiumDescription = true
                         }
                 }
-                .onAppear {
-                    UITableView.appearance().showsVerticalScrollIndicator = false
-                }
-                .listStyle(.automatic)
             }
+            .padding(.bottom, 12)
         }
         .popover(isPresented: $isPresentedPremiumDescription) {
             PremiumDescription(isPresented: $isPresentedPremiumDescription)
