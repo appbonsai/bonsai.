@@ -10,9 +10,9 @@ import Foundation
 
 struct MockSubscriptions {
     public static let subscriptions: [Subscription] = [
-      .init(id: "", periodName: "Monthly", price: "4$", isMostPopular: false),
-      .init(id: "", periodName: "3 Months", price: "9$", isMostPopular: false),
-      .init(id: "", periodName: "Annually", price: "$20", isMostPopular: true),
-      .init(id: "", periodName: "Lifetime, Pay Once", price: "35", isMostPopular: false)
+        .init(id: "", periodName: "Monthly", fullPrice: "4$", pricePerMonth: "2$", isMostPopular: false, discount: "-2%", isDiscountZero: false),
+        .init(id: "", periodName: "Monthly", fullPrice: "4$", pricePerMonth: "2$", isMostPopular: false,  discount: "-2%", isDiscountZero: false),
+        .init(id: "", periodName: "Monthly", fullPrice: "4$", pricePerMonth: "2$", isMostPopular: false,  discount: "-2%", isDiscountZero: false),
+        .init(id: "", periodName: "Lifetime, Pay Once", fullPrice: "4$", pricePerMonth: "2$", isMostPopular: true, discount: "-2%", isDiscountZero: false),
     ]
 }

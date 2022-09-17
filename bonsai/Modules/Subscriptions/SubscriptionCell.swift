@@ -21,54 +21,91 @@ struct SubscriptionCell: View {
     }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 13)
-            .frame(height: 76)
+        RoundedRectangle(cornerRadius: 8)
+            .frame(height: 66)
             .foregroundColor(BonsaiColor.card)
             .overlay {
-                RoundedRectangle(cornerRadius: 13)
-                    .stroke(
-                        { () -> Color in
-                            if isSelected {
-                                return BonsaiColor.mainPurple
-                            } else {
-                                return .clear
-                            }
-                        }(),
-                        lineWidth: 2
-                    ).shimmering(duration: subscription.isMostPopular ? 3 : 0)
+                selectingRow()
                 HStack {
                     Image(isSelected ? "path_checked" : "path_checkbox")
-                        .padding([.leading,.trailing], 18)
+                        .padding(.leading, 18)
+                        .padding(.trailing, 10)
                     
                     VStack(alignment: .leading) {
-                        Text(subscription.periodName)
-                            .foregroundColor(BonsaiColor.text)
-                            .font(.system(size: 17))
-                            .bold()
-                            .padding(.bottom, 2)
-                        Text("\(subscription.price) per month")
-                            .foregroundColor(BonsaiColor.purple3)
-                            .font(.system(size: 17))
+                        productDescriptions()
+                        
+                        priceDetails()
+                        .padding(.top, -4)
+                        .padding(.bottom, 4)
                     }
-                    if subscription.isMostPopular {
-                        HStack {
-                            Spacer()
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 13)
-                                    .frame(width: 76, height: 22)
-                                    .foregroundColor(BonsaiColor.green)
-                                Text(L.Best_value)
-                                    .foregroundColor(BonsaiColor.card)
-                                    .font(.system(size: 12))
-                            }
-                            .padding(.trailing, 4)
-                            .padding(.bottom, 38)
-                        }
-                        .shimmering(duration: 3)
-                    }
+                    
                     Spacer()
                 }
             }
+    }
+    
+    private func selectingRow() -> some View {
+        RoundedRectangle(cornerRadius: 8)
+            .stroke(
+                { () -> Color in
+                    if isSelected {
+                        return BonsaiColor.mainPurple
+                    } else {
+                        return .clear
+                    }
+                }(),
+                lineWidth: 2
+            )
+            .shimmering(duration: subscription.isMostPopular ? 3 : 0)
+    }
+    
+    private func productDescriptions() -> some View {
+        HStack {
+            Text(subscription.periodName)
+                .foregroundColor(BonsaiColor.text)
+                .font(.system(size: 17))
+                .bold()
+                .padding(.bottom, 2)
+            if subscription.isMostPopular {
+                Spacer()
+                HStack {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 8)
+                            .frame(width: L.Best_value.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
+                            .foregroundColor(BonsaiColor.green)
+                        Text(L.Best_value)
+                            .foregroundColor(.black)
+                            .font(.system(size: 12))
+                            .bold()
+                    }
+                }
+                .padding(.bottom, 2)
+                .shimmering(duration: 3)
+            }
+        }
+    }
+    
+    private func priceDetails() -> some View {
+        HStack {
+            if !subscription.isDiscountZero {
+                RoundedRectangle(cornerRadius: 8)
+                    .frame(width: 50, height: 20)
+                    .foregroundColor(BonsaiColor.blueLight)
+                    .overlay {
+                        Text("-\(subscription.discount)")
+                            .foregroundColor(.white)
+                            .font(.system(size: 14))
+                            .bold()
+                    }
+            }
+                Text("\(subscription.pricePerMonth) / month")
+                    .foregroundColor(BonsaiColor.purple3)
+                    .font(.system(size: 14))
+            Spacer()
+            Text(subscription.fullPrice)
+                .foregroundColor(BonsaiColor.purple3)
+                .font(.system(size: 17))
+        }
     }
 }
 
