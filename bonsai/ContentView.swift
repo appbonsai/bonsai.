@@ -11,8 +11,8 @@ struct ContentView: View {
 
    var body: some View {
 //       Subscriptions()
-       AllSet()
-//      TabBar()
+//       AllSet()
+      TabBar()
    }
 }
 

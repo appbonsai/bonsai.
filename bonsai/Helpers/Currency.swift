@@ -8,68 +8,119 @@
 import Foundation
 import OrderedCollections
 
-struct Currency: Hashable, Identifiable, Comparable, Equatable {
 
-    // for example 'US Dollar'
-    let localizedName: String
+// Thx: https://stackoverflow.com/a/65710111
+public struct Currency {
 
-    // for example 'USD'
-    let code: String
+   // Global constants and variables are always computed lazily, in a similar manner to Lazy Stored Properties.
+   static fileprivate var cache: [String: Currency] = { () -> [String: Currency] in
+      var mapCurrencyCode2Symbols: [String: Set<String>] = [:]
+      let currencyCodes = Set(Locale.commonISOCurrencyCodes)
 
-    // for example '$'
-    let symbol: String
+      for localeId in Locale.availableIdentifiers {
+         let locale = Locale(identifier: localeId)
+         guard let currencyCode = locale.currencyCode,
+               let currencySymbol = locale.currencySymbol else {
+            continue
+         }
+         if currencyCode.contains(currencyCode) {
+            mapCurrencyCode2Symbols[currencyCode, default: []].insert(currencySymbol)
+         }
+      }
 
-    init?(locale: Locale) {
-        if let code = locale.currencyCode {
-            self.code = code
-            self.symbol = locale.currencySymbol ?? code
-            self.localizedName = (locale.localizedString(forCurrencyCode: code) ?? code).capitalizingFirstLetter()
-        } else {
-            return nil
-        }
-    }
+      var mapCurrencyCode2Currency: [String: Currency] = [:]
+      for (code, symbols) in mapCurrencyCode2Symbols {
+         mapCurrencyCode2Currency[code] = Currency(code: code, symbols: Array(symbols))
+      }
+      return mapCurrencyCode2Currency
+   }()
 
-    init(code: String, locale: Locale) {
-        self.code = code
-        self.symbol = locale.currencySymbol ?? code
-        self.localizedName = locale.localizedString(forCurrencyCode: code) ?? code
-    }
+   /// Returns the currency code. For example USD or EUD
+   let code: String
 
-    static var current: Currency {
-        Currency(locale: Locale.current) ?? `default`
-    }
+   /// Returns currency symbols. For example ["USD", "US$", "$"] for USD, ["RUB", "₽"] for RUB or ["₴", "UAH"] for UAH
+   let symbols: [String]
 
-    static var `default`: Currency {
-        Currency(code: "USD", locale: Locale(identifier: "US"))
-    }
+   /// Returns shortest currency symbols. For example "$" for USD or "₽" for RUB
+   var shortestSymbol: String? {
+      symbols.min { $0.count < $1.count }
+   }
 
-    static var allAvailableCurrencies: OrderedSet<Currency> {
-        var set = OrderedSet(Locale.availableIdentifiers.compactMap { id in
-            Currency.init(locale: Locale(identifier: id))
-        })
-        set.sort()
-        return set
-    }
+   // for example 'US Dollar'
+   var localizedName: String? {
+      Locale.current.localizedString(forCurrencyCode: code)
+   }
 
-    // MARK: - Identifiable
+   /// Returns information about a currency by its code.
+   static func find(_ code: String) -> Currency? {
+      cache[code]
+   }
+}
 
-    var id: String { code }
+public extension Currency {
 
-    // MARK: - Comparable
+   // Currency ready to use on UI
+   struct Validated: Hashable, Comparable, Identifiable {
 
-    static func < (lhs: Currency, rhs: Currency) -> Bool {
-        lhs.localizedName < rhs.localizedName
-    }
+      let code: String
+      let localizedName: String
+      let symbol: String
 
-    // MARK: - Hashable
+      static var `default`: Validated {
+         let fallback = Validated(code: "USD", localizedName: "US Dollar", symbol: "$")
+         if let currency = Locale.current.currencyCode.flatMap(find(_:)) {
+            return .init(currency: currency) ?? fallback
+         }
+         return fallback
+      }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(code)
-    }
+      static var current: Validated {
+         get {
+            if let code = userPreferenceCurrencyCode {
+               return all.first { $0.code == code } ?? .default
+            } else {
+               return .default
+            }
+         }
+         set {
+            userPreferenceCurrencyCode = newValue.code
+         }
+      }
 
-    // MARK: - Equatable
+      static var all: OrderedSet<Validated> {
+         var set = OrderedSet(
+            Locale.commonISOCurrencyCodes.compactMap({ code -> Validated? in
+               Currency.find(code).flatMap(Validated.init(currency:))
+            })
+         )
+         set.sort()
+         return set
+      }
 
-    static func == (lhs: Currency, rhs: Currency) -> Bool {
-        lhs.code == rhs.code
-    }
+      @UserDefault("Currency.Validated.userPreferenceCurrencyCode")
+      static var userPreferenceCurrencyCode: String?
+
+      // MARK: - Identifiable
+
+      public var id: String { code }
+
+      // MARK: - Comparable
+
+      public static func < (lhs: Validated, rhs: Validated) -> Bool {
+         lhs.localizedName < rhs.localizedName
+      }
+   }
+}
+
+extension Currency.Validated {
+
+   init?(currency: Currency) {
+      guard let name = currency.localizedName,
+            let symbol = currency.shortestSymbol else {
+         return nil
+      }
+      self.code = currency.code
+      self.localizedName = name.capitalizingFirstLetter()
+      self.symbol = symbol
+   }
 }

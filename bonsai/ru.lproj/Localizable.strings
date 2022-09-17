@@ -23,6 +23,12 @@
 "Try_for_free" = "Попробовать бесплатно";
 "AllSet_title" = "Все готово";
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Выбрать";
+"SelectCurrencyPage.Confirm" = "Выбрать";
+"SelectCurrencyPage.Choose_default_currency" = "Выбор валюты по-умолчанию";
+
 //TODO:
 "AllSet_text" = "Все готово текст";
 

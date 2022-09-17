@@ -40,4 +40,12 @@ class LocalizeService {
     static let Privacy_Policy = "Privacy_Policy".localized()
     static let Restore_Purchases = "Restore_Purchases".localized()
 
+   // SelectCurrencyPage
+
+
+   enum SelectCurrencyPage {
+      static let Choose = "SelectCurrencyPage.Choose".localized()
+      static let Confirm = "SelectCurrencyPage.Confirm".localized()
+      static let Choose_default_currency = "SelectCurrencyPage.Choose_default_currency".localized()
+   }
 }
