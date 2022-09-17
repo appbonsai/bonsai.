@@ -94,12 +94,13 @@ struct Subscriptions: View {
 
                 VStack {
                     HStack {
-                        BonsaiImage.xmarkSquare
+                        Spacer()
+                        BonsaiImage.xmarkCircle
                             .renderingMode(.template)
                             .foregroundColor(BonsaiColor.mainPurple)
                             .font(.system(size: 28))
+                            .padding(.horizontal)
                         
-                        Spacer()
                     }
                     Spacer()
                 }.onTapGesture {
@@ -147,20 +148,20 @@ struct Subscriptions: View {
             Spacer()
             VStack(alignment: .center) {
                 Text(L.Choose_your_plan)
-                    .font(.system(size: 17))
+                    .font(.system(size: 20))
                     .bold()
                     .foregroundColor(BonsaiColor.purple6)
                 
                 Text("With a premium subscription you get unlimited access to the functionality.")
-                    .frame(height: 50, alignment: .center)
-                    .font(.system(size: 17))
+                    .frame(alignment: .center)
                     .foregroundColor(BonsaiColor.purple6)
                     .padding(.top, -2)
                 
                 let learnMore = Text("Learn more")
-                    .font(.system(size: 17))
                     .bold()
-                    .foregroundColor(BonsaiColor.secondary)
+                    .foregroundColor(BonsaiColor.blueLight)
+                    .shimmering(duration: 2.5)
+                    .padding(.top, 4)
                 
                 learnMore.onTapGesture {
                     isFeaturePremiumPresented = true
