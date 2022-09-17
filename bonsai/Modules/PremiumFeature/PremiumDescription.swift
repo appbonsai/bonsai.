@@ -16,17 +16,40 @@ struct PremiumDescription: View {
     
     var body: some View {
         VStack {
+            
             ZStack {
-                GifImage("5")
-                    .frame(height: 190)
+                BonsaiColor.purple2
+                    .ignoresSafeArea()
+                GifImage("new_operation")
+                    .frame(width: UIScreen.main.bounds.width / 1.5, height: UIScreen.main.bounds.width * 1.3)
             }
+
             VStack(alignment: .center) {
-                Text("With a premium subscription you get unlimited access to the functionality.With a premium subscription you get unlimited access to the functionalityWith a premium subscription you get unlimited access to the functionalityWith a premium subscription you get unlimited access to the functionalityWith a premium subscription you get unlimited access to the functionality")
+                Text("Unlimited transactions")
                     .font(.system(size: 17))
                     .foregroundColor(BonsaiColor.purple6)
+                    .bold()
+                    .padding()
+                Text("With a premium subscription you get unlimited access to the functionality.With a premium subscription you get unlimited access to the functionality.")
+                    .font(.system(size: 14))
+                    .foregroundColor(BonsaiColor.purple6)
+                    .padding(.bottom, 16)
+                
+                ZStack {
+                   RoundedRectangle(cornerRadius: 13)
+                        .frame(width: 200, height: 48)
+                      .foregroundColor(BonsaiColor.mainPurple)
+                      .onTapGesture {
+                          isPresented = false
+                      }
+                      
+                    Text("OK")
+                      .foregroundColor(BonsaiColor.card)
+                      .font(.system(size: 17))
+                      .bold()
+                }
             }
             .padding()
-            Spacer()
         }
     }
 }

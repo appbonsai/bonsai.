@@ -16,6 +16,9 @@ struct PremiumFeature: View {
     }
     
     var body: some View {
+        ZStack {
+           BonsaiColor.back
+              .ignoresSafeArea()
         VStack {
             ZStack {
                 GifImage("4")
@@ -42,6 +45,7 @@ struct PremiumFeature: View {
         }
         .popover(isPresented: $isPresentedPremiumDescription) {
             PremiumDescription(isPresented: $isPresentedPremiumDescription)
+        }
         }
     }
 }
