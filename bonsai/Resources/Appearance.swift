@@ -22,6 +22,8 @@ enum BonsaiFont {
 }
 
 enum BonsaiImage {
+   static var xmarkCircle: Image { Image(systemName: "xmark.circle") }
+   static var xmarkSquare: Image { Image(systemName: "xmark.square") }
    static var crossVialFill: Image { Image(systemName: "cross.vial.fill") }
    static var crossVial: Image { Image(systemName: "cross.vial") }
    static var forkKnifeCircleFill: Image { Image(systemName: "fork.knife.circle.fill") }
