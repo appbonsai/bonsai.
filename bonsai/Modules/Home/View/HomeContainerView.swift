@@ -14,6 +14,7 @@ struct HomeContainerView: View {
    @State private var isNewOperationPresented = false
     @State private var isSubscriptionPresented = false
     @State var showAllSet: Bool = false
+   @State private var isCurrencySelectionPresented = false
 
     @EnvironmentObject var purchaseService: PurchaseService
     
@@ -98,7 +99,20 @@ struct HomeContainerView: View {
            .popover(isPresented: $isSubscriptionPresented) {
                Subscriptions(isPresented: $isSubscriptionPresented)
            }
+           .popover(isPresented: $isCurrencySelectionPresented) {
+              SelectCurrencyPage(
+                 isPresented: $isCurrencySelectionPresented,
+                 currencies: Currency.Validated.all,
+                 selectedCurrency: .current
+              )
+           }
+           .onAppear {
+//              if Currency.userPreferenceCurrencyCode == nil {
+                 isCurrencySelectionPresented = true
+//              }
+           }
        }
+    
    }
 }
 

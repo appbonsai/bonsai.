@@ -23,6 +23,9 @@ targets:
         product: OrderedCollections
       - package: purchases-ios
         product: RevenueCat
+    scheme:
+      bonsai:
+        - bonsai
   BudgetServiceTests:
     platform: iOS
     type: bundle.unit-test

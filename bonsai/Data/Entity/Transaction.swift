@@ -46,6 +46,14 @@ public class Transaction: NSManagedObject, Identifiable {
          }
       }
    }
+   public var currency: Currency.Validated {
+      get {
+         Currency.Validated.all.first(where: { $0.code == currencyCode }) ?? .current
+      }
+      set {
+         currencyCode = newValue.code
+      }
+   }
 
    @discardableResult convenience init(
       context: NSManagedObjectContext,
@@ -56,7 +64,8 @@ public class Transaction: NSManagedObject, Identifiable {
       category: Category = .notSpecified,
       account: Account = .`default`,
       type: `Type`,
-      tags: Set<Tag>
+      tags: Set<Tag>,
+      currency: Currency.Validated = .current
    ) {
       self.init(context: context)
       self.id = id
@@ -66,6 +75,7 @@ public class Transaction: NSManagedObject, Identifiable {
       self.category = category
       self.account = account
       self.type = type
+      self.currency = currency
       tags.forEach(addToTags(_:))
    }
 
@@ -89,6 +99,9 @@ public class Transaction: NSManagedObject, Identifiable {
    // Note: Do not use these accessors, but use `type` instead
    @NSManaged public var toAccount: Account?
    @NSManaged public var typeValue: Int16
+
+   // Note: Do not use this accessor, but use `currency` instead
+   @NSManaged public var currencyCode: String
 }
 
 public extension Transaction {

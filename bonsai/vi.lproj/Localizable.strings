@@ -23,6 +23,12 @@
 "Try_for_free" = "Thử miễn phí";
 "AllSet_title" = "Tất cả các thiết lập";
 
+// SelectCurrencyPage
+
+"SelectCurrencyPage.Choose" = "Choose";
+"SelectCurrencyPage.Confirm" = "Confirm";
+"SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
+
 //TODO:
 "AllSet_text" = "Tất cả các thiết lập
  text";
