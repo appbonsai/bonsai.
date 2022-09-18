@@ -28,6 +28,8 @@ struct PremiumFeature: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .center) {
                     Text("With a premium subscription you get unlimited access to the functionality.")
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
                         .font(.system(size: 17))
                         .foregroundColor(BonsaiColor.purple6)
                         .padding([.top, .bottom], 12)

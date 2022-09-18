@@ -18,43 +18,57 @@ struct Subscriptions: View {
 
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
+        UINavigationBar.changeAppearance(clear: true)
     }
     
     var body: some View {
-        LoadingView(isShowing: $isShowActivityIndicator) {
-            ZStack {
-                Color.black
-                    .ignoresSafeArea()
-                ScrollView(showsIndicators: false) {
-                    gifWithCloseButton()
-                        .padding(.bottom, 12)
-                        .padding(.top, 20)
-                    
-                    planDescription()
-                        .padding(.bottom, 12)
-                    
-                    purchaseProducts()
-                        .padding(.horizontal)
-                    
-                    textGroup()
-                        .padding()
-
-                    Button {
+        NavigationView {
+            LoadingView(isShowing: $isShowActivityIndicator) {
+                ZStack {
+                    Color.black
+                        .ignoresSafeArea()
+                    ScrollView(showsIndicators: false) {
+                        gifView()
+                            .padding(.bottom, 12)
+                            .padding(.top, 20)
                         
-                    } label: {
-                        restorePurchase()
+                        planDescription()
+                            .padding(.bottom, 12)
+                        
+                        purchaseProducts()
                             .padding(.horizontal)
+                        
+                        textGroup()
+                            .padding(.horizontal)
+                        
+                        Button {
+                            
+                        } label: {
+                            restorePurchase()
+                                .padding()
+                        }
+                        
+                        continueButton()
+                            .padding(.bottom, 30)
                     }
-                    
-                    continueButton()
-                        .padding(.bottom, 30)
+                    .ignoresSafeArea()
                 }
-                .ignoresSafeArea()
+                
             }
-            
-        }
-        .popover(isPresented: $isFeaturePremiumPresented) {
-            PremiumFeature(isPresented: $isFeaturePremiumPresented)
+            .popover(isPresented: $isFeaturePremiumPresented) {
+                PremiumFeature(isPresented: $isFeaturePremiumPresented)
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        isPresented = false
+                    }) {
+                        Text("Cancel")
+                            .foregroundColor(BonsaiColor.secondary)
+                    }
+                }
+            }
         }
         
     }
@@ -73,8 +87,8 @@ struct Subscriptions: View {
     private func restorePurchase() -> some View {
         HStack(alignment: .center) {
             Text(L.Restore_Purchases)
+                .font(.system(size: 14))
                 .foregroundColor(BonsaiColor.secondary)
-                .bold()
                 .onTapGesture {
                     isShowActivityIndicator = true
                     purchaseService.restorePurchase {
@@ -86,26 +100,11 @@ struct Subscriptions: View {
         }
     }
     
-    private func gifWithCloseButton() -> some View {
+    private func gifView() -> some View {
         HStack {
             ZStack {
                 GifImage("6666")
                     .frame(width: UIScreen.main.bounds.width , height: UIScreen.main.bounds.width / 2)
-
-                VStack {
-                    HStack {
-                        Spacer()
-                        BonsaiImage.xmarkCircle
-                            .renderingMode(.template)
-                            .foregroundColor(BonsaiColor.mainPurple)
-                            .font(.system(size: 28))
-                            .padding(.horizontal)
-                        
-                    }
-                    Spacer()
-                }.onTapGesture {
-                    isPresented = false
-                }
             }
         }
     }
@@ -153,15 +152,15 @@ struct Subscriptions: View {
                     .foregroundColor(BonsaiColor.purple6)
                 
                 Text("With a premium subscription you get unlimited access to the functionality.")
-                    .frame(alignment: .center)
+                    .frame(maxWidth: .infinity)
+                    .multilineTextAlignment(.center)
                     .foregroundColor(BonsaiColor.purple6)
                     .padding(.top, -2)
-                
+                    .padding(.horizontal)
                 let learnMore = Text("Learn more")
                     .bold()
                     .foregroundColor(BonsaiColor.blueLight)
                     .shimmering(duration: 2.5)
-                    .padding(.top, 4)
                 
                 learnMore.onTapGesture {
                     isFeaturePremiumPresented = true
@@ -186,13 +185,14 @@ struct Subscriptions: View {
             .foregroundColor(BonsaiColor.secondary).bold() +
         Text(".")
         return text
-            .lineLimit(3)
-            
+            .font(.system(size: 14))
+            .frame(maxWidth: .infinity)
+            .multilineTextAlignment(.center)            
     }
     
     private func continueWidthButton() -> CGFloat {
-        let flexibleWidth: CGFloat = L.Try_for_free.widthOfString(usingFont: .systemFont(ofSize: 17), inset: 20)
-        let standart: CGFloat = 192
+        let flexibleWidth: CGFloat = L.Try_for_free.widthOfString(usingFont: .systemFont(ofSize: 17), inset: 30)
+        let standart: CGFloat = 200
         return flexibleWidth > standart ? flexibleWidth : standart
     }
     

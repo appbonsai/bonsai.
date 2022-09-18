@@ -16,12 +16,15 @@ struct PremiumDescription: View {
     
     var body: some View {
         VStack {
-            
             ZStack {
                 BonsaiColor.purple2
                     .ignoresSafeArea()
-                GifImage("new_operation")
-                    .frame(width: UIScreen.main.bounds.width / 1.5, height: UIScreen.main.bounds.width * 1.3)
+                VStack {
+                    GifImage("new_operation")
+                        .frame(width: UIScreen.main.bounds.width / 1.8, height: UIScreen.main.bounds.width * 1.1)
+                    
+                }
+                .frame(height: UIScreen.main.bounds.width * 1.2)
             }
 
             VStack(alignment: .center) {
@@ -29,11 +32,12 @@ struct PremiumDescription: View {
                     .font(.system(size: 17))
                     .foregroundColor(BonsaiColor.purple6)
                     .bold()
-                    .padding()
+                    .padding([.top, .bottom], 4)
                 Text("With a premium subscription you get unlimited access to the functionality.With a premium subscription you get unlimited access to the functionality.")
+                    .padding(.horizontal)
+                    .padding(.bottom, 8)
                     .font(.system(size: 14))
                     .foregroundColor(BonsaiColor.purple6)
-                    .padding(.bottom, 16)
                 
                 ZStack {
                    RoundedRectangle(cornerRadius: 13)
@@ -49,8 +53,7 @@ struct PremiumDescription: View {
                       .bold()
                 }
             }
-            .padding()
-        }.ignoresSafeArea()
+        }
     }
 }
 

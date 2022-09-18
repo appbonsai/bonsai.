@@ -19,23 +19,18 @@ struct PremiumFeatureCell: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
-            .frame(height: 100)
+            .frame(height: 80)
             .foregroundColor(BonsaiColor.card)
             .overlay {
                 HStack {
                     Image(Asset.accountBalanceWallet.name)
-                        .padding(.bottom, 18)
                         .padding([.leading ,.trailing], 10)
                     
-                    VStack(alignment: .leading) {
-                        Text(premium.name)
-                            .font(.system(size: 17))
-                            .bold()
-                            .padding(.bottom, 2)
-                        Text(premium.description)
-                            .font(.system(size: 14))
-                            .padding(.bottom, 4)
-                    }
+                    Text(premium.name)
+                        .font(.system(size: 17))
+                        .bold()
+                        .padding(.bottom, 2)
+                    
                     Spacer()
                     BonsaiImage.chevronForward
                         .renderingMode(.template)
