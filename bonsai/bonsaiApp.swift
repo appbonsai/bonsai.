@@ -12,6 +12,7 @@ import RevenueCat
 struct bonsaiApp: App {
 
    @StateObject private var dataController = DataController.sharedInstance
+   @StateObject private var cloudKitController = CloudKitController.sharedInstance
    @StateObject private var purchaseService = PurchaseService()
 
    var body: some Scene {
