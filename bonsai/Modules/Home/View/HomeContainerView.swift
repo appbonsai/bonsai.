@@ -19,9 +19,6 @@ struct HomeContainerView: View {
     @EnvironmentObject var purchaseService: PurchaseService
     
     private var isPremium: Bool {
-        if let country = Locale.current.regionCode, country == "UA" {
-            return true
-        }
         if purchaseService.isSubscriptionActive {
             return true
         }
