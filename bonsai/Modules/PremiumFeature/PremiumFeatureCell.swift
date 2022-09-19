@@ -46,7 +46,7 @@ struct PremiumFeatureCell: View {
 
 struct PremiumFeatureCell_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumFeatureCell(premium: mockPremiums.first!)
+        PremiumFeatureCell(premium: .init(name: "", description: "", icon: ""))
     }
 }
 
@@ -55,10 +55,3 @@ struct Premium {
     let description: String
     let icon: String
 }
-
-let mockPremiums: [Premium] = [
-    .init(name: "Unlimeted transactions", description: "You can create unlimeted transactions, You can create unlimeted transactions, You can create unlimeted transactions", icon: ""),
-    .init(name: "Flexible budget", description: "Set flexible period days for budget,Set flexible period days for budget, Set flexible period days for budget", icon: ""),
-    .init(name: "Unlimited budget", description: "Create unlimited budget for your needs, Create unlimited budget for your needs", icon: ""),
-    .init(name: "Customize app", description: "Customize home background with your favourite tree, change icon of the app", icon: "")
-]

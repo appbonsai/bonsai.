@@ -10,6 +10,7 @@ import SwiftUI
 struct PremiumFeature: View {
     @Binding var isPresented: Bool
     @State var isPresentedPremiumDescription: Bool = false
+    @State var premium: Premium = .init(name: "", description: "", icon: "")
 
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
@@ -27,7 +28,7 @@ struct PremiumFeature: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .center) {
-                    Text("With a premium subscription you get unlimited access to the functionality.")
+                    Text("Premium subscription unleashes full power of bonsai. No limits, no ads, custom icons and more ")
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 17))
@@ -36,10 +37,11 @@ struct PremiumFeature: View {
                 }
                 .padding([.leading, .trailing], 12)
                 
-                ForEach(Array(mockPremiums.enumerated()), id: \.offset) { index, premium in
+                ForEach(Array(premiumFeatures.enumerated()), id: \.offset) { index, premium in
                     PremiumFeatureCell(premium: premium)
                         .listRowSeparator(.hidden)
                         .onTapGesture {
+                            self.premium = premiumFeatures[index]
                             isPresentedPremiumDescription = true
                         }
                 }
@@ -47,10 +49,21 @@ struct PremiumFeature: View {
             .padding([.top, .bottom], 12)
         }
         .popover(isPresented: $isPresentedPremiumDescription) {
-            PremiumDescription(isPresented: $isPresentedPremiumDescription)
+            PremiumDescription(
+                isPresented:$isPresentedPremiumDescription,
+                premium: $premium
+            )
         }
         }
     }
+    
+    let premiumFeatures: [Premium] = [
+        .init(name: "Unlimited categories", description: "You can create unlimited categories, feel free to specify your transactions", icon: ""),
+        .init(name: "Flexible budget", description: "Set flexible period days for budgets", icon: ""),
+        .init(name: "Unlimited budgets", description: "Get unlimited opportunity to create budget for your needs", icon: ""),
+        .init(name: "Custom appearance", description: "Customize home background with your favourite tree, change icon of the app. ", icon: ""),
+        .init(name: "No ads", description: "You won't see ads. You truly don't need this", icon: "")
+    ]
 }
 
 struct PremiumFeature_Previews: PreviewProvider {

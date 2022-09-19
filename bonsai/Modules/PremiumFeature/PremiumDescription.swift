@@ -9,9 +9,11 @@ import SwiftUI
 
 struct PremiumDescription: View {
     @Binding var isPresented: Bool
-
-    init(isPresented: Binding<Bool>) {
+    @Binding private var premium: Premium
+    
+    init(isPresented: Binding<Bool>, premium: Binding<Premium>) {
         self._isPresented = isPresented
+        self._premium = premium
     }
     
     var body: some View {
@@ -28,12 +30,12 @@ struct PremiumDescription: View {
             }
 
             VStack(alignment: .center) {
-                Text("Unlimited transactions")
+                Text(premium.name)
                     .font(.system(size: 17))
                     .foregroundColor(BonsaiColor.purple6)
                     .bold()
                     .padding([.top, .bottom], 4)
-                Text("With a premium subscription you get unlimited access to the functionality.With a premium subscription you get unlimited access to the functionality.")
+                Text(premium.description)
                     .padding(.horizontal)
                     .padding(.bottom, 8)
                     .font(.system(size: 14))
@@ -59,6 +61,6 @@ struct PremiumDescription: View {
 
 struct PremiumDescription_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumDescription(isPresented: .constant(true))
+        PremiumDescription(isPresented: .constant(true), premium: .constant(.init(name: "", description: "", icon: "")))
     }
 }
