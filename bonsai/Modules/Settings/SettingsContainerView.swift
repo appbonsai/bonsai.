@@ -9,7 +9,29 @@ import SwiftUI
 
 struct SettingsContainerView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List {
+                Section(header: Text("Important tasks")) {
+                    TaskRow()
+                    TaskRow()
+                    TaskRow()
+                }
+                
+                Section(header: Text("Other tasks")) {
+                    TaskRow()
+                    TaskRow()
+                    TaskRow()
+                }
+            }
+            .navigationTitle("Appearance")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+}
+
+struct TaskRow: View {
+    var body: some View {
+        Text("Task data goes here")
     }
 }
 
