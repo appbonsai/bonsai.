@@ -8,35 +8,81 @@
 import SwiftUI
 
 struct SettingsContainerView: View {
-    init() {
+    @Binding var selectedIcon: Bool
+    @Binding var selectedBackground: Bool
+    @State var isPremiumSelected: Bool = false
+
+    @Environment(\.openURL) var openURL
+
+    init(selectedIcon: Binding<Bool>,
+         selectedBackground: Binding<Bool>) {
+        self._selectedIcon = selectedIcon
+        self._selectedBackground = selectedBackground
         UITableView.appearance().showsVerticalScrollIndicator = false
         UITableView.appearance().separatorStyle = .none
        UITableView.appearance().backgroundColor = UIColor(BonsaiColor.back)
     }
     
+    
+    private let others: [OtherRows] = [
+        .premiumFeature, .termsOfService, .privacyPolicy
+    ]
+
+    private enum OtherRows: String {
+        case premiumFeature = "Bonsai premium features"
+        case termsOfService = "Terms of Service"
+        case privacyPolicy = "Privacy Policy"
+    }
+    
     var body: some View {
         List {
             Section(header: Text("home background theme")) {
-                BackgroundChangeRow()
+                BackgroundChangeRow(isSelected: selectedBackground)
             }
             .listRowBackground(BonsaiColor.card)
             Section(header: Text("app icon")) {
-                AppIconChangeRow()
+                AppIconChangeRow(isSelected: selectedIcon)
             }
             .listRowBackground(BonsaiColor.card)
             
             Section(header: Text("other")) {
-                ForEach(Array(otherRows.enumerated()), id: \.offset) { index, item in
-                    Text(item)
+                ForEach(Array(others.enumerated()), id: \.offset) { index, item in
+                    HStack {
+                        Text(item.rawValue)
+                        Spacer()
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        
+                        switch others[index] {
+                        case .premiumFeature:
+                            isPremiumSelected = true
+                            
+                        case .termsOfService:
+                            openURL(URL(string: "https://www.google.com")!)
+
+
+                        case .privacyPolicy:
+                            openURL(URL(string: "https://www.apple.com")!)
+
+                        }
+                    }
                 }
             }
+           
             .listRowBackground(BonsaiColor.card)
         }
+        .popover(isPresented: $isPremiumSelected, content: {
+            PremiumFeature(isPresented: $isPremiumSelected)
+        })
     }
     
 }
 
 struct AppIconChangeRow: View {
+    
+    let isSelected: Bool
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
@@ -46,8 +92,19 @@ struct AppIconChangeRow: View {
                             .resizable()
                             .frame(width: 62, height: 62)
                             .scaledToFit()
+                            .overlay(
+                               RoundedRectangle(cornerRadius: 13)
+                                  .stroke(
+                                     BonsaiColor.mainPurple,
+                                     lineWidth: isSelected ? 2 : 0
+                                  )
+                            )
                         Text("default")
                     }
+                    .onTapGesture {
+                        
+                    }
+                   
                 }
             }
         }
@@ -56,6 +113,8 @@ struct AppIconChangeRow: View {
 }
 
 struct BackgroundChangeRow: View {
+    let isSelected: Bool
+
     var body: some View {
         VStack {
             Image("bonsai_1")
@@ -75,6 +134,17 @@ struct BackgroundChangeRow: View {
                                 .cornerRadius(8)
                             Text("bonsai")
                         }
+                        .overlay(
+                           RoundedRectangle(cornerRadius: 13)
+                              .stroke(
+                                 BonsaiColor.mainPurple,
+                                 lineWidth: isSelected ? 2 : 0
+                              )
+                        )
+                        .onTapGesture {
+                            let tap = bgs[index]
+                            
+                        }
                     }
                 
                 }
@@ -85,23 +155,14 @@ struct BackgroundChangeRow: View {
     }
 }
 
-struct OtherSettingsRow: View {
-    var body: some View {
-        Text("Bonsai premium features")
-    }
-}
-
 
 struct SettingsContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsContainerView()
+        SettingsContainerView(selectedIcon: .constant(true), selectedBackground: .constant(true))
     }
 }
 
 let bgs = ["bonsai_1", "bonsai_2", "bonsai_3", "bonsai_4"]
 let appIcons = ["icon-dark", "icon-light", "icon-dark", "icon-light", "icon-dark", "icon-light"]
-let otherRows = [
-    "Bonsai premium features",
-    "Terms of Service",
-    "Privacy Policy"
-]
+
+

@@ -40,7 +40,7 @@ struct TabBar: View {
             }
          }
          TabView(selection: $selection) {
-            SettingsContainerView()
+             SettingsContainerView(selectedIcon: .constant(true), selectedBackground: .constant(true))
                .tag(0)
              HomeContainerView()
                .tag(1)
