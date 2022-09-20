@@ -108,7 +108,7 @@ struct HomeContainerView: View {
            }
            .onAppear {
 //              if Currency.userPreferenceCurrencyCode == nil {
-                 isCurrencySelectionPresented = true
+//                 isCurrencySelectionPresented = true
 //              }
            }
        }

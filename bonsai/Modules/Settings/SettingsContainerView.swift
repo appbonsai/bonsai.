@@ -8,33 +8,38 @@
 import SwiftUI
 
 struct SettingsContainerView: View {
+    init() {
+        UITableView.appearance().showsVerticalScrollIndicator = false
+        UITableView.appearance().separatorStyle = .none
+       UITableView.appearance().backgroundColor = UIColor(BonsaiColor.back)
+    }
+    
     var body: some View {
-        NavigationView {
-            List {
-                Section(header: Text("home background theme")) {
-                    BackgroundChangeRow()
-                }
-                
-                Section(header: Text("app icon")) {
-                    AppIconChangeRow()
-                }
-                
-                Section(header: Text("other")) {
-                    OtherSettingsRow()
-                    OtherSettingsRow()
-                    OtherSettingsRow()
+        List {
+            Section(header: Text("home background theme")) {
+                BackgroundChangeRow()
+            }
+            .listRowBackground(BonsaiColor.card)
+            Section(header: Text("app icon")) {
+                AppIconChangeRow()
+            }
+            .listRowBackground(BonsaiColor.card)
+            
+            Section(header: Text("other")) {
+                ForEach(Array(otherRows.enumerated()), id: \.offset) { index, item in
+                    Text(item)
                 }
             }
-            .navigationTitle("Appearance")
-            .navigationBarTitleDisplayMode(.inline)
+            .listRowBackground(BonsaiColor.card)
         }
     }
+    
 }
 
 struct AppIconChangeRow: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
+            HStack(spacing: 20) {
                 ForEach(Array(appIcons.enumerated()), id: \.offset) { index, item in
                     VStack {
                         Image(item)
@@ -95,3 +100,8 @@ struct SettingsContainerView_Previews: PreviewProvider {
 
 let bgs = ["bonsai_1", "bonsai_2", "bonsai_3", "bonsai_4"]
 let appIcons = ["icon-dark", "icon-light", "icon-dark", "icon-light", "icon-dark", "icon-light"]
+let otherRows = [
+    "Bonsai premium features",
+    "Terms of Service",
+    "Privacy Policy"
+]

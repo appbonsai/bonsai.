@@ -40,8 +40,7 @@ struct TabBar: View {
             }
          }
          TabView(selection: $selection) {
-            BudgetDetails(
-               viewModel: BudgetViewModelAssembler().assembly())
+            SettingsContainerView()
                .tag(0)
              HomeContainerView()
                .tag(1)
