@@ -32,7 +32,7 @@ struct BudgetViewModel: BudgetViewModelProtocol {
    }
    
    var bugdetName: String {
-      budgetService.getBudget()?.name ?? "" 
+      budgetService.getBudget()?.name ?? "Budget"
    }
    
    var totalBudget: NSDecimalNumber {

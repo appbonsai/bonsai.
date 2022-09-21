@@ -17,9 +17,6 @@ struct BudgetNameView: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            Image(Asset.sunMax.name)
-                .resizable()
-                .frame(width: 34, height: 34)
             Text(name)
                 .font(BonsaiFont.title_28)
                 .foregroundColor(.white)

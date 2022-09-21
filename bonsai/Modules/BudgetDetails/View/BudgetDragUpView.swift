@@ -18,6 +18,7 @@ struct BudgetDragUpView: View {
             Text(L.Drag_up_hint)
                 .font(BonsaiFont.body_17)
                 .foregroundColor(BonsaiColor.text)
+                .shimmering(duration: 3.0)
         }
         .frame(height: Self.height)
     }

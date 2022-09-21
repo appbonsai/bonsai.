@@ -18,81 +18,93 @@ struct BudgetDetails: View {
    init(viewModel: BudgetViewModelProtocol) {
       self.viewModel = viewModel
    }
+    
+    private func budgetMoneyTitleView() -> some View {
+        HStack(alignment: .center, spacing: 16) {
+            // TODO: localization
+            BudgetMoneyTitleView(title: L.Money_left, amount: viewModel.totalMoneyLeft)
+              .padding(.leading, 16)
+            BudgetMoneyTitleView(title: L.Money_spent, amount: viewModel.totalMoneySpent)
+        }
+        .frame(height: 63)
+    }
+    
+    private func budgetMoneyCardView() -> some View {
+        HStack(alignment: .center, spacing: 16) {
+            // TODO: localization
+            BudgetMoneyCardView(title: L.Total_budget, amount: viewModel.totalBudget)
+              .shadow(color: .black, radius: 7, x: 0, y: 4)
+
+           BudgetMoneyCardView(title: L.Daily_budget, amount: viewModel.budgetDaily)
+              .shadow(color: .black, radius: 7, x: 0, y: 4)
+        }
+        .frame(height: 116)
+        .padding(.horizontal, 16)
+        .padding(.top, -14)
+    }
        
+    private func dragUpView() -> some View {
+        BudgetDragUpView()
+            .gesture(
+                DragGesture()
+                    .onChanged{ value in
+                        withAnimation(.spring()) {
+                            currentOffsetY = value.translation.height - BudgetDragUpView.height
+                        }
+                    }
+                    .onEnded { _ in
+                        lockBudgetTransactionsOffset()
+                    }
+            )
+    }
+    
+    private func budgetTransactionsView() -> some View {
+        BudgetTransactions(transactions: viewModel.transactions, dragGestureOnChanged: { value in
+           withAnimation(.spring()) {
+               currentOffsetY = value.location.y - (TabBar.topPadding)
+              if currentOffsetY < 0 {
+                 currentOffsetY = 0
+              }
+           }
+        }, dragGestureOnEnded: lockBudgetTransactionsOffset)
+        .offset(y: startOffsetY)
+        .offset(y: currentOffsetY)
+        .offset(y: endingOffsetY)
+    }
+    
    var body: some View {
       ZStack {
          VStack {
             VStack(alignment: .leading) {
                BudgetNameView(name: viewModel.bugdetName)
-                  .frame(height: 33)
-                  .padding(.leading, 8)
-               
-                Text(L.Budget_greeting)
-                  .font(BonsaiFont.body_15)
-                  .foregroundColor(BonsaiColor.text)
-                  .padding(.horizontal)
+                  .padding([.top, .leading], 8)
             }
-            HStack(alignment: .center, spacing: 16) {
-                // TODO: localization
-                BudgetMoneyTitleView(title: L.Money_left, amount: viewModel.totalMoneyLeft)
-                  .padding(.leading, 16)
-                BudgetMoneyTitleView(title: L.Money_spent, amount: viewModel.totalMoneySpent)
-            }
-            .frame(height: 63)
+             budgetMoneyTitleView()
             
             ZStack {
                Image(Asset.tree.name)
                   .resizable()
                
                VStack {
-                  HStack(alignment: .center, spacing: 16) {
-                      // TODO: localization
-                      BudgetMoneyCardView(title: L.Total_budget, amount: viewModel.totalBudget)
-                        .shadow(color: .black, radius: 7, x: 0, y: 4)
-
-                     BudgetMoneyCardView(title: L.Daily_budget, amount: viewModel.budgetDaily)
-                        .shadow(color: .black, radius: 7, x: 0, y: 4)
-                  }
-                  .frame(height: 116)
-                  .padding(.horizontal, 16)
-                  .padding(.top, -14)
+                budgetMoneyCardView()
                   
                   Spacer()
                   
-                  BudgetDragUpView()
-                     .gesture(
-                        DragGesture()
-                            .onChanged{ value in
-                                withAnimation(.spring()) {
-                                    currentOffsetY = value.translation.height - BudgetDragUpView.height
-                                }
-                            }
-                            .onEnded { _ in
-                                lockBudgetTransactionsOffset()
-                            }
-                       )
+                   dragUpView()
                    
                }
             }
             .padding(.top, 16)
          }
-         .padding(.top, 38)
          .background(BonsaiColor.back)
          .ignoresSafeArea()
 
-         BudgetTransactions(transactions: viewModel.transactions, dragGestureOnChanged: { value in
-            withAnimation(.spring()) {
-                currentOffsetY = value.location.y - (TabBar.topPadding)
-               if currentOffsetY < 0 {
-                  currentOffsetY = 0
-               }
-            }
-         }, dragGestureOnEnded: lockBudgetTransactionsOffset)
-         .offset(y: startOffsetY)
-         .offset(y: currentOffsetY)
-         .offset(y: endingOffsetY)
+       budgetTransactionsView()
       }
    }
+    
+
+
    
    private func lockBudgetTransactionsOffset() {
       withAnimation(.spring()) {
