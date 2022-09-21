@@ -8,19 +8,15 @@
 import SwiftUI
 
 struct SettingsContainerView: View {
-    @Binding var selectedIcon: Bool
-    @Binding var selectedBackground: Bool
+
     @State var isPremiumSelected: Bool = false
 
     @Environment(\.openURL) var openURL
 
-    init(selectedIcon: Binding<Bool>,
-         selectedBackground: Binding<Bool>) {
-        self._selectedIcon = selectedIcon
-        self._selectedBackground = selectedBackground
+    init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
         UITableView.appearance().separatorStyle = .none
-       UITableView.appearance().backgroundColor = UIColor(BonsaiColor.back)
+        UITableView.appearance().backgroundColor = UIColor(BonsaiColor.back)
     }
     
     
@@ -37,11 +33,11 @@ struct SettingsContainerView: View {
     var body: some View {
         List {
             Section(header: Text("home background theme")) {
-                BackgroundChangeRow(isSelected: selectedBackground)
+                BackgroundChangeRow()
             }
             .listRowBackground(BonsaiColor.card)
             Section(header: Text("app icon")) {
-                AppIconChangeRow(isSelected: selectedIcon)
+                AppIconChangeRow()
             }
             .listRowBackground(BonsaiColor.card)
             
@@ -81,8 +77,8 @@ struct SettingsContainerView: View {
 
 struct AppIconChangeRow: View {
     
-    let isSelected: Bool
-    
+    @State var selectedRow: Int = 0
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
@@ -96,13 +92,13 @@ struct AppIconChangeRow: View {
                                RoundedRectangle(cornerRadius: 13)
                                   .stroke(
                                      BonsaiColor.mainPurple,
-                                     lineWidth: isSelected ? 2 : 0
+                                     lineWidth: selectedRow == index ? 2 : 0
                                   )
                             )
                         Text("default")
                     }
                     .onTapGesture {
-                        
+                        selectedRow = index
                     }
                    
                 }
@@ -113,13 +109,16 @@ struct AppIconChangeRow: View {
 }
 
 struct BackgroundChangeRow: View {
-    let isSelected: Bool
+    
+    @State var bgSelected: String = bgs.first ?? "bonsai_1"
+    @State var selectedRow: Int = 0
 
     var body: some View {
         VStack {
-            Image("bonsai_1")
+            Image(bgSelected)
                 .resizable()
-                .frame(height: 130)
+                .scaledToFit()
+                .frame(height: .infinity)
                 .padding(.bottom, 12)
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -135,15 +134,15 @@ struct BackgroundChangeRow: View {
                             Text("bonsai")
                         }
                         .overlay(
-                           RoundedRectangle(cornerRadius: 13)
+                           RoundedRectangle(cornerRadius: 8)
                               .stroke(
                                  BonsaiColor.mainPurple,
-                                 lineWidth: isSelected ? 2 : 0
+                                 lineWidth: (selectedRow == index) ? 2 : 0
                               )
                         )
                         .onTapGesture {
-                            let tap = bgs[index]
-                            
+                            bgSelected = bgs[index]
+                            selectedRow = index
                         }
                     }
                 
@@ -158,7 +157,7 @@ struct BackgroundChangeRow: View {
 
 struct SettingsContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsContainerView(selectedIcon: .constant(true), selectedBackground: .constant(true))
+        SettingsContainerView()
     }
 }
 
