@@ -99,8 +99,14 @@ struct AppIconChangeRow: View {
                     }
                     .onTapGesture {
                         selectedRow = index
+                        let icon = appIcons[index]
+                        /*
+                         need to change in plist after adding all icons
+                         
+                         https://www.hackingwithswift.com/example-code/uikit/how-to-change-your-app-icon-dynamically-with-setalternateiconname
+                         */
+                        UIApplication.shared.setAlternateIconName(icon)
                     }
-                   
                 }
             }
         }
