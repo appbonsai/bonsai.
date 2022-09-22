@@ -23,8 +23,7 @@ struct BudgetViewModel: BudgetViewModelProtocol {
    
    init(budgetService: BudgetServiceProtocol, transactions: [Transaction]) {
       self.budgetService = budgetService
-      let nonIncomeTransactions = transactions.filter { $0.type != .income }
-      self.transactions = nonIncomeTransactions
+      self.transactions = transactions
    }
    
    private var transactionsAmounts: [NSDecimalNumber] {

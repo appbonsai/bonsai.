@@ -25,12 +25,15 @@ struct TransactionCell: View {
             .font(BonsaiFont.body_17)
             .foregroundColor(Color.white)
          Spacer()
-         Text("-\(item.amount)")
+          
+         Text(item.type == .expense ?
+              "-\(item.amount)" : "\(item.amount)")
             .font(BonsaiFont.body_17)
             .foregroundColor(Color.white)
       }
 
    }
+
 }
 
 struct TransactionCell_Previews: PreviewProvider {

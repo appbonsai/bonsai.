@@ -27,7 +27,6 @@ struct BudgetTransactions: View {
       let sortedTransaction = transactions
          .sorted(by: { $0.date > $1.date  })
       for transaction in sortedTransaction {
-         if transaction.type == .expense {
             let date = transaction.date.dateString()
             if var arr = dict[date] {
                arr.append(transaction)
@@ -35,7 +34,6 @@ struct BudgetTransactions: View {
             } else {
                dict[date] = [transaction]
             }
-         }
       }
       transactionsByDate = dict
       self.dragGestureOnChanged = dragGestureOnChanged
@@ -81,6 +79,10 @@ struct BudgetTransactions: View {
             .onAppear {
                UITableView.appearance().separatorStyle = .singleLine
                UITableView.appearance().backgroundColor = .clear
+            }
+            .onDisappear {
+                UITableView.appearance().separatorStyle = .singleLine
+                UITableView.appearance().backgroundColor = .clear
             }
          }
       }
