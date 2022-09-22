@@ -36,7 +36,7 @@ struct BudgetTransactions: View {
    }
     
     private func transactionsByDateList() -> some View {
-        List {
+        ScrollView(showsIndicators: false) {
             ForEach(transactionsByDate.keys, id: \.self) { key in
                 Section(header: HStack() {
                     Spacer()
@@ -53,23 +53,17 @@ struct BudgetTransactions: View {
                 }
             }
         }
-        .onAppear {
-            UITableView.appearance().separatorStyle = .singleLine
-            UITableView.appearance().backgroundColor = .clear
+        
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            BudgetTransactionHeader()
+                .contentShape(Rectangle())
+                .padding(.vertical)
+            transactionsByDateList()
         }
     }
-
-   var body: some View {
-       NavigationView {
-           VStack(alignment: .leading) {
-               BudgetTransactionHeader()
-                   .contentShape(Rectangle())
-                   .padding(.vertical)
-               transactionsByDateList()
-           }
-           .ignoresSafeArea()
-       }
-   }
 }
 
 struct BudgetTransactions_Previews: PreviewProvider {
