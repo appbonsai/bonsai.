@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BudgetDragUpView: View {
+struct BudgetTapView: View {
     static let height: CGFloat = 148
     var body: some View {
         VStack {
@@ -26,6 +26,6 @@ struct BudgetDragUpView: View {
 
 struct BudgetDragUpView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetDragUpView()
+        BudgetTapView()
     }
 }

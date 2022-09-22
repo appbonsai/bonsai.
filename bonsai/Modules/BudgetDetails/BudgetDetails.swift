@@ -14,7 +14,8 @@ struct BudgetDetails: View {
    @State var endingOffsetY: CGFloat = 0
    private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.2) / 2
    private let viewModel: BudgetViewModelProtocol
-   
+    @State var isPresented: Bool = false
+
    init(viewModel: BudgetViewModelProtocol) {
       self.viewModel = viewModel
    }
@@ -43,33 +44,23 @@ struct BudgetDetails: View {
         .padding(.top, -14)
     }
        
-    private func dragUpView() -> some View {
-        BudgetDragUpView()
+
+    private func tapViewTransactions() -> some View {
+        BudgetTapView()
+            .onTapGesture {
+                isPresented = true
+            }
             .gesture(
                 DragGesture()
                     .onChanged{ value in
                         withAnimation(.spring()) {
-                            currentOffsetY = value.translation.height - BudgetDragUpView.height
+                            currentOffsetY = value.translation.height - BudgetTapView.height
                         }
                     }
                     .onEnded { _ in
                         lockBudgetTransactionsOffset()
                     }
             )
-    }
-    
-    private func budgetTransactionsView() -> some View {
-        BudgetTransactions(transactions: viewModel.transactions, dragGestureOnChanged: { value in
-           withAnimation(.spring()) {
-               currentOffsetY = value.location.y - (TabBar.topPadding)
-              if currentOffsetY < 0 {
-                 currentOffsetY = 0
-              }
-           }
-        }, dragGestureOnEnded: lockBudgetTransactionsOffset)
-        .offset(y: startOffsetY)
-        .offset(y: currentOffsetY)
-        .offset(y: endingOffsetY)
     }
     
    var body: some View {
@@ -90,16 +81,17 @@ struct BudgetDetails: View {
                   
                   Spacer()
                   
-                   dragUpView()
-                   
+                   tapViewTransactions()
                }
             }
             .padding(.top, 16)
          }
+         .popover(isPresented: $isPresented, content: {
+             BudgetTransactions(transactions: viewModel.transactions, isPresented: $isPresented)
+         })
          .background(BonsaiColor.back)
          .ignoresSafeArea()
 
-       budgetTransactionsView()
       }
    }
     

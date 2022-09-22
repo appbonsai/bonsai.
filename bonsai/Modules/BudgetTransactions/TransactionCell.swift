@@ -27,9 +27,10 @@ struct TransactionCell: View {
          Spacer()
           
          Text(item.type == .expense ?
-              "-\(item.amount)" : "\(item.amount)")
+              "-\(item.amount)" : "+\(item.amount)")
             .font(BonsaiFont.body_17)
-            .foregroundColor(Color.white)
+            .foregroundColor(item.type == .expense ? BonsaiColor.secondary : BonsaiColor.green)
+            .padding()
       }
 
    }
