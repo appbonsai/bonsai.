@@ -124,7 +124,6 @@ struct BackgroundChangeRow: View {
             Image(bgSelected)
                 .resizable()
                 .scaledToFit()
-                .frame(height: .infinity)
                 .padding(.bottom, 12)
             
             ScrollView(.horizontal, showsIndicators: false) {
