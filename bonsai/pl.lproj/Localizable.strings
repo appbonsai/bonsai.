@@ -6,6 +6,16 @@
   
 */
 
+"Onboarding_1_title" = "Witamy!";
+"Onboarding_1_description" = "Bonsai reprezentuje drzewo pieniędzy. Ustal cele finansowe, śledź przepływ pieniędzy, obserwuj swoje nawyki finansowe.";
+
+"Onboarding_2_title" = "Z łatwością zarządzaj swoimi pieniędzmi";
+"Onboarding_2_description" = "Po prostu używając telefonu, możesz łatwiej i bardziej szczegółowo zarządzać wszystkimi przepływami pieniężnymi.";
+
+"Onboarding_3_title" = "Bądź bardziej uważny na wydatki";
+"Onboarding_3_description" = "Uważaj na wydatki, a zbliżysz się do wolności finansowej.";
+
+
 "Money_left" = "Pozostałe pieniądze";
 "Money_spent" = "Wydane pieniądze";
 "Total_budget" = "Całkowity budżet";

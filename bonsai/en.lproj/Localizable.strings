@@ -6,6 +6,15 @@
   
 */
 
+"Onboarding_1_title" = "Welcome!";
+"Onboarding_1_description" = "Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.";
+
+"Onboarding_2_title" = "Manage your money with ease";
+"Onboarding_2_description" = "Just using your phone, you can manage all your cashflow more easy and detailed.";
+
+"Onboarding_3_title" = "Be more mindful spending";
+"Onboarding_3_description" = "Be mindful spending, and you will be closer to financial freedom.";
+
 "Money_left" = "Money left";
 "Money_spent" = "Money spent";
 "Total_budget" = "Total budget";
