@@ -27,9 +27,9 @@ struct BudgetViewModel: BudgetViewModelProtocol {
    }
    
    private var transactionsAmounts: [NSDecimalNumber] {
-       transactions
-           .filter { $0.type != .income }
-           .map { $0.amount }
+      transactions
+         .filter { $0.type != .income }
+         .map { $0.amount }
    }
    
    var bugdetName: String {

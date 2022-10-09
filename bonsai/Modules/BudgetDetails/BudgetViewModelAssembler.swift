@@ -26,6 +26,7 @@ struct BudgetViewModelAssembler {
          budgetService: BudgetService(
             budgetRepository: BudgetRepository(),
             budgetCalculations: BudgetCalculations()),
-         transactions: transactions)
+         transactions: transactions
+      )
    }
 }
