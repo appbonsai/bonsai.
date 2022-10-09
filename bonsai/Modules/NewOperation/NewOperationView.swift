@@ -12,29 +12,59 @@ struct NewOperationView: View {
 
    @Environment(\.managedObjectContext) private var moc
 
-   @Binding var isPresented: Bool
+   @Binding private var isPresented: Bool
 
-   @State var selectedOperation: OperationType = .expense
-   @State var amount: String = ""
-   @State var currency: Currency.Validated = .current
-   @State var category: Category?
-   @State var title: String = ""
-   @State var tags: OrderedSet<Tag> = []
-   @State var date: Date = Date()
-   @State var isCategoriesViewPresented: Bool = false
-   @State var isTagsViewPresented: Bool = false
-   @State var isCalendarOpened: Bool = false
+   enum Kind: Equatable {
+      case new
+      case edit(Transaction)
+   }
+   private let kind: Kind
+
+   @State private var selectedOperation: OperationType
+   @State private var amount: String
+   @State private var currency: Currency.Validated
+   @State private var category: Category?
+   @State private var title: String
+   @State private var tags: OrderedSet<Tag>
+   @State private var date: Date
+
+   @State private var isCategoriesViewPresented: Bool = false
+   @State private var isTagsViewPresented: Bool = false
+   @State private var isCalendarOpened: Bool = false
    @State private var confirmationPresented: Bool = false
 
-   let iconSizeSide: CGFloat = 20
+   private let iconSizeSide: CGFloat = 20
 
-   @Namespace var calendarID
+   @Namespace private var calendarID
 
-   init(isPresented: Binding<Bool>) {
+   init(isPresented: Binding<Bool>, transaction: Transaction? = nil) {
       self._isPresented = isPresented
       let navBarAppearance = UINavigationBar.appearance()
       navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
       navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+      if let transaction = transaction {
+         self.kind = .edit(transaction)
+         self._selectedOperation = .init(
+            initialValue: .init(transactionType: transaction.type)
+         )
+         self._amount = .init(
+            initialValue: transaction.amount.stringValue
+         )
+         self._currency = .init(initialValue: transaction.currency)
+         self._category = .init(initialValue: transaction.category)
+         self._title = .init(initialValue: transaction.title ?? "")
+         self._tags = .init(initialValue: OrderedSet(transaction.tags))
+         self._date = .init(initialValue: transaction.date)
+      } else {
+         self.kind = .new
+         self._selectedOperation = .init(initialValue: .expense)
+         self._amount = .init(initialValue: "")
+         self._currency = .init(initialValue: .current)
+         self._category = .init(initialValue: nil)
+         self._title = .init(initialValue: "")
+         self._tags = .init(initialValue: [])
+         self._date = .init(initialValue: Date())
+      }
    }
 
    var body: some View {
@@ -96,32 +126,58 @@ struct NewOperationView: View {
                   } // ScrollView
                } // ScrollViewReader
                Button {
-                  bonsai.Transaction(
-                     context: moc,
-                     amount: NSDecimalNumber(string: amount),
-                     title: title,
-                     date: date,
-                     category: category ?? .notSpecified,
-                     account: .default,
-                     type: selectedOperation.mappedToTransactionType,
-                     tags: Set(tags),
-                     currency: currency
-                  )
-                  do {
-                     try moc.save()
-                     isPresented = false
-                  } catch (let e) {
-                     assertionFailure(e.localizedDescription)
+                  switch kind {
+                  case .new:
+                     bonsai.Transaction(
+                        context: moc,
+                        amount: NSDecimalNumber(string: amount),
+                        title: title,
+                        date: date,
+                        category: category ?? .notSpecified,
+                        account: .default,
+                        type: selectedOperation.mappedToTransactionType,
+                        tags: Set(tags),
+                        currency: currency
+                     )
+                     do {
+                        try moc.save()
+                        isPresented = false
+                     } catch (let e) {
+                        assertionFailure(e.localizedDescription)
+                     }
+                  case .edit(let transaction):
+                     let request = Transaction.fetchRequest()
+                     request.predicate = .init(format: "id == %@", transaction.id as CVarArg)
+                     do {
+                        guard let result = try moc.fetch(request).first else {
+                           assertionFailure("Transaction with id \(transaction.id) not found")
+                           isPresented = false
+                           return
+                        }
+                        result.update(
+                           amount: NSDecimalNumber(string: amount),
+                           title: title,
+                           date: date,
+                           category: category,
+                           type: selectedOperation.mappedToTransactionType,
+                           tags: Set(tags),
+                           currency: currency
+                        )
+                        try moc.save()
+                        isPresented = false
+                     } catch (let e) {
+                        assertionFailure(e.localizedDescription)
+                     }
                   }
                } label: {
                   Text("Save")
-               }
+               } // Button
                .buttonStyle(PrimaryButtonStyle())
                .padding([.top], 16)
                .disabled(amount.isEmpty)
             } // VStack
          } // ZStack
-         .navigationTitle("New Operation")
+         .navigationTitle(kind == .new ? "New Operation" : "Edit Operation")
          .navigationBarTitleDisplayMode(.large)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -129,9 +185,9 @@ struct NewOperationView: View {
                   confirmationPresented = true
                }) {
                   Text("Cancel")
-                       .foregroundColor(BonsaiColor.secondary)
+                     .foregroundColor(BonsaiColor.secondary)
                }
-                // TODO: Localize
+               // TODO: Localize
                .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
                   Button("Discard Transaction", role: .destructive, action: {
                      isPresented = false

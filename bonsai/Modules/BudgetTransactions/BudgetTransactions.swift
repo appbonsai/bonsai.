@@ -17,6 +17,8 @@ struct BudgetTransactions: View {
 
    private let transactionsByDate: OrderedDictionary<String, [Transaction]>
    @Binding var isPresented: Bool
+   @State var isTransactionDetailsPresented: Bool = false
+   @State var selectedTransaction: Transaction?
 
    init(transactions: [Transaction], isPresented: Binding<Bool>) {
       self._isPresented = isPresented
@@ -24,55 +26,64 @@ struct BudgetTransactions: View {
       let sortedTransaction = transactions
          .sorted(by: { $0.date > $1.date  })
       for transaction in sortedTransaction {
-            let date = transaction.date.dateString()
-            if var arr = dict[date] {
-               arr.append(transaction)
-               dict[date] = arr
-            } else {
-               dict[date] = [transaction]
-            }
+         let date = transaction.date.dateString()
+         if var arr = dict[date] {
+            arr.append(transaction)
+            dict[date] = arr
+         } else {
+            dict[date] = [transaction]
+         }
       }
       transactionsByDate = dict
    }
-    
-    private func transactionsByDateList() -> some View {
-        ScrollView(showsIndicators: false) {
-            ForEach(transactionsByDate.keys, id: \.self) { key in
-                Section(header: HStack() {
-                    Spacer()
-                    Text("\(key)")
-                        .font(BonsaiFont.body_15)
-                        .foregroundColor(Color.white)
-                    Spacer()
-                }) {
-                    ForEach(
-                     transactionsByDate[key] ?? [], id: \.self) {
-                         TransactionCell(item: $0)
-                             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                     }
-                }
+
+   private func transactionsByDateList() -> some View {
+      ScrollView(showsIndicators: false) {
+         ForEach(transactionsByDate.keys, id: \.self) { key in
+            Section(header: HStack() {
+               Spacer()
+               Text("\(key)")
+                  .font(BonsaiFont.body_15)
+                  .foregroundColor(Color.white)
+               Spacer()
+            }) {
+               ForEach(
+                  transactionsByDate[key] ?? [], id: \.self) { transaction in
+                     TransactionCell(item: transaction)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .onTapGesture {
+                           selectedTransaction = transaction
+                           isTransactionDetailsPresented = true
+                        }
+                  }
             }
-        }
-        
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            BudgetTransactionHeader()
-                .contentShape(Rectangle())
-                .padding(.vertical)
-            transactionsByDateList()
-        }
-    }
+         }
+      }
+
+   }
+
+   var body: some View {
+      VStack(alignment: .leading) {
+         BudgetTransactionHeader()
+            .contentShape(Rectangle())
+            .padding(.vertical)
+         transactionsByDateList()
+      }
+      .popover(isPresented: $isTransactionDetailsPresented) { [selectedTransaction] in
+         NewOperationView(
+            isPresented: $isTransactionDetailsPresented,
+            transaction: selectedTransaction
+         )
+      }
+   }
 }
 
 struct BudgetTransactions_Previews: PreviewProvider {
 
    static var previews: some View {
       BudgetTransactions(
-        transactions: MockDataTransaction().transactions, isPresented: .constant(true))
-         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-         .previewDisplayName("iPhone 12")
+         transactions: MockDataTransaction().transactions, isPresented: .constant(true))
+      .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+      .previewDisplayName("iPhone 12")
    }
 }
-

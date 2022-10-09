@@ -12,6 +12,18 @@ extension NewOperationView {
       case expense
       case income
       case transfer
+
+      init(transactionType: Transaction.`Type`) {
+         switch transactionType {
+         case .income:
+            self = .income
+         case .expense:
+            self = .expense
+         case .transfer(let _):
+            assertionFailure("Unexpected branch, transfer is not supported yet")
+            self = .transfer
+         }
+      }
    }
 }
 
@@ -57,4 +69,3 @@ extension NewOperationView.OperationType {
       }
    }
 }
-
