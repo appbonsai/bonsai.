@@ -22,7 +22,6 @@ struct CreateCategoryView: View {
    @State private var colors: OrderedDictionary<Color, Bool>
    // [iconName: isSelected]
    @State private var icons: OrderedDictionary<Icon, Bool>
-   @State private var confirmationPresented: Bool = false
 
    private var completion: ((Category?) -> Void)?
    
@@ -101,18 +100,12 @@ struct CreateCategoryView: View {
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                Button(action: {
-                  confirmationPresented = true
+                  isPresented = false
+                  completion?(nil)
                }) {
                   Text("Cancel")
                      .foregroundColor(BonsaiColor.secondary)
                }
-               // TODO: Localize
-               .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
-                  Button("Discard Changes", role: .destructive, action: {
-                     isPresented = false
-                     completion?(nil)
-                  })
-               })
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                Button(action: {
@@ -144,6 +137,7 @@ struct CreateCategoryView: View {
             }
          }
       } // NavigationView
+      .interactiveDismissDisabled(true)
    }
 
    struct CreateCategoryView_Previews: PreviewProvider {
