@@ -51,6 +51,7 @@ struct TransactionCell: View {
             .foregroundColor(model.type == .expense ? BonsaiColor.secondary : BonsaiColor.green)
             .padding()
       }
+      .contentShape(Rectangle())
    }
 }
 
