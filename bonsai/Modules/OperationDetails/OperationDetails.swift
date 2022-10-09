@@ -79,14 +79,13 @@ struct OperationDetails: View {
                            operations: [.expense, .income],
                            selectedOperation: $selectedOperation
                         )
-                        .padding([.bottom], 12)
                         AmountView(
                            operation: selectedOperation,
                            currency: currency,
                            text: $amount
                         )
                         .cornerRadius(13)
-                        .padding([.top], 12)
+                        .padding([.top], 16)
                         CategoryView(category: $category, iconSizeSide: 24)
                            .cornerRadius(13, corners: [.topLeft, .topRight])
                            .padding([.top], 16)

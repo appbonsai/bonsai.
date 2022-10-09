@@ -16,7 +16,7 @@ struct OperationTypeSelectorView: View {
     @Binding var selectedOperation: Operation
 
     var body: some View {
-        HStack(alignment: .center, spacing: 8) {
+        HStack(alignment: .center, spacing: 12) {
             ForEach(operations, id: \.self) { operation in
                 OperationTypeView(
                     operation: operation,
