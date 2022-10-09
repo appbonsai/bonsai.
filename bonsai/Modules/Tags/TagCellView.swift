@@ -15,16 +15,8 @@ struct TagCellView: View {
    var body: some View {
       HStack() {
          Text(tag.title)
-            .foregroundColor(
-               isSelected
-               ? BonsaiColor.mainPurple
-               : BonsaiColor.text
-            )
-            .font(
-               isSelected
-               ? BonsaiFont.title_headline_17
-               : BonsaiFont.body_17
-            )
+            .foregroundColor(BonsaiColor.text)
+            .font(BonsaiFont.body_17)
          Spacer()
       }
       .padding([.vertical, .leading], 20)
