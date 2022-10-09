@@ -81,7 +81,7 @@ struct CategoriesContainerView_Previews: PreviewProvider {
          isPresented: .constant(true),
          selectedCategory: .constant(nil)
       )
-         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-         .previewDisplayName("iPhone 12")
+      .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+      .previewDisplayName("iPhone 12")
    }
 }
