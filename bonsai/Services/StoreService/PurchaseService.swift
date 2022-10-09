@@ -9,6 +9,7 @@ import Foundation
 import RevenueCat
 import Combine
 import SwiftUI
+import StoreKit
 
 final class PurchaseService: ObservableObject {
    
@@ -23,7 +24,15 @@ final class PurchaseService: ObservableObject {
    @Published var isShownAllSet = false
     
    private var disposeBag = Set<AnyCancellable>()
-   
+    
+   private struct UKR {
+      static var typeName: String {
+          return String(describing: Self.self)
+      }
+   }
+    
+   private let storefront = SKPaymentQueue.default().storefront
+    
    init() {
       checkIfUserSubscriptionStatus()
       getAvailablePackagesFromOfferings()
@@ -37,8 +46,17 @@ final class PurchaseService: ObservableObject {
    }
    
    func checkIfUserSubscriptionStatus() {
-      Purchases.shared.getCustomerInfo { customerInfo, error in
-         self.isSubscriptionActive = customerInfo?.entitlements.all[Pro.typeName]?.isActive == true
+       Purchases.shared.getCustomerInfo { [weak self] customerInfo, error in
+           let isActive = customerInfo?.entitlements.all[Pro.typeName]?.isActive == true
+           if let storefront = self?.storefront {
+               if storefront.countryCode == UKR.typeName {
+                   self?.isSubscriptionActive = true
+               } else {
+                   self?.isSubscriptionActive = isActive
+               }
+           } else {
+               self?.isSubscriptionActive = isActive
+           }
       }
    }
    
