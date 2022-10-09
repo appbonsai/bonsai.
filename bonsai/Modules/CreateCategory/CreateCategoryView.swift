@@ -23,9 +23,12 @@ struct CreateCategoryView: View {
    // [iconName: isSelected]
    @State private var icons: OrderedDictionary<Icon, Bool>
    @State private var confirmationPresented: Bool = false
+
+   private var completion: ((Category?) -> Void)?
    
-   init(isPresented: Binding<Bool>) {
+   init(isPresented: Binding<Bool>, completion: ((Category?) -> Void)? = nil) {
       self._isPresented = isPresented
+      self.completion = completion
 
       UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
 
@@ -107,6 +110,7 @@ struct CreateCategoryView: View {
                .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
                   Button("Discard Changes", role: .destructive, action: {
                      isPresented = false
+                     completion?(nil)
                   })
                })
             }
@@ -117,7 +121,7 @@ struct CreateCategoryView: View {
                      assertionFailure("color or icon were nil, save is not allowed")
                      return
                   }
-                  Category(
+                  let category = Category(
                      context: moc,
                      title: title,
                      color: color,
@@ -129,6 +133,7 @@ struct CreateCategoryView: View {
                      assertionFailure(e.localizedDescription)
                   }
                   isPresented = false
+                  completion?(category)
                }) {
                   Text("Done")
                      .if($title.wrappedValue.isEmpty == false, transform: { text in

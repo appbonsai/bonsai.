@@ -70,7 +70,12 @@ struct CategoriesContainerView: View {
          }
       } // NavigationView
       .popover(isPresented: $isCreateCategoryPresented) {
-         CreateCategoryView(isPresented: $isCreateCategoryPresented)
+         CreateCategoryView(isPresented: $isCreateCategoryPresented) { category in
+            if let category {
+               self.selectedCategory = category
+               self.isPresented = false
+            }
+         }
       }
    }
 }
