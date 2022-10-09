@@ -1,5 +1,5 @@
 //
-//  NewOperationView.swift
+//  OperationDetails.swift
 //  bonsai
 //
 //  Created by Vladimir Korolev on 10.12.2021.
@@ -8,7 +8,7 @@
 import SwiftUI
 import OrderedCollections
 
-struct NewOperationView: View {
+struct OperationDetails: View {
 
    @Environment(\.managedObjectContext) private var moc
 
@@ -211,9 +211,9 @@ struct NewOperationView: View {
    }
 }
 
-struct NewOperationView_Previews: PreviewProvider {
+struct OperationDetails_Previews: PreviewProvider {
    static var previews: some View {
-      NewOperationView(isPresented: .constant(true))
+      OperationDetails(isPresented: .constant(true))
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

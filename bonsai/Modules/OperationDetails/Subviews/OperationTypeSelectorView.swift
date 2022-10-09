@@ -10,7 +10,7 @@ import OrderedCollections
 
 struct OperationTypeSelectorView: View {
 
-    typealias Operation = NewOperationView.OperationType
+    typealias Operation = OperationDetails.OperationType
 
     let operations: OrderedSet<Operation>
     @Binding var selectedOperation: Operation

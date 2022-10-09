@@ -70,7 +70,7 @@ struct BudgetTransactions: View {
          transactionsByDateList()
       }
       .popover(isPresented: $isTransactionDetailsPresented) { [selectedTransaction] in
-         NewOperationView(
+         OperationDetails(
             isPresented: $isTransactionDetailsPresented,
             transaction: selectedTransaction
          )

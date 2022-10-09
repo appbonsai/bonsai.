@@ -51,5 +51,5 @@ struct AmountView_Previews: PreviewProvider {
 }
 
 extension AmountView {
-   typealias Operation = NewOperationView.OperationType
+   typealias Operation = OperationDetails.OperationType
 }

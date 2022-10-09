@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OperationTypeView: View {
-    let operation: NewOperationView.OperationType
+    let operation: OperationDetails.OperationType
     let isSelected: Bool
 
     var body: some View {

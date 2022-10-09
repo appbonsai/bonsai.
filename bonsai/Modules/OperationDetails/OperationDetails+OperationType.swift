@@ -1,5 +1,5 @@
 //
-//  NewOperationView+OperationType.swift
+//  OperationDetails+OperationType.swift
 //  bonsai
 //
 //  Created by Vladimir Korolev on 11.12.2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension NewOperationView {
+extension OperationDetails {
    enum OperationType {
       case expense
       case income
@@ -27,7 +27,7 @@ extension NewOperationView {
    }
 }
 
-extension NewOperationView.OperationType {
+extension OperationDetails.OperationType {
    struct ViewModel {
       let color: Color
       let image: Image
