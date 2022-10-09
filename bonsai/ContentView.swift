@@ -10,11 +10,12 @@ import SwiftUI
 struct ContentView: View {
 
    var body: some View {
+       Onboarding()
 //       SettingsContainerView()
 //       PremiumFeature(isPresented: .constant(true))
 //       Subscriptions(isPresented: .constant(true))
 //       AllSet()
-      TabBar()
+//      TabBar()
    }
 }
 

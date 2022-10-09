@@ -10,6 +10,17 @@ import Foundation
 typealias L = LocalizeService
 
 class LocalizeService {
+    
+    static let onboarding_1_title = "Onboarding_1_title".localized()
+    static let onboarding_1_description = "Onboarding_1_description".localized()
+    
+    static let onboarding_2_title = "Onboarding_2_title".localized()
+    static let onboarding_2_description = "Onboarding_2_description".localized()
+    
+    static let onboarding_3_title = "Onboarding_3_title".localized()
+    static let onboarding_3_description = "Onboarding_3_description".localized()
+
+    
     static let Money_left = "Money_left".localized()
     static let Money_spent = "Money_spent".localized()
     static let Total_budget = "Total_budget".localized()

@@ -21,16 +21,16 @@ struct Onboarding: View {
     private let dataSource: [OnboardingDataSource] = [
         .init(
             image: "bonsai_1",
-            title: "Why do we use it?",
-            description: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation ve"),
+            title: L.onboarding_1_title,
+            description: L.onboarding_1_description),
         .init(
             image: "bonsai_2",
-            title: "Where does it come from?",
-            description: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. "),
+            title: L.onboarding_2_title,
+            description: L.onboarding_2_description),
         .init(
             image: "bonsai_3",
-            title: "Where can I get some?",
-            description: "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable."),
+            title: L.onboarding_3_title,
+            description: L.onboarding_3_description),
     ]
 
     var body: some View {
