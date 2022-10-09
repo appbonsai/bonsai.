@@ -13,8 +13,11 @@ struct CreateTagView: View {
    @Binding private var isPresented: Bool
    @State private var title: String = ""
 
-   init(isPresented: Binding<Bool>) {
+   private var completion: ((Tag?) -> Void)?
+
+   init(isPresented: Binding<Bool>, completion: ((Tag?) -> Void)? = nil) {
       self._isPresented = isPresented
+      self.completion = completion
       UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
    }
 
@@ -37,9 +40,12 @@ struct CreateTagView: View {
          .navigationBarTitleDisplayMode(.inline)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-               Button(action: { isPresented = false }) {
+               Button(action: {
+                  isPresented = false
+                  completion?(nil)
+               }) {
                   Text("Cancel")
-                       .foregroundColor(BonsaiColor.secondary)
+                     .foregroundColor(BonsaiColor.secondary)
                }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -48,18 +54,19 @@ struct CreateTagView: View {
                      assertionFailure("title was empty, save is not allowed")
                      return
                   }
-                  Tag(context: moc, title: title)
+                  let tag = Tag(context: moc, title: title)
                   do {
                      try moc.save()
                   } catch (let e) {
                      assertionFailure(e.localizedDescription)
                   }
                   isPresented = false
+                  completion?(tag)
                }) {
                   Text("Done")
-                       .if($title.wrappedValue.isEmpty == false, transform: { text in
-                           text.foregroundColor(BonsaiColor.secondary)
-                       })
+                     .if($title.wrappedValue.isEmpty == false, transform: { text in
+                        text.foregroundColor(BonsaiColor.secondary)
+                     })
                }
                .disabled($title.wrappedValue.isEmpty)
             }

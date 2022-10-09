@@ -79,6 +79,43 @@ public class Transaction: NSManagedObject, Identifiable {
       tags.forEach(addToTags(_:))
    }
 
+   func update(
+      amount: NSDecimalNumber? = nil,
+      title: String? = nil,
+      date: Date? = nil,
+      category: Category? = nil,
+      account: Account? = nil,
+      type: `Type`? = nil,
+      tags: Set<Tag>? = nil,
+      currency: Currency.Validated? = nil
+   ) {
+      if let amount = amount {
+         self.amount = amount
+      }
+      if let title = title {
+         self.title = title
+      }
+      if let date = date {
+         self.date = date
+      }
+      if let category = category {
+         self.category = category
+      }
+      if let account = account {
+         self.account = account
+      }
+      if let type = type {
+         self.type = type
+      }
+      if let currency = currency {
+         self.currency = currency
+      }
+      if let tags = tags, self.tags != tags {
+         self.tags.forEach(removeFromTags(_:))
+         tags.forEach(addToTags(_:))
+      }
+   }
+
    @nonobjc class func fetchRequest() -> NSFetchRequest<Transaction> {
       NSFetchRequest<Transaction>(entityName: "Transaction")
    }

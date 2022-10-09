@@ -7,34 +7,52 @@
 
 import SwiftUI
 
+extension String {
+   func takeIfNotEmpty() -> String? {
+      if isEmpty { return nil }
+      return self
+   }
+}
+
 struct TransactionCell: View {
 
-   let item: Transaction
+   struct Model {
+      let color: LinearGradient
+      let icon: Image
+      let title: String
+      let type: Transaction.`Type`
+      let amount: String
 
-   init(item: Transaction) {
-      self.item = item
+      init(transaction: Transaction) {
+         self.color = transaction.category.color.asGradient
+         self.icon = transaction.category.icon.img
+         self.title = transaction.title?.takeIfNotEmpty() ?? transaction.category.title
+         self.type = transaction.type
+         self.amount = transaction.amount.stringValue
+      }
    }
+
+   let model: Model
 
    var body: some View {
       HStack {
-         item.category.color.asGradient
-            .mask(item.category.icon.img)
+         model.color
+            .mask(model.icon)
             .frame(width: 22, height: 22)
             .padding()
-         Text(item.category.title)
+         Text(model.title)
             .font(BonsaiFont.body_17)
             .foregroundColor(Color.white)
          Spacer()
           
-         Text(item.type == .expense ?
-              "-\(item.amount)" : "+\(item.amount)")
+         Text(model.type == .expense ?
+              "-\(model.amount)" : "+\(model.amount)")
             .font(BonsaiFont.body_17)
-            .foregroundColor(item.type == .expense ? BonsaiColor.secondary : BonsaiColor.green)
+            .foregroundColor(model.type == .expense ? BonsaiColor.secondary : BonsaiColor.green)
             .padding()
       }
-
+      .contentShape(Rectangle())
    }
-
 }
 
 struct TransactionCell_Previews: PreviewProvider {
@@ -54,7 +72,7 @@ struct TransactionCell_Previews: PreviewProvider {
                                                 type: .expense,
                                                 tags: .init())
    static var previews: some View {
-      TransactionCell(item: transaction)
+      TransactionCell(model: .init(transaction: transaction))
          .background(Color.blue)
    }
 }

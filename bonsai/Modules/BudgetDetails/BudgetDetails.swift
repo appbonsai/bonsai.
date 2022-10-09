@@ -14,55 +14,55 @@ struct BudgetDetails: View {
    @State var endingOffsetY: CGFloat = 0
    private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.2) / 2
    private let viewModel: BudgetViewModelProtocol
-    @State var isPresented: Bool = false
+   @State var isPresented: Bool = false
 
    init(viewModel: BudgetViewModelProtocol) {
       self.viewModel = viewModel
    }
-    
-    private func budgetMoneyTitleView() -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            // TODO: localization
-            BudgetMoneyTitleView(title: L.Money_left, amount: viewModel.totalMoneyLeft)
-              .padding(.leading, 16)
-            BudgetMoneyTitleView(title: L.Money_spent, amount: viewModel.totalMoneySpent)
-        }
-        .frame(height: 63)
-    }
-    
-    private func budgetMoneyCardView() -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            // TODO: localization
-            BudgetMoneyCardView(title: L.Total_budget, amount: viewModel.totalBudget)
-              .shadow(color: .black, radius: 7, x: 0, y: 4)
 
-           BudgetMoneyCardView(title: L.Daily_budget, amount: viewModel.budgetDaily)
-              .shadow(color: .black, radius: 7, x: 0, y: 4)
-        }
-        .frame(height: 116)
-        .padding(.horizontal, 16)
-        .padding(.top, -14)
-    }
-       
+   private func budgetMoneyTitleView() -> some View {
+      HStack(alignment: .center, spacing: 16) {
+         // TODO: localization
+         BudgetMoneyTitleView(title: L.Money_left, amount: viewModel.totalMoneyLeft)
+            .padding(.leading, 16)
+         BudgetMoneyTitleView(title: L.Money_spent, amount: viewModel.totalMoneySpent)
+      }
+      .frame(height: 63)
+   }
 
-    private func tapViewTransactions() -> some View {
-        BudgetTapView()
-            .onTapGesture {
-                isPresented = true
-            }
-            .gesture(
-                DragGesture()
-                    .onChanged{ value in
-                        withAnimation(.spring()) {
-                            currentOffsetY = value.translation.height - BudgetTapView.height
-                        }
-                    }
-                    .onEnded { _ in
-                        lockBudgetTransactionsOffset()
-                    }
-            )
-    }
-    
+   private func budgetMoneyCardView() -> some View {
+      HStack(alignment: .center, spacing: 16) {
+         // TODO: localization
+         BudgetMoneyCardView(title: L.Total_budget, amount: viewModel.totalBudget)
+            .shadow(color: .black, radius: 7, x: 0, y: 4)
+
+         BudgetMoneyCardView(title: L.Daily_budget, amount: viewModel.budgetDaily)
+            .shadow(color: .black, radius: 7, x: 0, y: 4)
+      }
+      .frame(height: 116)
+      .padding(.horizontal, 16)
+      .padding(.top, -14)
+   }
+
+
+   private func tapViewTransactions() -> some View {
+      BudgetTapView()
+         .onTapGesture {
+            isPresented = true
+         }
+         .gesture(
+            DragGesture()
+               .onChanged{ value in
+                  withAnimation(.spring()) {
+                     currentOffsetY = value.translation.height - BudgetTapView.height
+                  }
+               }
+               .onEnded { _ in
+                  lockBudgetTransactionsOffset()
+               }
+         )
+   }
+
    var body: some View {
       ZStack {
          VStack {
@@ -70,33 +70,30 @@ struct BudgetDetails: View {
                BudgetNameView(name: viewModel.bugdetName)
                   .padding([.top, .leading], 8)
             }
-             budgetMoneyTitleView()
+            budgetMoneyTitleView()
             
             ZStack {
                Image(Asset.tree.name)
                   .resizable()
                
                VStack {
-                budgetMoneyCardView()
+                  budgetMoneyCardView()
                   
                   Spacer()
                   
-                   tapViewTransactions()
+                  tapViewTransactions()
                }
             }
             .padding(.top, 16)
          }
          .popover(isPresented: $isPresented, content: {
-             BudgetTransactions(transactions: viewModel.transactions, isPresented: $isPresented)
+            BudgetTransactions(isPresented: $isPresented)
          })
          .background(BonsaiColor.back)
          .ignoresSafeArea()
 
       }
    }
-    
-
-
    
    private func lockBudgetTransactionsOffset() {
       withAnimation(.spring()) {
@@ -114,10 +111,7 @@ struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails(
          viewModel: BudgetViewModelAssembler().assembly())
-         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-         .previewDisplayName("iPhone 12")
+      .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+      .previewDisplayName("iPhone 12")
    }
 }
-
-
-

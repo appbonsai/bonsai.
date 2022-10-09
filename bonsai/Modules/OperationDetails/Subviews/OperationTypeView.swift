@@ -8,34 +8,22 @@
 import SwiftUI
 
 struct OperationTypeView: View {
-    let operation: NewOperationView.OperationType
+    let operation: OperationDetails.OperationType
     let isSelected: Bool
 
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             Spacer(minLength: 4)
             operation.viewModel.image
-                .foregroundColor({
-                    if isSelected {
-                        return BonsaiColor.mainPurple
-                    } else {
-                        return operation.viewModel.color
-                    }
-                }())
-                .padding([.top, .bottom], 7)
+                .foregroundColor(operation.viewModel.color)
             Text(operation.viewModel.title)
                 .font(BonsaiFont.subtitle_15)
-                .foregroundColor({
-                    if isSelected {
-                        return BonsaiColor.mainPurple
-                    } else {
-                        return BonsaiColor.text
-                    }
-                }())
+                .foregroundColor(BonsaiColor.text)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
             Spacer(minLength: 4)
         }
+        .padding(.vertical, 12)
         .background(BonsaiColor.card)
         .cornerRadius(13)
         .overlay(

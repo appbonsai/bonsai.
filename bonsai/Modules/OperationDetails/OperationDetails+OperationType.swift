@@ -1,5 +1,5 @@
 //
-//  NewOperationView+OperationType.swift
+//  OperationDetails+OperationType.swift
 //  bonsai
 //
 //  Created by Vladimir Korolev on 11.12.2021.
@@ -7,15 +7,27 @@
 
 import SwiftUI
 
-extension NewOperationView {
+extension OperationDetails {
    enum OperationType {
       case expense
       case income
       case transfer
+
+      init(transactionType: Transaction.`Type`) {
+         switch transactionType {
+         case .income:
+            self = .income
+         case .expense:
+            self = .expense
+         case .transfer(let _):
+            assertionFailure("Unexpected branch, transfer is not supported yet")
+            self = .transfer
+         }
+      }
    }
 }
 
-extension NewOperationView.OperationType {
+extension OperationDetails.OperationType {
    struct ViewModel {
       let color: Color
       let image: Image
@@ -57,4 +69,3 @@ extension NewOperationView.OperationType {
       }
    }
 }
-

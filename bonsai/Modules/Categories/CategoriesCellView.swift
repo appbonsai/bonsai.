@@ -14,26 +14,18 @@ struct CategoriesCellView: View {
 
    var body: some View {
       HStack(spacing: 13) {
-         (isSelected
-          ? BonsaiColor.mainPurple.asGradient
-          : category.color.asGradient)
-         .frame(width: 20, height: 20)
-         .mask(category.icon.img
-            .resizable()
-            .scaledToFit()
-            .frame(width: 20, height: 20))
+         category.color.asGradient
+            .frame(width: 20, height: 20)
+            .mask(
+               category.icon.img
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 20, height: 20)
+            )
 
          Text(category.title)
-            .foregroundColor(
-               isSelected
-               ? BonsaiColor.mainPurple
-               : BonsaiColor.text
-            )
-            .font(
-               isSelected
-               ? BonsaiFont.title_headline_17
-               : BonsaiFont.body_17
-            )
+            .foregroundColor(BonsaiColor.text)
+            .font(BonsaiFont.body_17)
 
          Spacer()
       }

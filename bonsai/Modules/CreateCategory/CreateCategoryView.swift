@@ -22,10 +22,12 @@ struct CreateCategoryView: View {
    @State private var colors: OrderedDictionary<Color, Bool>
    // [iconName: isSelected]
    @State private var icons: OrderedDictionary<Icon, Bool>
-   @State private var confirmationPresented: Bool = false
+
+   private var completion: ((Category?) -> Void)?
    
-   init(isPresented: Binding<Bool>) {
+   init(isPresented: Binding<Bool>, completion: ((Category?) -> Void)? = nil) {
       self._isPresented = isPresented
+      self.completion = completion
 
       UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
 
@@ -98,17 +100,12 @@ struct CreateCategoryView: View {
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                Button(action: {
-                  confirmationPresented = true
+                  isPresented = false
+                  completion?(nil)
                }) {
                   Text("Cancel")
                      .foregroundColor(BonsaiColor.secondary)
                }
-               // TODO: Localize
-               .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
-                  Button("Discard Changes", role: .destructive, action: {
-                     isPresented = false
-                  })
-               })
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                Button(action: {
@@ -117,7 +114,7 @@ struct CreateCategoryView: View {
                      assertionFailure("color or icon were nil, save is not allowed")
                      return
                   }
-                  Category(
+                  let category = Category(
                      context: moc,
                      title: title,
                      color: color,
@@ -129,6 +126,7 @@ struct CreateCategoryView: View {
                      assertionFailure(e.localizedDescription)
                   }
                   isPresented = false
+                  completion?(category)
                }) {
                   Text("Done")
                      .if($title.wrappedValue.isEmpty == false, transform: { text in
@@ -139,6 +137,7 @@ struct CreateCategoryView: View {
             }
          }
       } // NavigationView
+      .interactiveDismissDisabled(true)
    }
 
    struct CreateCategoryView_Previews: PreviewProvider {
