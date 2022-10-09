@@ -31,7 +31,6 @@ struct OperationDetails: View {
    @State private var isCategoriesViewPresented: Bool = false
    @State private var isTagsViewPresented: Bool = false
    @State private var isCalendarOpened: Bool = false
-   @State private var confirmationPresented: Bool = false
 
    private let iconSizeSide: CGFloat = 20
 
@@ -182,17 +181,11 @@ struct OperationDetails: View {
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                Button(action: {
-                  confirmationPresented = true
+                  isPresented = false
                }) {
                   Text("Cancel")
                      .foregroundColor(BonsaiColor.secondary)
                }
-               // TODO: Localize
-               .confirmationDialog("Are you sure?", isPresented: $confirmationPresented, actions: {
-                  Button("Discard Transaction", role: .destructive, action: {
-                     isPresented = false
-                  })
-               })
             }
          }
       } // NavigationView
@@ -208,6 +201,7 @@ struct OperationDetails: View {
             selectedTags: $tags
          )
       }
+      .interactiveDismissDisabled(kind == .new)
    }
 }
 
