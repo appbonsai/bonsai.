@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct CategoriesContainerView: View {
+   
+   @EnvironmentObject var purchaseService: PurchaseService
+   @State private var isSubscriptionPresented = false
+
+   private var isPremium: Bool {
+      if purchaseService.isSubscriptionActive {
+         return true
+      }
+      let limitedCategories = 3
+      return categories.count < limitedCategories
+   }
 
    @FetchRequest(
       sortDescriptors: [SortDescriptor(\.title)],
@@ -32,49 +43,62 @@ struct CategoriesContainerView: View {
    }
 
    var body: some View {
-      NavigationView {
-         ZStack {
-            BonsaiColor.back
-               .ignoresSafeArea()
-            ScrollView(.vertical, showsIndicators: false) {
-               VStack(spacing: 16) {
-                  ForEach(categories) { category in
-                     CategoriesCellView(
-                        isSelected: category == selectedCategory,
-                        category: category
-                     )
-                     .onTapGesture {
-                        selectedCategory = category
+      LoadingAllSet(isShowing: $purchaseService.isShownAllSet) {
+         NavigationView {
+            ZStack {
+               BonsaiColor.back
+                  .ignoresSafeArea()
+               ScrollView(.vertical, showsIndicators: false) {
+                  VStack(spacing: 16) {
+                     ForEach(categories) { category in
+                        CategoriesCellView(
+                           isSelected: category == selectedCategory,
+                           category: category
+                        )
+                        .onTapGesture {
+                           selectedCategory = category
+                        }
+                     } // ForEach
+                  } // VStack
+                  .padding(2)
+               } // ScrollView
+               .padding(.top, 24)
+               .padding(.horizontal, 16)
+            } // ZStack
+            .navigationTitle("Category")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+               ToolbarItem(placement: .navigationBarLeading) {
+                  NavigationBackButton(isPresented: $isPresented)
+               }
+               ToolbarItem(placement: .navigationBarTrailing) {
+                  Button(action: {
+                     if isPremium {
+                        isCreateCategoryPresented = true
+                     } else {
+                        isSubscriptionPresented = true
                      }
-                  } // ForEach
-               } // VStack
-               .padding(2)
-            } // ScrollView
-            .padding(.top, 24)
-            .padding(.horizontal, 16)
-         } // ZStack
-         .navigationTitle("Category")
-         .navigationBarTitleDisplayMode(.inline)
-         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-               NavigationBackButton(isPresented: $isPresented)
+                  }) {
+                     BonsaiImage.plus
+                        .foregroundColor(BonsaiColor.mainPurple)
+                  }
+               }
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-               Button(action: {
-                  isCreateCategoryPresented = true
-               }) {
-                  BonsaiImage.plus
-                     .foregroundColor(BonsaiColor.mainPurple)
+         } // NavigationView
+         .popover(isPresented: $isCreateCategoryPresented) {
+            CreateCategoryView(isPresented: $isCreateCategoryPresented) { category in
+               if let category {
+                  self.selectedCategory = category
+                  self.isPresented = false
                }
             }
          }
-      } // NavigationView
-      .popover(isPresented: $isCreateCategoryPresented) {
-         CreateCategoryView(isPresented: $isCreateCategoryPresented) { category in
-            if let category {
-               self.selectedCategory = category
-               self.isPresented = false
-            }
+         .popover(isPresented: $isSubscriptionPresented) {
+            Subscriptions(isPresented: $isSubscriptionPresented, completion: {
+               DispatchQueue.main.async {
+                  isCreateCategoryPresented = false
+               }
+            })
          }
       }
    }
