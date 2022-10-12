@@ -90,11 +90,7 @@ struct TagsContainerView: View {
                 }
             }
             .popover(isPresented: $isSubscriptionPresented) {
-                Subscriptions(isPresented: $isSubscriptionPresented, completion: {
-                    DispatchQueue.main.async {
-                        isCreateTagPresented = false
-                    }
-                })
+                Subscriptions(isPresented: $isSubscriptionPresented)
             }
         }
     }

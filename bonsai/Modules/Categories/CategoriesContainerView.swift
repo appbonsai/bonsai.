@@ -94,11 +94,7 @@ struct CategoriesContainerView: View {
             }
          }
          .popover(isPresented: $isSubscriptionPresented) {
-            Subscriptions(isPresented: $isSubscriptionPresented, completion: {
-               DispatchQueue.main.async {
-                  isCreateCategoryPresented = false
-               }
-            })
+            Subscriptions(isPresented: $isSubscriptionPresented)
          }
       }
    }

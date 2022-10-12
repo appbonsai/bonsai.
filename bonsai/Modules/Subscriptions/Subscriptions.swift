@@ -13,13 +13,11 @@ struct Subscriptions: View {
    @State var id: String = ""
    @Binding var isPresented: Bool
    @State var isFeaturePremiumPresented: Bool = false
-   var completion: () -> Void
    @EnvironmentObject private var purchaseService: PurchaseService
 
-   init(isPresented: Binding<Bool>, completion: @escaping () -> Void) {
+   init(isPresented: Binding<Bool>) {
       self._isPresented = isPresented
       UINavigationBar.changeAppearance(clear: true)
-      self.completion = completion
    }
     
     var body: some View {
@@ -95,7 +93,6 @@ struct Subscriptions: View {
                purchaseService.restorePurchase {
                   isShowActivityIndicator = false
                   isPresented = false
-                  completion()
                }
             }
          Spacer()
@@ -132,7 +129,6 @@ struct Subscriptions: View {
                      purchaseService.buy(package: package, completion: {
                         isShowActivityIndicator = false
                         isPresented = false
-                        completion()
                      })
                  }
                  
@@ -204,7 +200,7 @@ struct Subscriptions: View {
 
 struct Subscriptions_Previews: PreviewProvider {
    static var previews: some View {
-      Subscriptions(isPresented: .constant(false), completion: { })
+      Subscriptions(isPresented: .constant(false))
            .environmentObject(PurchaseService())
    }
 }
