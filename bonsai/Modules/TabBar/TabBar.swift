@@ -13,9 +13,20 @@ struct TabBar: View {
 
    @State private var selection = 1
    @EnvironmentObject var treeService: TreeService
+
    private let tabBarImages: [String] = [Asset.settingDisabled.name,
                                          Asset.homeDisabled.name,
                                          Asset.chartsDisabled.name]
+   
+   func updateTree() {
+            
+      let vm = BudgetViewModelAssembler().assembly()
+//      
+//      let green = treeService.updateTree(with: .green)
+//      let orange = treeService.updateTree(with: .orange)
+//      let yellow = treeService.updateTree(with: .yellow)
+//      let brown = treeService.updateTree(with: .brown)
+   }
 
    var body: some View {
       VStack {
