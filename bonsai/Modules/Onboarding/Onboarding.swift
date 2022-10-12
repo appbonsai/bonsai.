@@ -8,84 +8,85 @@
 import SwiftUI
 
 struct OnboardingDataSource {
-    let image: String
-    let title: String
-    let description: String
+   let image: String
+   let title: String
+   let description: String
 }
 
 struct Onboarding: View {
-    
-    @State private var selection = 0
-    @State var isPresenting = false
-    
-    private let dataSource: [OnboardingDataSource] = [
-        .init(
-            image: "bonsai_1",
-            title: L.onboarding_1_title,
-            description: L.onboarding_1_description),
-        .init(
-            image: "bonsai_2",
-            title: L.onboarding_2_title,
-            description: L.onboarding_2_description),
-        .init(
-            image: "bonsai_3",
-            title: L.onboarding_3_title,
-            description: L.onboarding_3_description),
-    ]
 
-    var body: some View {
-        NavigationView {
-        VStack {
+   @State private var selection = 0
+   @State var isPresenting = false
+
+   private let dataSource: [OnboardingDataSource] = [
+      .init(
+         image: "bonsai_1",
+         title: L.onboarding_1_title,
+         description: L.onboarding_1_description),
+      .init(
+         image: "bonsai_2",
+         title: L.onboarding_2_title,
+         description: L.onboarding_2_description),
+      .init(
+         image: "bonsai_3",
+         title: L.onboarding_3_title,
+         description: L.onboarding_3_description),
+   ]
+
+   var body: some View {
+      NavigationView {
+         VStack {
             /*
              open TabBar() || Subscriptions()
              */
             NavigationLink(
-                destination: TabBar().navigationBarHidden(true), isActive: $isPresenting) { }
+               destination: TabBar().navigationBarHidden(true), isActive: $isPresenting) { }
             ZStack {
-                
-                if selection == 0 {
-                    OnboardingCard(dataSource: dataSource[selection])
-                } else if selection == 1 {
-                    OnboardingCard(dataSource: dataSource[selection])
-                } else if selection == 2 {
-                    OnboardingCard(dataSource: dataSource[selection])
-                }
-                VStack {
-                    RoundedRectangle(cornerRadius: 13)
-                        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.8)
-                        .foregroundColor(.clear)
-                    Button {
-                        if selection != dataSource.count - 1 {
-                            withAnimation(.easeInOut(duration: 0.7)) {
-                                selection += 1
-                            }
-                        } else {
-                            isPresenting = true
+
+               if selection == 0 {
+                  OnboardingCard(dataSource: dataSource[selection])
+               } else if selection == 1 {
+                  OnboardingCard(dataSource: dataSource[selection])
+               } else if selection == 2 {
+                  OnboardingCard(dataSource: dataSource[selection])
+               }
+               VStack {
+                  RoundedRectangle(cornerRadius: 13)
+                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.8)
+                     .foregroundColor(.clear)
+                  Button {
+                     if selection != dataSource.count - 1 {
+                        withAnimation(.easeInOut(duration: 0.7)) {
+                           selection += 1
                         }
-                    } label: {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 13)
-                                .frame(width: 192, height: 48)
-                                .foregroundColor(BonsaiColor.mainPurple)
-                            Text(L.Continue_button)
-                                .foregroundColor(BonsaiColor.card)
-                                .font(.system(size: 17))
-                                .bold()
-                        }
-                    }
-                }
-                
+                     } else {
+                        UserSettings.isOnboardingSeen = true
+                        isPresenting = true
+                     }
+                  } label: {
+                     ZStack {
+                        RoundedRectangle(cornerRadius: 13)
+                           .frame(width: 192, height: 48)
+                           .foregroundColor(BonsaiColor.mainPurple)
+                        Text(L.Continue_button)
+                           .foregroundColor(BonsaiColor.card)
+                           .font(.system(size: 17))
+                           .bold()
+                     }
+                  }
+               }
+
             }
             
-        }
-        .ignoresSafeArea()
-        }
-    }
-    
+         }
+         .ignoresSafeArea()
+      }
+   }
+
 }
 
 struct Onboarding_Previews: PreviewProvider {
-    static var previews: some View {
-        Onboarding()
-    }
+   static var previews: some View {
+      Onboarding()
+   }
 }
