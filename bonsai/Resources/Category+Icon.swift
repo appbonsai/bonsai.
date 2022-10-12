@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Category {
 
-   class Emoji {
+   enum Emoji {
       static func fromStorage(text: String) -> String? {
          if text.starts(with: "e_") {
             var copy = text

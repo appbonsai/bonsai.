@@ -19,7 +19,6 @@ struct HomeContainerView: View {
    @EnvironmentObject var purchaseService: PurchaseService
 
    private var isPremium: Bool {
-      return true
       if purchaseService.isSubscriptionActive {
          return true
       }
