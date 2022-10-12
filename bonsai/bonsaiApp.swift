@@ -13,13 +13,14 @@ struct bonsaiApp: App {
 
    @StateObject private var dataController = DataController.sharedInstance
    @StateObject private var purchaseService = PurchaseService()
-
+   @StateObject private var treeService = TreeService()
    var body: some Scene {
       WindowGroup {
          ContentView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environment(\.persistentContainer, dataController.container)
             .environmentObject(purchaseService)
+            .environmentObject(treeService)
       }
    }
 

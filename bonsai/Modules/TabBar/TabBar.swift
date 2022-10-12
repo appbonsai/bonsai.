@@ -12,7 +12,7 @@ struct TabBar: View {
    static var topPadding: CGFloat = 57
 
    @State private var selection = 1
-
+   @EnvironmentObject var treeService: TreeService
    private let tabBarImages: [String] = [Asset.settingDisabled.name,
                                          Asset.homeDisabled.name,
                                          Asset.chartsDisabled.name]
@@ -40,6 +40,10 @@ struct TabBar: View {
             }
          }
          TabView(selection: $selection) {
+             
+             /*
+              ZStack for tree
+              */
              SettingsContainerView()
                .tag(0)
              HomeContainerView()
