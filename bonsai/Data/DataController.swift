@@ -10,15 +10,16 @@ import CoreData
 
 final class DataController: ObservableObject {
 
-    static let sharedInstance = DataController()
-    let container = NSPersistentContainer(name: "Core")
-    
-    private init() {
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                fatalError("Core Data failed to load: \(error.localizedDescription)")
-            }
-        }
-        container.viewContext.automaticallyMergesChangesFromParent = true
-    }
+   static let sharedInstance = DataController()
+   let container = NSPersistentContainer(name: "Core")
+
+   private init() {
+      container.loadPersistentStores { description, error in
+         if let error = error {
+            fatalError("Core Data failed to load: \(error.localizedDescription)")
+         }
+      }
+      container.viewContext.automaticallyMergesChangesFromParent = true
+      container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+   }
 }

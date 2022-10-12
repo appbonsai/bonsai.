@@ -12,6 +12,7 @@ struct CreateTagView: View {
    @Environment(\.managedObjectContext) private var moc
    @Binding private var isPresented: Bool
    @State private var title: String = ""
+   @FocusState private var fieldIsFocused: Bool
 
    private var completion: ((Tag?) -> Void)?
 
@@ -31,6 +32,7 @@ struct CreateTagView: View {
                title: $title,
                placeholder: "Tag Name"
             )
+            .focused($fieldIsFocused)
             .frame(height: 56, alignment: .center)
             .background(SwiftUI.Color(hex: 0x3d3c4d))
             .cornerRadius(13)
@@ -72,6 +74,9 @@ struct CreateTagView: View {
             }
          }
       } // NavigationView
+      .onAppear {
+         fieldIsFocused = true
+      }
    }
 }
 

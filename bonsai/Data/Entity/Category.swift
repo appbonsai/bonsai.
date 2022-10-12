@@ -14,12 +14,28 @@ public class Category: NSManagedObject, Identifiable {
 
    @NSManaged public var id: UUID
    @NSManaged public var title: String
-   var icon: Icon {
+
+   enum Image {
+      case icon(Icon)
+      case emoji(String)
+   }
+   var image: Image {
       get {
-         .init(rawValue: iconString) ?? .gameController
+         if let icon = Icon(rawValue: iconString) {
+            return .icon(icon)
+         }
+         if let emoji = Emoji.fromStorage(text: iconString) {
+            return .emoji(emoji)
+         }
+         return .icon(.gameController)
       }
       set {
-         iconString = newValue.rawValue
+         if case .emoji(let string) = newValue {
+            iconString = Emoji.toStorage(emoji: string) ?? ""
+         }
+         if case .icon(let icon) = newValue {
+            iconString = icon.rawValue
+         }
       }
    }
    var color: Color {
@@ -36,13 +52,20 @@ public class Category: NSManagedObject, Identifiable {
       id: UUID = UUID(),
       title: String,
       color: Color,
-      icon: Icon
+      image: Image
    ) {
       self.init(context: context)
       self.id = id
       self.title = title
       self.colorString = color.rawValue
-      self.iconString = icon.rawValue
+      self.iconString = {
+         switch image {
+         case .icon(let icon):
+            return icon.rawValue
+         case .emoji(let string):
+            return Emoji.toStorage(emoji: string) ?? ""
+         }
+      }()
    }
 
    @nonobjc public class func fetchRequest() -> NSFetchRequest<Category> {
@@ -69,6 +92,6 @@ extension Category {
       }(),
       title: "No category",
       color: .blue,
-      icon: .star
+      image: .icon(.star)
    )
 }

@@ -18,10 +18,12 @@ struct CreateCategoryView: View {
    @Environment(\.managedObjectContext) private var moc
    @Binding private var isPresented: Bool
    @State private var title: String = ""
-   // [color: isSelected]
-   @State private var colors: OrderedDictionary<Color, Bool>
-   // [iconName: isSelected]
-   @State private var icons: OrderedDictionary<Icon, Bool>
+   @State /* [color: isSelected] */
+   private var colors: OrderedDictionary<Color, Bool>
+   @State /* [iconName: isSelected] */
+   private var icons: OrderedDictionary<Icon, Bool>
+   @State
+   private var emojiText: String = ""
 
    private var completion: ((Category?) -> Void)?
    
@@ -63,10 +65,15 @@ struct CreateCategoryView: View {
             ScrollView(.vertical) {
                VStack(spacing: 16) {
                   VStack(spacing: 16) {
-
                      CategoryPreviewView(
                         gradient: (colors.first(where: \.value)?.key ?? Color.green).asGradient,
-                        image: icons.first(where: \.value)?.key.img ?? Icon.gameController.img
+                        image: { () -> Category.Image in
+                           if emojiText.isEmpty {
+                              return (icons.first(where: \.value)?.key).flatMap({ .icon($0) }) ?? .emoji("")
+                           } else {
+                              return .emoji(emojiText)
+                           }
+                        }()
                      )
                      .padding([.top], 16)
 
@@ -86,7 +93,8 @@ struct CreateCategoryView: View {
                      .cornerRadius(13)
 
                   CategoryIconSelectorView(
-                     icons: $icons
+                     icons: $icons,
+                     emojiText: $emojiText
                   )
                   .cornerRadius(13)
 
@@ -109,16 +117,25 @@ struct CreateCategoryView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                Button(action: {
-                  guard let color = colors.first(where: \.value)?.key,
-                        let icon = icons.first(where: \.value)?.key else {
-                     assertionFailure("color or icon were nil, save is not allowed")
+                  guard let color = colors.first(where: \.value)?.key else {
+                     assertionFailure("color was nil, save is not allowed")
                      return
                   }
+                  let image: Category.Image
+                  if let icon = icons.first(where: \.value)?.key {
+                     image = .icon(icon)
+                  } else if emojiText.isEmpty == false {
+                     image = .emoji(emojiText)
+                  } else {
+                     assertionFailure("image was nil, save is not allowed")
+                     return
+                  }
+                  
                   let category = Category(
                      context: moc,
                      title: title,
                      color: color,
-                     icon: icon
+                     image: image
                   )
                   do {
                      try moc.save()
@@ -129,15 +146,20 @@ struct CreateCategoryView: View {
                   completion?(category)
                }) {
                   Text("Done")
-                     .if($title.wrappedValue.isEmpty == false, transform: { text in
+                     .if(imageNotSelected == false && title.isEmpty == false, transform: { text in
                         text.foregroundColor(BonsaiColor.secondary)
                      })
                }
                .disabled($title.wrappedValue.isEmpty)
+               .disabled(imageNotSelected)
             }
          }
       } // NavigationView
       .interactiveDismissDisabled(true)
+   }
+
+   var imageNotSelected: Bool {
+      icons.first(where: \.value) == nil && emojiText.isEmpty
    }
 
    struct CreateCategoryView_Previews: PreviewProvider {
