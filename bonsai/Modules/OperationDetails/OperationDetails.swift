@@ -36,6 +36,12 @@ struct OperationDetails: View {
 
    @Namespace private var calendarID
 
+   enum Field {
+       case amount
+       case title
+   }
+   @FocusState private var focusedField: Field?
+
    init(isPresented: Binding<Bool>, transaction: Transaction? = nil) {
       self._isPresented = isPresented
       let navBarAppearance = UINavigationBar.appearance()
@@ -71,8 +77,8 @@ struct OperationDetails: View {
          ZStack {
             BonsaiColor.back
                .ignoresSafeArea()
-            VStack {
-               ScrollViewReader { reader in
+            ScrollViewReader { reader in
+               VStack(spacing: 0) {
                   ScrollView(.vertical, showsIndicators: false) {
                      VStack(alignment: .center, spacing: 0) {
                         OperationTypeSelectorView(
@@ -84,14 +90,19 @@ struct OperationDetails: View {
                            currency: currency,
                            text: $amount
                         )
+                        .focused($focusedField, equals: .amount)
                         .cornerRadius(13)
                         .padding([.top], 16)
-                        CategoryView(category: $category, iconSizeSide: 24)
-                           .cornerRadius(13, corners: [.topLeft, .topRight])
-                           .padding([.top], 16)
-                           .onTapGesture {
-                              isCategoriesViewPresented = true
-                           }
+                        CategoryView(
+                           category: $category,
+                           iconSizeSide: 24
+                        )
+                        .cornerRadius(13, corners: [.topLeft, .topRight])
+                        .padding([.top], 16)
+                        .onTapGesture {
+                           focusedField = nil
+                           isCategoriesViewPresented = true
+                        }
                         ZStack { // separator
                            BonsaiColor.card
                               .frame(height: 1)
@@ -101,79 +112,82 @@ struct OperationDetails: View {
                         }
                         TitleView(text: $title)
                            .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
+                           .focused($focusedField, equals: .title)
                         TagsInputView(
                            tags: $tags,
-                           newTagHandler: { isTagsViewPresented = true }
+                           newTagHandler: {
+                              focusedField = nil
+                              isTagsViewPresented = true
+                           }
                         )
                         .cornerRadius(13)
-                        .padding([.top], 16)
+                        .padding(.top, 16)
                         DateSelectorView(date: $date, fullSized: $isCalendarOpened)
                            .cornerRadius(13)
-                           .padding([.top], 16)
+                           .padding(.top, 16)
                            .id(calendarID)
                      } // VStack
-                     .padding([.top, .leading, .trailing], 16)
+                     .padding([.top, .leading, .trailing, .bottom], 16)
                      .onChange(of: isCalendarOpened) { newValue in
                         guard newValue == true else { return }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                           withAnimation {
-                              reader.scrollTo(calendarID)
-                           }
-                        }
-                     }
+                        focusedField = nil
+                        withAnimation {
+                           reader.scrollTo(calendarID)
+                        } // withAnimation
+                     } // onChange
                   } // ScrollView
-               } // ScrollViewReader
-               Button {
-                  switch kind {
-                  case .new:
-                     bonsai.Transaction(
-                        context: moc,
-                        amount: NSDecimalNumber(string: amount),
-                        title: title,
-                        date: date,
-                        category: category ?? .notSpecified,
-                        account: .default,
-                        type: selectedOperation.mappedToTransactionType,
-                        tags: Set(tags),
-                        currency: currency
-                     )
-                     do {
-                        try moc.save()
-                        isPresented = false
-                     } catch (let e) {
-                        assertionFailure(e.localizedDescription)
-                     }
-                  case .edit(let transaction):
-                     let request = Transaction.fetchRequest()
-                     request.predicate = .init(format: "id == %@", transaction.id as CVarArg)
-                     do {
-                        guard let result = try moc.fetch(request).first else {
-                           assertionFailure("Transaction with id \(transaction.id) not found")
-                           isPresented = false
-                           return
-                        }
-                        result.update(
+                  Button {
+                     switch kind {
+                     case .new:
+                        bonsai.Transaction(
+                           context: moc,
                            amount: NSDecimalNumber(string: amount),
                            title: title,
                            date: date,
-                           category: category,
+                           category: category ?? .notSpecified,
+                           account: .default,
                            type: selectedOperation.mappedToTransactionType,
                            tags: Set(tags),
                            currency: currency
                         )
-                        try moc.save()
-                        isPresented = false
-                     } catch (let e) {
-                        assertionFailure(e.localizedDescription)
+                        do {
+                           try moc.save()
+                           isPresented = false
+                        } catch (let e) {
+                           assertionFailure(e.localizedDescription)
+                        }
+                     case .edit(let transaction):
+                        let request = Transaction.fetchRequest()
+                        request.predicate = .init(format: "id == %@", transaction.id as CVarArg)
+                        do {
+                           guard let result = try moc.fetch(request).first else {
+                              assertionFailure("Transaction with id \(transaction.id) not found")
+                              isPresented = false
+                              return
+                           }
+                           result.update(
+                              amount: NSDecimalNumber(string: amount),
+                              title: title,
+                              date: date,
+                              category: category,
+                              type: selectedOperation.mappedToTransactionType,
+                              tags: Set(tags),
+                              currency: currency
+                           )
+                           try moc.save()
+                           isPresented = false
+                        } catch (let e) {
+                           assertionFailure(e.localizedDescription)
+                        }
                      }
-                  }
-               } label: {
-                  Text("Save")
-               } // Button
-               .buttonStyle(PrimaryButtonStyle())
-               .padding([.top], 16)
-               .disabled(amount.isEmpty)
-            } // VStack
+                  } label: {
+                     Text("Save")
+                  } // Button
+                  .buttonStyle(PrimaryButtonStyle())
+                  .padding([.top, .bottom], 12)
+                  .disabled(amount.isEmpty)
+               } // VStack
+            } // ScrollViewReader
          } // ZStack
          .navigationTitle(kind == .new ? "New Operation" : "Edit Operation")
          .navigationBarTitleDisplayMode(.large)

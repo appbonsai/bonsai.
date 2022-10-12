@@ -18,10 +18,10 @@ struct CreateCategoryView: View {
    @Environment(\.managedObjectContext) private var moc
    @Binding private var isPresented: Bool
    @State private var title: String = ""
-   // [color: isSelected]
-   @State private var colors: OrderedDictionary<Color, Bool>
-   // [iconName: isSelected]
-   @State private var icons: OrderedDictionary<Icon, Bool>
+   @State /* [color: isSelected] */
+   private var colors: OrderedDictionary<Color, Bool>
+   @State /* [iconName: isSelected] */
+   private var icons: OrderedDictionary<Icon, Bool>
 
    private var completion: ((Category?) -> Void)?
    
