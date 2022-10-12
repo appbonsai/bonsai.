@@ -12,14 +12,13 @@ struct Subscriptions: View {
    @State var isShowActivityIndicator = false
    @State var id: String = ""
    @Binding var isPresented: Bool
-    @State var isFeaturePremiumPresented: Bool = false
-
+   @State var isFeaturePremiumPresented: Bool = false
    @EnvironmentObject private var purchaseService: PurchaseService
 
-    init(isPresented: Binding<Bool>) {
-        self._isPresented = isPresented
-        UINavigationBar.changeAppearance(clear: true)
-    }
+   init(isPresented: Binding<Bool>) {
+      self._isPresented = isPresented
+      UINavigationBar.changeAppearance(clear: true)
+   }
     
     var body: some View {
         NavigationView {
@@ -84,21 +83,21 @@ struct Subscriptions: View {
         }
     }
    
-    private func restorePurchase() -> some View {
-        HStack(alignment: .center) {
-            Text(L.Restore_Purchases)
-                .font(.system(size: 14))
-                .foregroundColor(BonsaiColor.secondary)
-                .onTapGesture {
-                    isShowActivityIndicator = true
-                    purchaseService.restorePurchase {
-                        isShowActivityIndicator = false
-                        isPresented = false
-                    }
-                }
-            Spacer()
-        }
-    }
+   private func restorePurchase() -> some View {
+      HStack(alignment: .center) {
+         Text(L.Restore_Purchases)
+            .font(.system(size: 14))
+            .foregroundColor(BonsaiColor.secondary)
+            .onTapGesture {
+               isShowActivityIndicator = true
+               purchaseService.restorePurchase {
+                  isShowActivityIndicator = false
+                  isPresented = false
+               }
+            }
+         Spacer()
+      }
+   }
     
     private func gifView() -> some View {
         HStack {
@@ -201,7 +200,7 @@ struct Subscriptions: View {
 
 struct Subscriptions_Previews: PreviewProvider {
    static var previews: some View {
-       Subscriptions(isPresented: .constant(false))
+      Subscriptions(isPresented: .constant(false))
            .environmentObject(PurchaseService())
    }
 }

@@ -10,6 +10,17 @@ import OrderedCollections
 
 struct TagsContainerView: View {
 
+   @EnvironmentObject var purchaseService: PurchaseService
+   @State private var isSubscriptionPresented = false
+
+   private var isPremium: Bool {
+      if purchaseService.isSubscriptionActive {
+         return true
+      }
+      let limitedTags = 3
+      return selectedTags.count < limitedTags
+   }
+   
    @FetchRequest(sortDescriptors: []) var tags: FetchedResults<Tag>
    @Binding var selectedTags: OrderedSet<Tag>
    @Binding var isPresented: Bool
@@ -25,55 +36,65 @@ struct TagsContainerView: View {
          .titleTextAttributes = [.foregroundColor: UIColor.white]
    }
 
-   var body: some View {
-      NavigationView {
-         ZStack {
-            BonsaiColor.back
-               .ignoresSafeArea()
-            ScrollView(.vertical, showsIndicators: false) {
-               VStack(spacing: 16) {
-                  ForEach(tags) { tag in
-                     TagCellView(
-                        isSelected: selectedTags.contains(tag),
-                        tag: tag
-                     )
-                     .onTapGesture {
-                        if selectedTags.append(tag).inserted == false {
-                           selectedTags.remove(tag)
+    var body: some View {
+        LoadingAllSet(isShowing: $purchaseService.isShownAllSet) {
+            NavigationView {
+                ZStack {
+                    BonsaiColor.back
+                        .ignoresSafeArea()
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 16) {
+                            ForEach(tags) { tag in
+                                TagCellView(
+                                    isSelected: selectedTags.contains(tag),
+                                    tag: tag
+                                )
+                                .onTapGesture {
+                                    if selectedTags.append(tag).inserted == false {
+                                        selectedTags.remove(tag)
+                                    }
+                                }
+                            } // ForEach
+                        } // VStack
+                        .padding(2)
+                    } // ScrollView
+                    .padding(.top, 24)
+                    .padding(.horizontal, 16)
+                } // ZStack
+                .navigationTitle("Tags")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        NavigationBackButton(isPresented: $isPresented)
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            if isPremium {
+                                isCreateTagPresented = true
+                            } else {
+                                isSubscriptionPresented = true
+                            }
+                        }) {
+                            BonsaiImage.plus
+                                .foregroundColor(BonsaiColor.mainPurple)
                         }
-                     }
-                  } // ForEach
-               } // VStack
-               .padding(2)
-            } // ScrollView
-            .padding(.top, 24)
-            .padding(.horizontal, 16)
-         } // ZStack
-         .navigationTitle("Tags")
-         .navigationBarTitleDisplayMode(.inline)
-         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-               NavigationBackButton(isPresented: $isPresented)
+                    }
+                }
+            } // NavigationView
+            .popover(isPresented: $isCreateTagPresented) {
+                CreateTagView(isPresented: $isCreateTagPresented) { tag in
+                    if let tag, tag.title.isEmpty == false {
+                        self.selectedTags.append(tag)
+                        self.isPresented = false
+                    }
+                }
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-               Button(action: {
-                  isCreateTagPresented = true
-               }) {
-                  BonsaiImage.plus
-                     .foregroundColor(BonsaiColor.mainPurple)
-               }
+            .popover(isPresented: $isSubscriptionPresented) {
+                Subscriptions(isPresented: $isSubscriptionPresented)
             }
-         }
-      } // NavigationView
-      .popover(isPresented: $isCreateTagPresented) {
-         CreateTagView(isPresented: $isCreateTagPresented) { tag in
-            if let tag, tag.title.isEmpty == false {
-               self.selectedTags.append(tag)
-               self.isPresented = false
-            }
-         }
-      }
-   }
+        }
+    }
+
 }
 
 struct TagsContainerView_Previews: PreviewProvider {
