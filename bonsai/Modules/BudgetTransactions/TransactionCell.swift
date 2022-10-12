@@ -18,14 +18,14 @@ struct TransactionCell: View {
 
    struct Model {
       let color: LinearGradient
-      let icon: Image
+      let icon: Category.Image
       let title: String
       let type: Transaction.`Type`
       let amount: String
 
       init(transaction: Transaction) {
          self.color = transaction.category.color.asGradient
-         self.icon = transaction.category.icon.img
+         self.icon = transaction.category.image
          self.title = transaction.title?.takeIfNotEmpty() ?? transaction.category.title
          self.type = transaction.type
          self.amount = transaction.amount.stringValue
@@ -36,10 +36,20 @@ struct TransactionCell: View {
 
    var body: some View {
       HStack {
-         model.color
-            .mask(model.icon)
-            .frame(width: 22, height: 22)
-            .padding()
+         switch model.icon {
+         case let .icon(icon):
+            model.color
+               .mask(icon.img
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 20, height: 20))
+               .frame(width: 22, height: 22)
+               .padding()
+         case let .emoji(emoji):
+            Text(emoji)
+               .frame(width: 22, height: 22)
+               .padding()
+         }
          Text(model.title)
             .font(BonsaiFont.body_17)
             .foregroundColor(Color.white)
@@ -65,7 +75,7 @@ struct TransactionCell_Previews: PreviewProvider {
                                                    context: viewContext,
                                                    title: "Restaurant",
                                                    color: .green,
-                                                   icon: .star),
+                                                   image: .icon(.star)),
                                                 account: .init(
                                                    context: viewContext,
                                                    title: "BonsaiTest"),

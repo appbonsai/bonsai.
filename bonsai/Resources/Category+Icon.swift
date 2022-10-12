@@ -9,6 +9,24 @@ import SwiftUI
 
 extension Category {
 
+   class Emoji {
+      static func fromStorage(text: String) -> String? {
+         if text.starts(with: "e_") {
+            var copy = text
+            copy.removeFirst()
+            copy.removeFirst()
+            return copy
+         }
+         return nil
+      }
+      static func toStorage(emoji: String) -> String? {
+         guard let emoji = emoji.first, emoji.isEmoji else {
+            return nil
+         }
+         return "e_\(emoji)"
+      }
+   }
+
    enum Icon: String, CaseIterable, Identifiable {
       case airplane = "airplane.departure"
       case car = "car.fill"
@@ -46,13 +64,16 @@ extension Category {
       case mic = "mic.fill"
       case docText = "doc.text.fill"
       case star = "star.fill"
+      case scissors = "scissors"
+      case wandAndStars = "wand.and.stars"
+      case bandage = "bandage.fill"
+      case facemask = "facemask.fill"
+      case camera = "camera.macro"
 
-      var img: Image { .init(systemName: rawValue) }
+      var img: SwiftUI.Image { .init(systemName: rawValue) }
 
       // MARK: - Identifiable
 
       var id: Icon { self }
    }
 }
-
-
