@@ -14,14 +14,19 @@ struct CategoriesCellView: View {
 
    var body: some View {
       HStack(spacing: 13) {
-         category.color.asGradient
-            .frame(width: 20, height: 20)
-            .mask(
-               category.icon.img
+         switch category.image {
+         case let .icon(icon):
+            category.color.asGradient
+               .frame(width: 22, height: 20)
+               .mask(icon.img
                   .resizable()
                   .scaledToFit()
-                  .frame(width: 20, height: 20)
-            )
+                  .frame(width: 22, height: 20))
+         case let .emoji(emoji):
+            Text(emoji)
+               .font(.system(size: 18))
+               .frame(width: 22, height: 20)
+         }
 
          Text(category.title)
             .foregroundColor(BonsaiColor.text)
@@ -51,7 +56,7 @@ struct CategoriesCellView_Previews: PreviewProvider {
             context: DataController.sharedInstance.container.viewContext,
             title: "Health",
             color: .g4,
-            icon: .heart
+            image: .icon(.heart)
          )
       )
    }

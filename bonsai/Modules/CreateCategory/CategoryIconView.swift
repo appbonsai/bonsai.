@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoryIconView: View {
    let isSelected: Bool
    let icon: Image
+   let bgColor: Color
 
    var body: some View {
       ZStack {
@@ -19,7 +20,7 @@ struct CategoryIconView: View {
                .frame(width: 44, height: 44)
          }
          Circle()
-            .foregroundColor(BonsaiColor.card)
+            .foregroundColor(bgColor)
             .frame(width: 40, height: 40)
          icon
             .renderingMode(.template)
@@ -35,7 +36,8 @@ struct CategoryIconView_Previews: PreviewProvider {
    static var previews: some View {
       CategoryIconView(
          isSelected: true,
-         icon: Category.Icon.gameController.img
+         icon: Category.Icon.gameController.img,
+         bgColor: BonsaiColor.card
       )
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")

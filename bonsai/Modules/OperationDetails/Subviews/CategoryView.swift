@@ -16,7 +16,20 @@ struct CategoryView: View {
    var body: some View {
       HStack(spacing: 8) {
          if let category = category {
-            categoryView(category)
+            switch category.image {
+            case let .icon(icon):
+               category.color.asGradient
+                  .frame(width: iconSizeSide, height: iconSizeSide)
+                  .mask(icon.img
+                     .resizable()
+                     .scaledToFit()
+                     .frame(width: 20, height: 20))
+                  .padding([.leading, .top, .bottom], 16)
+            case let .emoji(emoji):
+               Text(emoji)
+                  .frame(width: 22, height: 20)
+                  .padding([.leading, .top, .bottom], 16)
+            }
          } else {
             noCategoryView
          }
@@ -29,13 +42,6 @@ struct CategoryView: View {
             .foregroundColor(BonsaiColor.purple3)
       }
       .background(BonsaiColor.card)
-   }
-
-   private func categoryView(_ category: Category) -> some View {
-      category.color.asGradient
-         .frame(width: iconSizeSide, height: iconSizeSide)
-         .mask(category.icon.img)
-         .padding([.leading, .top, .bottom], 16)
    }
 
    private var noCategoryView: some View {
@@ -55,7 +61,7 @@ struct CategoryView_Previews: PreviewProvider {
                context: DataController.sharedInstance.container.viewContext,
                title: "Health",
                color: .red,
-               icon: .gameController
+               image: .icon(.gameController)
             )
          ), iconSizeSide: 24
       )
