@@ -111,7 +111,7 @@ struct OperationDetails: View {
                               .frame(height: 1)
                               .padding([.leading, .trailing], 16)
                         }
-                        TitleView(text: $title)
+                        TitleView(title: "Title", image: BonsaiImage.textBubble, text: $title)
                            .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
                            .focused($focusedField, equals: .title)
                         TagsInputView(

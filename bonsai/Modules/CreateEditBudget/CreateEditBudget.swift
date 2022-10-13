@@ -19,8 +19,8 @@ struct CreateEditBudget: View {
    @State private var title: String
    @FocusState private var focusedField: Field?
    enum Field {
-       case amount
-       case title
+      case amount
+      case title
    }
    init() {
       self.kind = .new
@@ -45,10 +45,12 @@ struct CreateEditBudget: View {
                         equals: .amount)
                .cornerRadius(13)
                .padding([.top, .leading, .trailing], 12)
-               TitleView(text: $title)
-                  .cornerRadius(13)
-                  .focused($focusedField, equals: .title)
-                  .padding([.top, .leading, .trailing], 12)
+               TitleView(title: "Budget Name",
+                         image:  BonsaiImage.textformatAlt,
+                         text: $title)
+               .cornerRadius(13)
+               .focused($focusedField, equals: .title)
+               .padding([.top, .leading, .trailing], 12)
                BudgetDateSelectorView()
                   .cornerRadius(13)
                   .padding([.top, .leading, .trailing], 12)

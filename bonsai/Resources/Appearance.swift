@@ -46,6 +46,7 @@ enum BonsaiImage {
    static var xMark: Image { Image(systemName: "xmark") }
    static var plus: Image { Image(systemName: "plus") }
    static var smile: Image { Image(systemName: "face.smiling") }
+   static var textformatAlt: Image { Image(systemName: "textformat.alt") }
 }
 
 enum BonsaiColor {
