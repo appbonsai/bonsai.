@@ -137,6 +137,67 @@ class BudgetCalculationsTests: XCTestCase {
             XCTAssertEqual(res, exp)
         }
     }
+   
+   func testCalculateDailyPercentDifference() {
+      
+      // g
+      let inputStartDaily: [(amount: NSDecimalNumber, days: Int64)] = [
+          (amount: 90, days: 30),
+          (amount: 120, days: 30),
+          (amount: 30, days: 30),
+          (amount: 150, days: 30),
+          (amount: 880, days: 29)
+      ]
+
+      // g
+      let inputCurrentDaily: [(amount: NSDecimalNumber, days: Int64)] = [
+          (amount: 90, days: 40),
+          (amount: 120, days: 23),
+          (amount: 30, days: 20),
+          (amount: 150, days: 50),
+          (amount: 880, days: 49)
+      ]
+      
+      // w
+      
+      let resultsCurrentDaily: [NSDecimalNumber] = inputCurrentDaily.map {
+          budgetCalculations.calculateMoneyCanSpendDaily(
+              currentAmount: $0.amount,
+              periodDays: $0.days
+          )
+      }
+      
+      let resultsStartDaily: [NSDecimalNumber] = inputStartDaily.map {
+         budgetCalculations.calculateMoneyCanSpendDaily(
+            currentAmount: $0.amount,
+            periodDays: $0.days
+         )
+      }
+   
+      let resultsCurrentAndStart = zip(resultsCurrentDaily, resultsStartDaily)
+      
+      let results = resultsCurrentAndStart.map { current, start in
+         budgetCalculations
+            .calculatePercentDailyDifference(
+               currentDailyBudget: current,
+               startDailyBudget: start
+            )
+      }
+      
+      let percentExpected: [NSDecimalNumber] = [
+         .init(value: 75),
+         .init(value: 130.5),
+         .init(value: 150),
+         .init(value: 60),
+         .init(value: 59.2)
+      ]
+      
+      for i in 0..<results.count {
+         let res = results[i]
+         let exp = percentExpected[i]
+         XCTAssertEqual(res, exp)
+      }
+   }
     
 }
 

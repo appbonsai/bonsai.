@@ -13,9 +13,14 @@ protocol BudgetCalculationsProtocol {
    func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber?
    func calculateTotalSpend(transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
    func calculateDayLeft(fromDate: Date, toDate: Date) -> Int64
+   func calculatePercentDailyDifference(currentDailyBudget: NSDecimalNumber, startDailyBudget: NSDecimalNumber) -> NSDecimalNumber
 }
 
 final class BudgetCalculations: BudgetCalculationsProtocol {
+   
+   func calculatePercentDailyDifference(currentDailyBudget: NSDecimalNumber, startDailyBudget: NSDecimalNumber) -> NSDecimalNumber {
+      currentDailyBudget.dividing(by: startDailyBudget).multiplying(by: 100).round()
+   }
    
    func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber {
       currentAmount.dividing(by: NSDecimalNumber(value: periodDays)).round()
