@@ -35,6 +35,7 @@ struct TitleView: View {
             )
             .padding([.trailing], 16)
       }
+      .contentShape(Rectangle())
       .background(BonsaiColor.card)
    }
 }
