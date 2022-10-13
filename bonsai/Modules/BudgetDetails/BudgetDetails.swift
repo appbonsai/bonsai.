@@ -13,10 +13,10 @@ struct BudgetDetails: View {
    @State var currentOffsetY: CGFloat = 0
    @State var endingOffsetY: CGFloat = 0
    private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.2) / 2
-   private let viewModel: BudgetViewModelProtocol
+   private let viewModel: BudgetModelProtocol
    @State var isPresented: Bool = false
 
-   init(viewModel: BudgetViewModelProtocol) {
+   init(viewModel: BudgetModelProtocol) {
       self.viewModel = viewModel
    }
 
@@ -110,7 +110,7 @@ struct BudgetDetails: View {
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails(
-         viewModel: BudgetViewModelAssembler().assembly())
+         viewModel: BudgetModelAssembler().assembly())
       .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
       .previewDisplayName("iPhone 12")
    }

@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-struct BudgetViewModelAssembler {
+struct BudgetModelAssembler {
    private var transactions: [Transaction] = []
 
    init(mainContext: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
@@ -21,8 +21,8 @@ struct BudgetViewModelAssembler {
       }
    }
    
-   func assembly() -> BudgetViewModelProtocol {
-      BudgetViewModel(
+   func assembly() -> BudgetModelProtocol {
+      BudgetModel(
          budgetService: BudgetService(
             budgetRepository: BudgetRepository(),
             budgetCalculations: BudgetCalculations()),

@@ -18,15 +18,6 @@ struct TabBar: View {
                                          Asset.homeDisabled.name,
                                          Asset.chartsDisabled.name]
    
-   func updateTree() {
-            
-      let vm = BudgetViewModelAssembler().assembly()
-//      
-//      let green = treeService.updateTree(with: .green)
-//      let orange = treeService.updateTree(with: .orange)
-//      let yellow = treeService.updateTree(with: .yellow)
-//      let brown = treeService.updateTree(with: .brown)
-   }
 
    var body: some View {
       VStack {
@@ -60,7 +51,7 @@ struct TabBar: View {
              HomeContainerView()
                .tag(1)
             BudgetDetails(
-               viewModel: BudgetViewModelAssembler().assembly())
+               viewModel: BudgetModelAssembler().assembly())
             .tag(2)
          }
          .animation(.easeInOut)

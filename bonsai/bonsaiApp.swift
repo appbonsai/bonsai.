@@ -14,6 +14,7 @@ struct bonsaiApp: App {
    @StateObject private var dataController = DataController.sharedInstance
    @StateObject private var purchaseService = PurchaseService()
    @StateObject private var treeService = TreeService()
+   
    var body: some Scene {
       WindowGroup {
          ContentView()
