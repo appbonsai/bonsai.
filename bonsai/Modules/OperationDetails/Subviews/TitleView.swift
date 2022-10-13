@@ -9,19 +9,21 @@ import SwiftUI
 
 struct TitleView: View {
 
+   let title: String
+   let image: Image
    @Binding var text: String
    private let characterLimit = 16
 
    var body: some View {
       HStack(spacing: 8) {
-         BonsaiImage.textBubble
+         image
             .foregroundColor(BonsaiColor.purple3)
             .padding([.leading, .top, .bottom], 16)
          TextField("", text: $text)
             .font(BonsaiFont.body_17)
             .foregroundColor(BonsaiColor.purple3)
             .placeholder(
-               Text("Title")
+               Text(title)
                   .foregroundColor(BonsaiColor.prompt),
                show: text.isEmpty
             )
@@ -39,7 +41,7 @@ struct TitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
    static var previews: some View {
-      TitleView(text: .constant(""))
+      TitleView(title: "Title", image: BonsaiImage.textBubble, text: .constant(""))
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

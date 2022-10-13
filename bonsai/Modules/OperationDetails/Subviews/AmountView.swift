@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AmountView: View {
 
+   let amountTitle: String
    let operation: Operation
    let currency: Currency.Validated
 
@@ -25,7 +26,7 @@ struct AmountView: View {
             .foregroundColor(operation.viewModel.color)
             .keyboardType(.decimalPad)
             .placeholder(
-               Text("Amount")
+               Text(amountTitle)
                   .foregroundColor(BonsaiColor.prompt),
                show: text.isEmpty
             )
@@ -44,7 +45,7 @@ struct AmountView: View {
 
 struct AmountView_Previews: PreviewProvider {
    static var previews: some View {
-      AmountView(operation: .expense, currency: .current, text: .constant(""))
+      AmountView(amountTitle: "Amount", operation: .expense, currency: .current, text: .constant(""))
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }
