@@ -44,10 +44,15 @@ struct CreateEditBudget: View {
                .focused($focusedField,
                         equals: .amount)
                .cornerRadius(13)
-               .padding([.top], 16)
+               .padding([.top, .leading, .trailing], 12)
                TitleView(text: $title)
-                  .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
+                  .cornerRadius(13)
                   .focused($focusedField, equals: .title)
+                  .padding([.top, .leading, .trailing], 12)
+               BudgetDateSelectorView()
+                  .cornerRadius(13)
+                  .padding([.top, .leading, .trailing], 12)
+               Spacer()
             }
          }.navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
       }
