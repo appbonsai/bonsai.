@@ -17,6 +17,8 @@ struct DateSelectorView: View {
       dateFormatter.dateFormat = "dd MMMM YYYY"
       return dateFormatter.string(from: date)
    }
+   
+   let isClosedRange: Bool
 
    var body: some View {
       VStack {
@@ -42,13 +44,9 @@ struct DateSelectorView: View {
                fullSized.toggle()
             }
          }
+
          if fullSized {
-            DatePicker(
-               "",
-               selection: $date,
-               in: Date().addingTimeInterval(-10000000)...Date(),
-               displayedComponents: .date
-            )
+            datePickerIn()
             .datePickerStyle(.graphical)
             .accentColor(BonsaiColor.purple3)
             .padding([.leading, .trailing])
@@ -56,12 +54,30 @@ struct DateSelectorView: View {
       }
       .background(BonsaiColor.card)
    }
+   
+   func datePickerIn() -> some View {
+      if isClosedRange {
+         return DatePicker(
+            "",
+            selection: $date,
+            in: Date().addingTimeInterval(-10000000)...Date(),
+            displayedComponents: .date
+         )
+      } else {
+         return DatePicker(
+            "",
+            selection: $date,
+            in: Date()...,
+            displayedComponents: .date
+         )
+      }
+   }
 }
 
 struct DateSelectorView_Previews: PreviewProvider {
    static var previews: some View {
       DateSelectorView(
-         date: .constant(Date()), fullSized: .constant(false)
+         date: .constant(Date()), fullSized: .constant(false), isClosedRange: false
       )
    }
 }
