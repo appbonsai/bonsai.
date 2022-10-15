@@ -22,6 +22,7 @@ struct PieChartView: View {
                     .foregroundColor(BonsaiColor.disabled)
                     .font(BonsaiFont.title_headline_17)
                     .padding(.bottom, 16)
+                    .padding(.top, 16)
                 
                 if let amount = currentSliceData?.amount.formatted() {
                     Text("$\(amount)")
