@@ -10,18 +10,20 @@ import SwiftUI
 struct AmountView: View {
 
    let operation: Operation
+   let currency: Currency.Validated
+
    @Binding var text: String
    private let characterLimit = 16
 
    var body: some View {
       HStack(spacing: 8) {
-         BonsaiImage.amount
-            .renderingMode(.template)
+         Text(currency.symbol)
             .foregroundColor(operation.viewModel.color)
             .padding([.leading, .top, .bottom], 16)
          TextField("", text: $text)
             .font(BonsaiFont.body_17)
             .foregroundColor(operation.viewModel.color)
+            .keyboardType(.decimalPad)
             .placeholder(
                Text("Amount")
                   .foregroundColor(BonsaiColor.prompt),
@@ -33,6 +35,8 @@ struct AmountView: View {
                   limit: characterLimit
                )
             )
+            .modifier(DecimalOnly(text: $text))
+            .padding(.leading, 8)
       }
       .background(BonsaiColor.card)
    }
@@ -40,7 +44,7 @@ struct AmountView: View {
 
 struct AmountView_Previews: PreviewProvider {
    static var previews: some View {
-      AmountView(operation: .expense, text: .constant(""))
+      AmountView(operation: .expense, currency: .current, text: .constant(""))
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

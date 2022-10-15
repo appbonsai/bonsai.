@@ -9,7 +9,14 @@ import SwiftUI
 
 struct CategoriesContainerView: View {
 
-   @FetchRequest(sortDescriptors: []) var categories: FetchedResults<Category>
+   @FetchRequest(
+      sortDescriptors: [SortDescriptor(\.title)],
+      predicate: NSPredicate(
+         format: "id != %@", Category.notSpecified.id as CVarArg
+      )
+   )
+   var categories: FetchedResults<Category>
+
    @Binding var selectedCategory: Category?
    @Binding var isPresented: Bool
    @State var isCreateCategoryPresented: Bool = false
@@ -36,11 +43,12 @@ struct CategoriesContainerView: View {
                         isSelected: category == selectedCategory,
                         category: category
                      )
-                        .onTapGesture {
-                           selectedCategory = category
-                        }
+                     .onTapGesture {
+                        selectedCategory = category
+                     }
                   } // ForEach
                } // VStack
+               .padding(2)
             } // ScrollView
             .padding(.top, 24)
             .padding(.horizontal, 16)
@@ -55,7 +63,7 @@ struct CategoriesContainerView: View {
                Button(action: {
                   isCreateCategoryPresented = true
                }) {
-                  Image(systemName: "plus")
+                  BonsaiImage.plus
                      .foregroundColor(BonsaiColor.mainPurple)
                }
             }

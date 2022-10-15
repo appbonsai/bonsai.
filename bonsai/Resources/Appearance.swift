@@ -22,6 +22,8 @@ enum BonsaiFont {
 }
 
 enum BonsaiImage {
+   static var xmarkCircle: Image { Image(systemName: "xmark.circle") }
+   static var xmarkSquare: Image { Image(systemName: "xmark.square") }
    static var crossVialFill: Image { Image(systemName: "cross.vial.fill") }
    static var crossVial: Image { Image(systemName: "cross.vial") }
    static var forkKnifeCircleFill: Image { Image(systemName: "fork.knife.circle.fill") }
@@ -38,38 +40,47 @@ enum BonsaiImage {
    static var title: Image { Image(systemName: "text.bubble") }
    static var arrowUpCircle: Image { Image(systemName: "arrow.up.circle") }
    static var chevronForward: Image { Image(systemName: "chevron.forward") }
+   static var chevronDown: Image { Image(systemName: "chevron.down") }
+   static var chevronUp: Image { Image(systemName: "chevron.up") }
    static var textBubble: Image { Image(systemName: "text.bubble") }
+   static var xMark: Image { Image(systemName: "xmark") }
+   static var plus: Image { Image(systemName: "plus") }
 }
 
 enum BonsaiColor {
-    
-    /*
-     UIKit 1 column
-     */
- 
-    static let mainPurple = Color(hex: 0x9791FE)
-    static let purple2 = Color(hex: 0xA49FFE)
-    static let purple3 = Color(hex: 0xB1ACFE)
-    static let purple4 = Color(hex: 0xBEBAFE)
-    static let purple5 = Color(hex: 0xCBC8FE)
-    static let purple6 = Color(hex: 0xD8D6FF)
-    static let purple7 = Color(hex: 0xE5E3FF)
 
-    /*
-     UIKit 2 column
-     */
-    static let disabled = Color(hex: 0x4E4B76)
-    static let green = Color(hex: 0x34CE8D)
-    static let text = Color(hex: 0xE5E3FF)
-    
-    /*
-     UIKit 3 column
-     */
-    
+   /*
+    UIKit 1 column
+    */
+   static let mainPurple = Color(hex: 0x9791FE)
+   static let purple2 = Color(hex: 0xA49FFE)
+   static let purple3 = Color(hex: 0xB1ACFE)
+   static let purple4 = Color(hex: 0xBEBAFE)
+   static let purple5 = Color(hex: 0xCBC8FE)
+   static let purple6 = Color(hex: 0xD8D6FF)
+
+   /*
+    UIKit 2 column
+    */
+   static let disabled = Color(hex: 0x4E4B76)
+   static let green = Color(hex: 0x34CE8D)
+   static let text = Color(hex: 0xE5E3FF)
+
+   /*
+    UIKit 3 column
+    */
    static let card = Color(hex: 0x292838)
-    static let blue = Color(hex: 0x34A0CE)
-    static let blue_dark = Color(hex: 0x0052D4)
-    static let pink = Color(hex: 0xC84E89)
+   static let blue = Color(hex: 0x34A0CE)
+   static let blue_dark = Color(hex: 0x0052D4)
+   static let pink = Color(hex: 0xC84E89)
+
+   /*
+    UIKit 4 column
+    */
+   static let back = Color(hex: 0x1D1C22)
+   static let secondary = Color(hex: 0xF86D70)
+   static let blueLight = Color(hex: 0x1FA2FF)
+   static let orange = Color(hex: 0xFFE259)
 
     /*
      UIKit 4 column
@@ -106,4 +117,10 @@ enum BonsaiColor {
             return [BonsaiColor.ChartDisabledColors.c1, BonsaiColor.ChartDisabledColors.c2, BonsaiColor.ChartDisabledColors.c3, BonsaiColor.ChartDisabledColors.c4, BonsaiColor.ChartDisabledColors.c5, BonsaiColor.ChartDisabledColors.c6, BonsaiColor.ChartDisabledColors.c7, BonsaiColor.ChartDisabledColors.c8, BonsaiColor.ChartDisabledColors.c9, BonsaiColor.ChartDisabledColors.c10]
         }
     }
+   /*
+    Not in UIKit
+    */
+   static let newPurple = Color(hex: 0x6C63FF)
+   static let separator = Color(hex: 0x343150)
+   static let prompt = Color(hex: 0x686599)
 }

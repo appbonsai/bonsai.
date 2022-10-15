@@ -12,14 +12,38 @@ targets:
       properties:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UILaunchStoryboardName: LaunchScreen
+        UIUserInterfaceStyle: Dark
     settings:
       base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bonsai.tree.app
         MARKETING_VERSION: 1.0
         CURRENT_PROJECT_VERSION: 1
     dependencies:
       - package: swift-collections
         product: OrderedCollections
+      - package: purchases-ios
+        product: RevenueCat
+    scheme:
+      bonsai:
+        - bonsai
+  BudgetServiceTests:
+    platform: iOS
+    type: bundle.unit-test
+    sources:
+      - BudgetServiceTests/
+    dependencies:
+      - target: bonsai
+    scheme:
+      testTargets:
+        - BudgetServiceTests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bonsai.tree.app
+        GENERATE_INFOPLIST_FILE: YES
 packages:
   swift-collections:
     url: https://github.com/apple/swift-collections
     from: 1.0.0
+  purchases-ios:
+    url: https://github.com/RevenueCat/purchases-ios
+    from: 4.0.0
