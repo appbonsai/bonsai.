@@ -123,7 +123,11 @@ struct OperationDetails: View {
                         )
                         .cornerRadius(13)
                         .padding(.top, 16)
-                        DateSelectorView(date: $date, fullSized: $isCalendarOpened)
+                        DateSelectorView(
+                           date: $date,
+                           fullSized: $isCalendarOpened,
+                           isClosedRange: true
+                        )
                            .cornerRadius(13)
                            .padding(.top, 16)
                            .id(calendarID)

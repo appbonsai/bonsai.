@@ -35,26 +35,47 @@ struct CreateEditBudget: View {
             BonsaiColor.back
                .ignoresSafeArea()
             VStack {
+               TitleView(title: "Budget Name",
+                         image:  BonsaiImage.textformatAlt,
+                         text: $title)
+               .cornerRadius(13)
+               .focused($focusedField, equals: .title)
+               .padding(.top, 8)
+               .padding([.leading, .trailing], 16)
+               
                AmountView(
                   amountTitle: "Budget Amount",
                   operation: .income,
                   currency: currency,
                   text: $amount
                )
+               .frame(height: 44)
                .focused($focusedField,
                         equals: .amount)
                .cornerRadius(13)
-               .padding([.top, .leading, .trailing], 12)
-               TitleView(title: "Budget Name",
-                         image:  BonsaiImage.textformatAlt,
-                         text: $title)
-               .cornerRadius(13)
-               .focused($focusedField, equals: .title)
-               .padding([.top, .leading, .trailing], 12)
+               .padding(.top, 8)
+               .padding([.leading, .trailing], 16)
+               
                BudgetDateSelectorView()
+                  .frame(height: 44)
                   .cornerRadius(13)
-                  .padding([.top, .leading, .trailing], 12)
+                  .padding(.top, 8)
+                  .padding([.leading, .trailing], 16)
                Spacer()
+               
+               Button {
+                
+               } label: {
+                  ZStack {
+                     RoundedRectangle(cornerRadius: 13)
+                        .frame(width: 192, height: 48)
+                        .foregroundColor(BonsaiColor.mainPurple)
+                     Text("Create")
+                        .foregroundColor(BonsaiColor.card)
+                        .font(.system(size: 17))
+                        .bold()
+                  }
+               }
             }
          }.navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
       }

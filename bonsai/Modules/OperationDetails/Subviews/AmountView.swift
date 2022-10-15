@@ -39,6 +39,7 @@ struct AmountView: View {
             .modifier(DecimalOnly(text: $text))
             .padding(.leading, 8)
       }
+      .contentShape(Rectangle())
       .background(BonsaiColor.card)
    }
 }
