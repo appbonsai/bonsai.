@@ -56,6 +56,7 @@ struct CreateTagView: View {
                      assertionFailure("title was empty, save is not allowed")
                      return
                   }
+                  // todo prevent tags with same title
                   let tag = Tag(context: moc, title: title)
                   do {
                      try moc.save()

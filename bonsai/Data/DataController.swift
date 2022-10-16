@@ -11,7 +11,7 @@ import CoreData
 final class DataController: ObservableObject {
 
    static let sharedInstance = DataController()
-   let container = NSPersistentContainer(name: "Core")
+   let container = NSPersistentCloudKitContainer(name: "Core")
 
    private init() {
       container.loadPersistentStores { description, error in
@@ -19,7 +19,15 @@ final class DataController: ObservableObject {
             fatalError("Core Data failed to load: \(error.localizedDescription)")
          }
       }
+      
       container.viewContext.automaticallyMergesChangesFromParent = true
-      container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+#if DEBUG
+      do {
+         // Use the container to initialize the development schema.
+         try container.initializeCloudKitSchema(options: [])
+      } catch {
+         // Handle any errors.
+      }
+#endif
    }
 }
