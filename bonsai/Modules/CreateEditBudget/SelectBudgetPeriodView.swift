@@ -14,6 +14,8 @@ struct SelectBudgetPeriodView: View {
    init() {
       self._amount = .init(initialValue: "")
       self._title = .init(initialValue: "")
+      self._date = .init(initialValue: Date())
+
    }
    
    private enum Period: String {
@@ -25,6 +27,11 @@ struct SelectBudgetPeriodView: View {
    
    private let items: [Period] = [.week, .twoWeek, .month, .custom]
    @State var selectedRow: Int = 0
+   @State private var date: Date
+   @State private var isCalendarOpened: Bool = false
+   
+   @State var isPresented: Bool = false
+
    
    var body: some View {
       NavigationView {
@@ -35,7 +42,6 @@ struct SelectBudgetPeriodView: View {
                ForEach(Array(items.enumerated()), id: \.offset) { index, element  in
                   
                   RoundedRectangle(cornerRadius: 13)
-                  
                      .frame(height: 44)
                      .foregroundColor(BonsaiColor.card)
                      .overlay {
@@ -48,6 +54,9 @@ struct SelectBudgetPeriodView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                            selectedRow = index
+                           if items[selectedRow] == .custom {
+                              isPresented = true
+                           }
                         }
                         .background(BonsaiColor.card)
                         
@@ -82,10 +91,39 @@ struct SelectBudgetPeriodView: View {
                   }
                }
                .padding(.bottom, 16)
-               
                .disabled(amount.isEmpty && title.isEmpty)
             } //VStack
          }.navigationTitle("Period")
+            .popover(isPresented: $isPresented) {
+               VStack {
+                  Spacer()
+
+                  DateSelectorView(
+                     date: $date,
+                     fullSized: .constant(true),
+                     isClosedRange: false
+                  )
+                  .frame(height: UIScreen.main.bounds.height / 2)
+                  
+                  Text("Budget to \(date.dateString())")
+                  
+                  Spacer()
+                  
+                  Button {
+                    
+                  } label: {
+                     ZStack {
+                        RoundedRectangle(cornerRadius: 13)
+                           .frame(width: 192, height: 48)
+                           .foregroundColor(BonsaiColor.mainPurple)
+                        Text(L.Continue_button)
+                           .foregroundColor(BonsaiColor.card)
+                           .font(.system(size: 17))
+                           .bold()
+                     }
+                  }
+               }
+            }
       }
    }
 }
