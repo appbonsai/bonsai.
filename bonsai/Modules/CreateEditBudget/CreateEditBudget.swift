@@ -19,16 +19,18 @@ struct CreateEditBudget: View {
    @State private var title: String
    @FocusState private var focusedField: Field?
    @State var isPeriodDaysPresented: Bool = false
-   
+   @Binding var isCreateEditBudgetPresented: Bool
+
    enum Field {
       case amount
       case title
    }
-   init() {
+   init(isCreateEditBudgetPresented: Binding<Bool>) {
       self.kind = .new
       self._currency = .init(initialValue: .current)
       self._amount = .init(initialValue: "")
       self._title = .init(initialValue: "")
+      self._isCreateEditBudgetPresented = isCreateEditBudgetPresented
    }
    
    var body: some View {
@@ -70,7 +72,7 @@ struct CreateEditBudget: View {
                
                let isDisabled = $amount.wrappedValue.isEmpty && $title.wrappedValue.isEmpty
                Button {
-                
+                  isCreateEditBudgetPresented = false
                } label: {
                   ZStack {
                      RoundedRectangle(cornerRadius: 13)
@@ -96,6 +98,6 @@ struct CreateEditBudget: View {
 
 struct CreateEditBudget_Previews: PreviewProvider {
    static var previews: some View {
-      CreateEditBudget()
+      CreateEditBudget(isCreateEditBudgetPresented: .constant(true))
    }
 }

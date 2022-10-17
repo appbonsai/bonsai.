@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 struct HomeContainerView: View {
-
+   @State private var isCreateEditBudgetPresented = false
    @State private var isOperationPresented = false
    @State var showAllSet: Bool = false
    @State private var isCurrencySelectionPresented = false
@@ -29,6 +29,7 @@ struct HomeContainerView: View {
                   Circle()
                      .foregroundColor(BonsaiColor.mainPurple)
                      .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
+                
                   BonsaiImage.plus
                      .resizable()
                      .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
@@ -59,6 +60,9 @@ struct HomeContainerView: View {
                BudgetView()
                   .frame(height: 320)
                   .cornerRadius(13)
+                  .onTapGesture {
+                     isCreateEditBudgetPresented = true
+                  }
                
                Spacer()
             }
@@ -77,6 +81,9 @@ struct HomeContainerView: View {
             selectedCurrency: .current
          )
       }
+      .popover(isPresented: $isCreateEditBudgetPresented, content: {
+         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented)
+      })
       .onAppear {
          //              if Currency.userPreferenceCurrencyCode == nil {
          //                 isCurrencySelectionPresented = true
