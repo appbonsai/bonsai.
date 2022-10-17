@@ -10,12 +10,13 @@ import SwiftUI
 struct SelectBudgetPeriodView: View {
    @State private var amount: String
    @State private var title: String
-   
-   init() {
+   @Binding var isPresented: Bool
+
+   init(isPresented: Binding<Bool>) {
       self._amount = .init(initialValue: "")
       self._title = .init(initialValue: "")
       self._date = .init(initialValue: Date())
-
+      self._isPresented = isPresented
    }
    
    private enum Period: String {
@@ -29,8 +30,7 @@ struct SelectBudgetPeriodView: View {
    @State var selectedRow: Int = 0
    @State private var date: Date
    @State private var isCalendarOpened: Bool = false
-   
-   @State var isPresented: Bool = false
+   @State var isBudgetCalendarPresented: Bool = false
 
    
    var body: some View {
@@ -55,7 +55,7 @@ struct SelectBudgetPeriodView: View {
                         .onTapGesture {
                            selectedRow = index
                            if items[selectedRow] == .custom {
-                              isPresented = true
+                              isBudgetCalendarPresented = true
                            }
                         }
                         .background(BonsaiColor.card)
@@ -78,7 +78,7 @@ struct SelectBudgetPeriodView: View {
                Spacer()
                
                Button {
-                  
+                  isPresented = false
                } label: {
                   ZStack {
                      RoundedRectangle(cornerRadius: 13)
@@ -91,10 +91,9 @@ struct SelectBudgetPeriodView: View {
                   }
                }
                .padding(.bottom, 16)
-               .disabled(amount.isEmpty && title.isEmpty)
             } //VStack
          }.navigationTitle("Period")
-            .popover(isPresented: $isPresented) {
+            .popover(isPresented: $isBudgetCalendarPresented) {
                VStack {
                   Spacer()
 
@@ -106,11 +105,13 @@ struct SelectBudgetPeriodView: View {
                   .frame(height: UIScreen.main.bounds.height / 2)
                   
                   Text("Budget to \(date.dateString())")
+                     .font(.headline)
+                     .foregroundColor(.secondary)
                   
                   Spacer()
                   
                   Button {
-                    
+                    isBudgetCalendarPresented = false
                   } label: {
                      ZStack {
                         RoundedRectangle(cornerRadius: 13)
@@ -130,7 +131,7 @@ struct SelectBudgetPeriodView: View {
 
 struct SelectBudgetPeriod_Previews: PreviewProvider {
    static var previews: some View {
-      SelectBudgetPeriodView()
+      SelectBudgetPeriodView(isPresented: .constant(true))
    }
 }
 

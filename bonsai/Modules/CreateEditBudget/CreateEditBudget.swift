@@ -18,6 +18,8 @@ struct CreateEditBudget: View {
    @State private var amount: String
    @State private var title: String
    @FocusState private var focusedField: Field?
+   @State var isPeriodDaysPresented: Bool = false
+   
    enum Field {
       case amount
       case title
@@ -61,8 +63,12 @@ struct CreateEditBudget: View {
                   .cornerRadius(13)
                   .padding(.top, 8)
                   .padding([.leading, .trailing], 16)
+                  .onTapGesture {
+                     isPeriodDaysPresented = true
+                  }
                Spacer()
                
+               let isDisabled = $amount.wrappedValue.isEmpty && $title.wrappedValue.isEmpty
                Button {
                 
                } label: {
@@ -70,14 +76,20 @@ struct CreateEditBudget: View {
                      RoundedRectangle(cornerRadius: 13)
                         .frame(width: 192, height: 48)
                         .foregroundColor(BonsaiColor.mainPurple)
+                     
                      Text("Create")
                         .foregroundColor(BonsaiColor.card)
                         .font(.system(size: 17))
                         .bold()
                   }
                }
+               .opacity(isDisabled ? 0.5 : 1)
+               .disabled(isDisabled)
             }
          }.navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
+      }
+      .popover(isPresented: $isPeriodDaysPresented) {
+         SelectBudgetPeriodView(isPresented: $isPeriodDaysPresented)
       }
    }
 }
