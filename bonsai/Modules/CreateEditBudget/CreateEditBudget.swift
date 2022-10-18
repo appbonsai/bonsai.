@@ -46,6 +46,7 @@ struct CreateEditBudget: View {
                .focused($focusedField, equals: .title)
                .padding(.top, 8)
                .padding([.leading, .trailing], 16)
+               .contentShape(Rectangle())
                
                AmountView(
                   amountTitle: "Budget Amount",
@@ -53,6 +54,7 @@ struct CreateEditBudget: View {
                   currency: currency,
                   text: $amount
                )
+               .contentShape(Rectangle())
                .frame(height: 44)
                .focused($focusedField,
                         equals: .amount)

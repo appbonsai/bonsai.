@@ -104,7 +104,7 @@ struct SelectBudgetPeriodView: View {
                   )
                   .frame(height: UIScreen.main.bounds.height / 2)
                   
-                  Text("Budget to \(date.dateString())")
+                  Text("Budget until \(date.dateString())")
                      .font(.headline)
                      .foregroundColor(.secondary)
                   
