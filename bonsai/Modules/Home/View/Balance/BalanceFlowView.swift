@@ -9,41 +9,48 @@ import Foundation
 import SwiftUI
 
 struct BalanceFlowView: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Spacer()
-            Text(L.Revenue_title)
-                .font(.system(size: 15))
-                .foregroundColor(BonsaiColor.green)
-                .padding(.top, 4)
-            Text("$537")
-                .font(.system(size: 22))
-                .foregroundColor(.white)
-                .padding(.top, 8)
-
-            HStack(alignment: .firstTextBaseline, spacing: 6) {
-                Image(Asset.arrowGreenUp.name)
-                    .resizable()
-                    .frame(width: 12, height: 14)
-                Text("22% \(L.Target_title)")
-                    .font(.system(size: 15))
-                    .foregroundColor(.white)
-                
-                Spacer()
-            }
+   
+   @Binding var text: NSDecimalNumber
+   
+   init(text: Binding<NSDecimalNumber>) {
+      self._text = text
+   }
+   
+   var body: some View {
+      VStack(alignment: .leading, spacing: 0) {
+         Spacer()
+         Text(L.Revenue_title)
+            .font(.system(size: 15))
+            .foregroundColor(BonsaiColor.green)
+            .padding(.top, 4)
+         Text("\(text)")
+            .font(.system(size: 22))
+            .foregroundColor(.white)
             .padding(.top, 8)
+         
+         HStack(alignment: .firstTextBaseline, spacing: 6) {
+            Image(Asset.arrowGreenUp.name)
+               .resizable()
+               .frame(width: 12, height: 14)
+            Text("22% \(L.Target_title)")
+               .font(.system(size: 15))
+               .foregroundColor(.white)
             
             Spacer()
-        }
-        .padding(.leading, 16)
-        .background(BonsaiColor.card)
-        .cornerRadius(13)
-    }
+         }
+         .padding(.top, 8)
+         
+         Spacer()
+      }
+      .padding(.leading, 16)
+      .background(BonsaiColor.card)
+      .cornerRadius(13)
+   }
 }
 
 struct BalanceFlowView_Previews: PreviewProvider {
-    static var previews: some View {
-        BalanceFlowView()
-            .previewLayout(.fixed(width: 171, height: 116))
-    }
+   static var previews: some View {
+      BalanceFlowView(text: .constant(234))
+         .previewLayout(.fixed(width: 171, height: 116))
+   }
 }

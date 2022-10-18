@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct TabBar: View {
-    
+   
    static var topPadding: CGFloat = 57
-
+   
    @State private var selection = 1
-
+   
    private let tabBarImages: [String] = [Asset.settingDisabled.name,
                                          Asset.homeDisabled.name,
                                          Asset.chartsDisabled.name]
-
+   
    var body: some View {
       VStack {
          HStack {
@@ -39,13 +39,14 @@ struct TabBar: View {
                }
             }
          }
+
          TabView(selection: $selection) {
-             SettingsContainerView()
+            SettingsContainerView()
                .tag(0)
-             HomeContainerView()
+            HomeContainerView()
                .tag(1)
             BudgetDetails(
-               viewModel: BudgetViewModelAssembler().assembly())
+               model: BudgetModelAssembler().assembly())
             .tag(2)
          }
          .animation(.easeInOut)
@@ -55,14 +56,14 @@ struct TabBar: View {
       .background(BonsaiColor.back)
       .ignoresSafeArea()
    }
-
+   
 }
 
 struct TabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBar()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-            .previewDisplayName("iPhone 12")
-    }
+   static var previews: some View {
+      TabBar()
+         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+         .previewDisplayName("iPhone 12")
+   }
 }
 

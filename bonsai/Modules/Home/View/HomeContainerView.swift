@@ -14,8 +14,7 @@ struct HomeContainerView: View {
    @State private var isOperationPresented = false
    @State var showAllSet: Bool = false
    @State private var isCurrencySelectionPresented = false
-   @EnvironmentObject var purchaseService: PurchaseService
-
+   @EnvironmentObject var budgetModel: BudgetModel
    
    var body: some View {
       ZStack {
@@ -47,8 +46,8 @@ struct HomeContainerView: View {
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
-                  BalanceFlowView()
-                  BalanceFlowView()
+                  BalanceFlowView(text: $budgetModel.totalIncome)
+                  BalanceFlowView(text: $budgetModel.totalExpense)
                }
                .frame(height: 116)
                
@@ -85,6 +84,9 @@ struct HomeContainerView: View {
          CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented)
       })
       .onAppear {
+         
+//         print("transactionstransactions \(transactions.count)")
+         
          //              if Currency.userPreferenceCurrencyCode == nil {
          //                 isCurrencySelectionPresented = true
          //              }

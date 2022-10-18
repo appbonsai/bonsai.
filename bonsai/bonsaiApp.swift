@@ -13,13 +13,21 @@ struct bonsaiApp: App {
 
    @StateObject private var dataController = DataController.sharedInstance
    @StateObject private var purchaseService = PurchaseService()
-
+   @StateObject private var budgetModel = BudgetModel(
+      budgetService:
+         BudgetService(
+            budgetRepository: BudgetRepository(),
+            budgetCalculations: BudgetCalculations()
+         )
+   )
+   
    var body: some Scene {
       WindowGroup {
          ContentView()
             .environment(\.managedObjectContext, dataController.container.viewContext)
             .environment(\.persistentContainer, dataController.container)
             .environmentObject(purchaseService)
+            .environmentObject(budgetModel)
       }
    }
 

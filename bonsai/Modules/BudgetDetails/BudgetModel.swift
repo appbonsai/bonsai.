@@ -6,24 +6,48 @@
 //
 
 import Foundation
+import CoreData
+import SwiftUI
 
-protocol BudgetViewModelProtocol {
+protocol BudgetModelProtocol {
    var bugdetName: String { get }
    var totalBudget: NSDecimalNumber { get }
    var totalMoneyLeft: NSDecimalNumber { get }
    var totalMoneySpent: NSDecimalNumber { get }
    var budgetDaily: NSDecimalNumber { get }
-   var transactions: [Transaction] { get }
+//   var transactions: [Transaction] { get }
 }
 
-struct BudgetViewModel: BudgetViewModelProtocol {
+class BudgetModel: ObservableObject, BudgetModelProtocol {
    
    private let budgetService: BudgetServiceProtocol
    public private(set) var transactions: [Transaction] = []
+   @Published var totalIncome: NSDecimalNumber = 0
+   @Published var totalExpense: NSDecimalNumber = 0
    
-   init(budgetService: BudgetServiceProtocol, transactions: [Transaction]) {
+   init(budgetService: BudgetServiceProtocol, mainContext: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
       self.budgetService = budgetService
-      self.transactions = transactions
+      
+      let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+      do {
+         let transactions = try mainContext.fetch(fetchRequest)
+         self.transactions = transactions
+      } catch {
+         assertionFailure("Can not fetch transactions")
+      }
+            
+      totalIncome = transactions
+         .filter { $0.type == .income }
+         .map { $0.amount }
+         .reduce(0, { partialResult, decimal in
+            partialResult.adding(decimal)
+         })
+      totalExpense = transactions
+         .filter { $0.type == .expense }
+         .map { $0.amount }
+         .reduce(0, { partialResult, decimal in
+            partialResult.adding(decimal)
+         })
    }
    
    private var transactionsAmounts: [NSDecimalNumber] {
