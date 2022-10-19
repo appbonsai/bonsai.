@@ -6,118 +6,64 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct BudgetDetails: View {
-   @State var startOffsetY: CGFloat = UIScreen.main.bounds.height
-   @State var currentOffsetY: CGFloat = 0
-   @State var endingOffsetY: CGFloat = 0
-   private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.2) / 2
-   private let viewModel: BudgetViewModelProtocol
-    @State var isPresented: Bool = false
-
-   init(viewModel: BudgetViewModelProtocol) {
-      self.viewModel = viewModel
-   }
-    
-    private func budgetMoneyTitleView() -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            // TODO: localization
-            BudgetMoneyTitleView(title: L.Money_left, amount: viewModel.totalMoneyLeft)
-              .padding(.leading, 16)
-            BudgetMoneyTitleView(title: L.Money_spent, amount: viewModel.totalMoneySpent)
-        }
-        .frame(height: 63)
-    }
-    
-    private func budgetMoneyCardView() -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            // TODO: localization
-            BudgetMoneyCardView(title: L.Total_budget, amount: viewModel.totalBudget)
-              .shadow(color: .black, radius: 7, x: 0, y: 4)
-
-           BudgetMoneyCardView(title: L.Daily_budget, amount: viewModel.budgetDaily)
-              .shadow(color: .black, radius: 7, x: 0, y: 4)
-        }
-        .frame(height: 116)
-        .padding(.horizontal, 16)
-        .padding(.top, -14)
-    }
-       
-
-    private func tapViewTransactions() -> some View {
-        BudgetTapView()
-            .onTapGesture {
-                isPresented = true
-            }
-            .gesture(
-                DragGesture()
-                    .onChanged{ value in
-                        withAnimation(.spring()) {
-                            currentOffsetY = value.translation.height - BudgetTapView.height
-                        }
-                    }
-                    .onEnded { _ in
-                        lockBudgetTransactionsOffset()
-                    }
-            )
-    }
-    
-   var body: some View {
-      ZStack {
-         VStack {
+    var body: some View {
+   
+        VStack {
             VStack(alignment: .leading) {
-               BudgetNameView(name: viewModel.bugdetName)
-                  .padding([.top, .leading], 8)
+                BudgetNameView()
+                    .frame(height: 33)
+                    .padding(.leading, 8)
+                
+                Text("Handsome, you’re doing well!")
+                    .font(BonsaiFont.body_15)
+                    .foregroundColor(BonsaiColor.text)
+                    .padding(.horizontal)
             }
-             budgetMoneyTitleView()
+            
+            HStack(alignment: .center, spacing: 16) {
+                BudgetMoneyTitleView()
+                    .padding(.leading, 16)
+                BudgetMoneyTitleView()
+            }
+            .frame(height: 63)
             
             ZStack {
-               Image(Asset.tree.name)
-                  .resizable()
-               
-               VStack {
-                budgetMoneyCardView()
-                  
-                  Spacer()
-                  
-                   tapViewTransactions()
-               }
+                Image(Asset.tree.name)
+                    .resizable()
+                
+                VStack {
+                    HStack(alignment: .center, spacing: 16) {
+                        BudgetFlowView()
+                            .shadow(color: .black, radius: 7, x: 0, y: 4)
+                           
+                        BudgetFlowView()
+                            .shadow(color: .black, radius: 7, x: 0, y: 4)
+                    }
+                    .frame(height: 116)
+                    .padding(.horizontal, 16)
+                    .padding(.top, -14)
+                    
+                    Spacer()
+                    
+                    BudgetDragUpView()
+                        .padding(.bottom, 74)
+                }
             }
             .padding(.top, 16)
-         }
-         .popover(isPresented: $isPresented, content: {
-             BudgetTransactions(transactions: viewModel.transactions, isPresented: $isPresented)
-         })
-         .background(BonsaiColor.back)
-         .ignoresSafeArea()
-
-      }
-   }
-    
-
-
-   
-   private func lockBudgetTransactionsOffset() {
-      withAnimation(.spring()) {
-         if currentOffsetY < -thresholdY {
-            endingOffsetY = -startOffsetY
-         } else if endingOffsetY != 0 && currentOffsetY > thresholdY {
-            endingOffsetY = 0
-         }
-         currentOffsetY = 0
-      }
-   }
+        }
+        .padding(.top, 38)
+        .background(BonsaiColor.back)
+        .ignoresSafeArea()
+    }
 }
 
 struct BudgetDetails_Previews: PreviewProvider {
-   static var previews: some View {
-      BudgetDetails(
-         viewModel: BudgetViewModelAssembler().assembly())
-         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-         .previewDisplayName("iPhone 12")
-   }
+    static var previews: some View {
+        BudgetDetails()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+            .previewDisplayName("iPhone 12")
+
+    }
 }
-
-
-

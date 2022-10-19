@@ -11,15 +11,12 @@ struct CategoryView: View {
 
    @Binding var category: Category?
 
-   let iconSizeSide: CGFloat
-
    var body: some View {
       HStack(spacing: 8) {
-         if let category = category {
-            categoryView(category)
-         } else {
-            noCategoryView
-         }
+         (category?.icon.img ?? BonsaiImage.category)
+            .renderingMode(.template)
+            .foregroundColor(category.flatMap { $0.color.color } ?? BonsaiColor.purple3)
+            .padding([.leading, .top, .bottom], 16)
          Text(category?.title ?? "Category")
             .foregroundColor(category == nil ? BonsaiColor.prompt : BonsaiColor.purple3)
             .font(BonsaiFont.body_17)
@@ -29,19 +26,6 @@ struct CategoryView: View {
             .foregroundColor(BonsaiColor.purple3)
       }
       .background(BonsaiColor.card)
-   }
-
-   private func categoryView(_ category: Category) -> some View {
-      category.color.asGradient
-         .frame(width: iconSizeSide, height: iconSizeSide)
-         .mask(category.icon.img)
-         .padding([.leading, .top, .bottom], 16)
-   }
-
-   private var noCategoryView: some View {
-      BonsaiImage.category
-         .foregroundColor(BonsaiColor.purple3)
-         .padding([.leading, .top, .bottom], 16)
    }
 }
 
@@ -57,7 +41,7 @@ struct CategoryView_Previews: PreviewProvider {
                color: .red,
                icon: .gameController
             )
-         ), iconSizeSide: 24
+         )
       )
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")

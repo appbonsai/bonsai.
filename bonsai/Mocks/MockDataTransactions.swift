@@ -10,21 +10,7 @@ import Foundation
 public struct MockDataTransaction {
    public static let viewContext = DataController.sharedInstance.container.viewContext
 
-   public let transactions = [
-      Transaction(context: Self.viewContext,
-                  amount: 40.0,
-                  date: .from(year: 2021, month: 12, day: 18),
-                  category: .init(
-                     context: viewContext,
-                     title: "Transfer",
-                     color: .red,
-                     icon: .heart),
-                  account: .init(
-                     context: viewContext,
-                     title: "BonsaiTest"),
-                  type: .expense,
-                  tags: .init()),
-      
+   public static let transactions = [
       Transaction(context: Self.viewContext,
                   amount: 20.0,
                   date: .from(year: 2021, month: 12, day: 17),
@@ -52,10 +38,9 @@ public struct MockDataTransaction {
                      title: "BonsaiTest"),
                   type: .expense,
                   tags: .init()),
-      
 
       Transaction(context: Self.viewContext,
-                  amount: 100,
+                  amount: 776602.0,
                   date: .from(year: 2021, month: 8, day: 22),
                   category: .init(
                      context: viewContext,
@@ -66,6 +51,20 @@ public struct MockDataTransaction {
                      context: viewContext,
                      title: "BonsaiTest"),
                   type: .expense,
+                  tags: .init()),
+
+      Transaction(context: Self.viewContext,
+                  amount: 40.0,
+                  date: .from(year: 2021, month: 12, day: 18),
+                  category: .init(
+                     context: viewContext,
+                     title: "Salary",
+                     color: .red,
+                     icon: .heart),
+                  account: .init(
+                     context: viewContext,
+                     title: "BonsaiTest"),
+                  type: .income,
                   tags: .init())
    ]
 }

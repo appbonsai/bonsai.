@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct BudgetNameView: View {
-    
-    private let name: String
-    
-    init(name: String) {
-        self.name = name
-    }
-    
     var body: some View {
         HStack(alignment: .center) {
-            Text(name)
+            Image(Asset.sunMax.name)
+                .resizable()
+                .frame(width: 34, height: 34)
+            Text("Summer Budget")
                 .font(BonsaiFont.title_28)
                 .foregroundColor(.white)
                 .padding(.leading, 8)
@@ -28,7 +24,7 @@ struct BudgetNameView: View {
 
 struct BudgetNameView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetNameView(name: "Summer Budget")
+        BudgetNameView()
             .background(BonsaiColor.card)
     }
 }

@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct TabBar: View {
-    
-   static var topPadding: CGFloat = 57
 
    @State private var selection = 1
 
@@ -40,23 +38,17 @@ struct TabBar: View {
             }
          }
          TabView(selection: $selection) {
-             SettingsContainerView()
+            BudgetDetails()
                .tag(0)
-             HomeContainerView()
+            HomeContainerView()
                .tag(1)
-<<<<<<< HEAD
              ChartsView()
                .tag(2)
-=======
-            BudgetDetails(
-               viewModel: BudgetViewModelAssembler().assembly())
-            .tag(2)
->>>>>>> develop
          }
          .animation(.easeInOut)
          .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
       }
-      .padding(.top, TabBar.topPadding)
+      .padding(.top, 37 + 20)
       .background(BonsaiColor.back)
       .ignoresSafeArea()
    }

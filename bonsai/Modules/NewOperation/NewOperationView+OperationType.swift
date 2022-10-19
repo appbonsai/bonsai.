@@ -8,53 +8,41 @@
 import SwiftUI
 
 extension NewOperationView {
-   enum OperationType {
-      case expense
-      case income
-      case transfer
-   }
+    enum OperationType {
+        case expense
+        case income
+        case transfer
+    }
 }
 
 extension NewOperationView.OperationType {
-   struct ViewModel {
-      let color: Color
-      let image: Image
-      let title: String
-   }
+    struct ViewModel {
+        let color: Color
+        let image: Image
+        let title: String
+    }
 
-   var viewModel: ViewModel {
-      switch self {
-      case .expense:
-         return .init(
-            color: BonsaiColor.secondary,
-            image: Image(uiImage: Asset.trendingDown.image),
-            title: "Expense"
-         )
-      case .income:
-         return .init(
-            color: BonsaiColor.green,
-            image: Image(uiImage: Asset.trendingUp.image),
-            title: "Revenue"
-         )
-      case .transfer:
-         return .init(
-            color: BonsaiColor.blue,
-            image: Image(uiImage: Asset.trendingFlat.image),
-            title: "Transfer"
-         )
-      }
-   }
-
-   var mappedToTransactionType: Transaction.`Type` {
-      switch self {
-      case .expense:
-         return .expense
-      case .income:
-         return .income
-      case .transfer:
-         assertionFailure("Unexpected branch, transfer is not supported yet")
-         return .expense
-      }
-   }
+    var viewModel: ViewModel {
+        switch self {
+        case .expense:
+            return .init(
+                color: BonsaiColor.secondary,
+                image: Image(uiImage: Asset.trendingDown.image),
+                title: "Expense"
+            )
+        case .income:
+            return .init(
+                color: BonsaiColor.green,
+                image: Image(uiImage: Asset.trendingUp.image),
+                title: "Revenue"
+            )
+        case .transfer:
+            return .init(
+                color: BonsaiColor.blue,
+                image: Image(uiImage: Asset.trendingFlat.image),
+                title: "Transfer"
+            )
+        }
+    }
 }
 

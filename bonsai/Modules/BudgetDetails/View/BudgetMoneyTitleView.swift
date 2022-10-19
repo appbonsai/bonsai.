@@ -8,21 +8,12 @@
 import SwiftUI
 
 struct BudgetMoneyTitleView: View {
-    
-    private let title: String
-    private let amount: NSDecimalNumber
-    
-    init(title: String, amount: NSDecimalNumber) {
-        self.title = title
-        self.amount = amount
-    }
-    
     var body: some View {
         VStack(alignment: .leading) {
-            Text("$\(amount)")
+            Text("$372")
                 .font(BonsaiFont.title_34)
                 .foregroundColor(BonsaiColor.text)
-            Text(title)
+            Text("MoneyLeft")
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor(BonsaiColor.green)
         }
@@ -32,7 +23,7 @@ struct BudgetMoneyTitleView: View {
 
 struct BudgetTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetMoneyTitleView(title: "MoneyLeft", amount: 375)
+        BudgetMoneyTitleView()
             .previewLayout(.fixed(width: 171, height: 63)) //18 + 41 + 4
             .background(BonsaiColor.card)
     }

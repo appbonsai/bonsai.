@@ -12,7 +12,7 @@ struct BalanceFlowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
-            Text(L.Revenue_title)
+            Text("Revenue")
                 .font(.system(size: 15))
                 .foregroundColor(BonsaiColor.green)
                 .padding(.top, 4)
@@ -25,7 +25,7 @@ struct BalanceFlowView: View {
                 Image(Asset.arrowGreenUp.name)
                     .resizable()
                     .frame(width: 12, height: 14)
-                Text("22% \(L.Target_title)")
+                Text("22% of target")
                     .font(.system(size: 15))
                     .foregroundColor(.white)
                 

@@ -9,16 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
 
+   @State private var isPresented = false
+
    var body: some View {
-<<<<<<< HEAD
       BarChartView(viewModel: BarChartViewModel())
-=======
-//       SettingsContainerView()
-//       PremiumFeature(isPresented: .constant(true))
-//       Subscriptions(isPresented: .constant(true))
-//       AllSet()
-      TabBar()
->>>>>>> develop
    }
 }
 

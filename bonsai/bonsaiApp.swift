@@ -6,37 +6,15 @@
 //
 
 import SwiftUI
-import RevenueCat
 
 @main
 struct bonsaiApp: App {
 
-   @StateObject private var dataController = DataController.sharedInstance
-   @StateObject private var purchaseService = PurchaseService()
+    @StateObject private var dataController = DataController.sharedInstance
 
-<<<<<<< HEAD
     var body: some Scene {
         WindowGroup {
             TabBar()
         }
-=======
-   var body: some Scene {
-      WindowGroup {
-         ContentView()
-            .environment(\.managedObjectContext, dataController.container.viewContext)
-            .environment(\.persistentContainer, dataController.container)
-            .environmentObject(purchaseService)
-      }
-   }
-
-    init() {
-        Purchases.logLevel = .debug
-        if let path = Bundle.main.path(forResource: "keys", ofType: "plist"),
-           let keys = NSDictionary(contentsOfFile: path),
-           let revenueCatApiKey = keys["revenueCatApiKey"] as? String {
-            Purchases.configure(withAPIKey: revenueCatApiKey)
-        } 
->>>>>>> develop
     }
 }
-
