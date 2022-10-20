@@ -29,9 +29,14 @@ struct SelectBudgetPeriodView: View {
    private let items: [Period] = [.week, .twoWeek, .month, .custom]
    @State var selectedRow: Int = 0
    @State private var date: Date
-   @State private var isCalendarOpened: Bool = false
    @State var isBudgetCalendarPresented: Bool = false
+   @State var isSubscriptionsPresented: Bool = false
 
+   @EnvironmentObject var purchaseService: PurchaseService
+
+   private var isPremium: Bool {
+      purchaseService.isSubscriptionActive
+   }
    
    var body: some View {
       NavigationView {
@@ -55,7 +60,11 @@ struct SelectBudgetPeriodView: View {
                         .onTapGesture {
                            selectedRow = index
                            if items[selectedRow] == .custom {
-                              isBudgetCalendarPresented = true
+                              if isPremium {
+                                 isBudgetCalendarPresented = true
+                              } else  {
+                                 isSubscriptionsPresented = true
+                              }
                            }
                         }
                         .background(BonsaiColor.card)
@@ -93,6 +102,9 @@ struct SelectBudgetPeriodView: View {
                .padding(.bottom, 16)
             } //VStack
          }.navigationTitle("Period")
+            .popover(isPresented: $isSubscriptionsPresented, content: {
+               Subscriptions(isPresented: $isSubscriptionsPresented)
+            })
             .popover(isPresented: $isBudgetCalendarPresented) {
                VStack {
                   Spacer()
