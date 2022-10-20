@@ -59,6 +59,11 @@ struct SelectBudgetPeriodView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                            selectedRow = index
+                           
+                           /*
+                            save in core data
+                            */
+                           
                            if items[selectedRow] == .custom {
                               if isPremium {
                                  isBudgetCalendarPresented = true
@@ -87,7 +92,15 @@ struct SelectBudgetPeriodView: View {
                Spacer()
                
                Button {
-                  isPresented = false
+                  if items[selectedRow] == .custom {
+                     if isPremium {
+                        isPresented = false
+                     } else  {
+                        isSubscriptionsPresented = true
+                     }
+                  } else {
+                     isPresented = false
+                  }
                } label: {
                   ZStack {
                      RoundedRectangle(cornerRadius: 13)
