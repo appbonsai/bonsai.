@@ -15,6 +15,29 @@ struct HomeContainerView: View {
    @State var showAllSet: Bool = false
    @State private var isCurrencySelectionPresented = false
    @EnvironmentObject var budgetModel: BudgetModel
+   @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
+   
+   func income() -> NSDecimalNumber {
+      transactions.reduce(into: [Transaction]()) { partialResult, transaction in
+         partialResult.append(transaction)
+      }
+      .filter { $0.type == .income }
+      .map { $0.amount }
+      .reduce(0, { partialResult, dec in
+         partialResult.adding(dec)
+      })
+   }
+   
+   func expense() -> NSDecimalNumber {
+      transactions.reduce(into: [Transaction]()) { partialResult, transaction in
+         partialResult.append(transaction)
+      }
+      .filter { $0.type == .expense }
+      .map { $0.amount }
+      .reduce(0, { partialResult, dec in
+         partialResult.adding(dec)
+      })
+   }
    
    var body: some View {
       ZStack {
@@ -41,13 +64,13 @@ struct HomeContainerView: View {
             }
          } content: {
             VStack(alignment: .leading) {
-               Text("$2,452.00")
+               Text("\(budgetModel.totalMoneyLeft)")
                   .font(.system(size: 34))
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
-                  BalanceFlowView(text: $budgetModel.totalIncome)
-                  BalanceFlowView(text: $budgetModel.totalExpense)
+                  BalanceFlowView(text: income())
+                  BalanceFlowView(text: expense())
                }
                .frame(height: 116)
                
@@ -84,9 +107,8 @@ struct HomeContainerView: View {
          CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented)
       })
       .onAppear {
-         
-//         print("transactionstransactions \(transactions.count)")
-         
+
+                  
          //              if Currency.userPreferenceCurrencyCode == nil {
          //                 isCurrencySelectionPresented = true
          //              }

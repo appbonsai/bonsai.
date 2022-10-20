@@ -10,10 +10,10 @@ import SwiftUI
 
 struct BalanceFlowView: View {
    
-   @Binding var text: NSDecimalNumber
+   var text: NSDecimalNumber
    
-   init(text: Binding<NSDecimalNumber>) {
-      self._text = text
+   init(text: NSDecimalNumber) {
+      self.text = text
    }
    
    var body: some View {
@@ -50,7 +50,7 @@ struct BalanceFlowView: View {
 
 struct BalanceFlowView_Previews: PreviewProvider {
    static var previews: some View {
-      BalanceFlowView(text: .constant(234))
+      BalanceFlowView(text: 234)
          .previewLayout(.fixed(width: 171, height: 116))
    }
 }

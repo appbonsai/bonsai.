@@ -15,15 +15,13 @@ protocol BudgetModelProtocol {
    var totalMoneyLeft: NSDecimalNumber { get }
    var totalMoneySpent: NSDecimalNumber { get }
    var budgetDaily: NSDecimalNumber { get }
-//   var transactions: [Transaction] { get }
+   var transactions: [Transaction] { get }
 }
 
 class BudgetModel: ObservableObject, BudgetModelProtocol {
    
    private let budgetService: BudgetServiceProtocol
    public private(set) var transactions: [Transaction] = []
-   @Published var totalIncome: NSDecimalNumber = 0
-   @Published var totalExpense: NSDecimalNumber = 0
    
    init(budgetService: BudgetServiceProtocol, mainContext: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
       self.budgetService = budgetService
@@ -35,19 +33,6 @@ class BudgetModel: ObservableObject, BudgetModelProtocol {
       } catch {
          assertionFailure("Can not fetch transactions")
       }
-            
-      totalIncome = transactions
-         .filter { $0.type == .income }
-         .map { $0.amount }
-         .reduce(0, { partialResult, decimal in
-            partialResult.adding(decimal)
-         })
-      totalExpense = transactions
-         .filter { $0.type == .expense }
-         .map { $0.amount }
-         .reduce(0, { partialResult, decimal in
-            partialResult.adding(decimal)
-         })
    }
    
    private var transactionsAmounts: [NSDecimalNumber] {
