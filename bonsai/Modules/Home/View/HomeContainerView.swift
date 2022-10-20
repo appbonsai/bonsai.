@@ -10,12 +10,41 @@ import SwiftUI
 import CoreData
 
 struct HomeContainerView: View {
-
+   @State private var isCreateEditBudgetPresented = false
    @State private var isOperationPresented = false
    @State var showAllSet: Bool = false
    @State private var isCurrencySelectionPresented = false
-   @EnvironmentObject var purchaseService: PurchaseService
-
+   @EnvironmentObject var budgetService: BudgetService
+ 
+   @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
+   
+   func income() -> NSDecimalNumber {
+      transactions.reduce(into: [Transaction]()) { partialResult, transaction in
+         partialResult.append(transaction)
+      }
+      .filter { $0.type == .income }
+      .map { $0.amount }
+      .reduce(0, { partialResult, dec in
+         partialResult.adding(dec)
+      })
+   }
+   
+   func expense() -> NSDecimalNumber {
+      transactions.reduce(into: [Transaction]()) { partialResult, transaction in
+         partialResult.append(transaction)
+      }
+      .filter { $0.type == .expense }
+      .map { $0.amount }
+      .reduce(0, { partialResult, dec in
+         partialResult.adding(dec)
+      })
+   }
+   
+   func allTransactions() -> [NSDecimalNumber] {
+      transactions.map { element -> NSDecimalNumber in
+         element.amount
+      }
+   }
    
    var body: some View {
       ZStack {
@@ -29,6 +58,7 @@ struct HomeContainerView: View {
                   Circle()
                      .foregroundColor(BonsaiColor.mainPurple)
                      .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
+                
                   BonsaiImage.plus
                      .resizable()
                      .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
@@ -41,13 +71,13 @@ struct HomeContainerView: View {
             }
          } content: {
             VStack(alignment: .leading) {
-               Text("$2,452.00")
+               Text("\(budgetService.getTotalMoneyLeft(with: allTransactions()))")
                   .font(.system(size: 34))
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
-                  BalanceFlowView()
-                  BalanceFlowView()
+                  BalanceFlowView(text: income())
+                  BalanceFlowView(text: expense())
                }
                .frame(height: 116)
                
@@ -59,6 +89,9 @@ struct HomeContainerView: View {
                BudgetView()
                   .frame(height: 320)
                   .cornerRadius(13)
+                  .onTapGesture {
+                     isCreateEditBudgetPresented = true
+                  }
                
                Spacer()
             }
@@ -77,7 +110,12 @@ struct HomeContainerView: View {
             selectedCurrency: .current
          )
       }
+      .popover(isPresented: $isCreateEditBudgetPresented, content: {
+         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented)
+      })
       .onAppear {
+
+                  
          //              if Currency.userPreferenceCurrencyCode == nil {
          //                 isCurrencySelectionPresented = true
          //              }
