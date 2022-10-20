@@ -45,8 +45,7 @@ struct TabBar: View {
                .tag(0)
             HomeContainerView()
                .tag(1)
-            BudgetDetails(
-               model: BudgetModelAssembler().assembly())
+            BudgetDetails()
             .tag(2)
          }
          .animation(.easeInOut)

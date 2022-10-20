@@ -14,7 +14,8 @@ struct HomeContainerView: View {
    @State private var isOperationPresented = false
    @State var showAllSet: Bool = false
    @State private var isCurrencySelectionPresented = false
-   @EnvironmentObject var budgetModel: BudgetModel
+   @EnvironmentObject var budgetService: BudgetService
+ 
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
    
    func income() -> NSDecimalNumber {
@@ -37,6 +38,12 @@ struct HomeContainerView: View {
       .reduce(0, { partialResult, dec in
          partialResult.adding(dec)
       })
+   }
+   
+   func allTransactions() -> [NSDecimalNumber] {
+      transactions.map { element -> NSDecimalNumber in
+         element.amount
+      }
    }
    
    var body: some View {
@@ -64,7 +71,7 @@ struct HomeContainerView: View {
             }
          } content: {
             VStack(alignment: .leading) {
-               Text("\(budgetModel.totalMoneyLeft)")
+               Text("\(budgetService.getTotalMoneyLeft(with: allTransactions()))")
                   .font(.system(size: 34))
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
