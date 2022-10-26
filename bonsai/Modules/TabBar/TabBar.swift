@@ -13,9 +13,11 @@ struct TabBar: View {
    
    @State private var selection = 1
    
-   private let tabBarImages: [String] = [Asset.settingDisabled.name,
-                                         Asset.homeDisabled.name,
-                                         Asset.chartsDisabled.name]
+   private let tabBarImages: [String] = [
+      Asset.chartsDisabled.name,
+      Asset.homeDisabled.name,
+      Asset.settingDisabled.name
+   ]
    
    var body: some View {
       VStack {
@@ -41,7 +43,7 @@ struct TabBar: View {
          }
 
          TabView(selection: $selection) {
-            SettingsContainerView()
+            ChartsView()
                .tag(0)
             HomeContainerView()
                .tag(1)
