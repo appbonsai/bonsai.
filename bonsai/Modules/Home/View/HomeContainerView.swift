@@ -71,7 +71,8 @@ struct HomeContainerView: View {
          } content: {
             VStack(alignment: .leading) {
                Text("\(budgetService.getTotalMoneyLeft(with: allTransactions()))")
-                  .font(.system(size: 34))
+                  .font(BonsaiFont.title_34)
+                  .foregroundColor(BonsaiColor.text)
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {

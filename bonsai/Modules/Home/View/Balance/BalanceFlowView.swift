@@ -20,12 +20,12 @@ struct BalanceFlowView: View {
       VStack(alignment: .leading, spacing: 0) {
          Spacer()
          Text(L.Revenue_title)
-            .font(.system(size: 15))
+            .font(BonsaiFont.subtitle_15)
             .foregroundColor(BonsaiColor.green)
             .padding(.top, 4)
          Text("\(text)")
-            .font(.system(size: 22))
-            .foregroundColor(.white)
+            .font(BonsaiFont.title_22)
+            .foregroundColor(BonsaiColor.text)
             .padding(.top, 8)
          
          HStack(alignment: .firstTextBaseline, spacing: 6) {
@@ -33,9 +33,9 @@ struct BalanceFlowView: View {
                .resizable()
                .frame(width: 12, height: 14)
             Text("22% \(L.Target_title)")
-               .font(.system(size: 15))
-               .foregroundColor(.white)
-            
+               .font(BonsaiFont.subtitle_15)
+               .foregroundColor(BonsaiColor.text)
+
             Spacer()
          }
          .padding(.top, 8)
