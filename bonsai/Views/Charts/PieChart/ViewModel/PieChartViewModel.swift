@@ -41,7 +41,7 @@ final class PieChartViewModel: ObservableObject {
             print(error)
         }
         
-        chartData = MockChartData.mockPieChartData
+        chartData = .init(pieChartSlices: [], currentMonthName: "")
         setPieSlicesPosition()
         setDisabledColors()
     }
