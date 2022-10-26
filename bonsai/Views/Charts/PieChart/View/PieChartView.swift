@@ -102,7 +102,6 @@ struct PieChartView: View {
                 .padding(.top, 8)
             }
         }
-        .background(BonsaiColor.card)
     }
     
     func updateCurrentValue(pieSize: CGRect)  {

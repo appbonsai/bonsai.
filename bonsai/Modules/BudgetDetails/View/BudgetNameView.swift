@@ -19,7 +19,7 @@ struct BudgetNameView: View {
         HStack(alignment: .center) {
             Text(name)
                 .font(BonsaiFont.title_28)
-                .foregroundColor(.white)
+                .foregroundColor(BonsaiColor.text)
                 .padding(.leading, 8)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

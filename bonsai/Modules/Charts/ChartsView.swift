@@ -11,22 +11,18 @@ struct ChartsView: View {
     var body: some View {
        VStack(alignment: .leading) {
           Text("Charts")
-             .font(BonsaiFont.title_34)
+             .font(BonsaiFont.title_28)
              .foregroundColor(BonsaiColor.text)
-          
+             .padding(.top, 8)
+
           ScrollView(.vertical, showsIndicators: false) {
              VStack(alignment: .leading, spacing: 24) {
                 ChartContainer(title: "Balance") {
                    BarChartView(viewModel: BarChartViewModel())
                 }
-                .opacity(0.8)
-                .shadow(color: .black, radius: 2, x: 0, y: 2)
-                
                 ChartContainer(title: "Expenses", chartSize: .big) {
                    PieChartView(viewModel: PieChartViewModel())
                 }
-                .opacity(0.8)
-                .shadow(color: .black, radius: 2, x: 0, y: 2)
              }
           }
           .padding(.vertical, 10)
