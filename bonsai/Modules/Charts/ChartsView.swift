@@ -19,17 +19,22 @@ struct ChartsView: View {
                 ChartContainer(title: "Balance") {
                    BarChartView(viewModel: BarChartViewModel())
                 }
+                .opacity(0.8)
+                .shadow(color: .black, radius: 2, x: 0, y: 2)
                 
                 ChartContainer(title: "Expenses", chartSize: .big) {
                    PieChartView(viewModel: PieChartViewModel())
                 }
+                .opacity(0.8)
+                .shadow(color: .black, radius: 2, x: 0, y: 2)
              }
           }
-          .padding(.vertical, 20)
-          
+          .padding(.vertical, 10)
+
           Spacer()
        }
        .padding(.horizontal, 16)
+       .ignoresSafeArea()
     }
 }
 

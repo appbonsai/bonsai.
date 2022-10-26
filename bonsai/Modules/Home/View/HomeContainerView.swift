@@ -76,7 +76,9 @@ struct HomeContainerView: View {
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
                   BalanceFlowView(text: income())
+                     .shadow(color: .black, radius: 2, x: 0, y: 2)
                   BalanceFlowView(text: expense())
+                     .shadow(color: .black, radius: 2, x: 0, y: 2)
                }
                .frame(height: 116)
                
@@ -91,6 +93,7 @@ struct HomeContainerView: View {
                   .onTapGesture {
                      isCreateEditBudgetPresented = true
                   }
+                  .shadow(color: .black, radius: 2, x: 0, y: 2)
                
                Spacer()
             }

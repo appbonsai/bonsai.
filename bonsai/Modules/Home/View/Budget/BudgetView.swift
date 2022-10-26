@@ -9,30 +9,34 @@ import SwiftUI
 
 struct BudgetView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            BudgetHeaderView()
+       ZStack {
+          BonsaiColor.card
+          .blur(radius: 1)
+          .opacity(0.8)
+          VStack(alignment: .leading) {
+             BudgetHeaderView()
                 .padding(.horizontal, -16)
-            
-            Text(L.Home_category)
+             
+             Text(L.Home_category)
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor(BonsaiColor.text)
                 .padding(.top, 16)
-            
-            VStack(spacing: 0) {
+             
+             VStack(spacing: 0) {
                 ForEach(0..<5) { index in
-                    if index.isMultiple(of: 2) {
-                        BudgetCellView()
-                    } else {
-                        BonsaiColor.separator
-                            .frame(height: 1)
-                    }
+                   if index.isMultiple(of: 2) {
+                      BudgetCellView()
+                   } else {
+                      BonsaiColor.separator
+                         .frame(height: 1)
+                   }
                 }
-            }
-            
-            Spacer()
-        }
-        .padding(.horizontal, 16)
-        .background(BonsaiColor.card)
+             }
+             
+             Spacer()
+          }
+          .padding(.horizontal, 16)
+       }
     }
 }
 

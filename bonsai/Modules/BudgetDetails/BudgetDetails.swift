@@ -51,13 +51,13 @@ struct BudgetDetails: View {
             title: L.Total_budget,
             amount: budgetService.getTotalBudget()
          )
-            .shadow(color: .black, radius: 7, x: 0, y: 4)
+            .shadow(color: .black, radius: 2, x: 0, y: 2)
 
          BudgetMoneyCardView(
             title: L.Daily_budget,
             amount: budgetService.getMoneyCanSpendDaily(with: allTransactions())
          )
-            .shadow(color: .black, radius: 7, x: 0, y: 4)
+            .shadow(color: .black, radius: 2, x: 0, y: 2)
       }
       .frame(height: 116)
       .padding(.horizontal, 16)
