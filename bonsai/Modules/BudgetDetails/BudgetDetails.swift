@@ -94,11 +94,6 @@ struct BudgetDetails: View {
             
             ZStack {
                VStack {
-                  Spacer(minLength: 150)
-                  GifImage("bonsai3_png")
-               }
-               
-               VStack {
                   budgetMoneyCardView()
                   
                   Spacer()
@@ -111,7 +106,6 @@ struct BudgetDetails: View {
          .popover(isPresented: $isPresented, content: {
             BudgetTransactions(isPresented: $isPresented)
          })
-         .background(BonsaiColor.back)
          .ignoresSafeArea()
 
       }

@@ -41,17 +41,23 @@ struct TabBar: View {
                }
             }
          }
-
-         TabView(selection: $selection) {
-            ChartsView()
-               .tag(0)
-            HomeContainerView()
-               .tag(1)
-            BudgetDetails()
-            .tag(2)
+         
+         ZStack {
+            VStack {
+               Spacer(minLength: 250)
+               GifImage("bonsai3_png")
+            }
+            TabView(selection: $selection) {
+               ChartsView()
+                  .tag(0)
+               HomeContainerView()
+                  .tag(1)
+               BudgetDetails()
+                  .tag(2)
+            }
+            .animation(.easeInOut)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
          }
-         .animation(.easeInOut)
-         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
       }
       .padding(.top, TabBar.topPadding)
       .background(BonsaiColor.back)

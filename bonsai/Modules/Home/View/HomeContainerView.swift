@@ -48,7 +48,6 @@ struct HomeContainerView: View {
    
    var body: some View {
       ZStack {
-         BonsaiColor.back
          ActionScrollView { completion in
             isOperationPresented = true
             completion()
