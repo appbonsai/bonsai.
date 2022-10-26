@@ -20,7 +20,10 @@ struct GifImage: UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
-        let url = Bundle.main.url(forResource: name, withExtension: "gif")!
+        webView.isOpaque = false
+        webView.backgroundColor = .clear
+        webView.scrollView.backgroundColor = .clear
+        let url = Bundle.main.url(forResource: name, withExtension: "png")!
         let data = try! Data(contentsOf: url)
         webView.load(
             data,

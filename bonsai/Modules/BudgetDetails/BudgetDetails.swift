@@ -93,8 +93,10 @@ struct BudgetDetails: View {
             budgetMoneyTitleView()
             
             ZStack {
-               Image(Asset.tree.name)
-                  .resizable()
+               VStack {
+                  Spacer(minLength: 150)
+                  GifImage("bonsai3_png")
+               }
                
                VStack {
                   budgetMoneyCardView()
