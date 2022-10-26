@@ -23,17 +23,29 @@ struct GifImage: UIViewRepresentable {
         webView.isOpaque = false
         webView.backgroundColor = .clear
         webView.scrollView.backgroundColor = .clear
-        let url = Bundle.main.url(forResource: name, withExtension: "png")!
-        let data = try! Data(contentsOf: url)
-        webView.load(
+              
+       if let url = Bundle.main.url(forResource: name, withExtension: "png") {
+          let data = try! Data(contentsOf: url)
+          webView.load(
             data,
             mimeType: "image/gif",
             characterEncodingName: "UTF-8",
             baseURL: url.deletingLastPathComponent()
-        )
-        webView.scrollView.isScrollEnabled = false
-
-        return webView
+          )
+          webView.scrollView.isScrollEnabled = false
+          return webView
+       } else {
+          let url = Bundle.main.url(forResource: name, withExtension: "gif")!
+          let data = try! Data(contentsOf: url)
+          webView.load(
+            data,
+            mimeType: "image/gif",
+            characterEncodingName: "UTF-8",
+            baseURL: url.deletingLastPathComponent()
+          )
+          webView.scrollView.isScrollEnabled = false
+          return webView
+       }
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
