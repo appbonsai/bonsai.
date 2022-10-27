@@ -36,6 +36,10 @@ extension Category {
       var asGradient: LinearGradient {
          LinearGradient(colors: colors, startPoint: .leading, endPoint: .trailing)
       }
+       
+       var asColor: SwiftUI.Color {
+           colors.first ?? BonsaiColor.disabled
+       }
 
       // MARK: - Identifiable
 

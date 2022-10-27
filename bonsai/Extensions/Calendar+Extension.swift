@@ -16,7 +16,7 @@ extension Date {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.year, .month], from: self)
         
-        return  calendar.date(from: components)!
+        return calendar.date(from: components)!
     }
     
     var endOfDay: Date {
@@ -31,5 +31,12 @@ extension Date {
         components.month = 1
         components.second = -1
         return Calendar(identifier: .gregorian).date(byAdding: components, to: startOfMonth)!
+    }
+    
+    var currentMonthName: String {
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        return dateFormatter.string(from: now)
     }
 }

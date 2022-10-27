@@ -66,10 +66,20 @@ struct PieChartView: View {
                             .frame(width: geo.frame(in: .local).width/3 * 2, height: geo.frame(in: .local).height/3 * 2) // so circle will occupy a space equal to 2/3 of the whole chart
                             .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
                         
-                        currentSliceData?.icon
-                            .resizable()
-                            .frame(width: 48, height: 48)
-                            .foregroundColor(currentSliceData?.color)
+                        if let icon = currentSliceData?.icon {
+                            switch icon {
+                            case .icon(let icon):
+                                icon.img
+                                    .resizable()
+                                    .frame(width: 48, height: 48)
+                                    .foregroundColor(currentSliceData?.color)
+                            case .emoji(let emoji):
+                                Text(emoji)
+                                    .frame(width: 48, height: 48)
+                                    .foregroundColor(currentSliceData?.color)
+                            }
+                        }
+
                     }
                 }
                 .aspectRatio(contentMode: .fit)
