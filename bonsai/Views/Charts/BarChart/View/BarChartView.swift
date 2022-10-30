@@ -20,7 +20,7 @@ struct BarChartView: View {
     var body: some View {
         HStack {
             // left title
-            if let leftTitle = viewModel.chartData?.leftTitle {
+            if let leftTitle = viewModel.chartData.leftTitle {
                 Text(leftTitle)
                     .font(BonsaiFont.caption_12)
                     .foregroundColor(BonsaiColor.text)
@@ -31,7 +31,7 @@ struct BarChartView: View {
             VStack(alignment: .leading) {
                 // legend
                 HStack {
-                    if let legends = viewModel.chartData?.legends {
+                    if let legends = viewModel.chartData.legends {
                         ForEach(legends) { legend in
                             LegendCellView(legend: legend)
                         }
@@ -41,7 +41,7 @@ struct BarChartView: View {
                 
                 GeometryReader { geo in
                     VStack {
-                        if let piecesColor = viewModel.chartData?.piecesColor, !currentLabel.isEmpty {
+                        if let piecesColor = viewModel.chartData.piecesColor, !currentLabel.isEmpty {
                             BarDetailLabel(title: currentValue, color: piecesColor)
                                 .offset(x: labelOffset(in: geo.frame(in: .local).width))
                                 .animation(.easeIn)
@@ -50,13 +50,12 @@ struct BarChartView: View {
                         
                         // bars
                         HStack(spacing: 10) {
-                            if let chartData = viewModel.chartData {
                                 
-                                ForEach(Array(chartData.pieces.enumerated()), id: \.offset) { i, bar in
+                            ForEach(Array(viewModel.chartData.pieces.enumerated()), id: \.offset) { i, bar in
                                     VStack {
-                                        BarChartLineView(value: viewModel.normalizedValue(value: bar.value), color: chartData.piecesColor)
+                                        BarChartLineView(value: viewModel.normalizedValue(value: bar.value), color: viewModel.chartData.piecesColor)
                                             .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.3, height: 1.1) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                            .shadow(color: chartData.piecesColor.opacity(barIsTouched(index: i) ? 0.5 : 0), radius: 15, x: 0, y: 0)
+                                            .shadow(color: viewModel.chartData.piecesColor.opacity(barIsTouched(index: i) ? 0.5 : 0), radius: 15, x: 0, y: 0)
                                             .animation(.spring())
                                         
                                         Text(bar.label)
@@ -65,7 +64,6 @@ struct BarChartView: View {
                                     }
                                 }
                             }
-                        }
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onChanged { position in
@@ -90,7 +88,7 @@ struct BarChartView: View {
                 HStack {
                     Spacer()
                     
-                    if let bottomTitle = viewModel.chartData?.bottomTitle {
+                    if let bottomTitle = viewModel.chartData.bottomTitle {
                         Text(bottomTitle)
                             .font(BonsaiFont.caption_12)
                             .foregroundColor(BonsaiColor.text)
@@ -108,28 +106,28 @@ struct BarChartView: View {
     // MARK: - Functions
     /// Check if touch location is greater than current bar's beggining and less that next bar's beggining
     func barIsTouched(index: Int) -> Bool {
-        guard let chartData = viewModel.chartData else { return false }
-        return touchLocation > CGFloat(index)/CGFloat(chartData.pieces.count) && touchLocation < CGFloat(index+1)/CGFloat(chartData.pieces.count)
+//        guard let chartData = viewModel.chartData else { return false }
+        return touchLocation > CGFloat(index)/CGFloat(viewModel.chartData.pieces.count) && touchLocation < CGFloat(index+1)/CGFloat(viewModel.chartData.pieces.count)
     }
     
     func updateCurrentValue()    {
-        guard let chartData = viewModel.chartData else { return }
-        let index = Int(touchLocation * CGFloat(chartData.pieces.count))
-        guard index < chartData.pieces.count && index >= 0 else {
+//        guard let chartData = viewModel.chartData else { return }
+        let index = Int(touchLocation * CGFloat(viewModel.chartData.pieces.count))
+        guard index < viewModel.chartData.pieces.count && index >= 0 else {
             currentValue = ""
             currentLabel = ""
             return
         }
         
-        currentValue = "\(chartData.pieces[index].value)"
-        currentLabel = chartData.pieces[index].label
+        currentValue = "\(viewModel.chartData.pieces[index].value)"
+        currentLabel = viewModel.chartData.pieces[index].label
     }
     
     func labelOffset(in width: CGFloat) -> CGFloat {
-        guard let chartData = viewModel.chartData else { return .zero }
-        let currentIndex = Int(touchLocation * CGFloat(chartData.pieces.count))
-        guard currentIndex < chartData.pieces.count && currentIndex >= 0 else { return 0 }
-        let cellWidth = width / CGFloat(chartData.pieces.count)
+//        guard let chartData = viewModel.chartData else { return .zero }
+        let currentIndex = Int(touchLocation * CGFloat(viewModel.chartData.pieces.count))
+        guard currentIndex < viewModel.chartData.pieces.count && currentIndex >= 0 else { return 0 }
+        let cellWidth = width / CGFloat(viewModel.chartData.pieces.count)
         let actualWidth = width - cellWidth
         let position = cellWidth * CGFloat(currentIndex) - actualWidth / 2
         return position
@@ -138,7 +136,7 @@ struct BarChartView: View {
 
 struct BarChartView_Previews: PreviewProvider {
     static var previews: some View {
-        BarChartView(viewModel: BarChartViewModel())
+        BarChartView(viewModel: BarChartViewModel(chartData: MockChartData.mockBarChartData))
             .previewLayout(.fixed(width: 343, height: 325))
     }
 }

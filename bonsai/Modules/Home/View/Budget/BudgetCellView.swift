@@ -12,7 +12,7 @@ struct BudgetCellView: View {
        ZStack {
           BonsaiColor.card
              .blur(radius: 1)
-             .opacity(0.8)
+             .opacity(0)
           
           HStack {
              Circle()

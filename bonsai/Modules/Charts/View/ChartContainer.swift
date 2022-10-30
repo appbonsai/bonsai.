@@ -35,8 +35,6 @@ struct ChartContainer<Chart>: View where Chart : View {
                     .frame(height: chartSize.size)
                     .cornerRadius(13)
             }
-        .opacity(0.8)
-        .shadow(color: .black, radius: 2, x: 0, y: 2)
     }
     
     init(title: String, chartSize: ChartSize = .standard,  @ViewBuilder chart: () -> Chart) {
@@ -50,7 +48,7 @@ struct ChartContainer<Chart>: View where Chart : View {
 struct ChartContainer_Previews: PreviewProvider {
     static var previews: some View {
         ChartContainer(title: "Balance") {
-            BarChartView(viewModel: BarChartViewModel())
+            BarChartView(viewModel: BarChartViewModel(chartData: MockChartData.mockBarChartData))
         }
     }
 }

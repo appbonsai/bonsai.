@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TabBar: View {
-   
    static var topPadding: CGFloat = 57
    
    @State private var selection = 1

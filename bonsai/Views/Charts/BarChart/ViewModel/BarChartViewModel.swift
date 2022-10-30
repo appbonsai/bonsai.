@@ -9,15 +9,12 @@ import Foundation
 
 final class BarChartViewModel: ObservableObject {
     // MARK: - Properties
-    var chartData: BarChartData?
+    var chartData: BarChartData
     
     // MARK: - Functions
     func normalizedValue(value: Double) -> Double {
         var allValues: [Double] {
             var values = [Double]()
-            guard let chartData = chartData else {
-                return []
-            }
 
             for piece in chartData.pieces {
                 values.append(piece.value)
@@ -37,7 +34,7 @@ final class BarChartViewModel: ObservableObject {
     }
     
     // MARK: - Init
-    init() {
-        chartData = MockChartData.mockBarChartData
+    init(chartData: BarChartData) {
+        self.chartData = chartData
     }
 }

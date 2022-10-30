@@ -26,7 +26,7 @@ struct PieChartSliceData: Identifiable {
     var disabledColor: Color?
     let color: Color
     let categoryTitle: String
-    let icon: Image
+    let icon: Category.Image
     let amount: Double
     let percentages: Double
     var pieSlice: PieSlice? 

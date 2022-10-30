@@ -17,6 +17,7 @@ struct bonsaiApp: App {
       budgetRepository: BudgetRepository(),
       budgetCalculations: BudgetCalculations()
    )
+    @StateObject private var chartViewModel = ChartViewModel()
    
    var body: some Scene {
       WindowGroup {
@@ -25,6 +26,7 @@ struct bonsaiApp: App {
             .environment(\.persistentContainer, dataController.container)
             .environmentObject(purchaseService)
             .environmentObject(budgetService)
+            .environmentObject(chartViewModel)
       }
    }
 
