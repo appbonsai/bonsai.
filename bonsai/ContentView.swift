@@ -10,15 +10,11 @@ import SwiftUI
 struct ContentView: View {
 
    var body: some View {
-      TabBar()
-      
-//      CreateEditBudget()
-//      SelectBudgetPeriodView()
-//      if UserSettings.isOnboardingSeen {
-//         TabBar()
-//      } else {
-//         Onboarding()
-//      }
+      if UserSettings.isOnboardingSeen {
+         TabBar()
+      } else {
+         Onboarding()
+      }
    }
 }
 

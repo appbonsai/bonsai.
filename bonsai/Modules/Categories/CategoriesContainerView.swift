@@ -21,10 +21,7 @@ struct CategoriesContainerView: View {
    }
 
    @FetchRequest(
-      sortDescriptors: [SortDescriptor(\.title)],
-      predicate: NSPredicate(
-         format: "id != %@", Category.notSpecified.id as CVarArg
-      )
+      sortDescriptors: [SortDescriptor(\.title)]
    )
    var categories: FetchedResults<Category>
 

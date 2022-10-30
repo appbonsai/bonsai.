@@ -13,11 +13,22 @@ targets:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UILaunchStoryboardName: LaunchScreen
         UIUserInterfaceStyle: Dark
+        UIBackgroundModes: [remote-notification]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.bonsai.tree.app
         MARKETING_VERSION: 1.0
         CURRENT_PROJECT_VERSION: 1
+    entitlements:
+      path: bonsai/bonsai.entitlements
+      properties:
+        aps-environment: development
+        com.apple.developer.icloud-container-identifiers: [iCloud.com.bonsai.tree.app]
+        com.apple.developer.icloud-services: [CloudKit]
+    attributes:
+      SystemCapabilities:
+        com.apple.Push:
+          enabled: 1
     dependencies:
       - package: swift-collections
         product: OrderedCollections

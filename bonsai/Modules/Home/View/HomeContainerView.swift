@@ -61,7 +61,11 @@ struct HomeContainerView: View {
     func filterTransaction(by categories: [Category]) -> [Transaction] {
         transactions
             .filter {
-                categories.contains($0.category)
+               if let category = $0.category {
+                  return categories.contains(category)
+               } else {
+                  return false
+               }
             }
     }
     
