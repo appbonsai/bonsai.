@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct BudgetCellView: View {
+    var title: String
+    var amount: Int
+    
     var body: some View {
        ZStack {
           BonsaiColor.card
@@ -19,20 +22,20 @@ struct BudgetCellView: View {
                 .foregroundColor(BonsaiColor.secondary)
                 .frame(width: 32, height: 32)
                 .padding(.vertical, 8)
-             Text("Food")
+             Text(title)
                 .font(BonsaiFont.body_15)
                 .foregroundColor(BonsaiColor.text)
                 .padding(.leading, 10)
              Spacer()
              
              HStack(alignment: .firstTextBaseline, spacing: 3) {
-                Text("$58")
+                Text(verbatim: "$\(amount)")
                    .font(BonsaiFont.body_15)
                    .foregroundColor(BonsaiColor.text)
                 
-                Text("/120")
-                   .font(BonsaiFont.caption_11)
-                   .foregroundColor(BonsaiColor.purple3)
+//                Text("/120")
+//                   .font(BonsaiFont.caption_11)
+//                   .foregroundColor(BonsaiColor.purple3)
              }
           }
        }
@@ -41,7 +44,7 @@ struct BudgetCellView: View {
 
 struct BudgetCellView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetCellView()
+        BudgetCellView(title: "Food", amount: 28)
     }
 }
     

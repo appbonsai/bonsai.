@@ -57,9 +57,13 @@ struct HomeContainerView: View {
     func calculateExpensePercentage() -> Int {
         expense().intValue * 100 / (income().intValue + expense().intValue)
     }
-   
-    // 1876 - 100%
-    // 3500 - x
+    
+    func filterTransaction(by categories: [Category]) -> [Transaction] {
+        transactions
+            .filter {
+                categories.contains($0.category)
+            }
+    }
     
    var body: some View {
       ZStack {
@@ -105,7 +109,7 @@ struct HomeContainerView: View {
                   .foregroundColor(.white)
                   .padding(.top, 32)
                
-               BudgetView()
+                BudgetView(categories: budgetService.getMostExpensiveCategories(transactions: transactions), transactions: filterTransaction(by: budgetService.getMostExpensiveCategories(transactions: transactions)))
                   .frame(height: 320)
                   .cornerRadius(13)
                   .onTapGesture {
