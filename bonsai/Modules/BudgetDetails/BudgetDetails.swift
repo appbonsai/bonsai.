@@ -9,9 +9,6 @@ import SwiftUI
 import CoreData
 
 struct BudgetDetails: View {
-   @State var startOffsetY: CGFloat = UIScreen.main.bounds.height
-   @State var currentOffsetY: CGFloat = 0
-   @State var endingOffsetY: CGFloat = 0
    private let thresholdY: CGFloat = (UIScreen.main.bounds.height * 0.2) / 2
    
    @EnvironmentObject var budgetService: BudgetService
@@ -35,7 +32,7 @@ struct BudgetDetails: View {
             title: L.Money_left,
             amount: budgetService.getTotalMoneyLeft(with: allTransactions())
          )
-            .padding(.leading, 16)
+         .padding(.leading, 16)
          BudgetMoneyTitleView(
             title: L.Money_spent,
             amount: budgetService.getTotalMoneySpent(with: expenseTransactions())
@@ -74,11 +71,8 @@ struct BudgetDetails: View {
             DragGesture()
                .onChanged{ value in
                   withAnimation(.spring()) {
-                     currentOffsetY = value.translation.height - BudgetTapView.height
+                     isPresented = true
                   }
-               }
-               .onEnded { _ in
-                  lockBudgetTransactionsOffset()
                }
          )
    }
@@ -110,23 +104,12 @@ struct BudgetDetails: View {
 
       }
    }
-   
-   private func lockBudgetTransactionsOffset() {
-      withAnimation(.spring()) {
-         if currentOffsetY < -thresholdY {
-            endingOffsetY = -startOffsetY
-         } else if endingOffsetY != 0 && currentOffsetY > thresholdY {
-            endingOffsetY = 0
-         }
-         currentOffsetY = 0
-      }
-   }
 }
 
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails()
-      .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-      .previewDisplayName("iPhone 12")
+         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+         .previewDisplayName("iPhone 12")
    }
 }

@@ -49,6 +49,7 @@ struct BudgetView: View {
             
             BudgetHeaderView(progress: $progress)
                .cornerRadius(13)
+               .opacity(0.8)
 
             Text(L.Home_category)
                .font(BonsaiFont.subtitle_15)
