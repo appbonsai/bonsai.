@@ -36,7 +36,7 @@ struct ChartContainer<Chart>: View where Chart : View {
                     .cornerRadius(13)
             }
         .opacity(0.8)
-        .shadow(color: .black, radius: 2, x: 0, y: 2)
+        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
     }
     
     init(title: String, chartSize: ChartSize = .standard,  @ViewBuilder chart: () -> Chart) {

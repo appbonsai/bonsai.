@@ -77,12 +77,12 @@ struct HomeContainerView: View {
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
                   BalanceFlowView(text: income())
-                     .shadow(color: .black, radius: 2, x: 0, y: 2)
+                       .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
                   BalanceFlowView(text: expense())
-                     .shadow(color: .black, radius: 2, x: 0, y: 2)
                }
                .frame(height: 116)
-               
+               .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+
                Text("Budget")
                   .font(BonsaiFont.title_20)
                   .foregroundColor(.white)
@@ -94,7 +94,7 @@ struct HomeContainerView: View {
                   .onTapGesture {
                      isCreateEditBudgetPresented = true
                   }
-                  .shadow(color: .black, radius: 2, x: 0, y: 2)
+                  .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
                
                Spacer()
             }

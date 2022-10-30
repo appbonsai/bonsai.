@@ -11,8 +11,8 @@ struct BudgetView: View {
     var body: some View {
        ZStack {
           BonsaiColor.card
-          .blur(radius: 1)
-          .opacity(0.8)
+            .blur(radius: 1)
+            .opacity(0.8)
           VStack(alignment: .leading) {
              BudgetHeaderView()
                 .padding(.horizontal, -16)
