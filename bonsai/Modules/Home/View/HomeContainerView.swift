@@ -39,6 +39,10 @@ struct HomeContainerView: View {
          partialResult.adding(dec)
       })
    }
+    
+    func totalBalance() -> Int {
+        income().intValue - expense().intValue
+    }
    
    func allTransactions() -> [NSDecimalNumber] {
       transactions.map { element -> NSDecimalNumber in
@@ -70,15 +74,17 @@ struct HomeContainerView: View {
             }
          } content: {
             VStack(alignment: .leading) {
-               Text("\(budgetService.getTotalMoneyLeft(with: allTransactions()))")
+                Text(verbatim: "\(totalBalance()) $")
                   .font(BonsaiFont.title_34)
                   .foregroundColor(BonsaiColor.text)
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
-                  BalanceFlowView(text: income())
+                   BalanceFlowView(text: income(), flowType: .revenue)
                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
-                  BalanceFlowView(text: expense())
+                   BalanceFlowView(text: expense(), flowType: .expense)
+                       .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+
                }
                .frame(height: 116)
                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
@@ -130,5 +136,9 @@ struct HomeContainerView: View {
 struct HomeContainerView_Previews: PreviewProvider {
    static var previews: some View {
       HomeContainerView()
+           .environmentObject(BudgetService(
+            budgetRepository: BudgetRepository(),
+            budgetCalculations: BudgetCalculations()
+         ))
    }
 }
