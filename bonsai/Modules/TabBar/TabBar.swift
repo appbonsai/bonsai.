@@ -31,7 +31,8 @@ struct TabBar: View {
                      .foregroundColor(selection == num ? BonsaiColor.mainPurple : BonsaiColor.disabled)
                      .frame(
                         width: selection == num ? 25 : 20,
-                        height: selection == num ? 25 : 20)
+                        height: selection == num ? 25 : 20
+                     )
                      .animation(.easeInOut)
                   Spacer()
                }
@@ -65,7 +66,7 @@ struct TabBar: View {
                   y: 250
                )
          }
-         .animation(.easeInOut, value: selection)
+         .animation(.easeOut, value: selection)
       }
       .padding(.top, TabBar.topPadding)
       .background(BonsaiColor.back)
