@@ -13,20 +13,25 @@ final class ChartViewModel: ObservableObject {
                   predicate: NSPredicate(format: "date >= %@",
                                          Date().startOfMonth as NSDate)) var transactions: FetchedResults<Transaction>
 
+
+   func mapToPieChartData() -> PieChartData {
+      PieChartData(
+         pieChartSlices: transactions.map {
+            PieChartSliceData(
+               disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
+               color: ($0.category?.color ?? .noCategory).asColor,
+               categoryTitle: $0.category?.title ?? "No category",
+               icon: $0.category?.image ?? .icon(.star),
+               amount: countCategoryAmount(for: $0.category),
+               percentages: countPercantage(using: $0.amount),
+               pieSlice: nil
+            )},
+         currentMonthName: Date().currentMonthName
+      )
+   }
+
     
-    func mapToPieChartData() -> PieChartData {
-        PieChartData(pieChartSlices: transactions.map { PieChartSliceData(disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
-                                                                          color: $0.category.color.asColor,
-                                                                          categoryTitle: $0.category.title,
-                                                                          icon: $0.category.image,
-                                                                          amount: countCategoryAmount(for: $0.category),
-                                                                          percentages: countPercantage(using: $0.amount),
-                                                                          pieSlice: nil)},
-                     currentMonthName: Date().currentMonthName)
-    }
-    
-    
-    private func countCategoryAmount(for category: Category) -> Double {
+    private func countCategoryAmount(for category: Category?) -> Double {
         Double(
             transactions
             .filter { $0.category == category }

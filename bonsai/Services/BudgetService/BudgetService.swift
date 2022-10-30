@@ -78,12 +78,16 @@ final class BudgetService: ObservableObject, BudgetServiceProtocol {
         }
         return .zero
     }
-    
-    func getMostExpensiveCategories(transactions: FetchedResults<Transaction>) -> [Category] {
-        Array(transactions
-            .sorted { $0.amount > $1.amount }
-            .map { $0.category }[0...2])
-    }
-    
-}
 
+   func getMostExpensiveCategories(transactions: FetchedResults<Transaction>) -> [Category] {
+      let sortedCategories = transactions
+         .sorted { $0.amount > $1.amount }
+         .compactMap { $0.category }
+
+      if sortedCategories.count > 3 {
+         return Array(sortedCategories[0...2])
+      } else {
+         return sortedCategories
+      }
+   }
+}
