@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct BudgetTapView: View {
-    static let height: CGFloat = 148
     var body: some View {
         VStack {
             BonsaiImage.arrowUpCircle
@@ -20,7 +19,6 @@ struct BudgetTapView: View {
                 .foregroundColor(BonsaiColor.text)
                 .shimmering(duration: 3.0)
         }
-        .frame(height: Self.height)
     }
 }
 

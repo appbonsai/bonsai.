@@ -14,6 +14,7 @@ struct BudgetDetails: View {
    @EnvironmentObject var budgetService: BudgetService
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
    @State var isPresented: Bool = false
+   @State private var isOperationPresented = false
    
    func allTransactions() -> [NSDecimalNumber] {
       transactions.map { $0.amount }
@@ -69,7 +70,7 @@ struct BudgetDetails: View {
          }
          .gesture(
             DragGesture()
-               .onChanged{ value in
+               .onChanged { value in
                   withAnimation(.spring()) {
                      isPresented = true
                   }
@@ -78,30 +79,50 @@ struct BudgetDetails: View {
    }
 
    var body: some View {
-      ZStack {
-         VStack {
-            VStack(alignment: .leading) {
-               BudgetNameView(name: budgetService.getBudget()?.name ?? "Budget")
-                  .padding([.top, .leading], 8)
-            }
-            budgetMoneyTitleView()
-            
-            ZStack {
-               VStack {
-                  budgetMoneyCardView()
-                  
-                  Spacer()
-                  
-                  tapViewTransactions()
+      VStack {
+         ActionScrollView { completion in
+            isOperationPresented = true
+            completion()
+         } progress: { state in
+            if case .increasing(let offset) = state {
+               ZStack {
+                  Circle()
+                     .foregroundColor(BonsaiColor.mainPurple)
+                     .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
+
+                  BonsaiImage.plus
+                     .resizable()
+                     .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
+                     .foregroundColor(.white)
                }
             }
-            .padding(.top, 16)
-         }
-         .popover(isPresented: $isPresented, content: {
-            BudgetTransactions(isPresented: $isPresented)
-         })
-         .ignoresSafeArea()
+         } content: {
+            VStack() {
+               VStack(spacing: 0) {
+                  BudgetNameView(
+                     name: budgetService.getBudget()?.name ?? "Budget"
+                  )
+                  .padding(.leading, 8)
+                  .padding(.top, 16)
 
+                  budgetMoneyTitleView()
+                     .padding(.top, 16)
+
+                  budgetMoneyCardView()
+                     .padding(.top, 32)
+               }
+            }
+         }
+         Spacer()
+         tapViewTransactions()
+            .frame(height: 148, alignment: .bottom)
+            .padding(.bottom, 24)
+      }
+      .popover(isPresented: $isPresented, content: {
+         BudgetTransactions(isPresented: $isPresented)
+      })
+      .popover(isPresented: $isOperationPresented) {
+         OperationDetails(isPresented: $isOperationPresented)
       }
    }
 }
