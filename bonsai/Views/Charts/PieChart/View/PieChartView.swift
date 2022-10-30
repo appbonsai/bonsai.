@@ -137,7 +137,7 @@ struct PieChartView: View {
 
 struct PieChartView_Previews: PreviewProvider {
     static var previews: some View {
-        PieChartView(viewModel: PieChartViewModel())
+        PieChartView(viewModel: PieChartViewModel(chartData: MockChartData.mockPieChartData))
                     .previewLayout(.fixed(width: 358, height: 432))
     }
 }

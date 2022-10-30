@@ -9,8 +9,11 @@ import SwiftUI
 import CoreData
 
 final class ChartViewModel: ObservableObject {
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)],
+                  predicate: NSPredicate(format: "date >= %@",
+                                         Date().startOfMonth as NSDate)) var transactions: FetchedResults<Transaction>
 
+    
     func mapToPieChartData() -> PieChartData {
         PieChartData(pieChartSlices: transactions.map { PieChartSliceData(disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
                                                                           color: $0.category.color.asColor,
@@ -22,7 +25,8 @@ final class ChartViewModel: ObservableObject {
                      currentMonthName: Date().currentMonthName)
     }
     
-    func countCategoryAmount(for category: Category) -> Double {
+    
+    private func countCategoryAmount(for category: Category) -> Double {
         Double(
             transactions
             .filter { $0.category == category }
@@ -31,17 +35,32 @@ final class ChartViewModel: ObservableObject {
         )
     }
     
-    func countPercantage(using amount: NSDecimalNumber) -> Double {
+    private func countPercantage(using amount: NSDecimalNumber) -> Double {
         let total = transactions
             .map { $0.amount.intValue }
             .reduce(0, +)
         
         return Double(Int(truncating: amount) * 100 / total)
-        // total = 100
-        // amount = X
     }
-
     
+//    init(mainContext: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {
+//        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+//        let startDate = Date().startOfMonth
+//        let predicate = NSPredicate(format: "date >= %@", startDate as NSDate)
+//        fetchRequest.predicate = predicate
+//        do {
+//            let transactions = try mainContext.fetch(fetchRequest)
+//            self.transactions = transactions
+//        } catch {
+//            print(error)
+//        }
+//    }
+//
+//    init() {
+//        let startDate = Date().startOfMonth
+//        let predicate = NSPredicate(format: "date >= %@", startDate as NSDate)
+//        transactions = FetchRequest(sortDescriptors: [], predicate: predicate)
+//    }
 //    static let mockPieChartData: PieChartData = .init( pieChartSlices: [
 //             .init(color: BonsaiColor.mainPurple, categoryTitle: "Fuel", icon: Image(systemName: "airplane.departure"), amount: 100.0, percentages: 15.0),
 //                 .init(color: BonsaiColor.green, categoryTitle: "Travel", icon: Image(systemName: "car.fill"), amount: 280.0, percentages: 15.0),

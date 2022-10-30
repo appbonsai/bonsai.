@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct ChartsView: View {
+    // MARK: - Properties
+    @EnvironmentObject var viewModel: ChartViewModel
+    
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)],
+                  predicate: NSPredicate(format: "date >= %@",
+                                         Date().startOfMonth as NSDate)) var transactions: FetchedResults<Transaction>
+    
+    
+    // MARK: - View
     var body: some View {
        VStack(alignment: .leading) {
           Text("Charts")
@@ -21,7 +30,7 @@ struct ChartsView: View {
                    BarChartView(viewModel: BarChartViewModel())
                 }
                 ChartContainer(title: "Expenses", chartSize: .big) {
-                   PieChartView(viewModel: PieChartViewModel())
+                    PieChartView(viewModel: PieChartViewModel(chartData: mapToPieChartData()))
                 }
              }
           }
@@ -37,6 +46,5 @@ struct ChartsView: View {
 struct ChartsContainerView_Previews: PreviewProvider {
     static var previews: some View {
         ChartsView()
-            
     }
 }
