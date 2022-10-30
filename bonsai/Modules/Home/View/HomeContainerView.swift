@@ -102,7 +102,6 @@ struct HomeContainerView: View {
                   .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
             }
             .frame(height: 116)
-            .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
 
             Text("Budget")
                .font(BonsaiFont.title_20)
