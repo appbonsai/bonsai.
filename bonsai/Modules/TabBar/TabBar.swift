@@ -12,10 +12,10 @@ struct TabBar: View {
    
    @State private var selection = 1
    
-   private let tabBarImages: [String] = [
-      Asset.chartsDisabled.name,
-      Asset.homeDisabled.name,
-      Asset.settingDisabled.name
+   private let tabBarImages: [Image] = [
+      Image(systemName: "chart.bar.fill"),
+      Image(systemName: "house.fill"),
+      Image("tree.fill")
    ]
    
    var body: some View {
@@ -25,7 +25,7 @@ struct TabBar: View {
                Label {
                } icon: {
                   Spacer()
-                  Image(tabBarImages[num])
+                  tabBarImages[num]
                      .renderingMode(Image.TemplateRenderingMode.template)
                      .resizable()
                      .foregroundColor(selection == num ? BonsaiColor.mainPurple : BonsaiColor.disabled)
@@ -52,7 +52,7 @@ struct TabBar: View {
          }
          .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
          .background {
-            GifImage("bonsai3_png")
+            GifImage("bonsai4_png")
                .offset(
                   x: {
                      if selection == 0 {
