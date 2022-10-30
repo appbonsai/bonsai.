@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import OrderedCollections
 
 extension ChartsView {
    func mapToPieChartData() -> PieChartData {
@@ -75,8 +76,8 @@ extension ChartsView {
                    leftTitle: "Amount ($)")
    }
 
-   func separateForMonth() -> [String: Double] {
-      var dic: [String: Double] = [:]
+   func separateForMonth() -> OrderedDictionary<String, Double> {
+      var dic: OrderedDictionary<String, Double> = [:]
       transactions.forEach {
          dic[$0.date.monthName] = 0
       }
