@@ -74,13 +74,13 @@ extension ChartsView {
     func separateForMonth() -> [String: Double] {
         var dic: [String: Double] = [:]
         transactions.forEach {
-            dic[$0.date.currentMonthName] = 0
+            dic[$0.date.monthName] = 0
         }
         transactions.forEach {
             if $0.type == .expense {
-                dic[$0.date.currentMonthName]? -= Double(truncating: $0.amount)
+                dic[$0.date.monthName]? -= Double(truncating: $0.amount)
             } else if $0.type == .income {
-                dic[$0.date.currentMonthName]? += Double(truncating: $0.amount)
+                dic[$0.date.monthName]? += Double(truncating: $0.amount)
             }
         }
         return dic

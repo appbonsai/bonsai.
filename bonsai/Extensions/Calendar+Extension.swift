@@ -39,4 +39,10 @@ extension Date {
         dateFormatter.dateFormat = "LLLL"
         return dateFormatter.string(from: now)
     }
+    
+    var monthName: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        return dateFormatter.string(from: self)
+    }
 }

@@ -17,12 +17,13 @@ struct BarChartLineView: View {
             .cornerRadius(cornerRadius)
             .foregroundColor(color)
             .scaleEffect(CGSize(width: 1, height: value), anchor: .bottom)
+//            .frame(maxWidth: 20)
     }
 }
 
 struct BarChartLineView_Previews: PreviewProvider {
     static var previews: some View {
         BarChartLineView(value: 6, color: BonsaiColor.mainPurple)
-            .previewLayout(.sizeThatFits)
+            .previewLayout(.fixed(width: 100, height: 100))
     }
 }

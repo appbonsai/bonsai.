@@ -50,13 +50,12 @@ struct BarChartView: View {
                         
                         // bars
                         HStack(spacing: 10) {
-                            if let chartData = viewModel.chartData {
                                 
-                                ForEach(Array(chartData.pieces.enumerated()), id: \.offset) { i, bar in
+                            ForEach(Array(viewModel.chartData.pieces.enumerated()), id: \.offset) { i, bar in
                                     VStack {
-                                        BarChartLineView(value: viewModel.normalizedValue(value: bar.value), color: chartData.piecesColor)
+                                        BarChartLineView(value: viewModel.normalizedValue(value: bar.value), color: viewModel.chartData.piecesColor)
                                             .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.3, height: 1.1) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                            .shadow(color: chartData.piecesColor.opacity(barIsTouched(index: i) ? 0.5 : 0), radius: 15, x: 0, y: 0)
+                                            .shadow(color: viewModel.chartData.piecesColor.opacity(barIsTouched(index: i) ? 0.5 : 0), radius: 15, x: 0, y: 0)
                                             .animation(.spring())
                                         
                                         Text(bar.label)
@@ -65,7 +64,6 @@ struct BarChartView: View {
                                     }
                                 }
                             }
-                        }
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onChanged { position in
