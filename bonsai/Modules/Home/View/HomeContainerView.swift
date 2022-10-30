@@ -15,7 +15,7 @@ struct HomeContainerView: View {
    @State var showAllSet: Bool = false
    @State private var isCurrencySelectionPresented = false
    @EnvironmentObject var budgetService: BudgetService
- 
+
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
    
    func income() -> NSDecimalNumber {
@@ -39,36 +39,36 @@ struct HomeContainerView: View {
          partialResult.adding(dec)
       })
    }
-    
-    func totalBalance() -> Int {
-        income().intValue - expense().intValue
-    }
+
+   func totalBalance() -> Int {
+      income().intValue - expense().intValue
+   }
    
    func allTransactions() -> [NSDecimalNumber] {
       transactions.map { element -> NSDecimalNumber in
          element.amount
       }
    }
-    
-    func calculateRevenuePercentage() -> Int {
-        income().intValue * 100 / (income().intValue + expense().intValue)
-    }
-    
-    func calculateExpensePercentage() -> Int {
-        expense().intValue * 100 / (income().intValue + expense().intValue)
-    }
-    
-    func filterTransaction(by categories: [Category]) -> [Transaction] {
-        transactions
-            .filter {
-               if let category = $0.category {
-                  return categories.contains(category)
-               } else {
-                  return false
-               }
+
+   func calculateRevenuePercentage() -> Int {
+      income().intValue * 100 / (income().intValue + expense().intValue)
+   }
+
+   func calculateExpensePercentage() -> Int {
+      expense().intValue * 100 / (income().intValue + expense().intValue)
+   }
+
+   func filterTransaction(by categories: [Category]) -> [Transaction] {
+      transactions
+         .filter {
+            if let category = $0.category {
+               return categories.contains(category)
+            } else {
+               return false
             }
-    }
-    
+         }
+   }
+
    var body: some View {
       ZStack {
          ActionScrollView { completion in
@@ -80,7 +80,7 @@ struct HomeContainerView: View {
                   Circle()
                      .foregroundColor(BonsaiColor.mainPurple)
                      .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
-                
+
                   BonsaiImage.plus
                      .resizable()
                      .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
@@ -93,17 +93,16 @@ struct HomeContainerView: View {
             }
          } content: {
             VStack(alignment: .leading) {
-                Text(verbatim: "\(totalBalance()) $")
+               Text(verbatim: "\(totalBalance()) $")
                   .font(BonsaiFont.title_34)
                   .foregroundColor(BonsaiColor.text)
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
-                   BalanceFlowView(text: income(), flowType: .revenue, percentage: calculateRevenuePercentage())
-                       .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
-                   BalanceFlowView(text: expense(), flowType: .expense, percentage: calculateExpensePercentage())
-                       .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
-
+                  BalanceFlowView(text: income(), flowType: .revenue, percentage: calculateRevenuePercentage())
+                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+                  BalanceFlowView(text: expense(), flowType: .expense, percentage: calculateExpensePercentage())
+                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
                }
                .frame(height: 116)
                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
@@ -113,13 +112,22 @@ struct HomeContainerView: View {
                   .foregroundColor(.white)
                   .padding(.top, 32)
                
-                BudgetView(categories: budgetService.getMostExpensiveCategories(transactions: transactions), transactions: filterTransaction(by: budgetService.getMostExpensiveCategories(transactions: transactions)))
-                  .frame(height: 320)
-                  .cornerRadius(13)
-                  .onTapGesture {
-                     isCreateEditBudgetPresented = true
-                  }
-                  .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+               BudgetView(
+                  categories: budgetService.getMostExpensiveCategories(
+                     transactions: transactions
+                  ),
+                  transactions: filterTransaction(
+                     by: budgetService.getMostExpensiveCategories(
+                        transactions: transactions
+                     )
+                  )
+               )
+               .frame(height: 320)
+               .cornerRadius(13)
+               .onTapGesture {
+                  isCreateEditBudgetPresented = true
+               }
+               .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
                
                Spacer()
             }
@@ -143,7 +151,7 @@ struct HomeContainerView: View {
       })
       .onAppear {
 
-                  
+
          //              if Currency.userPreferenceCurrencyCode == nil {
          //                 isCurrencySelectionPresented = true
          //              }
@@ -155,7 +163,7 @@ struct HomeContainerView: View {
 struct HomeContainerView_Previews: PreviewProvider {
    static var previews: some View {
       HomeContainerView()
-           .environmentObject(BudgetService(
+         .environmentObject(BudgetService(
             budgetRepository: BudgetRepository(),
             budgetCalculations: BudgetCalculations()
          ))

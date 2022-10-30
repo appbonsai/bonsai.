@@ -7,45 +7,79 @@
 
 import SwiftUI
 
+struct CircularProgressView: View {
+   let progress: Double
+
+   var body: some View {
+      ZStack {
+         Circle()
+            .stroke(
+               BonsaiColor.text.opacity(0.5),
+               lineWidth: 10
+            )
+         Circle()
+            .trim(from: 0, to: progress)
+            .stroke(
+               BonsaiColor.text,
+               style: StrokeStyle(
+                  lineWidth: 10,
+                  lineCap: .round
+               )
+            )
+            .rotationEffect(.degrees(-90))
+         // 1
+            .animation(.easeOut, value: progress)
+
+      }
+   }
+}
+
 struct BudgetView: View {
-    var categories: [Category]
-    var transactions: [Transaction]
-    var body: some View {
-        ZStack {
-            BonsaiColor.card
-                .blur(radius: 1)
-                .opacity(0.8)
-            VStack(alignment: .leading) {
-                BudgetHeaderView()
-                    .padding(.horizontal, -16)
-                
-                Text(L.Home_category)
-                    .font(BonsaiFont.subtitle_15)
-                    .foregroundColor(BonsaiColor.text)
-                    .padding(.top, 16)
-                
-                VStack(spacing: 0) {
-                    ForEach(categories, id: \.id) { category in
-    
-                        BudgetCellView(title: category.title,
-                                       amount: transactions
-                                                    .filter { $0.category == category }
-                                                    .map { $0.amount.intValue }
-                                                    .reduce(0, +))
-                        BonsaiColor.separator
-                            .frame(height: 1)
-                    }
-                }
-                
-                Spacer()
+   var categories: [Category]
+   var transactions: [Transaction]
+
+   @State var progress: Double = 0.7
+
+   var body: some View {
+      ZStack {
+         BonsaiColor.card
+            .blur(radius: 1)
+            .opacity(0.8)
+         VStack(alignment: .leading, spacing: 0) {
+            
+            BudgetHeaderView(progress: $progress)
+               .cornerRadius(13)
+
+            Text(L.Home_category)
+               .font(BonsaiFont.subtitle_15)
+               .foregroundColor(BonsaiColor.text)
+               .padding(.top, 16)
+               .padding(.horizontal, 16)
+
+            VStack(spacing: 0) {
+               ForEach(categories, id: \.id) { category in
+
+                  BudgetCellView(
+                     title: category.title,
+                     amount: transactions
+                        .filter { $0.category == category }
+                        .map { $0.amount.intValue }
+                        .reduce(0, +),
+                     color: category.color.asGradient,
+                     icon: category.image
+                  )
+               }
             }
             .padding(.horizontal, 16)
-        }
-    }
+
+            Spacer()
+         }
+      }
+   }
 }
-    struct BudgetView_Previews: PreviewProvider {
-        static var previews: some View {
-            BudgetView(categories: [], transactions: [])
-                .previewLayout(.fixed(width: 358, height:330))
-        }
-    }
+struct BudgetView_Previews: PreviewProvider {
+   static var previews: some View {
+      BudgetView(categories: [], transactions: [])
+         .previewLayout(.fixed(width: 358, height:330))
+   }
+}
