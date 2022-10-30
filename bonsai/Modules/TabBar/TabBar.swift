@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct TabBar: View {
-    
    static var topPadding: CGFloat = 57
-
+   
    @State private var selection = 1
-
-   private let tabBarImages: [String] = [Asset.settingDisabled.name,
-                                         Asset.homeDisabled.name,
-                                         Asset.chartsDisabled.name]
-
+   
+   private let tabBarImages: [String] = [
+      Asset.chartsDisabled.name,
+      Asset.homeDisabled.name,
+      Asset.settingDisabled.name
+   ]
+   
    var body: some View {
       VStack {
          HStack {
@@ -39,30 +40,36 @@ struct TabBar: View {
                }
             }
          }
-         TabView(selection: $selection) {
-             SettingsContainerView()
-               .tag(0)
-             HomeContainerView()
-               .tag(1)
-            BudgetDetails(
-               viewModel: BudgetViewModelAssembler().assembly())
-            .tag(2)
+         
+         ZStack {
+            VStack {
+               Spacer(minLength: 250)
+               GifImage("bonsai3_png")
+            }
+            TabView(selection: $selection) {
+               ChartsView()
+                  .tag(0)
+               HomeContainerView()
+                  .tag(1)
+               BudgetDetails()
+                  .tag(2)
+            }
+            .animation(.easeInOut)
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
          }
-         .animation(.easeInOut)
-         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
       }
       .padding(.top, TabBar.topPadding)
       .background(BonsaiColor.back)
       .ignoresSafeArea()
    }
-
+   
 }
 
 struct TabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBar()
-            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-            .previewDisplayName("iPhone 12")
-    }
+   static var previews: some View {
+      TabBar()
+         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+         .previewDisplayName("iPhone 12")
+   }
 }
 

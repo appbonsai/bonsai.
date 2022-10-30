@@ -6,76 +6,84 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol BudgetCalculationServiceProtocol {
-   func getTotalBudget() -> NSDecimalNumber?
-   func getTotalMoneySpent(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber?
-   func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber?
-   func getTotalMoneyLeft(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber?
+    func getTotalBudget() -> NSDecimalNumber
+    func getTotalMoneySpent(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
+    func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
+    func getTotalMoneyLeft(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
+    func getMostExpensiveCategories(transactions: FetchedResults<Transaction>) -> [Category]
 }
 
 protocol BudgetRepositoryServiceProtocol {
-   func getBudget() -> Budget?
-   func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date) -> Budget
-   func deleteBudget()
+    func getBudget() -> Budget?
+    func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date) -> Budget
+    func deleteBudget()
 }
 
 typealias BudgetServiceProtocol = BudgetCalculationServiceProtocol & BudgetRepositoryServiceProtocol
 
-final class BudgetService: BudgetServiceProtocol {
-   
-   private let budgetRepository: BudgetRepositoryProtocol
-   private let budgetCalculations: BudgetCalculationsProtocol
-   
-   init(budgetRepository: BudgetRepositoryProtocol,
-        budgetCalculations: BudgetCalculationsProtocol) {
-      self.budgetRepository = budgetRepository
-      self.budgetCalculations = budgetCalculations
-   }
-   
-   func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date = Date()) -> Budget {
-       budgetRepository.create(name: name, totalAmount: budgetAmount, periodDays: periodDays, createdDate: createdDate)
-   }
+final class BudgetService: ObservableObject, BudgetServiceProtocol {
+    private let budgetRepository: BudgetRepositoryProtocol
+    private let budgetCalculations: BudgetCalculationsProtocol
     
-   func getBudget() -> Budget? {
-       budgetRepository.getBudget()
-   }
-   
-   func deleteBudget() {
-      budgetRepository.delete()
-   }
-   
-   func getTotalMoneySpent(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
-      budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
-   }
-   
-   func getTotalBudget() -> NSDecimalNumber? {
-      guard let budget = budgetRepository.getBudget() else {
-         return nil
-      }
-      return budget.amount
-   }
-   
-    func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
-        guard let budget = budgetRepository.getBudget(),
-              let moneyLeft = getTotalMoneyLeft(with: transactionAmounts) else {
-            return nil
+    init(budgetRepository: BudgetRepositoryProtocol,
+         budgetCalculations: BudgetCalculationsProtocol) {
+        self.budgetRepository = budgetRepository
+        self.budgetCalculations = budgetCalculations
+    }
+    
+    func createBudget(name: String, with budgetAmount: NSDecimalNumber, on periodDays: Int64, createdDate: Date = Date()) -> Budget {
+        budgetRepository.create(name: name, totalAmount: budgetAmount, periodDays: periodDays, createdDate: createdDate)
+    }
+    
+    func getBudget() -> Budget? {
+        budgetRepository.getBudget()
+    }
+    
+    func deleteBudget() {
+        budgetRepository.delete()
+    }
+    
+    func getTotalMoneySpent(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
+        budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
+    }
+    
+    func getTotalBudget() -> NSDecimalNumber {
+        guard let budget = budgetRepository.getBudget() else {
+            return .zero
         }
+        return budget.amount
+    }
+    
+    func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
+        guard let budget = budgetRepository.getBudget() else {
+            return .zero
+        }
+        let moneyLeft = getTotalMoneyLeft(with: transactionAmounts)
         let dayLeft = budgetCalculations.calculateDayLeft(fromDate: budget.createdDate, toDate: .now)
         let dailyBudget = budgetCalculations.calculateMoneyCanSpendDaily(currentAmount: moneyLeft, periodDays: budget.periodDays - Int64(dayLeft))
         return dailyBudget
     }
-   
-   func getTotalMoneyLeft(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber? {
-      guard let budget = budgetRepository.getBudget() else {
-         return nil
-      }
-      let totalSpend = budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
-      let newAmount = budgetCalculations.calculateTotalMoneyLeft(with: budget.amount, after: totalSpend)
-      if let newAmount = newAmount {
-         return newAmount
-      }
-      return nil
-   }
+    
+    func getTotalMoneyLeft(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
+        guard let budget = budgetRepository.getBudget() else {
+            return .zero
+        }
+        let totalSpend = budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
+        let newAmount = budgetCalculations.calculateTotalMoneyLeft(with: budget.amount, after: totalSpend)
+        if let newAmount = newAmount {
+            return newAmount
+        }
+        return .zero
+    }
+    
+    func getMostExpensiveCategories(transactions: FetchedResults<Transaction>) -> [Category] {
+        Array(transactions
+            .sorted { $0.amount > $1.amount }
+            .map { $0.category }[0...2])
+    }
+    
 }
 

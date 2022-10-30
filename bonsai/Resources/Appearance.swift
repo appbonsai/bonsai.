@@ -90,4 +90,25 @@ enum BonsaiColor {
    static let newPurple = Color(hex: 0x6C63FF)
    static let separator = Color(hex: 0x343150)
    static let prompt = Color(hex: 0x686599)
+    
+    /*
+      Disables colors for charts
+     */
+    
+    enum ChartDisabledColors {
+        static let c1 = Color(hex: 0x232236)
+        static let c2 = Color(hex: 0x2C2A42)
+        static let c3 = Color(hex: 0x33324A)
+        static let c4 = Color(hex: 0x1A1931)
+        static let c5 = Color(hex: 0x0A091D)
+        static let c6 = Color(hex: 0x131129)
+        static let c7 = Color(hex: 0x504E65)
+        static let c8 = Color(hex: 0x49485E)
+        static let c9 = Color(hex: 0x474555)
+        static let c10 = Color(hex: 0x394F6C)
+        
+        static var colors: [Color] {
+            return [BonsaiColor.ChartDisabledColors.c1, BonsaiColor.ChartDisabledColors.c2, BonsaiColor.ChartDisabledColors.c3, BonsaiColor.ChartDisabledColors.c4, BonsaiColor.ChartDisabledColors.c5, BonsaiColor.ChartDisabledColors.c6, BonsaiColor.ChartDisabledColors.c7, BonsaiColor.ChartDisabledColors.c8, BonsaiColor.ChartDisabledColors.c9, BonsaiColor.ChartDisabledColors.c10]
+        }
+    }
 }

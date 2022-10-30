@@ -83,7 +83,7 @@ struct TagsContainerView: View {
             } // NavigationView
             .popover(isPresented: $isCreateTagPresented) {
                 CreateTagView(isPresented: $isCreateTagPresented) { tag in
-                    if let tag, tag.title.isEmpty == false {
+                    if let tag = tag, tag.title.isEmpty == false {
                         self.selectedTags.append(tag)
                         self.isPresented = false
                     }

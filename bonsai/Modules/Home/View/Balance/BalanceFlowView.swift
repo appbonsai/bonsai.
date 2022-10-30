@@ -9,25 +9,39 @@ import Foundation
 import SwiftUI
 
 struct BalanceFlowView: View {
+    enum FlowType {
+        case revenue
+        case expense
+    }
+    
+    var text: NSDecimalNumber
+    var flowType: FlowType
+    var percentage: Int
+    init(text: NSDecimalNumber, flowType: FlowType, percentage: Int) {
+        self.text = text
+        self.flowType = flowType
+        self.percentage = percentage
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Spacer()
-            Text(L.Revenue_title)
-                .font(.system(size: 15))
-                .foregroundColor(BonsaiColor.green)
+            Text(flowType == .expense ? L.Expenses_title : L.Revenue_title)
+                .font(BonsaiFont.subtitle_15)
+                .foregroundColor(flowType == .expense ? BonsaiColor.secondary : BonsaiColor.green)
                 .padding(.top, 4)
-            Text("$537")
-                .font(.system(size: 22))
-                .foregroundColor(.white)
+            Text("\(text)")
+                .font(BonsaiFont.title_22)
+                .foregroundColor(BonsaiColor.text)
                 .padding(.top, 8)
-
+            
             HStack(alignment: .firstTextBaseline, spacing: 6) {
-                Image(Asset.arrowGreenUp.name)
+                Image(flowType == .expense ? Asset.arrowRedDown.name : Asset.arrowGreenUp.name)
                     .resizable()
                     .frame(width: 12, height: 14)
-                Text("22% \(L.Target_title)")
-                    .font(.system(size: 15))
-                    .foregroundColor(.white)
+                Text(verbatim: "\(percentage)% \(L.Target_title)")
+                    .font(BonsaiFont.subtitle_15)
+                    .foregroundColor(BonsaiColor.text)
                 
                 Spacer()
             }
@@ -43,7 +57,7 @@ struct BalanceFlowView: View {
 
 struct BalanceFlowView_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceFlowView()
+        BalanceFlowView(text: 234, flowType: .expense, percentage: 22)
             .previewLayout(.fixed(width: 171, height: 116))
     }
 }

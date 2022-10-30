@@ -84,7 +84,7 @@ struct CategoriesContainerView: View {
          } // NavigationView
          .popover(isPresented: $isCreateCategoryPresented) {
             CreateCategoryView(isPresented: $isCreateCategoryPresented) { category in
-               if let category {
+               if let category = category {
                   self.selectedCategory = category
                   self.isPresented = false
                }

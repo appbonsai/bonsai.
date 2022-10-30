@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 struct MockSubscriptions {
     public static let subscriptions: [Subscription] = [
