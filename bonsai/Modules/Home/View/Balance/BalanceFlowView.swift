@@ -16,9 +16,11 @@ struct BalanceFlowView: View {
     
     var text: NSDecimalNumber
     var flowType: FlowType
-    init(text: NSDecimalNumber, flowType: FlowType) {
+    var percentage: Int
+    init(text: NSDecimalNumber, flowType: FlowType, percentage: Int) {
         self.text = text
         self.flowType = flowType
+        self.percentage = percentage
     }
     
     var body: some View {
@@ -37,7 +39,7 @@ struct BalanceFlowView: View {
                 Image(flowType == .expense ? Asset.arrowRedDown.name : Asset.arrowGreenUp.name)
                     .resizable()
                     .frame(width: 12, height: 14)
-                Text("22% \(L.Target_title)")
+                Text(verbatim: "\(percentage)% \(L.Target_title)")
                     .font(BonsaiFont.subtitle_15)
                     .foregroundColor(BonsaiColor.text)
                 
@@ -55,7 +57,7 @@ struct BalanceFlowView: View {
 
 struct BalanceFlowView_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceFlowView(text: 234, flowType: .expense)
+        BalanceFlowView(text: 234, flowType: .expense, percentage: 22)
             .previewLayout(.fixed(width: 171, height: 116))
     }
 }

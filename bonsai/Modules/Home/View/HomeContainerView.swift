@@ -49,7 +49,18 @@ struct HomeContainerView: View {
          element.amount
       }
    }
+    
+    func calculateRevenuePercentage() -> Int {
+        income().intValue * 100 / (income().intValue + expense().intValue)
+    }
+    
+    func calculateExpensePercentage() -> Int {
+        expense().intValue * 100 / (income().intValue + expense().intValue)
+    }
    
+    // 1876 - 100%
+    // 3500 - x
+    
    var body: some View {
       ZStack {
          ActionScrollView { completion in
@@ -80,9 +91,9 @@ struct HomeContainerView: View {
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
                HStack(alignment: .center, spacing: 16) {
-                   BalanceFlowView(text: income(), flowType: .revenue)
+                   BalanceFlowView(text: income(), flowType: .revenue, percentage: calculateRevenuePercentage())
                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
-                   BalanceFlowView(text: expense(), flowType: .expense)
+                   BalanceFlowView(text: expense(), flowType: .expense, percentage: calculateExpensePercentage())
                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
 
                }
