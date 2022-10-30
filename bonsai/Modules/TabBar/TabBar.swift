@@ -40,23 +40,32 @@ struct TabBar: View {
                }
             }
          }
-         
-         ZStack {
-            VStack {
-               Spacer(minLength: 250)
-               GifImage("bonsai3_png")
-            }
-            TabView(selection: $selection) {
-               ChartsView()
-                  .tag(0)
-               HomeContainerView()
-                  .tag(1)
-               BudgetDetails()
-                  .tag(2)
-            }
-            .animation(.easeInOut)
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+
+         TabView(selection: $selection) {
+            ChartsView()
+               .tag(0)
+            HomeContainerView()
+               .tag(1)
+            BudgetDetails()
+               .tag(2)
          }
+         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+         .background {
+            GifImage("bonsai3_png")
+               .offset(
+                  x: {
+                     if selection == 0 {
+                        return 500
+                     } else if selection == 1 {
+                        return 200
+                     } else {
+                        return 0
+                     }
+                  }(),
+                  y: 250
+               )
+         }
+         .animation(.easeInOut, value: selection)
       }
       .padding(.top, TabBar.topPadding)
       .background(BonsaiColor.back)
@@ -72,4 +81,3 @@ struct TabBar_Previews: PreviewProvider {
          .previewDisplayName("iPhone 12")
    }
 }
-
