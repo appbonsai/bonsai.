@@ -14,6 +14,14 @@ extension String {
    }
 }
 
+extension Category.Color {
+    static var noCategory: Category.Color { .blue }
+}
+
+extension Category.Icon {
+   static var noCategory: Category.Icon { .star }
+}
+
 struct TransactionCell: View {
 
    struct Model {
@@ -24,9 +32,9 @@ struct TransactionCell: View {
       let amount: String
 
       init(transaction: Transaction) {
-         self.color = transaction.category.color.asGradient
-         self.icon = transaction.category.image
-         self.title = transaction.title?.takeIfNotEmpty() ?? transaction.category.title
+         self.color = (transaction.category?.color ?? .noCategory).asGradient
+         self.icon = (transaction.category?.image ?? .icon(.noCategory))
+         self.title = transaction.title?.takeIfNotEmpty() ?? transaction.category?.title ?? "No category"
          self.type = transaction.type
          self.amount = transaction.amount.stringValue
       }

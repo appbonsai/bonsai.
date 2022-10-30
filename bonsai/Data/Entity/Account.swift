@@ -29,16 +29,3 @@ public class Account: NSManagedObject, Identifiable {
       NSFetchRequest<Account>(entityName: "Account")
    }
 }
-
-// Default account, use as a fallback if no account provided
-// Only one account exists in first app version anyway
-extension Account {
-   @NonNilUserDefault("Account.default.id", defaultValue: UUID().uuidString)
-   private static var accountId: String
-
-   static var `default` = Account(
-      context: DataController.sharedInstance.container.viewContext,
-      id: UUID(uuidString: accountId)!,
-      title: "Default"
-   )
-}

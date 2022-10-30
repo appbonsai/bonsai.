@@ -144,18 +144,23 @@ struct OperationDetails: View {
                   Button {
                      switch kind {
                      case .new:
-                        bonsai.Transaction(
-                           context: moc,
-                           amount: NSDecimalNumber(string: amount),
-                           title: title,
-                           date: date,
-                           category: category ?? .notSpecified,
-                           account: .default,
-                           type: selectedOperation.mappedToTransactionType,
-                           tags: Set(tags),
-                           currency: currency
-                        )
                         do {
+                           bonsai.Transaction(
+                              context: moc,
+                              amount: NSDecimalNumber(string: amount),
+                              title: title,
+                              date: date,
+                              category: category,
+                              account: try moc.fetch(Account.fetchRequest())
+                                 .first ?? Account(
+                                    context: moc,
+                                    title: "Default"
+                                 ),
+                              type: selectedOperation.mappedToTransactionType,
+                              tags: Set(tags),
+                              currency: currency
+                           )
+
                            try moc.save()
                            isPresented = false
                         } catch (let e) {

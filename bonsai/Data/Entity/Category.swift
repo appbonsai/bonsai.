@@ -77,21 +77,3 @@ public class Category: NSManagedObject, Identifiable {
    // Note: Do not use this accessor, but use `icon` instead
    @NSManaged public var iconString: String
 }
-
-// Category for use when no category was specified on transaction
-extension Category {
-   @UserDefault("Category.notSpecified.id")
-   private(set) static var nonSpecifiedId: String?
-
-   private(set) static var notSpecified = Category(
-      context: DataController.sharedInstance.container.viewContext,
-      id: { () -> UUID in
-          let id = nonSpecifiedId ?? UUID().uuidString
-          nonSpecifiedId = id
-          return UUID(uuidString: id)!
-      }(),
-      title: "No category",
-      color: .blue,
-      image: .icon(.star)
-   )
-}

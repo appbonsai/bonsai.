@@ -16,7 +16,7 @@ public class Transaction: NSManagedObject, Identifiable {
    @NSManaged public var amount: NSDecimalNumber
    @NSManaged public var title: String?
    @NSManaged public var date: Date
-   @NSManaged public var category: Category
+   @NSManaged public var category: Category?
    @NSManaged public var account: Account
    @NSManaged public var tags: Set<Tag>
    public var type: `Type` {
@@ -61,8 +61,8 @@ public class Transaction: NSManagedObject, Identifiable {
       amount: NSDecimalNumber,
       title: String? = nil,
       date: Date,
-      category: Category = .notSpecified,
-      account: Account = .`default`,
+      category: Category? = nil,
+      account: Account,
       type: `Type`,
       tags: Set<Tag>,
       currency: Currency.Validated = .current
