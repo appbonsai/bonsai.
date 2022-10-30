@@ -11,10 +11,11 @@ struct ChartsView: View {
     // MARK: - Properties
     @EnvironmentObject var viewModel: ChartViewModel
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)],
-                  predicate: NSPredicate(format: "date >= %@",
-                                         Date().startOfMonth as NSDate)) var transactions: FetchedResults<Transaction>
+//    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)],
+//                  predicate: NSPredicate(format: "date >= %@",
+//                                         Date().startOfMonth as NSDate)) var transactions: FetchedResults<Transaction>
     
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
     
     // MARK: - View
     var body: some View {
@@ -27,7 +28,7 @@ struct ChartsView: View {
           ScrollView(.vertical, showsIndicators: false) {
              VStack(alignment: .leading, spacing: 24) {
                 ChartContainer(title: "Balance") {
-                   BarChartView(viewModel: BarChartViewModel())
+                    BarChartView(viewModel: BarChartViewModel(chartData: mapToBarChartData()))
                 }
                 ChartContainer(title: "Expenses", chartSize: .big) {
                     PieChartView(viewModel: PieChartViewModel(chartData: mapToPieChartData()))

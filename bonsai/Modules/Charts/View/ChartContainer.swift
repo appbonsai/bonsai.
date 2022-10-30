@@ -48,7 +48,7 @@ struct ChartContainer<Chart>: View where Chart : View {
 struct ChartContainer_Previews: PreviewProvider {
     static var previews: some View {
         ChartContainer(title: "Balance") {
-            BarChartView(viewModel: BarChartViewModel())
+            BarChartView(viewModel: BarChartViewModel(chartData: MockChartData.mockBarChartData))
         }
     }
 }
