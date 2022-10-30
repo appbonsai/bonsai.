@@ -12,26 +12,21 @@ final class BarChartViewModel: ObservableObject {
     var chartData: BarChartData
     
     // MARK: - Functions
-    func normalizedValue(value: Double) -> Double {
-        var allValues: [Double] {
-            var values = [Double]()
+   func normalizedValue(value: Double) -> Double {
+      let all = chartData.pieces.map(\.value)
 
-            for piece in chartData.pieces {
-                values.append(piece.value)
-            }
-            return values
-        }
-        
-        guard let max = allValues.max() else {
-            return 1
-        }
-        
-        if max != 0 {
-            return value/Double(max)
-        } else {
-            return 1
-        }
-    }
+      guard let max = all.max() else {
+         return 1
+      }
+
+      if max > 0 {
+         return value / Double(max)
+      } else if max == 0 {
+         return 1
+      } else /* if max < 0 */ {
+         return Double(max) / value
+      }
+   }
     
     // MARK: - Init
     init(chartData: BarChartData) {
