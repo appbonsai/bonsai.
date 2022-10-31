@@ -147,8 +147,8 @@ struct HomeContainerView: View {
                .foregroundColor(.white)
                .padding(.top, 32)
 
-//            createBudgetView()
-            BudgeView()
+            createBudgetView()
+//            BudgeView()
 
             Spacer()
          }

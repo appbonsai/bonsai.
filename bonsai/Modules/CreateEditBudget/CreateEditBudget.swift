@@ -17,9 +17,12 @@ struct CreateEditBudget: View {
    @State private var currency: Currency.Validated
    @State private var amount: String
    @State private var title: String
+   @State private var periodDays: Int64
+   @State private var createdDate: Date
    @FocusState private var focusedField: Field?
    @State var isPeriodDaysPresented: Bool = false
    @Binding var isCreateEditBudgetPresented: Bool
+   @Environment(\.managedObjectContext) private var moc
 
    enum Field {
       case amount
@@ -30,6 +33,8 @@ struct CreateEditBudget: View {
       self._currency = .init(initialValue: .current)
       self._amount = .init(initialValue: "")
       self._title = .init(initialValue: "")
+      self._periodDays = .init(initialValue: 1)
+      self._createdDate = .init(initialValue: .now)
       self._isCreateEditBudgetPresented = isCreateEditBudgetPresented
    }
    
@@ -74,7 +79,20 @@ struct CreateEditBudget: View {
                
                let isDisabled = $amount.wrappedValue.isEmpty && $title.wrappedValue.isEmpty
                Button {
-                  isCreateEditBudgetPresented = false
+                  do {
+                     bonsai.Budget(
+                        context: moc,
+                        name: title,
+                        totalAmount: .init(string: amount),
+                        periodDays: periodDays,
+                        createdDate: createdDate)
+                     
+                     try moc.save()
+                     isCreateEditBudgetPresented = false
+                  } catch (let e) {
+                     assertionFailure(e.localizedDescription)
+                  }
+                  
                } label: {
                   ZStack {
                      RoundedRectangle(cornerRadius: 13)
