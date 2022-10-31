@@ -25,8 +25,8 @@ struct CreateEditBudget: View {
       case amount
       case title
    }
-   init(isCreateEditBudgetPresented: Binding<Bool>) {
-      self.kind = .new
+   init(isCreateEditBudgetPresented: Binding<Bool>, kind: Kind) {
+      self.kind = kind
       self._currency = .init(initialValue: .current)
       self._amount = .init(initialValue: "")
       self._title = .init(initialValue: "")
@@ -100,6 +100,6 @@ struct CreateEditBudget: View {
 
 struct CreateEditBudget_Previews: PreviewProvider {
    static var previews: some View {
-      CreateEditBudget(isCreateEditBudgetPresented: .constant(true))
+      CreateEditBudget(isCreateEditBudgetPresented: .constant(true), kind: .new)
    }
 }

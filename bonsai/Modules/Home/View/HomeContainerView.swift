@@ -84,9 +84,6 @@ struct HomeContainerView: View {
       )
       .frame(height: 320)
       .cornerRadius(13)
-      .onTapGesture {
-         isCreateEditBudgetPresented = true
-      }
       .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
    }
    
@@ -158,7 +155,7 @@ struct HomeContainerView: View {
          )
       }
       .popover(isPresented: $isCreateEditBudgetPresented, content: {
-         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented)
+         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented, kind: .new)
       })
       .onAppear {
 

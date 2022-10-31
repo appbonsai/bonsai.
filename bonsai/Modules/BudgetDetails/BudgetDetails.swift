@@ -15,7 +15,8 @@ struct BudgetDetails: View {
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
    @State var isPresented: Bool = false
    @State private var isOperationPresented = false
-   
+   @State private var isCreateEditBudgetPresented = false
+
    func allTransactions() -> [NSDecimalNumber] {
       transactions.map { $0.amount }
    }
@@ -98,19 +99,31 @@ struct BudgetDetails: View {
             }
          } content: {
             VStack() {
-               VStack(spacing: 0) {
-                  BudgetNameView(
-                     name: budgetService.getBudget()?.name ?? "Budget"
-                  )
-                  .padding(.leading, 8)
-                  .padding(.top, 16)
-
-                  budgetMoneyTitleView()
-                     .padding(.top, 16)
-
-                  budgetMoneyCardView()
-                     .padding(.top, 32)
-               }
+                  VStack(spacing: 0) {
+                     HStack {
+                        BudgetNameView(
+                           name: budgetService.getBudget()?.name ?? "Budget"
+                        )
+                        .padding(.leading, 8)
+                        .padding(.top, 16)
+                        
+                        Spacer()
+                        
+                        BonsaiImage.pencil
+                           .foregroundColor(.white)
+                           .padding(.trailing, 12)
+                           .onTapGesture {
+                              isCreateEditBudgetPresented = true
+                           }
+                     }
+                     
+                     budgetMoneyTitleView()
+                        .padding(.top, 16)
+                     
+                     budgetMoneyCardView()
+                        .padding(.top, 32)
+                  }
+               
             }
          }
          Spacer()
@@ -124,6 +137,9 @@ struct BudgetDetails: View {
       .popover(isPresented: $isOperationPresented) {
          OperationDetails(isPresented: $isOperationPresented)
       }
+      .popover(isPresented: $isCreateEditBudgetPresented, content: {
+         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented, kind: .edit)
+      })
    }
 }
 
