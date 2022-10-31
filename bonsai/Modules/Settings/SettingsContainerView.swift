@@ -32,15 +32,15 @@ struct SettingsContainerView: View {
     
     var body: some View {
         List {
-            Section(header: Text("home background theme")) {
-                BackgroundChangeRow()
-            }
-            .listRowBackground(BonsaiColor.card)
-            Section(header: Text("app icon")) {
-                AppIconChangeRow()
-            }
-            .listRowBackground(BonsaiColor.card)
-            
+//            Section(header: Text("home background theme")) {
+//                BackgroundChangeRow()
+//            }
+//            .listRowBackground(BonsaiColor.card)
+//            Section(header: Text("app icon")) {
+//                AppIconChangeRow()
+//            }
+//            .listRowBackground(BonsaiColor.card)
+//            
             Section(header: Text("other")) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
                     HStack {

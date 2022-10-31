@@ -111,6 +111,7 @@ struct BudgetDetails: View {
                         
                         BonsaiImage.pencil
                            .foregroundColor(.white)
+                           .font(.system(size: 22))
                            .padding(.trailing, 12)
                            .onTapGesture {
                               isCreateEditBudgetPresented = true

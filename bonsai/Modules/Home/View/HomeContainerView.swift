@@ -10,6 +10,7 @@ import SwiftUI
 import CoreData
 
 struct HomeContainerView: View {
+   @State private var isSettingPresented = false
    @State private var isCreateEditBudgetPresented = false
    @State private var isOperationPresented = false
    @State var showAllSet: Bool = false
@@ -117,11 +118,22 @@ struct HomeContainerView: View {
          }
       } content: {
          VStack(alignment: .leading) {
-            Text(verbatim: "\(totalBalance()) $")
-               .font(BonsaiFont.title_34)
-               .foregroundColor(BonsaiColor.text)
-               .frame(maxWidth: .infinity, alignment: .leading)
-               .foregroundColor(.white)
+            HStack {
+               Text(verbatim: "\(totalBalance()) $")
+                  .font(BonsaiFont.title_34)
+                  .foregroundColor(BonsaiColor.text)
+                  .frame(maxWidth: .infinity, alignment: .leading)
+                  .foregroundColor(.white)
+               
+               Spacer()
+               
+               BonsaiImage.settings
+                  .font(.system(size: 22))
+                  .foregroundColor(.white)
+                  .onTapGesture {
+                     isSettingPresented = true 
+                  }
+            }
             HStack(alignment: .center, spacing: 16) {
                BalanceFlowView(text: income(), flowType: .revenue, percentage: calculateRevenuePercentage())
                   .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
@@ -135,8 +147,8 @@ struct HomeContainerView: View {
                .foregroundColor(.white)
                .padding(.top, 32)
 
-            createBudgetView()
-//            BudgeView()
+//            createBudgetView()
+            BudgeView()
 
             Spacer()
          }
@@ -156,6 +168,9 @@ struct HomeContainerView: View {
       }
       .popover(isPresented: $isCreateEditBudgetPresented, content: {
          CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented, kind: .new)
+      })
+      .popover(isPresented: $isSettingPresented, content: {
+         SettingsContainerView()
       })
       .onAppear {
 
