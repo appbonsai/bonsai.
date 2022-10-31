@@ -170,7 +170,7 @@ struct HomeContainerView: View {
          CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented, kind: .new)
       })
       .popover(isPresented: $isSettingPresented, content: {
-         SettingsContainerView()
+         SettingsContainerView(isPresented: $isSettingPresented)
       })
       .onAppear {
 
