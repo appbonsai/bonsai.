@@ -71,6 +71,36 @@ struct HomeContainerView: View {
          }
    }
 
+   fileprivate func BudgeView() -> some View {
+      return BudgetView(
+         categories: budgetService.getMostExpensiveCategories(
+            transactions: transactions
+         ),
+         transactions: filterTransaction(
+            by: budgetService.getMostExpensiveCategories(
+               transactions: transactions
+            )
+         )
+      )
+      .frame(height: 320)
+      .cornerRadius(13)
+      .onTapGesture {
+         isCreateEditBudgetPresented = true
+      }
+      .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+   }
+   
+   
+   fileprivate func createBudgetView() -> some View {
+      Image("create_budget")
+         .resizable()
+         .scaledToFit()
+      .onTapGesture {
+         isCreateEditBudgetPresented = true
+      }
+      .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+   }
+   
    var body: some View {
       ActionScrollView { completion in
          isOperationPresented = true
@@ -108,22 +138,8 @@ struct HomeContainerView: View {
                .foregroundColor(.white)
                .padding(.top, 32)
 
-            BudgetView(
-               categories: budgetService.getMostExpensiveCategories(
-                  transactions: transactions
-               ),
-               transactions: filterTransaction(
-                  by: budgetService.getMostExpensiveCategories(
-                     transactions: transactions
-                  )
-               )
-            )
-            .frame(height: 320)
-            .cornerRadius(13)
-            .onTapGesture {
-               isCreateEditBudgetPresented = true
-            }
-            .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+            createBudgetView()
+//            BudgeView()
 
             Spacer()
          }
