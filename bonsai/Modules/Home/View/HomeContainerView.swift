@@ -122,7 +122,7 @@ struct HomeContainerView: View {
       } content: {
          VStack(alignment: .leading) {
             HStack {
-               Text(verbatim: "\(totalBalance()) $")
+               Text(verbatim: "\(totalBalance()) \(Currency.Validated.current.symbol)")
                   .font(BonsaiFont.title_34)
                   .foregroundColor(BonsaiColor.text)
                   .frame(maxWidth: .infinity, alignment: .leading)
@@ -179,14 +179,11 @@ struct HomeContainerView: View {
          SettingsContainerView(isPresented: $isSettingPresented)
       })
       .onAppear {
-
-
-         //              if Currency.userPreferenceCurrencyCode == nil {
-         //                 isCurrencySelectionPresented = true
-         //              }
+          if Currency.Validated.userPreferenceCurrencyCode == nil {
+              isCurrencySelectionPresented = true
+          }
       }
    }
-   
 }
 
 struct HomeContainerView_Previews: PreviewProvider {

@@ -27,7 +27,7 @@ struct BudgetMoneyCardView: View {
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor(BonsaiColor.mainPurple)
                 .padding(.top, 10)
-            Text("$\(amount)")
+            Text("\(Currency.Validated.current.symbol)\(amount)")
                 .font(BonsaiFont.title_22)
                 .foregroundColor(BonsaiColor.text)
                 .padding(.top, 8)

@@ -45,7 +45,7 @@ struct BudgetCellView: View {
             Spacer()
 
             HStack(alignment: .firstTextBaseline, spacing: 3) {
-               Text(verbatim: "$\(amount)")
+               Text(verbatim: "\(Currency.Validated.current.symbol)\(amount)")
                   .font(BonsaiFont.body_15)
                   .foregroundColor(BonsaiColor.text)
 
