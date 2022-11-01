@@ -26,7 +26,7 @@ final class DataController: ObservableObject {
          // Use the container to initialize the development schema.
          try container.initializeCloudKitSchema(options: [])
       } catch (let e) {
-         fatalError(e.localizedDescription)
+//         fatalError(e.localizedDescription)
       }
 #endif
    }
