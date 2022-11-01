@@ -11,7 +11,7 @@ struct SelectBudgetPeriodView: View {
    @State private var amount: String
    @State private var title: String
    @Binding var isPresented: Bool
-   var completionDateSelected: (Date) -> Void
+   var completionDateSelected: (Int) -> Void
    private let items: [Period] = [.week, .twoWeek, .threeWeek, .custom]
    @State var selectedRow: Int = 0
    @State var date: Date
@@ -39,7 +39,7 @@ struct SelectBudgetPeriodView: View {
       }
    }
    
-   init(isPresented: Binding<Bool>, completionDateSelected: @escaping (Date) -> Void) {
+   init(isPresented: Binding<Bool>, completionDateSelected: @escaping (Int) -> Void) {
       self._amount = .init(initialValue: "")
       self._title = .init(initialValue: "")
       self._date = .init(initialValue: Date())
@@ -103,11 +103,15 @@ struct SelectBudgetPeriodView: View {
                Button {
                   if items[selectedRow] == .custom {
                      if isPremium {
+                        let days = date.get(.day)
+                        completionDateSelected(days)
                         isPresented = false
                      } else  {
                         isSubscriptionsPresented = true
                      }
                   } else {
+                     let days = items[selectedRow].value
+                     completionDateSelected(days)
                      isPresented = false
                   }
                } label: {
@@ -146,9 +150,11 @@ struct SelectBudgetPeriodView: View {
                   
                   Button {
                      if items[selectedRow] == .custom {
-                        completionDateSelected(date)
+                        let days = date.get(.day)
+                        completionDateSelected(days)
                      } else {
-                        items[selectedRow].value
+                        let days = items[selectedRow].value
+                        completionDateSelected(days)
                      }
                     isBudgetCalendarPresented = false
                   } label: {

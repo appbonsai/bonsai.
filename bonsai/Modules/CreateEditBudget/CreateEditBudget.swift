@@ -34,7 +34,7 @@ struct CreateEditBudget: View {
       self._currency = .init(initialValue: .current)
       self._amount = .init(initialValue: "")
       self._title = .init(initialValue: "")
-      self._periodDays = .init(initialValue: 1)
+      self._periodDays = .init(initialValue: 7)
       self._createdDate = .init(initialValue: .now)
       self._isCreateEditBudgetPresented = isCreateEditBudgetPresented
    }
@@ -83,7 +83,7 @@ struct CreateEditBudget: View {
                   amountView(text: $amount)
                }
                
-               BudgetDateSelectorView()
+               BudgetDateSelectorView(selectedPeriod: .constant(String(describing: periodDays)))
                   .frame(height: 44)
                   .cornerRadius(13)
                   .padding(.top, 8)
@@ -127,9 +127,8 @@ struct CreateEditBudget: View {
          }.navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
       }
       .popover(isPresented: $isPeriodDaysPresented) {
-         SelectBudgetPeriodView(isPresented: $isPeriodDaysPresented, completionDateSelected: { date in
-            let day = date.get(.day)
-            periodDays = .init(day)
+         SelectBudgetPeriodView(isPresented: $isPeriodDaysPresented, completionDateSelected: { days in
+            periodDays = .init(days)
          })
       }
    }
