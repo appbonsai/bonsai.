@@ -20,7 +20,8 @@ struct SelectBudgetPeriodView: View {
    @EnvironmentObject var purchaseService: PurchaseService
    
    private var isPremium: Bool {
-      purchaseService.isSubscriptionActive
+//      purchaseService.isSubscriptionActive
+       return true
    }
    
    private enum Period: String {
@@ -77,7 +78,9 @@ struct SelectBudgetPeriodView: View {
                               if isPremium {
                                  isBudgetCalendarPresented = true
                               } else  {
-                                 isSubscriptionsPresented = true
+                                 isSubscriptionsPresented = false
+                                  isBudgetCalendarPresented = true
+
                               }
                            }
                         }
@@ -152,6 +155,7 @@ struct SelectBudgetPeriodView: View {
                      if items[selectedRow] == .custom {
                         let days = date.get(.day)
                         completionDateSelected(days)
+                        isPresented = false
                      } else {
                         let days = items[selectedRow].value
                         completionDateSelected(days)

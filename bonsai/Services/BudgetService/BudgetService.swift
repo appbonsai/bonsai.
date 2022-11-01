@@ -46,6 +46,10 @@ final class BudgetService: ObservableObject, BudgetServiceProtocol {
         budgetRepository.delete()
     }
     
+    func updateBudget(budget: Budget) {
+        budgetRepository.update(budget: budget)
+    }
+    
     func getTotalMoneySpent(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber {
         budgetCalculations.calculateTotalSpend(transactionAmounts: transactionAmounts)
     }
