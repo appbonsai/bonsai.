@@ -64,5 +64,9 @@ struct BudgetHeaderView: View {
 struct BudgetHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         BudgetHeaderView(progress: .constant(0.5))
+            .environmentObject(BudgetService(
+                budgetRepository: BudgetRepository(),
+                budgetCalculations: BudgetCalculations()
+             ))
     }
 }
