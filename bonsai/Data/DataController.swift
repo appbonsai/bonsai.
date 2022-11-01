@@ -22,12 +22,12 @@ final class DataController: ObservableObject {
       
       container.viewContext.automaticallyMergesChangesFromParent = true
 #if DEBUG
-      do {
-         // Use the container to initialize the development schema.
-         try container.initializeCloudKitSchema(options: [])
-      } catch (let e) {
-         fatalError(e.localizedDescription)
-      }
+//      do {
+//         // Use the container to initialize the development schema.
+//         try container.initializeCloudKitSchema(options: [])
+//      } catch (let e) {
+//         fatalError(e.localizedDescription)
+//      }
 #endif
    }
 }

@@ -127,7 +127,10 @@ struct CreateEditBudget: View {
          }.navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
       }
       .popover(isPresented: $isPeriodDaysPresented) {
-         SelectBudgetPeriodView(isPresented: $isPeriodDaysPresented)
+         SelectBudgetPeriodView(isPresented: $isPeriodDaysPresented, completionDateSelected: { date in
+            let day = date.get(.day)
+            periodDays = .init(day)
+         })
       }
    }
 }
