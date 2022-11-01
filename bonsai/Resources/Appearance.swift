@@ -47,6 +47,8 @@ enum BonsaiImage {
    static var plus: Image { Image(systemName: "plus") }
    static var smile: Image { Image(systemName: "face.smiling") }
    static var textformatAlt: Image { Image(systemName: "textformat.alt") }
+   static var pencil: Image { Image(systemName: "rectangle.and.pencil.and.ellipsis") }
+   static var settings: Image { Image(systemName: "slider.horizontal.3") }
 }
 
 enum BonsaiColor {

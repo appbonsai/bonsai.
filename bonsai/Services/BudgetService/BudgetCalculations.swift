@@ -18,7 +18,10 @@ protocol BudgetCalculationsProtocol {
 final class BudgetCalculations: BudgetCalculationsProtocol {
    
    func calculateMoneyCanSpendDaily(currentAmount: NSDecimalNumber, periodDays: Int64) -> NSDecimalNumber {
-      currentAmount.dividing(by: NSDecimalNumber(value: periodDays)).round()
+      if periodDays != 0 {
+         return currentAmount.dividing(by: NSDecimalNumber(value: periodDays)).round()
+      }
+      return .zero
    }
    
    func calculateTotalMoneyLeft(with amount: NSDecimalNumber, after spending: NSDecimalNumber) -> NSDecimalNumber? {

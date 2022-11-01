@@ -10,6 +10,7 @@ import SwiftUI
 import CoreData
 
 struct HomeContainerView: View {
+   @State private var isSettingPresented = false
    @State private var isCreateEditBudgetPresented = false
    @State private var isOperationPresented = false
    @State var showAllSet: Bool = false
@@ -71,6 +72,33 @@ struct HomeContainerView: View {
          }
    }
 
+   fileprivate func BudgeView() -> some View {
+      return BudgetView(
+         categories: budgetService.getMostExpensiveCategories(
+            transactions: transactions
+         ),
+         transactions: filterTransaction(
+            by: budgetService.getMostExpensiveCategories(
+               transactions: transactions
+            )
+         )
+      )
+      .frame(height: 320)
+      .cornerRadius(13)
+      .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+   }
+   
+   
+   fileprivate func createBudgetView() -> some View {
+      Image("create_budget")
+         .resizable()
+         .scaledToFit()
+      .onTapGesture {
+         isCreateEditBudgetPresented = true
+      }
+      .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+   }
+   
    var body: some View {
       ActionScrollView { completion in
          isOperationPresented = true
@@ -90,11 +118,22 @@ struct HomeContainerView: View {
          }
       } content: {
          VStack(alignment: .leading) {
-            Text(verbatim: "\(totalBalance()) $")
-               .font(BonsaiFont.title_34)
-               .foregroundColor(BonsaiColor.text)
-               .frame(maxWidth: .infinity, alignment: .leading)
-               .foregroundColor(.white)
+            HStack {
+               Text(verbatim: "\(totalBalance()) $")
+                  .font(BonsaiFont.title_34)
+                  .foregroundColor(BonsaiColor.text)
+                  .frame(maxWidth: .infinity, alignment: .leading)
+                  .foregroundColor(.white)
+               
+               Spacer()
+               
+               BonsaiImage.settings
+                  .font(.system(size: 22))
+                  .foregroundColor(.white)
+                  .onTapGesture {
+                     isSettingPresented = true 
+                  }
+            }
             HStack(alignment: .center, spacing: 16) {
                BalanceFlowView(text: income(), flowType: .revenue, percentage: calculateRevenuePercentage())
                   .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
@@ -108,22 +147,11 @@ struct HomeContainerView: View {
                .foregroundColor(.white)
                .padding(.top, 32)
 
-            BudgetView(
-               categories: budgetService.getMostExpensiveCategories(
-                  transactions: transactions
-               ),
-               transactions: filterTransaction(
-                  by: budgetService.getMostExpensiveCategories(
-                     transactions: transactions
-                  )
-               )
-            )
-            .frame(height: 320)
-            .cornerRadius(13)
-            .onTapGesture {
-               isCreateEditBudgetPresented = true
+            if let _ = budgetService.getBudget() {
+               BudgeView()
+            } else {
+               createBudgetView()
             }
-            .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
 
             Spacer()
          }
@@ -142,7 +170,10 @@ struct HomeContainerView: View {
          )
       }
       .popover(isPresented: $isCreateEditBudgetPresented, content: {
-         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented)
+         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented, kind: .new)
+      })
+      .popover(isPresented: $isSettingPresented, content: {
+         SettingsContainerView(isPresented: $isSettingPresented)
       })
       .onAppear {
 

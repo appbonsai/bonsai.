@@ -11,33 +11,42 @@ struct SelectBudgetPeriodView: View {
    @State private var amount: String
    @State private var title: String
    @Binding var isPresented: Bool
-
-   init(isPresented: Binding<Bool>) {
-      self._amount = .init(initialValue: "")
-      self._title = .init(initialValue: "")
-      self._date = .init(initialValue: Date())
-      self._isPresented = isPresented
+   var completionDateSelected: (Int) -> Void
+   private let items: [Period] = [.week, .twoWeek, .threeWeek, .custom]
+   @State var selectedRow: Int = 0
+   @State var date: Date
+   @State var isBudgetCalendarPresented: Bool = false
+   @State var isSubscriptionsPresented: Bool = false
+   @EnvironmentObject var purchaseService: PurchaseService
+   
+   private var isPremium: Bool {
+      purchaseService.isSubscriptionActive
    }
    
    private enum Period: String {
       case week = "Weekly"
       case twoWeek = "2 Week"
-      case month = "Month"
+      case threeWeek = "3 Week"
       case custom = "Custom"
+      
+      var value: Int {
+         switch self {
+         case .week: return 7
+         case .twoWeek: return 14
+         case .threeWeek: return 21
+         case .custom: return 0
+         }
+      }
    }
    
-   private let items: [Period] = [.week, .twoWeek, .month, .custom]
-   @State var selectedRow: Int = 0
-   @State private var date: Date
-   @State var isBudgetCalendarPresented: Bool = false
-   @State var isSubscriptionsPresented: Bool = false
-
-   @EnvironmentObject var purchaseService: PurchaseService
-
-   private var isPremium: Bool {
-      purchaseService.isSubscriptionActive
+   init(isPresented: Binding<Bool>, completionDateSelected: @escaping (Int) -> Void) {
+      self._amount = .init(initialValue: "")
+      self._title = .init(initialValue: "")
+      self._date = .init(initialValue: Date())
+      self._isPresented = isPresented
+      self.completionDateSelected = completionDateSelected
    }
-   
+      
    var body: some View {
       NavigationView {
          ZStack {
@@ -94,11 +103,15 @@ struct SelectBudgetPeriodView: View {
                Button {
                   if items[selectedRow] == .custom {
                      if isPremium {
+                        let days = date.get(.day)
+                        completionDateSelected(days)
                         isPresented = false
                      } else  {
                         isSubscriptionsPresented = true
                      }
                   } else {
+                     let days = items[selectedRow].value
+                     completionDateSelected(days)
                      isPresented = false
                   }
                } label: {
@@ -136,6 +149,13 @@ struct SelectBudgetPeriodView: View {
                   Spacer()
                   
                   Button {
+                     if items[selectedRow] == .custom {
+                        let days = date.get(.day)
+                        completionDateSelected(days)
+                     } else {
+                        let days = items[selectedRow].value
+                        completionDateSelected(days)
+                     }
                     isBudgetCalendarPresented = false
                   } label: {
                      ZStack {
@@ -156,7 +176,7 @@ struct SelectBudgetPeriodView: View {
 
 struct SelectBudgetPeriod_Previews: PreviewProvider {
    static var previews: some View {
-      SelectBudgetPeriodView(isPresented: .constant(true))
+      SelectBudgetPeriodView(isPresented: .constant(true), completionDateSelected: { _ in })
    }
 }
 

@@ -61,7 +61,7 @@ struct PremiumFeature: View {
         .init(name: "Unlimited categories", description: "You can create unlimited categories, feel free to specify your transactions", icon: ""),
         .init(name: "Flexible budget", description: "Set flexible period days for budgets", icon: ""),
         .init(name: "Unlimited budgets", description: "Get unlimited opportunity to create budget for your needs", icon: ""),
-        .init(name: "Custom appearance", description: "Customize home background with your favourite tree, change icon of the app. ", icon: ""),
+//        .init(name: "Custom appearance", description: "Customize home background with your favourite tree, change icon of the app. ", icon: ""),
         .init(name: "No ads", description: "You won't see ads. You truly don't need this", icon: "")
     ]
 }

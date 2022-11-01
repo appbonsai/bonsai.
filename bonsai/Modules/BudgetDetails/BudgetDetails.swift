@@ -15,7 +15,9 @@ struct BudgetDetails: View {
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
    @State var isPresented: Bool = false
    @State private var isOperationPresented = false
-   
+   @State private var isEditBudgetPresented = false
+   @State private var isCreateBudgetPresented = false
+
    func allTransactions() -> [NSDecimalNumber] {
       transactions.map { $0.amount }
    }
@@ -98,19 +100,36 @@ struct BudgetDetails: View {
             }
          } content: {
             VStack() {
-               VStack(spacing: 0) {
-                  BudgetNameView(
-                     name: budgetService.getBudget()?.name ?? "Budget"
-                  )
-                  .padding(.leading, 8)
-                  .padding(.top, 16)
-
-                  budgetMoneyTitleView()
-                     .padding(.top, 16)
-
-                  budgetMoneyCardView()
-                     .padding(.top, 32)
-               }
+                  VStack(spacing: 0) {
+                     HStack {
+                        BudgetNameView(
+                           name: budgetService.getBudget()?.name ?? "Budget"
+                        )
+                        .padding(.leading, 8)
+                        .padding(.top, 16)
+                        
+                        Spacer()
+                        
+                        BonsaiImage.pencil
+                           .foregroundColor(.white)
+                           .font(.system(size: 22))
+                           .padding(.trailing, 12)
+                           .onTapGesture {
+                              if let _ = budgetService.getBudget() {
+                                 isEditBudgetPresented = true
+                              } else {
+                                 isCreateBudgetPresented = true
+                              }
+                           }
+                     }
+                     
+                     budgetMoneyTitleView()
+                        .padding(.top, 16)
+                     
+                     budgetMoneyCardView()
+                        .padding(.top, 32)
+                  }
+               
             }
          }
          Spacer()
@@ -124,6 +143,18 @@ struct BudgetDetails: View {
       .popover(isPresented: $isOperationPresented) {
          OperationDetails(isPresented: $isOperationPresented)
       }
+      .popover(isPresented: $isEditBudgetPresented, content: {
+         CreateEditBudget(
+            isCreateEditBudgetPresented: $isEditBudgetPresented,
+            kind: .edit
+         )
+      })
+      .popover(isPresented: $isCreateBudgetPresented, content: {
+         CreateEditBudget(
+            isCreateEditBudgetPresented: $isCreateBudgetPresented,
+            kind: .new
+         )
+      })
    }
 }
 

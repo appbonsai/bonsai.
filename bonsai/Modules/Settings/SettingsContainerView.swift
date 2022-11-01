@@ -13,7 +13,9 @@ struct SettingsContainerView: View {
 
     @Environment(\.openURL) var openURL
 
-    init() {
+   @Binding var isPresented: Bool
+   init(isPresented: Binding<Bool>) {
+      self._isPresented = isPresented
         UITableView.appearance().showsVerticalScrollIndicator = false
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().backgroundColor = UIColor(BonsaiColor.back)
@@ -31,46 +33,59 @@ struct SettingsContainerView: View {
     }
     
     var body: some View {
-        List {
-            Section(header: Text("home background theme")) {
-                BackgroundChangeRow()
-            }
-            .listRowBackground(BonsaiColor.card)
-            Section(header: Text("app icon")) {
-                AppIconChangeRow()
-            }
-            .listRowBackground(BonsaiColor.card)
-            
-            Section(header: Text("other")) {
+       NavigationView {
+          List {
+             //            Section(header: Text("home background theme")) {
+             //                BackgroundChangeRow()
+             //            }
+             //            .listRowBackground(BonsaiColor.card)
+             //            Section(header: Text("app icon")) {
+             //                AppIconChangeRow()
+             //            }
+             //            .listRowBackground(BonsaiColor.card)
+             //
+             Section(header: Text("other")) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
-                    HStack {
-                        Text(item.rawValue)
-                        Spacer()
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        
-                        switch others[index] {
-                        case .premiumFeature:
-                            isPremiumSelected = true
-                            
-                        case .termsOfService:
-                            openURL(URL(string: "https://www.google.com")!)
-
-
-                        case .privacyPolicy:
-                            openURL(URL(string: "https://www.apple.com")!)
-
-                        }
-                    }
+                   HStack {
+                      Text(item.rawValue)
+                      Spacer()
+                   }
+                   .contentShape(Rectangle())
+                   .onTapGesture {
+                      
+                      switch others[index] {
+                      case .premiumFeature:
+                         isPremiumSelected = true
+                         
+                      case .termsOfService:
+                         openURL(URL(string: "https://www.google.com")!)
+                         
+                         
+                      case .privacyPolicy:
+                         openURL(URL(string: "https://www.apple.com")!)
+                         
+                      }
+                   }
                 }
-            }
-           
-            .listRowBackground(BonsaiColor.card)
-        }
-        .popover(isPresented: $isPremiumSelected, content: {
-            PremiumFeature(isPresented: $isPremiumSelected)
-        })
+             }
+             
+             .listRowBackground(BonsaiColor.card)
+          }
+          .popover(isPresented: $isPremiumSelected, content: {
+             PremiumFeature(isPresented: $isPremiumSelected)
+          })
+          .navigationBarTitleDisplayMode(.inline)
+          .toolbar {
+             ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                   isPresented = false
+                }) {
+                   Text("Cancel")
+                      .foregroundColor(BonsaiColor.secondary)
+                }
+             }
+          }
+       }
     }
     
 }
@@ -162,7 +177,7 @@ struct BackgroundChangeRow: View {
 
 struct SettingsContainerView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsContainerView()
+       SettingsContainerView(isPresented: .constant(false))
     }
 }
 
