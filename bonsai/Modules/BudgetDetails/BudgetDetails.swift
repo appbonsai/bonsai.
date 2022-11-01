@@ -37,12 +37,14 @@ struct BudgetDetails: View {
             // TODO: localization
             BudgetMoneyTitleView(
                 title: L.Money_left,
-                amount: budgetService.getTotalMoneyLeft(with: allTransactions())
+                amount: budgetService.getTotalMoneyLeft(with: allTransactions()),
+                titleColor: BonsaiColor.green
             )
             .padding(.leading, 16)
             BudgetMoneyTitleView(
                 title: L.Money_spent,
-                amount: budgetService.getTotalMoneySpent(with: expenseTransactions())
+                amount: budgetService.getTotalMoneySpent(with: expenseTransactions()),
+                titleColor: BonsaiColor.secondary
             )
         }
         .frame(height: 63)

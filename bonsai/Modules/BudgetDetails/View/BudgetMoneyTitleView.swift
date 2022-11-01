@@ -11,10 +11,12 @@ struct BudgetMoneyTitleView: View {
     
     private let title: String
     private let amount: NSDecimalNumber
+    private let titleColor: Color
     
-    init(title: String, amount: NSDecimalNumber) {
+    init(title: String, amount: NSDecimalNumber, titleColor: Color) {
         self.title = title
         self.amount = amount
+        self.titleColor = titleColor
     }
     
     var body: some View {
@@ -24,7 +26,7 @@ struct BudgetMoneyTitleView: View {
                 .foregroundColor(BonsaiColor.text)
             Text(title)
                 .font(BonsaiFont.subtitle_15)
-                .foregroundColor(BonsaiColor.green)
+                .foregroundColor(titleColor)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -32,7 +34,7 @@ struct BudgetMoneyTitleView: View {
 
 struct BudgetTitleView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetMoneyTitleView(title: "MoneyLeft", amount: 375)
+        BudgetMoneyTitleView(title: "MoneyLeft", amount: 375, titleColor: BonsaiColor.secondary)
             .previewLayout(.fixed(width: 171, height: 63)) //18 + 41 + 4
             .background(BonsaiColor.card)
     }
