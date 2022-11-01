@@ -39,34 +39,49 @@ struct CreateEditBudget: View {
       self._isCreateEditBudgetPresented = isCreateEditBudgetPresented
    }
    
+   
+   func amountView(text: Binding<String>) -> some View {
+      AmountView(
+         amountTitle: "Budget Amount",
+         operation: .income,
+         currency: currency,
+         text: text
+      )
+      .contentShape(Rectangle())
+      .frame(height: 44)
+      .focused($focusedField,
+               equals: .amount)
+      .cornerRadius(13)
+      .padding(.top, 8)
+      .padding([.leading, .trailing], 16)
+   }
+   
+   func titleView(text: Binding<String>) -> some View {
+      TitleView(title: "Budget Name",
+                image:  BonsaiImage.textformatAlt,
+                text: text)
+      .cornerRadius(13)
+      .focused($focusedField, equals: .title)
+      .padding(.top, 8)
+      .padding([.leading, .trailing], 16)
+      .contentShape(Rectangle())
+   }
+   
    var body: some View {
       NavigationView {
          ZStack {
             BonsaiColor.back
                .ignoresSafeArea()
             VStack {
-               TitleView(title: "Budget Name",
-                         image:  BonsaiImage.textformatAlt,
-                         text: $title)
-               .cornerRadius(13)
-               .focused($focusedField, equals: .title)
-               .padding(.top, 8)
-               .padding([.leading, .trailing], 16)
-               .contentShape(Rectangle())
-               
-               AmountView(
-                  amountTitle: "Budget Amount",
-                  operation: .income,
-                  currency: currency,
-                  text: $amount
-               )
-               .contentShape(Rectangle())
-               .frame(height: 44)
-               .focused($focusedField,
-                        equals: .amount)
-               .cornerRadius(13)
-               .padding(.top, 8)
-               .padding([.leading, .trailing], 16)
+               if let budget = budgetService.getBudget() {
+                  titleView(text: .constant(String(describing: budget.name)))
+                  amountView(
+                     text:.constant(String(describing: budget.amount))
+                  )
+               } else {
+                  titleView(text: $title)
+                  amountView(text: $amount)
+               }
                
                BudgetDateSelectorView()
                   .frame(height: 44)
