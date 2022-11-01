@@ -78,6 +78,14 @@ struct CreateEditBudget: View {
             }
     }
     
+    func isDisabled() -> Bool {
+        if let _ = budgetService.getBudget() {
+            return kind != .edit
+        } else {
+            return $amount.wrappedValue.isEmpty && $title.wrappedValue.isEmpty
+        }
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -90,7 +98,7 @@ struct CreateEditBudget: View {
                             text:.constant(String(describing: budget.amount))
                         )
                         periodView(
-                            text: .constant(String(describing: budget.periodDays))
+                            text: .constant(String(describing: periodDays))
                         )
                     } else {
                         titleView(text: $title)
@@ -101,7 +109,6 @@ struct CreateEditBudget: View {
                     }
                     Spacer()
                     
-                    let isDisabled = $amount.wrappedValue.isEmpty && $title.wrappedValue.isEmpty
                     Button {
                         do {
                             bonsai.Budget(
@@ -123,14 +130,14 @@ struct CreateEditBudget: View {
                                 .frame(width: 192, height: 48)
                                 .foregroundColor(BonsaiColor.mainPurple)
                             
-                            Text("Create")
+                            Text(kind == . new ? "Create" : "Edit")
                                 .foregroundColor(BonsaiColor.card)
                                 .font(.system(size: 17))
                                 .bold()
                         }
                     }
-                    .opacity(isDisabled ? 0.5 : 1)
-                    .disabled(isDisabled)
+                    .opacity(isDisabled() ? 0.5 : 1)
+                    .disabled(isDisabled())
                 }
             }.navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
         }
@@ -143,6 +150,11 @@ struct CreateEditBudget: View {
                     budgetService.updateBudget(budget: budget)
                 }
             })
+        }
+        .onAppear {
+            if let budget = budgetService.getBudget() {
+                periodDays = budget.periodDays
+            }
         }
     }
 }
