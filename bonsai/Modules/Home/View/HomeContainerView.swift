@@ -122,7 +122,7 @@ struct HomeContainerView: View {
       } content: {
          VStack(alignment: .leading) {
             HStack {
-               Text(verbatim: "\(totalBalance()) $")
+               Text(verbatim: "\(totalBalance()) \(Currency.Validated.current.symbol)")
                   .font(BonsaiFont.title_34)
                   .foregroundColor(BonsaiColor.text)
                   .frame(maxWidth: .infinity, alignment: .leading)

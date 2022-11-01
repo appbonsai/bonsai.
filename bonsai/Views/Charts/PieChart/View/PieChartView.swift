@@ -25,7 +25,7 @@ struct PieChartView: View {
                     .padding(.top, 16)
                 
                 if let amount = currentSliceData?.amount.formatted() {
-                    Text("$\(amount)")
+                    Text("\(Currency.Validated.current.symbol)\(amount)")
                         .font(BonsaiFont.title_28)
                         .foregroundColor(BonsaiColor.text)
                 } else {
@@ -98,7 +98,7 @@ struct PieChartView: View {
                 
                 HStack {
                     if let currentSliceData = currentSliceData {
-                        Text("$\(currentSliceData.amount.formatted())")
+                        Text("\(Currency.Validated.current.symbol)\(currentSliceData.amount.formatted())")
                             .font(BonsaiFont.title_headline_17)
                             .foregroundColor(BonsaiColor.text)
                         

@@ -73,7 +73,7 @@ extension ChartsView {
                    pieces: separateForMonth().map { .init(label: $0.key, value: $0.value) },
                    legends: [.init(color: BonsaiColor.mainPurple, title: "Balance")],
                    bottomTitle: "Time Period",
-                   leftTitle: "Amount ($)")
+                   leftTitle: "Amount (\(Currency.Validated.current.symbol))")
    }
 
    func separateForMonth() -> OrderedDictionary<String, Double> {
