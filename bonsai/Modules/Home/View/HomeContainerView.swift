@@ -61,27 +61,30 @@ struct HomeContainerView: View {
       return dividend != 0 ? (expense().intValue * 100 / dividend) : 0
    }
 
-   func filterTransaction(by categories: [Category]) -> [Transaction] {
-      transactions
-         .filter {
-            if let category = $0.category {
-               return categories.contains(category)
-            } else {
-               return false
+    func filterTransaction(by categories: [Category]) -> [Transaction] {
+        guard let creationDate = budgetService.getBudget()?.createdDate else { return [] }
+        return transactions
+            .filter { $0.date > creationDate }
+            .filter {
+                if let category = $0.category {
+                    return categories.contains(category)
+                } else {
+                    return false
+                }
             }
-         }
-   }
+    }
 
    fileprivate func BudgeView() -> some View {
+       let ftransactions = filterTransaction(
+        by: budgetService.getMostExpensiveCategories(
+           transactions: transactions
+        )
+     )
       return BudgetView(
          categories: budgetService.getMostExpensiveCategories(
             transactions: transactions
          ),
-         transactions: filterTransaction(
-            by: budgetService.getMostExpensiveCategories(
-               transactions: transactions
-            )
-         )
+         transactions: ftransactions
       )
       .frame(height: 320)
       .cornerRadius(13)

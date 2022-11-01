@@ -16,7 +16,10 @@ struct BudgetHeaderView: View {
     }
     
     func getTotalMoneySpent() -> Double {
-        let allAmount = transactions.map { $0.amount }
+        guard let creationDate = budgetService.getBudget()?.createdDate else { return 0.0 }
+        let allAmount = transactions
+            .filter { $0.date > creationDate } 
+            .map { $0.amount }
         return budgetService.getTotalMoneySpent(with: allAmount).doubleValue
     }
     
