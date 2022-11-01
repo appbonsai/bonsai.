@@ -63,7 +63,7 @@ struct BudgetView: View {
                   BudgetCellView(
                      title: category.title,
                      amount: transactions
-                        .filter { $0.category == category }
+                        .filter { $0.category == category && $0.type == .expense }
                         .map { $0.amount.intValue }
                         .reduce(0, +),
                      color: category.color.asGradient,
@@ -79,8 +79,15 @@ struct BudgetView: View {
    }
 }
 struct BudgetView_Previews: PreviewProvider {
-   static var previews: some View {
-      BudgetView(categories: [], transactions: [])
-         .previewLayout(.fixed(width: 358, height:330))
-   }
+    static var previews: some View {
+        BudgetView(categories: [], transactions: [])
+            .previewLayout(.fixed(width: 358, height:330))
+            .environmentObject(
+                BudgetService(
+                    
+                    budgetRepository: BudgetRepository(),
+                    budgetCalculations: BudgetCalculations()
+                )
+            )
+    }
 }
