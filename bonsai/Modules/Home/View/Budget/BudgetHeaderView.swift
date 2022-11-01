@@ -12,10 +12,16 @@ struct BudgetHeaderView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
     
     func getPercentage() -> Double {
-        let budgetAmount = budgetService.getTotalBudget()
+         getTotalMoneySpent() * 100.0 / getTotalBudgetAmount() / 100.0
+    }
+    
+    func getTotalMoneySpent() -> Double {
         let allAmount = transactions.map { $0.amount }
-        let totalBudgetSpent = budgetService.getTotalMoneySpent(with: allAmount)
-        return totalBudgetSpent.doubleValue * 100.0 / budgetAmount.doubleValue / 100.0
+        return budgetService.getTotalMoneySpent(with: allAmount).doubleValue
+    }
+    
+    func getTotalBudgetAmount() -> Double {
+        budgetService.getTotalBudget().doubleValue
     }
     
     @Binding var progress: Double
@@ -38,10 +44,10 @@ struct BudgetHeaderView: View {
                         .fontWeight(.regular)
                         .foregroundColor(BonsaiColor.text)
                     
-                    Text("$14.00")
+                    Text("$ \(getTotalMoneySpent(), specifier: "%.2f")")
                         .font(BonsaiFont.title_28)
                         .foregroundColor(.white)
-                    Text("out of $28")
+                    Text("out of $\(getTotalBudgetAmount(), specifier: "%.0f")")
                         .font(BonsaiFont.body_15)
                         .fontWeight(.regular)
                         .foregroundColor(BonsaiColor.text)
