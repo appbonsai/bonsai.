@@ -23,6 +23,7 @@ struct CreateEditBudget: View {
    @State var isPeriodDaysPresented: Bool = false
    @Binding var isCreateEditBudgetPresented: Bool
    @Environment(\.managedObjectContext) private var moc
+   @EnvironmentObject var budgetService: BudgetService
 
    enum Field {
       case amount

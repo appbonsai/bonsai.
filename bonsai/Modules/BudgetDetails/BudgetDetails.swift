@@ -15,7 +15,8 @@ struct BudgetDetails: View {
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
    @State var isPresented: Bool = false
    @State private var isOperationPresented = false
-   @State private var isCreateEditBudgetPresented = false
+   @State private var isEditBudgetPresented = false
+   @State private var isCreateBudgetPresented = false
 
    func allTransactions() -> [NSDecimalNumber] {
       transactions.map { $0.amount }
@@ -114,7 +115,11 @@ struct BudgetDetails: View {
                            .font(.system(size: 22))
                            .padding(.trailing, 12)
                            .onTapGesture {
-                              isCreateEditBudgetPresented = true
+                              if let _ = budgetService.getBudget() {
+                                 isEditBudgetPresented = true
+                              } else {
+                                 isCreateBudgetPresented = true
+                              }
                            }
                      }
                      
@@ -138,8 +143,17 @@ struct BudgetDetails: View {
       .popover(isPresented: $isOperationPresented) {
          OperationDetails(isPresented: $isOperationPresented)
       }
-      .popover(isPresented: $isCreateEditBudgetPresented, content: {
-         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented, kind: .edit)
+      .popover(isPresented: $isEditBudgetPresented, content: {
+         CreateEditBudget(
+            isCreateEditBudgetPresented: $isEditBudgetPresented,
+            kind: .edit
+         )
+      })
+      .popover(isPresented: $isCreateBudgetPresented, content: {
+         CreateEditBudget(
+            isCreateEditBudgetPresented: $isCreateBudgetPresented,
+            kind: .new
+         )
       })
    }
 }

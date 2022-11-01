@@ -147,8 +147,11 @@ struct HomeContainerView: View {
                .foregroundColor(.white)
                .padding(.top, 32)
 
-            createBudgetView()
-//            BudgeView()
+            if let _ = budgetService.getBudget() {
+               BudgeView()
+            } else {
+               createBudgetView()
+            }
 
             Spacer()
          }
