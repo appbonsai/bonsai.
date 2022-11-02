@@ -72,7 +72,6 @@ struct TabBar: View {
       .padding(.top, 20)
       .background(BonsaiColor.back)
    }
-   
 }
 
 struct TabBar_Previews: PreviewProvider {

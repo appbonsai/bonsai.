@@ -77,6 +77,7 @@ struct SelectCurrencyPage: View {
          .navigationTitle(L.SelectCurrencyPage.Choose_default_currency)
          .navigationBarTitleDisplayMode(.inline)
       } // NavigationView
+      .interactiveDismissDisabled(true)
    }
 }
 
