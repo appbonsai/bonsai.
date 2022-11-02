@@ -22,6 +22,7 @@
 "Daily_budget" = "Budżet dzienny";
 "Budget_greeting" = "Przystojniaku, dobrze ci idzie!";
 "Drag_up_hint" = "Przeciągnij w górę, aby zobaczyć swoje ostatnie operacje";
+"Drag_down_hint" = "Tap here to create new operation";
 "Home_category" = "Najdroższe kategorie";
 
 "Revenue_title" = "Przychody";

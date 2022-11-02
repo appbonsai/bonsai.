@@ -21,6 +21,7 @@
 "Daily_budget" = "Ежедневный бюджет";
 "Budget_greeting" = "Эй, а ты хорош!";
 "Drag_up_hint" = "Свайпни вверх чтобы увидеть транзакции";
+"Drag_down_hint" = "Свапни вниз чтобы создать транзакцию";
 "Home_category" = "Самые затратные категории";
 "Revenue_title" = "Доход";
 "Expenses_title" = "Расход";
