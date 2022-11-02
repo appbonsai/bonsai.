@@ -35,8 +35,8 @@ struct TabBar: View {
                   )
                   .animation(.easeInOut, value: selection)
                   .onTapGesture { selection = num }
-            }
-         }
+            } // ForEach
+         } // HStack
          GeometryReader { proxy in
             TabView(selection: $selection) {
                ChartsView()
@@ -48,7 +48,7 @@ struct TabBar: View {
                BudgetDetails()
                   .tag(2)
                   .frame(width: proxy.size.width, height: proxy.size.height)
-            }
+            } // TabView
             .frame(width: proxy.size.width, height: proxy.size.height)
             .background {
                GifImage("bonsai3_png")
@@ -65,10 +65,10 @@ struct TabBar: View {
                      y: 250
                   )
             }
-         }
+         } // GeometryReader
          .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
          .animation(.easeOut, value: selection)
-      }
+      } // VStack
       .padding(.top, 20)
       .background(BonsaiColor.back)
    }

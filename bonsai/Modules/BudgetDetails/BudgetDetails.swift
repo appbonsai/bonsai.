@@ -88,7 +88,7 @@ struct BudgetDetails: View {
     
     var body: some View {
         VStack {
-            ActionScrollView { completion in
+           ActionScrollView(spaceName: "Budget") { completion in
                 isOperationPresented = true
                 completion()
             } progress: { state in
@@ -97,7 +97,7 @@ struct BudgetDetails: View {
                         Circle()
                             .foregroundColor(BonsaiColor.mainPurple)
                             .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
-                        
+
                         BonsaiImage.plus
                             .resizable()
                             .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
@@ -137,7 +137,7 @@ struct BudgetDetails: View {
                     }
                     
                 }
-            }
+            } // ActionScrollView
             Spacer()
             tapViewTransactions()
                 .frame(height: 148, alignment: .bottom)

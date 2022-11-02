@@ -56,7 +56,7 @@ struct HomeContainerView: View {
       return dividend != 0 ? (income().intValue * 100 / dividend) : 0
    }
 
-   func calculateExpensePercentage() -> Int { 
+   func calculateExpensePercentage() -> Int {
       let dividend = (income().intValue + expense().intValue)
       return dividend != 0 ? (expense().intValue * 100 / dividend) : 0
    }
@@ -103,7 +103,7 @@ struct HomeContainerView: View {
    }
    
    var body: some View {
-      ActionScrollView { completion in
+      ActionScrollView(spaceName: "Home") { completion in
          isOperationPresented = true
          completion()
       } progress: { state in
@@ -127,14 +127,14 @@ struct HomeContainerView: View {
                   .foregroundColor(BonsaiColor.text)
                   .frame(maxWidth: .infinity, alignment: .leading)
                   .foregroundColor(.white)
-               
+
                Spacer()
-               
+
                BonsaiImage.settings
                   .font(.system(size: 22))
                   .foregroundColor(.white)
                   .onTapGesture {
-                     isSettingPresented = true 
+                     isSettingPresented = true
                   }
             }
             HStack(alignment: .center, spacing: 16) {
@@ -157,11 +157,11 @@ struct HomeContainerView: View {
             }
 
             Spacer()
-         }
+         } // VStack
          .padding(.horizontal, 16)
          .padding(.top, 38)
-      }
-      .ignoresSafeArea()
+      } // ActionScrollView
+
       .popover(isPresented: $isOperationPresented) {
          OperationDetails(isPresented: $isOperationPresented)
       }

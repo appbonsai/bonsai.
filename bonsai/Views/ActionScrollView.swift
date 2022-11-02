@@ -24,12 +24,14 @@ private struct PositionPreferenceKey: PreferenceKey {
 private struct PositionIndicator: View {
    let type: PositionType
 
+   let coordinateSpace: String
+
    var body: some View {
       GeometryReader { proxy in
          Color.clear
             .preference(
                key: PositionPreferenceKey.self,
-               value: [Position(type: type, y: proxy.frame(in: .global).minY)]
+               value: [Position(type: type, y: proxy.frame(in: .named(coordinateSpace)).minY)]
             )
       }
    }
@@ -41,6 +43,7 @@ struct ActionScrollView<ActionView, Content>: View where ActionView: View, Conte
    let onDone: (() -> Void) -> Void
    let icon: ActionViewBuilder<ActionView>
    let content: () -> Content
+   let spaceName: String
    @SwiftUI.State private var offset: CGFloat = 0
    @SwiftUI.State private var state = State.idle
 
@@ -52,12 +55,13 @@ struct ActionScrollView<ActionView, Content>: View where ActionView: View, Conte
       case idle, increasing(CGFloat), done
    }
 
-   init(
-      threshold: CGFloat = 100,
-      onDone: @escaping (() -> Void) -> Void,
-      @ViewBuilder progress: @escaping ActionViewBuilder<ActionView>,
-      @ViewBuilder content: @escaping () -> Content
+   init(threshold: CGFloat = 100,
+        spaceName: String,
+        onDone: @escaping (() -> Void) -> Void,
+        @ViewBuilder progress: @escaping ActionViewBuilder<ActionView>,
+        @ViewBuilder content: @escaping () -> Content
    ) {
+      self.spaceName = spaceName
       self.threshold = threshold
       self.onDone = onDone
       self.icon = progress
@@ -67,14 +71,15 @@ struct ActionScrollView<ActionView, Content>: View where ActionView: View, Conte
    public var body: some View {
       ScrollView() {
          ZStack(alignment: .top) {
-            PositionIndicator(type: .moving).frame(height: 0)
+            PositionIndicator(type: .moving, coordinateSpace: spaceName)
+               .frame(height: 0)
 
             content()
 
             icon(state).offset(y: -40)
          }
       } // ScrollView
-      .background(PositionIndicator(type: .fixed))
+      .coordinateSpace(name: spaceName)
       .onPreferenceChange(PositionPreferenceKey.self) { values in
 
          if state == .done { return }
