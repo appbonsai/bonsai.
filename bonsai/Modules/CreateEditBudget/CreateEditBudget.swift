@@ -116,20 +116,21 @@ struct CreateEditBudget: View {
                     
                     Button {
                         do {
-//                            bonsai.Budget(
-//                                context: moc,
-//                                name: title,
-//                                totalAmount: .init(string: amount),
-//                                periodDays: periodDays,
-//                                createdDate: createdDate)
-//
-//                            try moc.save()
                             if let budget = budgetService.getBudget() {
                                 budget.amount = NSDecimalNumber(string: self.amount)
 //                                budget.periodDays = Int64(periodDays)
                                 budget.name = self.title
                                 
                                 budgetService.updateBudget(budget: budget)
+                            } else {
+                                bonsai.Budget(
+                                    context: moc,
+                                    name: title,
+                                    totalAmount: .init(string: amount),
+                                    periodDays: periodDays,
+                                    createdDate: createdDate)
+                                
+                                try moc.save()
                             }
                             isCreateEditBudgetPresented = false
                             

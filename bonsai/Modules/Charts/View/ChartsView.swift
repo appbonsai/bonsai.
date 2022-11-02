@@ -15,32 +15,46 @@ struct ChartsView: View {
     
     // MARK: - View
     var body: some View {
-       VStack(alignment: .leading) {
-          Text("Charts")
-             .font(BonsaiFont.title_28)
-             .foregroundColor(BonsaiColor.text)
-             .padding(.top, 8)
-
-          ScrollView(.vertical, showsIndicators: false) {
-             VStack(alignment: .leading, spacing: 24) {
-                ChartContainer(title: "Balance") {
-                   BarChartView(
-                     viewModel: BarChartViewModel(
-                        chartData: mapToBarChartData()
-                     )
-                   )
+        VStack(alignment: .leading) {
+            Text("Charts")
+                .font(BonsaiFont.title_28)
+                .foregroundColor(BonsaiColor.text)
+                .padding(.top, 8)
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 24) {
+                    ChartContainer(title: "Balance") {
+                        let chartData = mapToBarChartData()
+                        if !chartData.pieces.isEmpty {
+                            BarChartView(
+                                viewModel: BarChartViewModel(
+                                    chartData: chartData
+                                )
+                            )
+                        } else {
+                            EmptyChart(description: "This chart will show you how your balance changes over time")
+                        }
+                    }
+                    ChartContainer(title: "Expenses", chartSize: .big) {
+                        let chartData = mapToPieChartData()
+                        if !chartData.pieChartSlices.isEmpty {
+                            PieChartView(
+                                viewModel: PieChartViewModel(
+                                    chartData: chartData
+                                )
+                            )
+                        } else {
+                            EmptyChart(description: "This chart will show all categories that you spent money on")
+                        }
+                    }
                 }
-                ChartContainer(title: "Expenses", chartSize: .big) {
-                    PieChartView(viewModel: PieChartViewModel(chartData: mapToPieChartData()))
-                }
-             }
-          }
-          .padding(.vertical, 10)
-
-          Spacer()
-       }
-       .padding(.horizontal, 16)
-       .ignoresSafeArea()
+            }
+            .padding(.vertical, 10)
+            
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .ignoresSafeArea()
     }
 }
 
