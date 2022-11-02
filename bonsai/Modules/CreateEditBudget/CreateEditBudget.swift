@@ -92,34 +92,47 @@ struct CreateEditBudget: View {
                 BonsaiColor.back
                     .ignoresSafeArea()
                 VStack {
-                    if let budget = budgetService.getBudget() {
-                        titleView(text: .constant(String(describing: budget.name)))
-                        amountView(
-                            text:.constant(String(describing: budget.amount))
-                        )
-                        periodView(
-                            text: .constant(String(describing: periodDays))
-                        )
-                    } else {
-                        titleView(text: $title)
-                        amountView(text: $amount)
-                        periodView(
-                            text: .constant(String(periodDays))
-                        )
-                    }
+//                    if let budget = budgetService.getBudget() {
+//                        titleView(text: .constant(String(describing: budget.name)))
+//                        amountView(
+//                            text:  .constant(String(describing: budget.amount))
+//                        )
+//                        periodView(
+//                            text: .constant(String(describing: periodDays))
+//                        )
+//                    } else {
+//                        titleView(text: $title)
+//                        amountView(text: $amount)
+//                        periodView(
+//                            text: .constant(String(periodDays))
+//                        )
+//                    }
+                    titleView(text: $title)
+                    amountView(text: $amount)
+                    periodView(
+                        text: .constant(String(periodDays))
+                    )
                     Spacer()
                     
                     Button {
                         do {
-                            bonsai.Budget(
-                                context: moc,
-                                name: title,
-                                totalAmount: .init(string: amount),
-                                periodDays: periodDays,
-                                createdDate: createdDate)
-                            
-                            try moc.save()
+//                            bonsai.Budget(
+//                                context: moc,
+//                                name: title,
+//                                totalAmount: .init(string: amount),
+//                                periodDays: periodDays,
+//                                createdDate: createdDate)
+//
+//                            try moc.save()
+                            if let budget = budgetService.getBudget() {
+                                budget.amount = NSDecimalNumber(string: self.amount)
+//                                budget.periodDays = Int64(periodDays)
+                                budget.name = self.title
+                                
+                                budgetService.updateBudget(budget: budget)
+                            }
                             isCreateEditBudgetPresented = false
+                            
                         } catch (let e) {
                             assertionFailure(e.localizedDescription)
                         }
@@ -154,6 +167,8 @@ struct CreateEditBudget: View {
         .onAppear {
             if let budget = budgetService.getBudget() {
                 periodDays = budget.periodDays
+                title = budget.name
+                amount = String(budget.amount.intValue)
             }
         }
     }
