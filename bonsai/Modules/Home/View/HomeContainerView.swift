@@ -112,15 +112,22 @@ struct HomeContainerView: View {
                Circle()
                   .foregroundColor(BonsaiColor.mainPurple)
                   .frame(width: offset.rounded() / 1.5, height: offset.rounded() / 1.5, alignment: .center)
+                  .offset(y: -offset / 2)
 
                BonsaiImage.plus
                   .resizable()
                   .frame(width: offset.rounded() / 3, height: offset.rounded() / 3, alignment: .center)
                   .foregroundColor(.white)
+                  .offset(y: -offset / 2)
             }
          }
       } content: {
          VStack(alignment: .leading) {
+            if UserSettings.showDragDownHint {
+               DragDownHintView().frame(maxWidth: .infinity)
+            } else {
+               Spacer(minLength: 38)
+            }
             HStack {
                Text(verbatim: "\(totalBalance()) \(Currency.Validated.current.symbol)")
                   .font(BonsaiFont.title_34)
@@ -159,11 +166,12 @@ struct HomeContainerView: View {
             Spacer()
          } // VStack
          .padding(.horizontal, 16)
-         .padding(.top, 38)
       } // ActionScrollView
 
       .popover(isPresented: $isOperationPresented) {
-         OperationDetails(isPresented: $isOperationPresented)
+         OperationDetails(isPresented: $isOperationPresented).onAppear {
+            UserSettings.incrementCountOfDragsDown()
+         }
       }
       .popover(isPresented: $isCurrencySelectionPresented) {
          SelectCurrencyPage(
