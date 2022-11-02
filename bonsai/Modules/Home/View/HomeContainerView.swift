@@ -152,7 +152,7 @@ struct HomeContainerView: View {
             }
             .frame(height: 116)
 
-            Text("Budget")
+            Text(L.Budget_title)
                .font(BonsaiFont.title_20)
                .foregroundColor(.white)
                .padding(.top, 32)

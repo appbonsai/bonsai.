@@ -122,7 +122,7 @@ struct SelectBudgetPeriodView: View {
                      RoundedRectangle(cornerRadius: 13)
                         .frame(width: 192, height: 48)
                         .foregroundColor(BonsaiColor.mainPurple)
-                     Text("Choose")
+                     Text(L.choose)
                         .foregroundColor(BonsaiColor.card)
                         .font(.system(size: 17))
                         .bold()
@@ -130,7 +130,7 @@ struct SelectBudgetPeriodView: View {
                }
                .padding(.bottom, 16)
             } //VStack
-         }.navigationTitle("Period")
+         }.navigationTitle(L.period)
             .popover(isPresented: $isSubscriptionsPresented, content: {
                Subscriptions(isPresented: $isSubscriptionsPresented)
             })
@@ -145,7 +145,7 @@ struct SelectBudgetPeriodView: View {
                   )
                   .frame(height: UIScreen.main.bounds.height / 2)
                   
-                  Text("Budget until \(date.dateString())")
+                  Text("\(L.budget_until) \(date.dateString())")
                      .font(.headline)
                      .foregroundColor(.secondary)
                   

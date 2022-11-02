@@ -60,4 +60,21 @@ class LocalizeService {
       static let Confirm = "SelectCurrencyPage.Confirm".localized()
       static let Choose_default_currency = "SelectCurrencyPage.Choose_default_currency".localized()
    }
+   
+   static let transactions_title = "Transactions_title".localized()
+   static let cancel = "Cancel_title".localized()
+   static let done = "Done_title".localized()
+
+   
+   static let other = "Other_title".localized()
+   static let charts = "Charts_title".localized()
+   static let period = "Period_title".localized()
+   static let choose = "Choose_title".localized()
+   static let budget_until = "Budget_until_title".localized()
+   static let save = "Save_title".localized()
+
+   
+   static let close = "Close_title".localized()
+   static let back = "Back_title".localized()
+
 }

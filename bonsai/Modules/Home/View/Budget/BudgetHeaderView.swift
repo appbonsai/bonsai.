@@ -42,7 +42,7 @@ struct BudgetHeaderView: View {
                     .padding(.leading, 20)
                 
                 VStack(alignment: .leading) {
-                    Text("Money Spent")
+                   Text(L.Money_spent)
                         .font(BonsaiFont.body_17)
                         .fontWeight(.regular)
                         .foregroundColor(BonsaiColor.text)

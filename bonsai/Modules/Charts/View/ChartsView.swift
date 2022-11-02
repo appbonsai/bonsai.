@@ -16,7 +16,7 @@ struct ChartsView: View {
     // MARK: - View
     var body: some View {
        VStack(alignment: .leading) {
-          Text("Charts")
+          Text(L.charts)
              .font(BonsaiFont.title_28)
              .foregroundColor(BonsaiColor.text)
              .padding(.top, 8)

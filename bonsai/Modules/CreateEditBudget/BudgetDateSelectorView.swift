@@ -21,7 +21,7 @@ struct BudgetDateSelectorView: View {
                .renderingMode(.template)
                .foregroundColor(BonsaiColor.purple3)
                .padding([.leading, .top, .bottom], 16)
-            Text("Period")
+            Text(L.period)
                .foregroundColor(BonsaiColor.purple3)
                .font(BonsaiFont.body_17)
             Spacer()

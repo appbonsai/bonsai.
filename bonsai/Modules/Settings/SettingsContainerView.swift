@@ -44,7 +44,7 @@ struct SettingsContainerView: View {
              //            }
              //            .listRowBackground(BonsaiColor.card)
              //
-             Section(header: Text("other")) {
+             Section(header: Text(L.other)) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
                    HStack {
                       Text(item.rawValue)
@@ -80,7 +80,7 @@ struct SettingsContainerView: View {
                 Button(action: {
                    isPresented = false
                 }) {
-                   Text("Cancel")
+                   Text(L.cancel)
                       .foregroundColor(BonsaiColor.secondary)
                 }
              }
