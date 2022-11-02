@@ -204,6 +204,7 @@ struct OperationDetails: View {
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                Button(action: {
+                  focusedField = nil
                   isPresented = false
                }) {
                   Text("Cancel")
