@@ -21,7 +21,7 @@
 "Daily_budget" = "Daily budget";
 "Budget_greeting" = "Hey, you are doing well!";
 "Drag_up_hint" = "Tap here to see your last operations";
-"Drag_down_hint" = "Tap here to create new operation";
+"Drag_down_hint" = "Drag down to create new operation";
 "Home_category" = "The most expensive categories";
 "Revenue_title" = "Revenue";
 "Expenses_title" = "Expenses";
