@@ -69,7 +69,9 @@ final class PurchaseService: ObservableObject {
             }
             if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
                self.isSubscriptionActive = allEntitlements.isActive
-               self.isShownAllSet = true
+               if allEntitlements.isActive {
+                  self.isShownAllSet = true
+               }
                completion()
             }
          }
@@ -84,7 +86,9 @@ final class PurchaseService: ObservableObject {
          }
          if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
             self.isSubscriptionActive = allEntitlements.isActive
-            self.isShownAllSet = true
+            if allEntitlements.isActive {
+               self.isShownAllSet = true
+            }
             completion()
          } 
       }
