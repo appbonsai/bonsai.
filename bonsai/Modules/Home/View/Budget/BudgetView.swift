@@ -35,6 +35,7 @@ struct CircularProgressView: View {
 }
 
 struct BudgetView: View {
+   
    var categories: [Category]
    var transactions: [Transaction]
 

@@ -10,14 +10,19 @@ import SwiftUI
 import CoreData
 
 struct HomeContainerView: View {
+
    @State private var isSettingPresented = false
    @State private var isCreateEditBudgetPresented = false
    @State private var isOperationPresented = false
    @State var showAllSet: Bool = false
    @State private var isCurrencySelectionPresented = false
-   @EnvironmentObject var budgetService: BudgetService
 
-   @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
+   @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
+   private var transactions: FetchedResults<Transaction>
+
+   @FetchRequest(sortDescriptors: [])
+   private var budgets: FetchedResults<Budget>
+   private var budget: Budget? { budgets.first }
    
    func income() -> NSDecimalNumber {
       transactions.reduce(into: [Transaction]()) { partialResult, transaction in
@@ -61,30 +66,26 @@ struct HomeContainerView: View {
       return dividend != 0 ? (expense().intValue * 100 / dividend) : 0
    }
 
-    func filterTransaction(by categories: [Category]) -> [Transaction] {
-        guard let creationDate = budgetService.getBudget()?.createdDate else { return [] }
-        return transactions
-            .filter { $0.date > creationDate }
-            .filter {
-                if let category = $0.category {
-                    return categories.contains(category)
-                } else {
-                    return false
-                }
+   func filterTransaction(by categories: [Category]) -> [Transaction] {
+      guard let creationDate = budget?.createdDate else { return [] }
+      return transactions
+         .filter { $0.date > creationDate }
+         .filter {
+            if let category = $0.category {
+               return categories.contains(category)
+            } else {
+               return false
             }
-    }
+         }
+   }
 
-   fileprivate func BudgeView() -> some View {
-       let ftransactions = filterTransaction(
-        by: budgetService.getMostExpensiveCategories(
-           transactions: transactions
-        )
-     )
+   fileprivate func buildBudgetView() -> some View {
+      let categories = BudgetService.getMostExpensiveCategories(
+         transactions: Array(transactions)
+      )
       return BudgetView(
-         categories: budgetService.getMostExpensiveCategories(
-            transactions: transactions
-         ),
-         transactions: ftransactions
+         categories: categories,
+         transactions: filterTransaction(by: categories)
       )
       .frame(height: 320)
       .cornerRadius(13)
@@ -92,14 +93,14 @@ struct HomeContainerView: View {
    }
    
    
-   fileprivate func createBudgetView() -> some View {
+   fileprivate func buildCreateBudgetView() -> some View {
       Image("create_budget")
          .resizable()
          .scaledToFit()
-      .onTapGesture {
-         isCreateEditBudgetPresented = true
-      }
-      .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+         .onTapGesture {
+            isCreateEditBudgetPresented = true
+         }
+         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
    }
    
    var body: some View {
@@ -157,10 +158,10 @@ struct HomeContainerView: View {
                .foregroundColor(.white)
                .padding(.top, 32)
 
-            if let _ = budgetService.getBudget() {
-               BudgeView()
+            if budgets.isEmpty {
+               buildCreateBudgetView()
             } else {
-               createBudgetView()
+               buildBudgetView()
             }
 
             Spacer()
@@ -187,9 +188,9 @@ struct HomeContainerView: View {
          SettingsContainerView(isPresented: $isSettingPresented)
       })
       .onAppear {
-          if Currency.Validated.userPreferenceCurrencyCode == nil {
-              isCurrencySelectionPresented = true
-          }
+         if Currency.Validated.userPreferenceCurrencyCode == nil {
+            isCurrencySelectionPresented = true
+         }
       }
    }
 }

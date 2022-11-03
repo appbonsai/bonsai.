@@ -13,7 +13,6 @@ protocol BudgetCalculationServiceProtocol {
     func getTotalMoneySpent(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
     func getMoneyCanSpendDaily(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
     func getTotalMoneyLeft(with transactionAmounts: [NSDecimalNumber]) -> NSDecimalNumber
-    func getMostExpensiveCategories(transactions: FetchedResults<Transaction>) -> [Category]
 }
 
 protocol BudgetRepositoryServiceProtocol {
@@ -83,11 +82,12 @@ final class BudgetService: ObservableObject, BudgetServiceProtocol {
         return .zero
     }
 
-   func getMostExpensiveCategories(transactions: FetchedResults<Transaction>) -> [Category] {
+   static func getMostExpensiveCategories(
+      transactions: [Transaction]
+   ) -> [Category] {
       let sortedCategories = transactions
          .sorted { $0.amount > $1.amount }
          .compactMap { $0.category }
-
       if sortedCategories.count > 3 {
          return Array(sortedCategories[0...2])
       } else {
