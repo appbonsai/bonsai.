@@ -59,7 +59,7 @@ struct CreateEditBudget: View {
       .contentShape(Rectangle())
    }
 
-   func periodView(text: Binding<String>) -> some View {
+   func periodView(text: String) -> some View {
       BudgetDateSelectorView(selectedPeriod: text)
          .frame(height: 44)
          .cornerRadius(13)
@@ -86,9 +86,8 @@ struct CreateEditBudget: View {
             VStack {
                titleView(text: $title)
                amountView(text: $amount)
-               periodView(
-                  text: .constant(String(periodDays))
-               )
+               periodView(text: String(periodDays))
+               
                Spacer()
 
                Button {
@@ -133,6 +132,7 @@ struct CreateEditBudget: View {
          SelectBudgetPeriodView(
             isPresented: $isPeriodDaysPresented,
             completionDateSelected: { days in
+               periodDays = .init(days)
                do {
                   budget?.periodDays = .init(days)
                   try moc.save()
