@@ -52,13 +52,16 @@ struct BudgetView: View {
                .cornerRadius(13)
                .opacity(0.8)
 
-            Text(L.Home_category)
-               .font(BonsaiFont.subtitle_15)
-               .foregroundColor(BonsaiColor.text)
-               .padding(.top, 16)
-               .padding(.horizontal, 16)
+            if categories.count > 0 {
+               Text(L.Home_category)
+                  .font(BonsaiFont.subtitle_15)
+                  .foregroundColor(BonsaiColor.text)
+                  .padding(.top, 16)
+                  .padding(.horizontal, 16)
+                  .padding(.bottom, 8)
+            }
 
-            VStack(spacing: 0) {
+            VStack(spacing: 8) {
                ForEach(categories, id: \.id) { category in
 
                   BudgetCellView(
@@ -70,11 +73,10 @@ struct BudgetView: View {
                      color: category.color.asGradient,
                      icon: category.image
                   )
+                  .padding(.bottom, 8)
                }
             }
             .padding(.horizontal, 16)
-
-            Spacer()
          }
       }
    }

@@ -88,7 +88,6 @@ struct HomeContainerView: View {
          categories: categories,
          transactions: filterTransaction(by: categories)
       )
-      .frame(height: 320)
       .cornerRadius(13)
       .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
    }
