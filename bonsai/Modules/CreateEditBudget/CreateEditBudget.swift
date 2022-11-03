@@ -18,7 +18,7 @@ struct CreateEditBudget: View {
    @State private var currency: Currency.Validated = .current
    @State private var amount: String = ""
    @State private var title: String = ""
-   @State private var periodDays: Int64 = 7
+   @State private var periodDays: Int = 7
    @State private var createdDate: Date = .now
 
    enum Field { case amount, title }
@@ -87,20 +87,20 @@ struct CreateEditBudget: View {
                titleView(text: $title)
                amountView(text: $amount)
                periodView(text: String(periodDays))
-               
+
                Spacer()
 
                Button {
                   if let budget {
                      budget.amount = NSDecimalNumber(string: amount)
-                     budget.periodDays = periodDays
+                     budget.periodDays = Int64(periodDays)
                      budget.name = title
                   } else {
                      bonsai.Budget(
                         context: moc,
                         name: title,
                         totalAmount: .init(string: amount),
-                        periodDays: periodDays,
+                        periodDays: Int64(periodDays),
                         createdDate: createdDate
                      )
                   }
@@ -131,20 +131,12 @@ struct CreateEditBudget: View {
       .popover(isPresented: $isPeriodDaysPresented) {
          SelectBudgetPeriodView(
             isPresented: $isPeriodDaysPresented,
-            completionDateSelected: { days in
-               periodDays = .init(days)
-               do {
-                  budget?.periodDays = .init(days)
-                  try moc.save()
-               } catch (let e) {
-                  assertionFailure(e.localizedDescription)
-               }
-            }
+            period: $periodDays
          )
       }
       .onAppear {
          if let budget {
-            periodDays = budget.periodDays
+            periodDays = Int(budget.periodDays)
             title = budget.name
             amount = String(budget.amount.intValue)
          }

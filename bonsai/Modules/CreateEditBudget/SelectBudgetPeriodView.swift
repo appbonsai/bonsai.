@@ -8,115 +8,191 @@
 import SwiftUI
 
 struct SelectBudgetPeriodView: View {
-   @State private var amount: String
-   @State private var title: String
-   @Binding var isPresented: Bool
-   var completionDateSelected: (Int) -> Void
-   private let items: [Period] = [.week, .twoWeek, .threeWeek, .custom]
-   @State var selectedRow: Int = 0
-   @State var date: Date
-   @State var isBudgetCalendarPresented: Bool = false
-   @State var isSubscriptionsPresented: Bool = false
+
    @EnvironmentObject var purchaseService: PurchaseService
+
+   @Binding var isPresented: Bool
+
+   @Binding var periodDays: Int
+   @State var period: Period
+   @State private var date: Date
+
+   @State var isSubscriptionsPresented: Bool = false
    
    private var isPremium: Bool {
 //      purchaseService.isSubscriptionActive
-       return true
+      true
    }
-   
-   private enum Period: String {
-      case week = "Weekly"
-      case twoWeek = "2 Week"
-      case threeWeek = "3 Week"
-      case custom = "Custom"
-      
-      var value: Int {
+
+   enum Period: Equatable, Identifiable {
+      case week, twoWeeks, threeWeeks, month, custom
+
+      var id: Period { self }
+
+      init(days: Int) {
+         switch days {
+         case 7:
+            self = .week
+         case 14:
+            self = .twoWeeks
+         case 21:
+            self = .threeWeeks
+         case 30:
+            self = .month
+         default:
+            self = .custom
+         }
+      }
+
+      fileprivate var description: String {
          switch self {
-         case .week: return 7
-         case .twoWeek: return 14
-         case .threeWeek: return 21
-         case .custom: return 0
+         case .week:
+            return "Weekly"
+         case .twoWeeks:
+            return "2 Weeks"
+         case .threeWeeks:
+            return "3 Weeks"
+         case .month:
+            return "Month"
+         case .custom:
+            return "Custom"
          }
       }
    }
-   
-   init(isPresented: Binding<Bool>, completionDateSelected: @escaping (Int) -> Void) {
-      self._amount = .init(initialValue: "")
-      self._title = .init(initialValue: "")
+   private let items: [Period] = [.week, .twoWeeks, .threeWeeks, .month, .custom]
+
+   init(isPresented: Binding<Bool>, period: Binding<Int>) {
       self._date = .init(initialValue: Date())
       self._isPresented = isPresented
-      self.completionDateSelected = completionDateSelected
+      self._periodDays = period
+      self._period = .init(initialValue: .init(days: period.wrappedValue))
+      self._date = .init(initialValue: SelectBudgetPeriodView.dateFromPeriod(period.wrappedValue))
    }
-      
+
    var body: some View {
       NavigationView {
          ZStack {
             BonsaiColor.back
                .ignoresSafeArea()
-            VStack {
-               ForEach(Array(items.enumerated()), id: \.offset) { index, element  in
-                  
-                  RoundedRectangle(cornerRadius: 13)
-                     .frame(height: 44)
-                     .foregroundColor(BonsaiColor.card)
-                     .overlay {
-                        HStack {
-                           Text(element.rawValue).font(.headline)
-                              .foregroundColor(.secondary)
-                              .padding(.leading, 16)
-                           Spacer()
-                        }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                           selectedRow = index
-                           
-                           /*
-                            save in core data
-                            */
-                           
-                           if items[selectedRow] == .custom {
-                              if isPremium {
-                                 isBudgetCalendarPresented = true
-                              } else  {
-                                 isSubscriptionsPresented = false
-                                  isBudgetCalendarPresented = true
-
+            VStack(spacing: 12) {
+               ForEach(items) { item in
+                  if item == .custom {
+                     VStack {
+                        Text("or")
+                        if isPremium {
+                           DatePicker(
+                              selection: $date,
+                              in: Date().addingTimeInterval(24 * 60 * 60)...,
+                              displayedComponents: [.date],
+                              label: {
+                                 Text("Custom")
+                                    .font(BonsaiFont.body_15)
+                                    .foregroundColor(.white)
                               }
-                           }
-                        }
-                        .background(BonsaiColor.card)
-                        
-                        RoundedRectangle(cornerRadius: 13)
-                           .stroke(
-                              { () -> Color in
-                                 if selectedRow == index  {
-                                    return BonsaiColor.mainPurple
-                                 } else {
-                                    return .clear
-                                 }
-                              }(),
-                              lineWidth: 2
                            )
-                     }
-                     .padding([.leading, .trailing], 16)
-               }
-               
-               Spacer()
-               
-               Button {
-                  if items[selectedRow] == .custom {
-                     if isPremium {
-                        let days = date.get(.day)
-                        completionDateSelected(days)
-                        isPresented = false
-                     } else  {
-                        isSubscriptionsPresented = true
+                           .padding(16)
+                           .datePickerStyle(.compact)
+                           .accentColor(BonsaiColor.purple3)
+                           .background(BonsaiColor.card)
+                           .cornerRadius(13)
+                           .foregroundColor(.secondary)
+                           .frame(height: 60)
+                           .overlay {
+                              RoundedRectangle(cornerRadius: 13)
+                                 .stroke(
+                                    { () -> Color in
+                                       if period == .custom {
+                                          return BonsaiColor.mainPurple
+                                       } else {
+                                          return .clear
+                                       }
+                                    }(),
+                                    lineWidth: 2
+                                 )
+                           }
+                           .padding([.leading, .trailing], 16)
+                           .onChange(of: date, perform: { newValue in
+                              period = .custom
+                           })
+                        } else {
+                           RoundedRectangle(cornerRadius: 13)
+                              .frame(height: 60)
+                              .foregroundColor(BonsaiColor.card)
+                              .overlay {
+                                 HStack {
+                                    Text("Custom period")
+                                       .font(BonsaiFont.body_15)
+                                       .padding(.leading, 16)
+                                    Spacer()
+                                    Text("Premium")
+                                       .font(BonsaiFont.subtitle_15)
+                                       .foregroundColor(BonsaiColor.mainPurple)
+                                       .padding(.trailing, 16)
+                                 }
+                                 .contentShape(Rectangle())
+                                 .background(BonsaiColor.card)
+                              }
+                              .padding([.leading, .trailing], 16)
+                              .onTapGesture {
+                                 if isPremium == false {
+                                    isSubscriptionsPresented = true
+                                 }
+                              }
+                        }
                      }
                   } else {
-                     let days = items[selectedRow].value
-                     completionDateSelected(days)
-                     isPresented = false
+                     RoundedRectangle(cornerRadius: 13)
+                        .frame(height: 44)
+                        .foregroundColor(BonsaiColor.card)
+                        .overlay {
+                           HStack {
+                              Text(item.description)
+                                 .font(BonsaiFont.body_15)
+                                 .padding(.leading, 16)
+                              Spacer()
+                           }
+                           .contentShape(Rectangle())
+                           .onTapGesture { period = item }
+                           .background(BonsaiColor.card)
+
+                           RoundedRectangle(cornerRadius: 13)
+                              .stroke(
+                                 { () -> Color in
+                                    if period == item {
+                                       return BonsaiColor.mainPurple
+                                    } else {
+                                       return .clear
+                                    }
+                                 }(),
+                                 lineWidth: 2
+                              )
+                        }
+                        .padding([.leading, .trailing], 16)
                   }
+               } // ForEach
+
+               Spacer()
+
+               Button {
+                  if isPremium == false && period == .custom {
+                     isSubscriptionsPresented = true
+                     return
+                  }
+                  periodDays = {
+                     switch period {
+                     case .week:
+                        return 7
+                     case .twoWeeks:
+                        return 14
+                     case .threeWeeks:
+                        return 21
+                     case .month:
+                        return 30
+                     case .custom:
+                        return dateToPeriod(date)
+                     }
+                  }()
+                  isPresented = false
                } label: {
                   ZStack {
                      RoundedRectangle(cornerRadius: 13)
@@ -130,58 +206,29 @@ struct SelectBudgetPeriodView: View {
                }
                .padding(.bottom, 16)
             } //VStack
-         }.navigationTitle(L.period)
-            .popover(isPresented: $isSubscriptionsPresented, content: {
-               Subscriptions(isPresented: $isSubscriptionsPresented)
-            })
-            .popover(isPresented: $isBudgetCalendarPresented) {
-               VStack {
-                  Spacer()
-
-                  DateSelectorView(
-                     date: $date,
-                     fullSized: .constant(true),
-                     isClosedRange: false
-                  )
-                  .frame(height: UIScreen.main.bounds.height / 2)
-                  
-                  Text("\(L.budget_until) \(date.dateString())")
-                     .font(.headline)
-                     .foregroundColor(.secondary)
-                  
-                  Spacer()
-                  
-                  Button {
-                     if items[selectedRow] == .custom {
-                        let days = date.get(.day)
-                        completionDateSelected(days)
-                        isPresented = false
-                     } else {
-                        let days = items[selectedRow].value
-                        completionDateSelected(days)
-                     }
-                    isBudgetCalendarPresented = false
-                  } label: {
-                     ZStack {
-                        RoundedRectangle(cornerRadius: 13)
-                           .frame(width: 192, height: 48)
-                           .foregroundColor(BonsaiColor.mainPurple)
-                        Text(L.Continue_button)
-                           .foregroundColor(BonsaiColor.card)
-                           .font(.system(size: 17))
-                           .bold()
-                     }
-                  }
-               }
-            }
+            .padding(.top, 20)
+         }
+         .navigationTitle(L.period)
+         .popover(isPresented: $isSubscriptionsPresented, content: {
+            Subscriptions(isPresented: $isSubscriptionsPresented)
+         })
       }
+   }
+
+   private func dateToPeriod(_ date: Date) -> Int {
+      guard let days = Calendar.current.dateComponents([.day], from: Date.now.startOfDay, to: date.startOfDay).day,
+            days >= 0
+      else { return 0 }
+      return days
+   }
+
+   static private func dateFromPeriod(_ period: Int) -> Date {
+      Date.now.startOfDay.addingTimeInterval(Double(period) * 24 * 60 * 60)
    }
 }
 
 struct SelectBudgetPeriod_Previews: PreviewProvider {
    static var previews: some View {
-      SelectBudgetPeriodView(isPresented: .constant(true), completionDateSelected: { _ in })
+      SelectBudgetPeriodView(isPresented: .constant(true), period: .constant(0))
    }
 }
-
-
