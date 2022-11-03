@@ -20,6 +20,7 @@ struct HomeContainerView: View {
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
    private var transactions: FetchedResults<Transaction>
 
+   @EnvironmentObject var budgetService: BudgetService
    @FetchRequest(sortDescriptors: [])
    private var budgets: FetchedResults<Budget>
    private var budget: Budget? { budgets.first }
@@ -80,8 +81,8 @@ struct HomeContainerView: View {
    }
 
    fileprivate func buildBudgetView() -> some View {
-      let categories = BudgetService.getMostExpensiveCategories(
-         transactions: Array(transactions)
+      let categories = budgetService.getMostExpensiveCategories(
+         transactions: transactions
       )
       return BudgetView(
          categories: categories,
@@ -182,7 +183,10 @@ struct HomeContainerView: View {
          )
       }
       .popover(isPresented: $isCreateEditBudgetPresented, content: {
-         CreateEditBudget(isCreateEditBudgetPresented: $isCreateEditBudgetPresented, kind: .new)
+         CreateEditBudget(
+            kind: .new,
+            isCreateEditBudgetPresented: $isCreateEditBudgetPresented
+         )
       })
       .popover(isPresented: $isSettingPresented, content: {
          SettingsContainerView(isPresented: $isSettingPresented)

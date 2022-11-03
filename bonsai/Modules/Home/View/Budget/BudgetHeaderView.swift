@@ -14,12 +14,16 @@ struct BudgetHeaderView: View {
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
    var transactions: FetchedResults<Transaction>
 
+   @FetchRequest(sortDescriptors: [])
+   private var budgets: FetchedResults<Budget>
+   private var budget: Budget? { budgets.first }
+
    func getPercentage() -> Double {
       getTotalMoneySpent() * 100.0 / getTotalBudgetAmount() / 100.0
    }
 
    func getTotalMoneySpent() -> Double {
-      guard let creationDate = budgetService.getBudget()?.createdDate else { return 0.0 }
+      guard let creationDate = budget?.createdDate else { return 0.0 }
       let allAmount = transactions
          .filter { $0.date > creationDate }
          .map { $0.amount }
