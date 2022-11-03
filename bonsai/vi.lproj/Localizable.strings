@@ -54,3 +54,16 @@
 
 
 "Trans transaction_title" = "Giao dịch";
+"Cancel_title" = "Hủy";
+"Done_title" = "Xong";
+
+"Other_title" = "Khác";
+
+"Charts_title" = "Biểu đồ";
+"Period_title" = "Giai đoạn";
+"Choose_title" = "Chọn";
+"Budget_until_title" = "Ngân sách cho đến khi";
+"Save_title" = "Lưu";
+"Close_title" = "Đóng";
+"Back_title" = "Quay lại";
+"OK_title" = "OK";

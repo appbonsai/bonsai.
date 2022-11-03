@@ -53,3 +53,17 @@
 
 
 "Transactions_title" = "Транзакції";
+
+"Cancel_title" = "Скасувати";
+"Done_title" = "Готово";
+
+"Other_title" = "Інше";
+
+"Charts_title" = "Графіки";
+"Period_title" = "Період";
+"Choose_title" = "Вибрати";
+"Budget_until_title" = "Бюджет до";
+"Save_title" = "Зберегти";
+"Close_title" = "Закрити";
+"Back_title" = "Назад";
+"OK_title" = "OK";

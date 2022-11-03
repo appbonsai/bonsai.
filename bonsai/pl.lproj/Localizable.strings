@@ -54,3 +54,16 @@
 "Restore_Purchases" = "Przywróć zakupy";
 
 "Transactions_title" = "Transakcje";
+"Cancel_title" = "Anuluj";
+"Done_title" = "Gotowe";
+
+"Other_title" = "Inne";
+
+"Charts_title" = "Wykresy";
+"Okres_title" = "Okres";
+"Choose_title" = "Wybierz";
+"Budget_until_title" = "Budżet do";
+"Save_title" = "Zapisz";
+"Close_title" = "Zamknij";
+"Back_title" = "Wstecz";
+"OK_title" = "OK";

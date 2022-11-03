@@ -34,7 +34,7 @@ struct AllSet: View {
                             .padding(.top, 7)
                             .font(.system(size: 28).bold())
                             .padding(.bottom, 2)
-                        Text("Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim ")
+                       Text(L.AllSet_text)
                             .font(.system(size: 17))
                             .padding([.leading, .trailing], 28)
                         

@@ -71,10 +71,8 @@ class LocalizeService {
    static let period = "Period_title".localized()
    static let choose = "Choose_title".localized()
    static let budget_until = "Budget_until_title".localized()
-   static let save = "Save_title".localized()
-
-   
+   static let save = "Save_title".localized()   
    static let close = "Close_title".localized()
    static let back = "Back_title".localized()
-
+   static let ok = "OK_title".localized()
 }

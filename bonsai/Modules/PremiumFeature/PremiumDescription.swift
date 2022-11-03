@@ -49,7 +49,7 @@ struct PremiumDescription: View {
                           isPresented = false
                       }
                       
-                    Text("OK")
+                   Text(L.ok)
                       .foregroundColor(BonsaiColor.card)
                       .font(.system(size: 17))
                       .bold()
