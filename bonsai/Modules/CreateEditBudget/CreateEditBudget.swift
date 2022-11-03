@@ -70,6 +70,36 @@ struct CreateEditBudget: View {
          }
    }
 
+   @State var isDeleteConfirmationPresented = false
+
+   func removeBudgetButton() -> some View {
+      Button("Delete budget") {
+         isDeleteConfirmationPresented = true
+      }
+      .foregroundColor(.red)
+      .opacity(0.8)
+      .confirmationDialog(
+         L.deleteBudgetConfirmation,
+         isPresented: $isDeleteConfirmationPresented,
+         titleVisibility: .visible
+      ) {
+         Button("Yes, delete my budget", role: .destructive) {
+            if let budget {
+               moc.delete(budget)
+               do {
+                  try moc.save()
+               } catch (let e) {
+                  assertionFailure(e.localizedDescription)
+               }
+               isCreateEditBudgetPresented = false
+            }
+         }
+         Button("Cancel", role: .cancel) {
+            isDeleteConfirmationPresented = false
+         }
+      }
+   }
+
    var isDisabled: Bool {
       if budget == nil {
          return $amount.wrappedValue.isEmpty && $title.wrappedValue.isEmpty
@@ -87,6 +117,11 @@ struct CreateEditBudget: View {
                titleView(text: $title)
                amountView(text: $amount)
                periodView(text: String(periodDays))
+
+               if kind == .edit {
+                  removeBudgetButton()
+                     .padding(20)
+               }
 
                Spacer()
 
@@ -125,8 +160,10 @@ struct CreateEditBudget: View {
                }
                .opacity(isDisabled ? 0.5 : 1)
                .disabled(isDisabled)
-            }
-         }.navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
+            } // VStack
+            .padding(.top, 20)
+         }
+         .navigationTitle(kind == .new ? "New Budget" : "Edit Budget")
       }
       .popover(isPresented: $isPeriodDaysPresented) {
          SelectBudgetPeriodView(

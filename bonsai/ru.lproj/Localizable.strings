@@ -65,3 +65,5 @@
 "Close_title" = "Закрыть";
 "Back_title" = "Назад";
 "OK_title" = "ОК";
+
+"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";

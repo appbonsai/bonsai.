@@ -75,4 +75,6 @@ class LocalizeService {
    static let close = "Close_title".localized()
    static let back = "Back_title".localized()
    static let ok = "OK_title".localized()
+
+   static let deleteBudgetConfirmation = "delete_Budget_Confirmation".localized()
 }
