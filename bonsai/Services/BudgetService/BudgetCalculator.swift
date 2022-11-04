@@ -14,14 +14,16 @@ final class BudgetCalculator: ObservableObject {
       budget: Budget,
       transactions: any Sequence<Transaction>
    ) -> NSDecimalNumber {
-      transactions
-         .filter { $0.date > budget.createdDate } // TODO: Period Ends scenario not supported
-         .reduce(into: NSDecimalNumber.zero) { partialResult, transaction in
-            if transaction.type == .expense {
-               partialResult = partialResult.adding(transaction.amount) // TODO: Negative amount not supported
-            }
-         }
-         .round()
+      (
+         transactions
+            .filter { $0.date > budget.createdDate } // TODO: Period Ends scenario not supported
+            .reduce(into: Decimal.zero) { partialResult, transaction in
+               if transaction.type == .expense {
+                  partialResult += abs(transaction.amount as Decimal)
+               }
+            } as NSDecimalNumber
+      )
+      .round()
    }
 
    static func left(
