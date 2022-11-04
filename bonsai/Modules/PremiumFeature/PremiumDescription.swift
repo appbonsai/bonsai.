@@ -22,7 +22,7 @@ struct PremiumDescription: View {
                 BonsaiColor.purple2
                     .ignoresSafeArea()
                 VStack {
-                    GifImage("new_operation")
+                    GifImage(premium.gifImage)
                         .frame(width: UIScreen.main.bounds.width / 1.8, height: UIScreen.main.bounds.width * 1.1)
                     
                 }
@@ -61,6 +61,6 @@ struct PremiumDescription: View {
 
 struct PremiumDescription_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumDescription(isPresented: .constant(true), premium: .constant(.init(name: "", description: "", icon: "")))
+        PremiumDescription(isPresented: .constant(true), premium: .constant(.init(name: "", description: "", icon: "", gifImage: "")))
     }
 }

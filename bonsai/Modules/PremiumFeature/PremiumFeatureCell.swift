@@ -46,7 +46,7 @@ struct PremiumFeatureCell: View {
 
 struct PremiumFeatureCell_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumFeatureCell(premium: .init(name: "", description: "", icon: ""))
+        PremiumFeatureCell(premium: .init(name: "", description: "", icon: "", gifImage: ""))
     }
 }
 
@@ -54,4 +54,5 @@ struct Premium {
     let name: String
     let description: String
     let icon: String
+    let gifImage: String
 }
