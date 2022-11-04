@@ -20,7 +20,7 @@ struct BudgetMoneyTitleView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Text("\(Currency.Validated.current.symbol)\(amount)")
                 .font(BonsaiFont.title_34)
                 .foregroundColor(BonsaiColor.text)

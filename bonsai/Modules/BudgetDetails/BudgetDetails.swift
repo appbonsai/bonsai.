@@ -49,13 +49,13 @@ struct BudgetDetails: View {
    @State private var isCreateBudgetPresented = false
 
    private func budgetMoneyTitleView() -> some View {
-      HStack(alignment: .center, spacing: 16) {
+      HStack(alignment: .center, spacing: 24) {
          BudgetMoneyTitleView(
             title: L.Money_left,
             amount: totalMoneyLeft,
             titleColor: BonsaiColor.green
          )
-         .padding(.leading, 16)
+         .padding(.leading, 24)
          BudgetMoneyTitleView(
             title: L.Money_spent,
             amount: totalMoneySpent,
@@ -69,19 +69,22 @@ struct BudgetDetails: View {
       HStack(alignment: .center, spacing: 16) {
          BudgetMoneyCardView(
             title: L.Total_budget,
-            amount: budget?.amount ?? .zero
+            amount: budget?.amount ?? .zero,
+            titleColor: BonsaiColor.mainPurple,
+            icon: Image(Asset.accountBalance.name)
          )
          .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
 
          BudgetMoneyCardView(
             title: L.Daily_budget,
-            amount: moneyCanSpendDaily
+            amount: moneyCanSpendDaily,
+            titleColor: BonsaiColor.mainPurple,
+            icon: Image(systemName: "arrow.clockwise")
          )
          .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
       }
       .frame(height: 116)
       .padding(.horizontal, 16)
-      .padding(.top, -14)
    }
 
 
@@ -181,7 +184,7 @@ struct BudgetDetails: View {
                   } // HStack
 
                   budgetMoneyTitleView()
-                     .padding(.top, 16)
+                     .padding(.top, 32)
 
                   budgetMoneyCardView()
                      .padding(.top, 32)
