@@ -77,4 +77,6 @@ class LocalizeService {
    static let ok = "OK_title".localized()
 
    static let deleteBudgetConfirmation = "delete_Budget_Confirmation".localized()
+    
+   static let Bonsai_premium_features = "Bonsai_premium_features".localized()
 }

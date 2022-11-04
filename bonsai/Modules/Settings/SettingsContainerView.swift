@@ -27,9 +27,17 @@ struct SettingsContainerView: View {
     ]
 
     private enum OtherRows: String {
-        case premiumFeature = "Bonsai premium features"
-        case termsOfService = "Terms of Service"
-        case privacyPolicy = "Privacy Policy"
+        case premiumFeature
+        case termsOfService
+        case privacyPolicy 
+        
+        var label: String {
+            switch self {
+            case .premiumFeature: return L.Bonsai_premium_features
+            case .termsOfService: return L.Terms_of_Service
+            case .privacyPolicy: return L.Privacy_Policy
+            }
+        }
     }
     
     var body: some View {
@@ -47,7 +55,7 @@ struct SettingsContainerView: View {
              Section(header: Text(L.other)) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
                    HStack {
-                      Text(item.rawValue)
+                      Text(item.label)
                       Spacer()
                    }
                    .contentShape(Rectangle())
