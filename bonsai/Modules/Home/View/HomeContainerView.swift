@@ -26,7 +26,7 @@ struct HomeContainerView: View {
    private var budget: Budget? { budgets.first }
 
    private func tapViewTransactions() -> some View {
-      BudgetTapView()
+      BudgetTapView(title: L.Drag_up_hint)
          .onTapGesture {
             isTransactionsPresented = true
          }

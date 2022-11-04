@@ -83,7 +83,7 @@ struct BudgetDetails: View {
 
 
    private func tapViewTransactions() -> some View {
-      BudgetTapView()
+      BudgetTapView(title: "Tap here to see budget operations")
          .onTapGesture {
             isPresented = true
          }
