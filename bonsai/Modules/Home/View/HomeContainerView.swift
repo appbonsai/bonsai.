@@ -25,25 +25,33 @@ struct HomeContainerView: View {
    private var budget: Budget? { budgets.first }
    
    func income() -> NSDecimalNumber {
-      transactions.reduce(into: [Transaction]()) { partialResult, transaction in
-         partialResult.append(transaction)
-      }
-      .filter { $0.type == .income }
-      .map { $0.amount }
-      .reduce(0, { partialResult, dec in
-         partialResult.adding(dec)
-      })
+      transactions
+         .lazy
+         .filter { $0.type == .income }
+         .filter {
+            Calendar.current.component(.month, from: $0.date)
+            == Calendar.current.component(.month, from: Date().startOfDay)
+         }
+         .map { $0.amount }
+         .reduce(NSDecimalNumber.zero, { partialResult, dec in
+            partialResult.adding(dec)
+         })
+         .round()
    }
    
    func expense() -> NSDecimalNumber {
-      transactions.reduce(into: [Transaction]()) { partialResult, transaction in
-         partialResult.append(transaction)
-      }
-      .filter { $0.type == .expense }
-      .map { $0.amount }
-      .reduce(0, { partialResult, dec in
-         partialResult.adding(dec)
-      })
+      transactions
+         .lazy
+         .filter { $0.type == .expense }
+         .filter {
+            Calendar.current.component(.month, from: $0.date)
+            == Calendar.current.component(.month, from: Date().startOfDay)
+         }
+         .map { $0.amount }
+         .reduce(NSDecimalNumber.zero, { partialResult, dec in
+            partialResult.adding(dec)
+         })
+         .round()
    }
 
    func totalBalance() -> Int {
@@ -129,15 +137,14 @@ struct HomeContainerView: View {
             }
          }
       } content: {
-         VStack(alignment: .leading) {
+         VStack(alignment: .leading, spacing: 0) {
             if UserSettings.showDragDownHint {
                DragDownHintView().frame(maxWidth: .infinity)
-            } else {
-               Spacer(minLength: 38)
             }
             Text("Net Worth")
                .font(BonsaiFont.subtitle_15)
                .foregroundColor(BonsaiColor.text)
+               .padding(.top, 16)
             HStack {
                Text(verbatim: "\(totalBalance()) \(Currency.Validated.current.symbol)")
                   .font(BonsaiFont.title_34)
@@ -154,23 +161,38 @@ struct HomeContainerView: View {
                      isSettingPresented = true
                   }
             }
-            HStack(alignment: .center, spacing: 16) {
-               BalanceFlowView(text: income(), flowType: .revenue, percentage: calculateRevenuePercentage())
-                  .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
-               BalanceFlowView(text: expense(), flowType: .expense, percentage: calculateExpensePercentage())
-                  .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+            Text("This month")
+               .font(BonsaiFont.subtitle_15)
+               .foregroundColor(BonsaiColor.text)
+               .padding(.top, 28)
+            HStack(alignment: .center, spacing: 12) {
+               BudgetMoneyCardView(
+                  title: L.Revenue_title,
+                  subtitle: "\(income()) \(Currency.Validated.current.symbol)",
+                  titleColor: BonsaiColor.green,
+                  icon: nil
+               )
+               BudgetMoneyCardView(
+                  title: L.Expenses_title,
+                  subtitle: "\(expense()) \(Currency.Validated.current.symbol)",
+                  titleColor: BonsaiColor.secondary,
+                  icon: nil
+               )
             }
-            .frame(height: 116)
+            .frame(height: 76)
+            .padding(.top, 8)
 
             Text(L.Budget_title)
-               .font(BonsaiFont.title_20)
-               .foregroundColor(.white)
-               .padding(.top, 32)
+               .font(BonsaiFont.subtitle_15)
+               .foregroundColor(BonsaiColor.text)
+               .padding(.top, 28)
 
             if budgets.isEmpty {
                buildCreateBudgetView()
+                  .padding(.top, 8)
             } else {
                buildBudgetView()
+                  .padding(.top, 8)
             }
 
             Spacer()

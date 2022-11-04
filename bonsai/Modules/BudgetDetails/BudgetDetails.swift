@@ -65,19 +65,17 @@ struct BudgetDetails: View {
       HStack(alignment: .center, spacing: 16) {
          BudgetMoneyCardView(
             title: L.Total_budget,
-            amount: budget?.amount ?? .zero,
+            subtitle: "\(budget?.amount ?? .zero)\(Currency.Validated.current.symbol)",
             titleColor: BonsaiColor.mainPurple,
             icon: Image(Asset.accountBalance.name)
          )
-         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
 
          BudgetMoneyCardView(
             title: L.Daily_budget,
-            amount: moneyCanSpendDaily,
+            subtitle: "\(moneyCanSpendDaily)\(Currency.Validated.current.symbol)",
             titleColor: BonsaiColor.mainPurple,
             icon: Image(systemName: "arrow.clockwise")
          )
-         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
       }
       .frame(height: 116)
       .padding(.horizontal, 16)
