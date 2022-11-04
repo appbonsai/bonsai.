@@ -182,6 +182,5 @@ struct CreateEditBudget: View {
 struct CreateEditBudget_Previews: PreviewProvider {
    static var previews: some View {
       CreateEditBudget(kind: .new, isCreateEditBudgetPresented: .constant(true))
-         .environmentObject(BudgetCalculator())
    }
 }

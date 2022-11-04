@@ -207,6 +207,5 @@ struct HomeContainerView: View {
 struct HomeContainerView_Previews: PreviewProvider {
    static var previews: some View {
       HomeContainerView()
-         .environmentObject(BudgetCalculator())
    }
 }

@@ -220,7 +220,6 @@ struct BudgetDetails: View {
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails()
-         .environmentObject(BudgetCalculator())
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }
