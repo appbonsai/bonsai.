@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CircularProgressView: View {
+
    let progress: Double
 
    var body: some View {
@@ -86,11 +87,7 @@ struct BudgetView_Previews: PreviewProvider {
         BudgetView(categories: [], transactions: [])
             .previewLayout(.fixed(width: 358, height:330))
             .environmentObject(
-                BudgetService(
-                    
-                    budgetRepository: BudgetRepository(),
-                    budgetCalculations: BudgetCalculations()
-                )
+                BudgetCalculator()
             )
     }
 }

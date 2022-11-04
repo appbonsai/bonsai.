@@ -20,7 +20,6 @@ struct HomeContainerView: View {
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
    private var transactions: FetchedResults<Transaction>
 
-   @EnvironmentObject var budgetService: BudgetService
    @FetchRequest(sortDescriptors: [])
    private var budgets: FetchedResults<Budget>
    private var budget: Budget? { budgets.first }
@@ -81,9 +80,16 @@ struct HomeContainerView: View {
    }
 
    fileprivate func buildBudgetView() -> some View {
-      let categories = budgetService.getMostExpensiveCategories(
-         transactions: transactions
-      )
+      let categories = {
+         if let budget {
+            return BudgetCalculator.mostExpensiveCategories(
+               budget: budget,
+               transactions: transactions
+            )
+         } else {
+            return []
+         }
+      }()
       return BudgetView(
          categories: categories,
          transactions: filterTransaction(by: categories)
@@ -201,9 +207,6 @@ struct HomeContainerView: View {
 struct HomeContainerView_Previews: PreviewProvider {
    static var previews: some View {
       HomeContainerView()
-         .environmentObject(BudgetService(
-            budgetRepository: BudgetRepository(),
-            budgetCalculations: BudgetCalculations()
-         ))
+         .environmentObject(BudgetCalculator())
    }
 }

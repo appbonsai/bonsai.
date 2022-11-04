@@ -9,8 +9,6 @@ import SwiftUI
 
 struct BudgetHeaderView: View {
 
-   @EnvironmentObject var budgetService: BudgetService
-
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
    var transactions: FetchedResults<Transaction>
 
@@ -18,20 +16,26 @@ struct BudgetHeaderView: View {
    private var budgets: FetchedResults<Budget>
    private var budget: Budget? { budgets.first }
 
-   func getPercentage() -> Double {
-      getTotalMoneySpent() * 100.0 / getTotalBudgetAmount() / 100.0
+   func getPercentage() -> NSDecimalNumber {
+      let total = getTotalBudgetAmount()
+      guard total > 0 else { return .zero }
+      return getTotalMoneySpent()
+         .multiplying(by: 100)
+         .dividing(by: total)
+         .dividing(by: 100)
+         .round()
    }
 
-   func getTotalMoneySpent() -> Double {
-      guard let creationDate = budget?.createdDate else { return 0.0 }
-      let allAmount = transactions
-         .filter { $0.date > creationDate }
-         .map { $0.amount }
-      return budgetService.getTotalMoneySpent(with: allAmount).doubleValue
+   func getTotalMoneySpent() -> NSDecimalNumber {
+      guard let budget else { return .zero }
+      return BudgetCalculator.spent(
+         budget: budget,
+         transactions: transactions
+      )
    }
 
-   func getTotalBudgetAmount() -> Double {
-      budgetService.getTotalBudget().doubleValue
+   func getTotalBudgetAmount() -> NSDecimalNumber {
+      (budget?.amount ?? .zero).round(0)
    }
 
    @Binding var progress: Double
@@ -43,7 +47,7 @@ struct BudgetHeaderView: View {
 
          HStack(spacing: 16) {
 
-            CircularProgressView(progress: getPercentage())
+            CircularProgressView(progress: getPercentage().doubleValue)
                .foregroundColor(BonsaiColor.text)
                .frame(width: 75, height: 75)
                .padding(.leading, 20)
@@ -54,10 +58,10 @@ struct BudgetHeaderView: View {
                   .fontWeight(.regular)
                   .foregroundColor(BonsaiColor.text)
 
-               Text("\(Currency.Validated.current.symbol) \(getTotalMoneySpent(), specifier: "%.2f")")
+               Text("\(Currency.Validated.current.symbol) \(getTotalMoneySpent())")
                   .font(BonsaiFont.title_28)
                   .foregroundColor(.white)
-               Text("out of \(Currency.Validated.current.symbol)\(getTotalBudgetAmount(), specifier: "%.0f")")
+               Text("out of \(Currency.Validated.current.symbol)\(getTotalBudgetAmount())")
                   .font(BonsaiFont.body_15)
                   .fontWeight(.regular)
                   .foregroundColor(BonsaiColor.text)
@@ -74,9 +78,6 @@ struct BudgetHeaderView: View {
 struct BudgetHeaderView_Previews: PreviewProvider {
    static var previews: some View {
       BudgetHeaderView(progress: .constant(0.5))
-         .environmentObject(BudgetService(
-            budgetRepository: BudgetRepository(),
-            budgetCalculations: BudgetCalculations()
-         ))
+         .environmentObject(BudgetCalculator())
    }
 }

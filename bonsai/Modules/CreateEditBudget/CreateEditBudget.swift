@@ -26,8 +26,6 @@ struct CreateEditBudget: View {
 
    @Environment(\.managedObjectContext) private var moc
 
-   @EnvironmentObject var budgetService: BudgetService
-
    @FetchRequest(sortDescriptors: [])
    private var budgets: FetchedResults<Budget>
    private var budget: Budget? { budgets.first }
@@ -184,9 +182,6 @@ struct CreateEditBudget: View {
 struct CreateEditBudget_Previews: PreviewProvider {
    static var previews: some View {
       CreateEditBudget(kind: .new, isCreateEditBudgetPresented: .constant(true))
-         .environmentObject(BudgetService(
-            budgetRepository: BudgetRepository(),
-            budgetCalculations: BudgetCalculations()
-         ))
+         .environmentObject(BudgetCalculator())
    }
 }

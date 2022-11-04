@@ -10,8 +10,6 @@ import CoreData
 
 struct BudgetDetails: View {
 
-   @EnvironmentObject var budgetService: BudgetService
-
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
    private var transactions: FetchedResults<Transaction>
 
@@ -19,27 +17,25 @@ struct BudgetDetails: View {
    private var budgets: FetchedResults<Budget>
    private var budget: Budget? { budgets.first }
 
-   private var allTransactions: [NSDecimalNumber] {
-      guard let budget else { return [] }
-      return budgetService
-         .filterTransactions(all: transactions, budget: budget)
-         .map { $0.amount }
-   }
    private var totalMoneyLeft: NSDecimalNumber {
       guard let budget else { return .zero }
-      return budgetService.getTotalMoneyLeft(
-         with: allTransactions,
-         budget: budget
+      return BudgetCalculator.left(
+         budget: budget,
+         transactions: transactions
       )
    }
    private var totalMoneySpent: NSDecimalNumber {
-      budgetService.getTotalMoneySpent(with: allTransactions)
+      guard let budget else { return .zero }
+      return BudgetCalculator.spent(
+         budget: budget,
+         transactions: transactions
+      )
    }
    private var moneyCanSpendDaily: NSDecimalNumber {
       guard let budget else { return .zero }
-      return budgetService.getMoneyCanSpendDaily(
-         with: allTransactions,
-         budget: budget
+      return BudgetCalculator.daily(
+         budget: budget,
+         transactions: transactions
       )
    }
 
@@ -224,10 +220,7 @@ struct BudgetDetails: View {
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails()
-         .environmentObject(BudgetService(
-            budgetRepository: BudgetRepository(),
-            budgetCalculations: BudgetCalculations()
-         ))
+         .environmentObject(BudgetCalculator())
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }
