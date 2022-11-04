@@ -21,7 +21,7 @@
 "Daily_budget" = "Щоденний бюджет";
 "Budget_greeting" = "Слава Україні!";
 "Drag_up_hint" = "Свайпни до гори щоб побачити останні операції";
-"Drag_down_hint" = "Drag down to create new operation";
+"Drag_down_hint" = "Свайпни вниз, щоб створити нову операцію";
 "Home_category" = "Найвитратніші категорії";
 "Revenue_title" = "Дохід";
 "Expenses_title" = "Витрати";
@@ -50,3 +50,24 @@
 "Terms_of_Service" = "умовами обслуговування";
 "Privacy_Policy" = "політикою конфіденційності";
 "Restore_Purchases" = "Відновити покупки";
+
+
+"Transactions_title" = "Транзакції";
+
+"Cancel_title" = "Скасувати";
+"Done_title" = "Готово";
+
+"Other_title" = "Інше";
+
+"Charts_title" = "Графіки";
+"Period_title" = "Період";
+"Choose_title" = "Вибрати";
+"Budget_until_title" = "Бюджет до";
+"Save_title" = "Зберегти";
+"Close_title" = "Закрити";
+"Back_title" = "Назад";
+"OK_title" = "OK";
+
+"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
+
+"Bonsai_premium_features" = "Бонсай Преміум Фічі";

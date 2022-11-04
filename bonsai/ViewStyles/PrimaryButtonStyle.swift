@@ -18,7 +18,7 @@ struct PrimaryButtonStyle: ButtonStyle {
        var body: some View {
            configuration.label
              .padding()
-             .frame(maxWidth: UIScreen.main.bounds.width / 2)
+             .frame(maxWidth: UIScreen.main.bounds.width / 1.5)
              .foregroundColor(BonsaiColor.card)
              .font(BonsaiFont.title_headline_17)
              .background(BonsaiColor.mainPurple)

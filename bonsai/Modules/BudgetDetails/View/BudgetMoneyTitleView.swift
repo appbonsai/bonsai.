@@ -20,7 +20,7 @@ struct BudgetMoneyTitleView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
             Text("\(Currency.Validated.current.symbol)\(amount)")
                 .font(BonsaiFont.title_34)
                 .foregroundColor(BonsaiColor.text)
@@ -35,7 +35,7 @@ struct BudgetMoneyTitleView: View {
 struct BudgetTitleView_Previews: PreviewProvider {
     static var previews: some View {
         BudgetMoneyTitleView(title: "MoneyLeft", amount: 375, titleColor: BonsaiColor.secondary)
-            .previewLayout(.fixed(width: 171, height: 63)) //18 + 41 + 4
+            .previewLayout(.fixed(width: 171, height: 63))
             .background(BonsaiColor.card)
     }
 }

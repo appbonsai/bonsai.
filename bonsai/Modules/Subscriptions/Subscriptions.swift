@@ -63,7 +63,7 @@ struct Subscriptions: View {
                     Button(action: {
                         isPresented = false
                     }) {
-                        Text("Cancel")
+                        Text(L.cancel)
                             .foregroundColor(BonsaiColor.secondary)
                     }
                 }

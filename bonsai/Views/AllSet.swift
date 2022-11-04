@@ -30,11 +30,11 @@ struct AllSet: View {
                         .clipped()
                         .frame(width: 228, height: 228)
                     VStack {
-                        Text("All Set!")
+                       Text(L.AllSet_title)
                             .padding(.top, 7)
                             .font(.system(size: 28).bold())
                             .padding(.bottom, 2)
-                        Text("Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim ")
+                       Text(L.AllSet_text)
                             .font(.system(size: 17))
                             .padding([.leading, .trailing], 28)
                         
@@ -45,7 +45,7 @@ struct AllSet: View {
                            .onTapGesture {
                                isPresented = false
                            }
-                            Text("Close")
+                           Text(L.close)
                                 .foregroundColor(BonsaiColor.card)
                                 .font(.system(size: 17))
                                 .bold()

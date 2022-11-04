@@ -9,39 +9,52 @@ import SwiftUI
 import CoreData
 
 struct BudgetDetails: View {
-   @EnvironmentObject var budgetService: BudgetService
-   @FetchRequest(sortDescriptors: [SortDescriptor(\.date)]) var transactions: FetchedResults<Transaction>
+
+   @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
+   private var transactions: FetchedResults<Transaction>
+
+   @FetchRequest(sortDescriptors: [])
+   private var budgets: FetchedResults<Budget>
+   private var budget: Budget? { budgets.first }
+
+   private var totalMoneyLeft: NSDecimalNumber {
+      guard let budget else { return .zero }
+      return BudgetCalculator.left(
+         budget: budget,
+         transactions: transactions
+      )
+   }
+   private var totalMoneySpent: NSDecimalNumber {
+      guard let budget else { return .zero }
+      return BudgetCalculator.spent(
+         budget: budget,
+         transactions: transactions
+      )
+   }
+   private var moneyCanSpendDaily: NSDecimalNumber {
+      guard let budget else { return .zero }
+      return BudgetCalculator.daily(
+         budget: budget,
+         transactions: transactions
+      )
+   }
 
    @State var isPresented: Bool = false
    @State private var isOperationPresented = false
    @State private var isEditBudgetPresented = false
    @State private var isCreateBudgetPresented = false
 
-   func allTransactions() -> [NSDecimalNumber] {
-      guard let creationDate = budgetService.getBudget()?.createdDate else { return [] }
-      return transactions
-         .filter { $0.date > creationDate}
-         .map { $0.amount }
-   }
-
-   func expenseTransactions() -> [NSDecimalNumber] {
-      transactions
-         .filter { $0.type == .expense }
-         .map { $0.amount }
-   }
-
    private func budgetMoneyTitleView() -> some View {
-      HStack(alignment: .center, spacing: 16) {
-         // TODO: localization
+      HStack(alignment: .center, spacing: 24) {
          BudgetMoneyTitleView(
             title: L.Money_left,
-            amount: budgetService.getTotalMoneyLeft(with: allTransactions()),
+            amount: totalMoneyLeft,
             titleColor: BonsaiColor.green
          )
-         .padding(.leading, 16)
+         .padding(.leading, 24)
          BudgetMoneyTitleView(
             title: L.Money_spent,
-            amount: budgetService.getTotalMoneySpent(with: expenseTransactions()),
+            amount: totalMoneySpent,
             titleColor: BonsaiColor.secondary
          )
       }
@@ -50,22 +63,22 @@ struct BudgetDetails: View {
 
    private func budgetMoneyCardView() -> some View {
       HStack(alignment: .center, spacing: 16) {
-         // TODO: localization
          BudgetMoneyCardView(
             title: L.Total_budget,
-            amount: budgetService.getTotalBudget()
+            subtitle: "\(budget?.amount ?? .zero)\(Currency.Validated.current.symbol)",
+            titleColor: BonsaiColor.mainPurple,
+            icon: Image(Asset.accountBalance.name)
          )
-         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
 
          BudgetMoneyCardView(
             title: L.Daily_budget,
-            amount: budgetService.getMoneyCanSpendDaily(with: allTransactions())
+            subtitle: "\(moneyCanSpendDaily)\(Currency.Validated.current.symbol)",
+            titleColor: BonsaiColor.mainPurple,
+            icon: Image(systemName: "arrow.clockwise")
          )
-         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
       }
       .frame(height: 116)
       .padding(.horizontal, 16)
-      .padding(.top, -14)
    }
 
 
@@ -82,6 +95,40 @@ struct BudgetDetails: View {
                   }
                }
          )
+   }
+
+   private var createBudgetSuggestion: some View {
+      VStack {
+         if UserSettings.showDragDownHint {
+            DragDownHintView().frame(maxWidth: .infinity)
+         }
+         Spacer(minLength: 80)
+         VStack(alignment: .center, spacing: 12) {
+            Group {
+               Text("You don't own a budget yet")
+                  .foregroundColor(.white)
+                  .font(BonsaiFont.title_20)
+               GifImage("bonsai4_png")
+                  .frame(width: 200, height: 200)
+               Text(
+                    """
+                    Budget unlocks your beautiful bonsai tree
+                    """
+               )
+               .multilineTextAlignment(.center)
+               .foregroundColor(.white)
+               .font(BonsaiFont.body_17)
+               Button {
+                  isCreateBudgetPresented = true
+               } label: {
+                  Text("Start budgeting now!")
+               }
+               .buttonStyle(PrimaryButtonStyle())
+            }.padding(16)
+         }
+         .background(BonsaiColor.card)
+         .cornerRadius(13)
+      }
    }
 
    var body: some View {
@@ -105,43 +152,45 @@ struct BudgetDetails: View {
                }
             }
          } content: {
-            VStack(spacing: 0) {
-               if UserSettings.showDragDownHint {
-                  DragDownHintView().frame(maxWidth: .infinity)
-               }
-               HStack {
-                  BudgetNameView(
-                     name: budgetService.getBudget()?.name ?? "Budget"
-                  )
-                  .padding(.leading, 8)
-                  .padding(.top, 16)
+            if budget == nil {
+               createBudgetSuggestion
+            } else {
+               VStack(spacing: 0) {
+                  if UserSettings.showDragDownHint {
+                     DragDownHintView().frame(maxWidth: .infinity)
+                  }
+                  HStack {
+                     BudgetNameView(name: budget?.name ?? "Budget")
+                        .padding(.leading, 16)
+                        .padding(.top, 16)
 
-                  Spacer()
+                     Spacer()
 
-                  BonsaiImage.pencil
-                     .foregroundColor(.white)
-                     .font(.system(size: 22))
-                     .padding(.trailing, 12)
-                     .onTapGesture {
-                        if let _ = budgetService.getBudget() {
-                           isEditBudgetPresented = true
-                        } else {
-                           isCreateBudgetPresented = true
+                     BonsaiImage.pencil
+                        .foregroundColor(.white)
+                        .font(.system(size: 22))
+                        .padding(.trailing, 12)
+                        .onTapGesture {
+                           if budget != nil {
+                              isEditBudgetPresented = true
+                           }
                         }
-                     }
-               } // HStack
+                  } // HStack
 
-               budgetMoneyTitleView()
-                  .padding(.top, 16)
+                  budgetMoneyTitleView()
+                     .padding(.top, 32)
 
-               budgetMoneyCardView()
-                  .padding(.top, 32)
-            } // VStack
+                  budgetMoneyCardView()
+                     .padding(.top, 32)
+               } // VStack
+            }
          } // ActionScrollView
-         Spacer()
-         tapViewTransactions()
-            .frame(height: 148, alignment: .bottom)
-            .padding(.bottom, 24)
+         if budget != nil {
+            Spacer()
+            tapViewTransactions()
+               .frame(height: 148, alignment: .bottom)
+               .padding(.bottom, 24)
+         }
       }
       .popover(isPresented: $isPresented, content: {
          BudgetTransactions(isPresented: $isPresented)
@@ -153,14 +202,14 @@ struct BudgetDetails: View {
       }
       .popover(isPresented: $isEditBudgetPresented, content: {
          CreateEditBudget(
-            isCreateEditBudgetPresented: $isEditBudgetPresented,
-            kind: .edit
+            kind: .edit,
+            isCreateEditBudgetPresented: $isEditBudgetPresented
          )
       })
       .popover(isPresented: $isCreateBudgetPresented, content: {
          CreateEditBudget(
-            isCreateEditBudgetPresented: $isCreateBudgetPresented,
-            kind: .new
+            kind: .new,
+            isCreateEditBudgetPresented: $isCreateBudgetPresented
          )
       })
    }
@@ -169,10 +218,6 @@ struct BudgetDetails: View {
 struct BudgetDetails_Previews: PreviewProvider {
    static var previews: some View {
       BudgetDetails()
-         .environmentObject(BudgetService(
-            budgetRepository: BudgetRepository(),
-            budgetCalculations: BudgetCalculations()
-         ))
          .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
          .previewDisplayName("iPhone 12")
    }

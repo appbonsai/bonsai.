@@ -15,10 +15,10 @@
 "Onboarding_3_title" = "Рассчитывайте расходы";
 "Onboarding_3_description" = "Внимательно тратьте деньги, и вы приблизитесь к финансовой свободе.";
 
-"Money_left" = "Осталось денег";
-"Money_spent" = "Денег потрачено";
-"Total_budget" = "Общий бюджет";
-"Daily_budget" = "Ежедневный бюджет";
+"Money_left" = "Остаток";
+"Money_spent" = "Использовано";
+"Total_budget" = "Всего";
+"Daily_budget" = "Ежедневно";
 "Budget_greeting" = "Эй, а ты хорош!";
 "Drag_up_hint" = "Свайпни вверх чтобы увидеть транзакции";
 "Drag_down_hint" = "Свапни вниз чтобы создать транзакцию";
@@ -50,3 +50,22 @@
 "Terms_of_Service" = "условиями обслуживания";
 "Privacy_Policy" = "политикой конфиденциальности";
 "Restore_Purchases" = "Восстановить покупки";
+
+
+"Transactions_title" = "Транзакции";
+"Cancel_title" = "Отмена";
+"Done_title" = "Готово";
+"Other_title" = "Другое";
+
+"Charts_title" = "Графики";
+"Period_title" = "Период";
+"Choose_title" = "Выбрать";
+"Budget_until_title" = "Бюджет до";
+"Save_title" = "Сохранить";
+"Close_title" = "Закрыть";
+"Back_title" = "Назад";
+"OK_title" = "ОК";
+
+"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
+
+"Bonsai_premium_features" = "Бонсай Премиум Фичи";

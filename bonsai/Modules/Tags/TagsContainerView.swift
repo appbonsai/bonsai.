@@ -21,7 +21,8 @@ struct TagsContainerView: View {
       return selectedTags.count < limitedTags
    }
    
-   @FetchRequest(sortDescriptors: []) var tags: FetchedResults<Tag>
+   @FetchRequest(sortDescriptors: [])
+   var tags: FetchedResults<Tag>
    @Binding var selectedTags: OrderedSet<Tag>
    @Binding var isPresented: Bool
    @State var isCreateTagPresented: Bool = false

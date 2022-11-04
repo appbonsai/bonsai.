@@ -46,7 +46,7 @@ struct CreateTagView: View {
                   isPresented = false
                   completion?(nil)
                }) {
-                  Text("Cancel")
+                  Text(L.cancel)
                      .foregroundColor(BonsaiColor.secondary)
                }
             }
@@ -66,7 +66,7 @@ struct CreateTagView: View {
                   isPresented = false
                   completion?(tag)
                }) {
-                  Text("Done")
+                  Text(L.done)
                      .if($title.wrappedValue.isEmpty == false, transform: { text in
                         text.foregroundColor(BonsaiColor.secondary)
                      })

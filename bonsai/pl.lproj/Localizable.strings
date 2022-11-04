@@ -22,7 +22,7 @@
 "Daily_budget" = "Budżet dzienny";
 "Budget_greeting" = "Przystojniaku, dobrze ci idzie!";
 "Drag_up_hint" = "Przeciągnij w górę, aby zobaczyć swoje ostatnie operacje";
-"Drag_down_hint" = "Drag down to create new operation";
+"Drag_down_hint" = "Przeciągnij w dół, aby utworzyć nową operację";
 "Home_category" = "Najdroższe kategorie";
 
 "Revenue_title" = "Przychody";
@@ -52,3 +52,22 @@
 "Terms_of_Service" = "Warunki korzystania z usługi";
 "Privacy_Policy" = "Polityka prywatności";
 "Restore_Purchases" = "Przywróć zakupy";
+
+"Transactions_title" = "Transakcje";
+"Cancel_title" = "Anuluj";
+"Done_title" = "Gotowe";
+
+"Other_title" = "Inne";
+
+"Charts_title" = "Wykresy";
+"Okres_title" = "Okres";
+"Choose_title" = "Wybierz";
+"Budget_until_title" = "Budżet do";
+"Save_title" = "Zapisz";
+"Close_title" = "Zamknij";
+"Back_title" = "Wstecz";
+"OK_title" = "OK";
+
+"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
+
+"Bonsai_premium_features" = "Bonsai Premium Funkcje";

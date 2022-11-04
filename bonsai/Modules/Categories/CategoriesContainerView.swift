@@ -20,9 +20,7 @@ struct CategoriesContainerView: View {
       return categories.count < limitedCategories
    }
 
-   @FetchRequest(
-      sortDescriptors: [SortDescriptor(\.title)]
-   )
+   @FetchRequest(sortDescriptors: [SortDescriptor(\.title)])
    var categories: FetchedResults<Category>
 
    @Binding var selectedCategory: Category?

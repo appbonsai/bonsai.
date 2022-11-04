@@ -15,10 +15,10 @@
 "Onboarding_3_title" = "Be more mindful spending";
 "Onboarding_3_description" = "Be mindful spending, and you will be closer to financial freedom.";
 
-"Money_left" = "Money left";
-"Money_spent" = "Money spent";
-"Total_budget" = "Total budget";
-"Daily_budget" = "Daily budget";
+"Money_left" = "Remaining";
+"Money_spent" = "Used";
+"Total_budget" = "Total";
+"Daily_budget" = "Daily";
 "Budget_greeting" = "Hey, you are doing well!";
 "Drag_up_hint" = "Tap here to see your last operations";
 "Drag_down_hint" = "Drag down to create new operation";
@@ -50,3 +50,31 @@
 "Terms_of_Service" = "Terms of Service";
 "Privacy_Policy" = "Privacy Policy";
 "Restore_Purchases" = "Restore Purchases";
+
+
+"Transactions_title" = "Transactions";
+
+
+// Toolbar nav
+
+"Cancel_title" = "Cancel";
+"Done_title" = "Done";
+
+
+// Other
+
+"Other_title" = "Other";
+
+"Charts_title" = "Charts";
+"Period_title" = "Period";
+"Choose_title" = "Choose";
+"Budget_until_title" = "Budget until";
+"Save_title" = "Save";
+"Close_title" = "Close";
+"Back_title" = "Back";
+"OK_title" = "OK";
+
+"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
+
+
+"Bonsai_premium_features" = "Bonsai premium features";
