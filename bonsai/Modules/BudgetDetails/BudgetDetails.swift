@@ -163,7 +163,7 @@ struct BudgetDetails: View {
                   }
                   HStack {
                      BudgetNameView(name: budget?.name ?? "Budget")
-                        .padding(.leading, 8)
+                        .padding(.leading, 16)
                         .padding(.top, 16)
 
                      Spacer()
