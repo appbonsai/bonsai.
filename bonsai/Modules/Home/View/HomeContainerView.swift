@@ -135,6 +135,9 @@ struct HomeContainerView: View {
             } else {
                Spacer(minLength: 38)
             }
+            Text("Net Worth")
+               .font(BonsaiFont.subtitle_15)
+               .foregroundColor(BonsaiColor.text)
             HStack {
                Text(verbatim: "\(totalBalance()) \(Currency.Validated.current.symbol)")
                   .font(BonsaiFont.title_34)
