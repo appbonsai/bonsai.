@@ -1,33 +1,48 @@
 //
-//  BudgetTransactions.swift
+//  TransactionsList.swift
 //  bonsai
 //
 //  Created by hoang on 08.12.2021.
 //
+
 import OrderedCollections
 import SwiftUI
 
-struct VisualEffectView: UIViewRepresentable {
-   var effect: UIVisualEffect?
-   func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
-   func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
-}
+struct TransactionsList: View {
 
-struct BudgetTransactions: View {
+   enum kind { case all, budget }
+   let kind: kind
 
    @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
    var transactions: FetchedResults<Transaction>
 
-   func sortedTransactions() -> OrderedDictionary<String, [Transaction]> {
-      transactions.reduce(into: OrderedDictionary<String, [Transaction]>()) { partialResult, transaction in
-         let date = transaction.date.dateString()
-         if var arr = partialResult[date] {
-            arr.append(transaction)
-            partialResult[date] = arr
-         } else {
-            partialResult[date] = [transaction]
+   @FetchRequest(sortDescriptors: [])
+   private var budgets: FetchedResults<Budget>
+   private var budget: Budget? { budgets.first }
+
+   var allowedTransactions: any Sequence<Transaction> {
+      switch self.kind {
+      case .all:
+         return transactions
+      case .budget:
+         if let budget {
+            return transactions.onlyFromBudget(budget)
          }
+         return transactions
       }
+   }
+
+   func sortedTransactions() -> OrderedDictionary<String, [Transaction]> {
+      allowedTransactions
+         .reduce(into: OrderedDictionary<String, [Transaction]>()) { partialResult, transaction in
+            let date = transaction.date.dateString()
+            if var arr = partialResult[date] {
+               arr.append(transaction)
+               partialResult[date] = arr
+            } else {
+               partialResult[date] = [transaction]
+            }
+         }
    }
 
    @Binding var isPresented: Bool
@@ -67,10 +82,9 @@ struct BudgetTransactions: View {
    }
 }
 
-struct BudgetTransactions_Previews: PreviewProvider {
-
+struct TransactionsList_Previews: PreviewProvider {
    static var previews: some View {
-      BudgetTransactions(isPresented: .constant(true))
+      TransactionsList(kind: .all, isPresented: .constant(true))
       .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
       .previewDisplayName("iPhone 12")
    }

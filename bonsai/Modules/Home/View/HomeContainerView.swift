@@ -91,9 +91,9 @@ struct HomeContainerView: View {
    }
 
    func filterTransaction(by categories: [Category]) -> [Transaction] {
-      guard let creationDate = budget?.createdDate else { return [] }
+      guard let budget else { return [] }
       return transactions
-         .filter { $0.date > creationDate }
+         .onlyFromBudget(budget)
          .filter {
             if let category = $0.category {
                return categories.contains(category)
@@ -243,7 +243,7 @@ struct HomeContainerView: View {
          SettingsContainerView(isPresented: $isSettingPresented)
       })
       .popover(isPresented: $isTransactionsPresented, content: {
-         BudgetTransactions(isPresented: $isTransactionsPresented)
+         TransactionsList(kind: .all, isPresented: $isTransactionsPresented)
       })
       .onAppear {
          if Currency.Validated.userPreferenceCurrencyCode == nil {

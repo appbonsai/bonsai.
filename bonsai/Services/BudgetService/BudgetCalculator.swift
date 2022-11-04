@@ -16,7 +16,7 @@ final class BudgetCalculator: ObservableObject {
    ) -> NSDecimalNumber {
       (
          transactions
-            .filter { $0.date > budget.createdDate } // TODO: Period Ends scenario not supported
+            .onlyFromBudget(budget)
             .reduce(into: Decimal.zero) { partialResult, transaction in
                if transaction.type == .expense {
                   partialResult += abs(transaction.amount as Decimal)
@@ -79,5 +79,11 @@ final class BudgetCalculator: ObservableObject {
       } else {
          return sortedCategories
       }
+   }
+}
+
+extension Sequence where Element == Transaction {
+   func onlyFromBudget(_ budget: Budget) -> any Sequence<Transaction> {
+      filter { budget.createdDate <= $0.date } // TODO: Period Ends scenario not supported
    }
 }

@@ -193,7 +193,7 @@ struct BudgetDetails: View {
          }
       }
       .popover(isPresented: $isPresented, content: {
-         BudgetTransactions(isPresented: $isPresented)
+         TransactionsList(kind: .budget, isPresented: $isPresented)
       })
       .popover(isPresented: $isOperationPresented) {
          OperationDetails(isPresented: $isOperationPresented).onAppear {
