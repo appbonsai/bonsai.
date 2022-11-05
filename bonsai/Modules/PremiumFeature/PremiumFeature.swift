@@ -10,7 +10,7 @@ import SwiftUI
 struct PremiumFeature: View {
     @Binding var isPresented: Bool
     @State var isPresentedPremiumDescription: Bool = false
-    @State var premium: Premium = .init(name: "", description: "", icon: "", gifImage: "")
+   @State var premium: Premium = .init(name: "", description: "", icon: BonsaiImage.tag, gifImage: "")
 
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
@@ -61,25 +61,25 @@ struct PremiumFeature: View {
       .init(
          name: L.Unlimited_categories,
          description: L.Unlimited_categories_descriptions,
-         icon: "",
+         icon: BonsaiImage.folder,
          gifImage: "new_category"
       ),
         .init(
          name: L.Unlimited_tags,
          description: L.Unlimited_tags_descriptions,
-         icon: "",
+         icon: BonsaiImage.tag,
          gifImage: "new_tag"
         ),
       .init(
          name: L.Flexible_budget,
          description: L.Flexible_budget_descriptions,
-         icon: "",
+         icon: BonsaiImage.calendar,
          gifImage: "custom_budget"
       ),
         .init(
          name: L.No_ads,
          description: L.No_ads_descriptions,
-         icon: "",
+         icon: BonsaiImage.star,
          gifImage: "no_ads"
         )
     ]

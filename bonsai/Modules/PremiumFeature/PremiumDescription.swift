@@ -61,6 +61,6 @@ struct PremiumDescription: View {
 
 struct PremiumDescription_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumDescription(isPresented: .constant(true), premium: .constant(.init(name: "", description: "", icon: "", gifImage: "")))
+       PremiumDescription(isPresented: .constant(true), premium: .constant(.init(name: "", description: "", icon: BonsaiImage.tag, gifImage: "")))
     }
 }

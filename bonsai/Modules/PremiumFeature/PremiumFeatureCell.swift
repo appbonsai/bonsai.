@@ -23,7 +23,7 @@ struct PremiumFeatureCell: View {
             .foregroundColor(BonsaiColor.card)
             .overlay {
                 HStack {
-                    Image(Asset.accountBalanceWallet.name)
+                   premium.icon
                         .padding([.leading ,.trailing], 10)
                     
                     Text(premium.name)
@@ -46,13 +46,13 @@ struct PremiumFeatureCell: View {
 
 struct PremiumFeatureCell_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumFeatureCell(premium: .init(name: "", description: "", icon: "", gifImage: ""))
+       PremiumFeatureCell(premium: .init(name: "", description: "", icon: BonsaiImage.tag, gifImage: ""))
     }
 }
 
 struct Premium {
     let name: String
     let description: String
-    let icon: String
+    let icon: Image
     let gifImage: String
 }
