@@ -68,46 +68,49 @@
 "Back_title" = "Wstecz";
 "OK_title" = "OK";
 
-"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
 
-"Bonsai_premium_features" = "Bonsai Premium Funkcje";
+"delete_Budget_Confirmation" = "Czy na pewno chcesz usunąć ten budżet?";
 
-"unlock_budget" = "Budget unlocks your beautiful bonsai tree";
+"Bonsai_premium_features" = "Funkcje premium Bonsai";
 
-"create_budget" = "Start budgeting now!";
+"you_dont_own_a_budget_yet" = "Nie masz jeszcze budżetu";
 
-"choose_budget_period_or" = "or";
+"unlock_budget" = "Budżet odblokowuje twoje piękne drzewko bonsai";
 
-"choose_budget_period_custom" = "Custom";
+"create_budget" = "Rozpocznij budżetowanie już teraz!";
 
-"choose_budget_period_custom_premium" = "Custom period";
+"choose_budget_period_or" = "lub";
+
+"choose_budget_period_custom" = "Niestandardowy";
+
+"choose_budget_period_custom_premium" = "Okres niestandardowy";
 "choose_budget_period_premium" = "Premium";
 
-"Net_Worth" = "Net Worth";
+"Net_Worth" = "Wartość netto";
 
-"This_month" = "This month";
+"This_month" = "Ten miesiąc";
 
-"Learn_more" = "Learn more";
+"Learn_more" = "Dowiedz się więcej";
 
-"subscriptions_month" = "month";
+"subscriptions_month" = "miesiąc";
 
-"out of" = "out of";
+"out_of" = "poza";
 
 
-"premium_descriptions" = "Premium subscription unleashes full power of bonsai. No limits, no ads, custom icons and more";
+"premium_descriptions" = "Subskrypcja Premium uwalnia pełną moc bonsai. Bez ograniczeń, bez reklam, niestandardowych ikon i nie tylko";
 
-"premium_planDescription" = "With a premium subscription you get unlimited access to the functionality.";
+"premium_planDescription" = "Dzięki subskrypcji premium otrzymujesz nieograniczony dostęp do funkcjonalności.";
 
-// Premium_features
+// Funkcje_premium
 
-"Unlimited_categories" = "Unlimited categories";
-"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your transactions";
+"Unlimited_categories" = "Nieograniczone kategorie";
+"Unlimited_categories_descriptions" = "Możesz tworzyć nieograniczoną liczbę kategorii, możesz określić swoje transakcje";
 
-"Unlimited_tags" = "Unlimited tags";
-"Unlimited_tags_descriptions" = "Get unlimited opportunity to add tags for your needs";
+"Unlimited_tags" = "Nieograniczone tagi";
+"Unlimited_tags_descriptions" = "Uzyskaj nieograniczoną możliwość dodawania tagów do swoich potrzeb";
 
-"Flexible_budget" = "Flexible budget";
-"Flexible_budget_descriptions" = "Set flexible period days for budgets";
+"Flexible_budget" = "Elastyczny budżet";
+"Flexible_budget_descriptions" = "Ustaw dni elastycznego okresu dla budżetów";
 
-"No_ads" = "No ads";
-"No_ads_descriptions" = "You won't see ads. You truly don't need this";
+"No_ads" = "Brak reklam";
+"No_ads_descriptions" = "Nie zobaczysz reklam. Naprawdę tego nie potrzebujesz";

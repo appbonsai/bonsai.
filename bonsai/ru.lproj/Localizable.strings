@@ -66,6 +66,49 @@
 "Back_title" = "Назад";
 "OK_title" = "ОК";
 
-"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
 
 "Bonsai_premium_features" = "Бонсай Премиум Фичи";
+
+"delete_Budget_Confirmation" = "Вы уверены, что хотите удалить этот бюджет?";
+
+"you_dont_own_a_budget_yet" = "У вас еще нет бюджета";
+
+"unlock_budget" = "Бюджет открывает возможность увидеть ваше красивое дерево бонсай";
+
+"create_budget" = "Начните составлять бюджет прямо сейчас!";
+
+"choose_budget_period_or" = "или";
+
+"choose_budget_period_custom" = "Кастомный";
+
+"choose_budget_period_custom_premium" = "Кастомный период";
+"choose_budget_period_premium" = "Премиум";
+
+"Net_Worth" = "Собственное состояние";
+
+"This_month" = "Этот месяц";
+
+"Learn_more" = "Подробнее";
+
+"subscriptions_month" = "месяц";
+
+"out_of" = "из";
+
+
+"premium_descriptions" = "Премиум-подписка раскрывает всю мощь бонсай. Без ограничений, без рекламы, настраиваемых иконок и многого другого";
+
+"premium_planDescription" = "С премиальной подпиской вы получаете неограниченный доступ к функционалу.";
+
+// Premium_features
+
+"Unlimited_categories" = "Неограниченное количество категорий";
+"Unlimited_categories_descriptions" = "Вы можете создавать неограниченное количество категорий, не стесняйтесь указывать свои транзакции";
+
+"Unlimited_tags" = "Неограниченное количество тегов";
+"Unlimited_tags_descriptions" = "Получите неограниченную возможность добавлять теги для своих нужд";
+
+"Flexible_budget" = "Гибкий бюджет";
+"Flexible_budget_descriptions" = "Установите дни гибкого периода для бюджетов";
+
+"No_ads" = "Без рекламы";
+"No_ads_descriptions" = "Вы не увидите рекламу. Вам это действительно не нужно";

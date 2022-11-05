@@ -82,7 +82,7 @@ class LocalizeService {
     
    static let Bonsai_premium_features = "Bonsai_premium_features".localized()
    
-   static let ownBudget = "you_don't_own_a_budget_yet".localized()
+   static let ownBudget = "you_dont_own_a_budget_yet".localized()
    static let unlock_budget = "unlock_budget".localized()
    static let create_budget = "create_budget".localized()
 

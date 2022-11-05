@@ -68,8 +68,49 @@
 "Back_title" = "Quay lại";
 "OK_title" = "OK";
 
-"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
-
 
 "Bonsai_premium_features" = "Bonsai tính năng cao cấp";
 
+"delete_Budget_Confirmation" = "Bạn có chắc chắn muốn xóa ngân sách này không?";
+
+"you_dont_own_a_budget_yet" = "Bạn chưa có ngân sách";
+
+"unlock_budget" = "Ngân sách sẽ mở khóa cây bonsai đẹp của bạn";
+
+"create_budget" = "Bắt đầu lập ngân sách ngay bây giờ!";
+
+"select_budget_period_or" = "hoặc";
+
+"select_budget_period_custom" = "Tùy chỉnh";
+
+"select_budget_period_custom_premium" = "Thời gian tùy chỉnh";
+"select_budget_period_premium" = "Cao cấp";
+
+"Net_Worth" = "Giá trị thực";
+
+"This_month" = "Tháng này";
+
+"Learn_more" = "Tìm hiểu thêm";
+
+"subscribe_month" = "tháng";
+
+"out_of" = "từ";
+
+
+"premium_descriptions" = "Đăng ký trả phí giải phóng toàn bộ sức mạnh của cây cảnh. Không giới hạn, không quảng cáo, biểu tượng tùy chỉnh và hơn thế nữa";
+
+"premium_planDescription" = "Với đăng ký cao cấp, bạn có quyền truy cập không giới hạn vào chức năng.";
+
+// Tính năng cao cấp
+
+"Unlimited_categories" = "Danh mục không giới hạn";
+"Unlimited_categories_descriptions" = "Bạn có thể tạo danh mục không giới hạn, thoải mái chỉ định giao dịch của mình";
+
+"Unlimited_tags" = "Thẻ không giới hạn";
+"Unlimited_tags_descriptions" = "Nhận cơ hội không giới hạn để thêm thẻ theo nhu cầu của bạn";
+
+"Flex_budget" = "Ngân sách linh hoạt";
+"Flex_budget_descriptions" = "Đặt ngày trong khoảng thời gian linh hoạt cho ngân sách";
+
+"No_ads" = "Không có quảng cáo";
+"No_ads_descriptions" = "Bạn sẽ không thấy quảng cáo. Bạn thực sự không cần cái này";

@@ -78,7 +78,7 @@
 
 "Bonsai_premium_features" = "Bonsai premium features";
 
-"you_don't_own_a_budget_yet" = "You don't own a budget yet";
+"you_dont_own_a_budget_yet" = "You don't own a budget yet";
 
 "unlock_budget" = "Budget unlocks your beautiful bonsai tree";
 
@@ -99,7 +99,7 @@
 
 "subscriptions_month" = "month";
 
-"out of" = "out of";
+"out_of" = "out of";
 
 
 "premium_descriptions" = "Premium subscription unleashes full power of bonsai. No limits, no ads, custom icons and more";
