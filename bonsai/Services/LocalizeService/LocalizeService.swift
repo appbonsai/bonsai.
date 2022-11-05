@@ -112,5 +112,9 @@ class LocalizeService {
    static let Flexible_budget_descriptions = "Flexible_budget_descriptions".localized()
    static let No_ads = "No_ads".localized()
    static let No_ads_descriptions = "No_ads_descriptions".localized()
+   
+   static let special_for_UA_title = "special_for_UA_title".localized()
+   static let special_for_UA = "special_for_UA".localized()
+
 }
 

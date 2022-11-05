@@ -30,6 +30,10 @@ final class PurchaseService: ObservableObject {
           return String(describing: Self.self)
       }
    }
+   
+   var isUKRStoreFront: Bool {
+      storefront?.countryCode == UKR.typeName
+   }
     
    private let storefront = SKPaymentQueue.default().storefront
     
