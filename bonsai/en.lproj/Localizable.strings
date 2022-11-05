@@ -76,5 +76,46 @@
 
 "delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
 
-
 "Bonsai_premium_features" = "Bonsai premium features";
+
+"you_don't_own_a_budget_yet" = "You don't own a budget yet";
+
+"unlock_budget" = "Budget unlocks your beautiful bonsai tree";
+
+"create_budget" = "Start budgeting now!";
+
+"choose_budget_period_or" = "or";
+
+"choose_budget_period_custom" = "Custom";
+
+"choose_budget_period_custom_premium" = "Custom period";
+"choose_budget_period_premium" = "Premium";
+
+"Net_Worth" = "Net Worth";
+
+"This_month" = "This month";
+
+"Learn_more" = "Learn more";
+
+"subscriptions_month" = "month";
+
+"out of" = "out of";
+
+
+"premium_descriptions" = "Premium subscription unleashes full power of bonsai. No limits, no ads, custom icons and more";
+
+"premium_planDescription" = "With a premium subscription you get unlimited access to the functionality.";
+
+// Premium_features
+
+"Unlimited_categories" = "Unlimited categories";
+"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your transactions";
+
+"Unlimited_tags" = "Unlimited tags";
+"Unlimited_tags_descriptions" = "Get unlimited opportunity to add tags for your needs";
+
+"Flexible_budget" = "Flexible budget";
+"Flexible_budget_descriptions" = "Set flexible period days for budgets";
+
+"No_ads" = "No ads";
+"No_ads_descriptions" = "You won't see ads. You truly don't need this";

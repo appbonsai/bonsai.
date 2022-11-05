@@ -61,7 +61,7 @@ struct BudgetHeaderView: View {
                Text("\(Currency.Validated.current.symbol) \(getTotalMoneySpent())")
                   .font(BonsaiFont.title_28)
                   .foregroundColor(.white)
-               Text("out of \(Currency.Validated.current.symbol)\(getTotalBudgetAmount())")
+               Text("\(L.out_of) \(Currency.Validated.current.symbol)\(getTotalBudgetAmount())")
                   .font(BonsaiFont.body_15)
                   .fontWeight(.regular)
                   .foregroundColor(BonsaiColor.text)

@@ -105,14 +105,14 @@ struct BudgetDetails: View {
          Spacer(minLength: 80)
          VStack(alignment: .center, spacing: 12) {
             Group {
-               Text("You don't own a budget yet")
+               Text(L.ownBudget)
                   .foregroundColor(.white)
                   .font(BonsaiFont.title_20)
                GifImage("bonsai4_png")
                   .frame(width: 200, height: 200)
                Text(
                     """
-                    Budget unlocks your beautiful bonsai tree
+                    \(L.unlock_budget)
                     """
                )
                .multilineTextAlignment(.center)
@@ -121,7 +121,7 @@ struct BudgetDetails: View {
                Button {
                   isCreateBudgetPresented = true
                } label: {
-                  Text("Start budgeting now!")
+                  Text(L.create_budget)
                }
                .buttonStyle(PrimaryButtonStyle())
             }.padding(16)

@@ -28,7 +28,7 @@ struct PremiumFeature: View {
 
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .center) {
-                    Text("Premium subscription unleashes full power of bonsai. No limits, no ads, custom icons and more ")
+                   Text(L.premium_descriptions)
                         .frame(maxWidth: .infinity)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 17))
@@ -58,13 +58,36 @@ struct PremiumFeature: View {
     }
     
     let premiumFeatures: [Premium] = [
-        .init(name: "Unlimited categories", description: "You can create unlimited categories, feel free to specify your transactions", icon: "", gifImage: "new_category"),
-        .init(name: "Unlimited tags", description: "Get unlimited opportunity to add tags for your needs", icon: "", gifImage: "new_tag"),
-        .init(name: "Flexible budget", description: "Set flexible period days for budgets", icon: "", gifImage: "custom_budget"),
-//        .init(name: "Unlimited budgets", description: "Get unlimited opportunity to create budget for your needs", icon: "", gifImage: "new_tag"),
-//        .init(name: "Custom appearance", description: "Customize home background with your favourite tree, change icon of the app. ", icon: ""),
-        .init(name: "No ads", description: "You won't see ads. You truly don't need this", icon: "", gifImage: "no_ads")
+      .init(
+         name: L.Unlimited_categories,
+         description: L.Unlimited_categories_descriptions,
+         icon: "",
+         gifImage: "new_category"
+      ),
+        .init(
+         name: L.Unlimited_tags,
+         description: L.Unlimited_tags_descriptions,
+         icon: "",
+         gifImage: "new_tag"
+        ),
+      .init(
+         name: L.Flexible_budget,
+         description: L.Flexible_budget_descriptions,
+         icon: "",
+         gifImage: "custom_budget"
+      ),
+        .init(
+         name: L.No_ads,
+         description: L.No_ads_descriptions,
+         icon: "",
+         gifImage: "no_ads"
+        )
     ]
+   
+   /*
+    //        .init(name: "Unlimited budgets", description: "Get unlimited opportunity to create budget for your needs", icon: "", gifImage: "new_tag"),
+    //        .init(name: "Custom appearance", description: "Customize home background with your favourite tree, change icon of the app. ", icon: ""),
+    */
 }
 
 struct PremiumFeature_Previews: PreviewProvider {

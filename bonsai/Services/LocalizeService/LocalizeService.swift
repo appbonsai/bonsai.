@@ -78,5 +78,39 @@ class LocalizeService {
 
    static let deleteBudgetConfirmation = "delete_Budget_Confirmation".localized()
     
+    
+    
    static let Bonsai_premium_features = "Bonsai_premium_features".localized()
+   
+   static let ownBudget = "you_don't_own_a_budget_yet".localized()
+   static let unlock_budget = "unlock_budget".localized()
+   static let create_budget = "create_budget".localized()
+
+   static let choose_budget_period_or = "choose_budget_period_or".localized()
+   static let choose_budget_period_custom = "choose_budget_period_custom".localized()
+   
+   static let choose_budget_period_premium = "choose_budget_period_premium".localized()
+   
+   static let choose_budget_period_custom_premium = "choose_budget_period_custom_premium".localized()
+   
+   static let This_month = "This_month".localized()
+   
+   static let Net_Worth = "Net_Worth".localized()
+   static let Learn_more = "Learn_more".localized()
+   static let subscriptions_month = "subscriptions_month".localized()
+   static let out_of = "out_of".localized()
+
+   static let premium_descriptions = "premium_descriptions".localized()
+   static let premium_planDescription = "premium_planDescription".localized()
+   
+   static let Unlimited_categories = "Unlimited_categories".localized()
+   
+   static let Unlimited_categories_descriptions = "Unlimited_categories_descriptions".localized()
+   static let Unlimited_tags = "Unlimited_tags".localized()
+   static let Unlimited_tags_descriptions = "Unlimited_tags_descriptions".localized()
+   static let Flexible_budget = "Flexible_budget".localized()
+   static let Flexible_budget_descriptions = "Flexible_budget_descriptions".localized()
+   static let No_ads = "No_ads".localized()
+   static let No_ads_descriptions = "No_ads_descriptions".localized()
 }
+

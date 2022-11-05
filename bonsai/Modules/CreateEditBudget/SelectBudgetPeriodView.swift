@@ -78,14 +78,14 @@ struct SelectBudgetPeriodView: View {
                ForEach(items) { item in
                   if item == .custom {
                      VStack {
-                        Text("or")
+                        Text(L.choose_budget_period_or)
                         if isPremium {
                            DatePicker(
                               selection: $date,
                               in: Date().addingTimeInterval(24 * 60 * 60)...,
                               displayedComponents: [.date],
                               label: {
-                                 Text("Custom")
+                                 Text(L.choose_budget_period_custom)
                                     .font(BonsaiFont.body_15)
                                     .foregroundColor(.white)
                               }
@@ -120,11 +120,11 @@ struct SelectBudgetPeriodView: View {
                               .foregroundColor(BonsaiColor.card)
                               .overlay {
                                  HStack {
-                                    Text("Custom period")
+                                    Text(L.choose_budget_period_custom_premium)
                                        .font(BonsaiFont.body_15)
                                        .padding(.leading, 16)
                                     Spacer()
-                                    Text("Premium")
+                                    Text(L.choose_budget_period_premium)
                                        .font(BonsaiFont.subtitle_15)
                                        .foregroundColor(BonsaiColor.mainPurple)
                                        .padding(.trailing, 16)
