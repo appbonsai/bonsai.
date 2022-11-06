@@ -23,18 +23,18 @@ struct SettingsContainerView: View {
     
     
     private let others: [OtherRows] = [
-        .premiumFeature, .termsOfService, .privacyPolicy
+        .premiumFeature, .termsAndConditions, .privacyPolicy
     ]
 
     private enum OtherRows: String {
         case premiumFeature
-        case termsOfService
+        case termsAndConditions
         case privacyPolicy 
         
         var label: String {
             switch self {
             case .premiumFeature: return L.Bonsai_premium_features
-            case .termsOfService: return L.Terms_of_Service
+            case .termsAndConditions: return L.Terms_of_Service
             case .privacyPolicy: return L.Privacy_Policy
             }
         }
@@ -65,12 +65,12 @@ struct SettingsContainerView: View {
                       case .premiumFeature:
                          isPremiumSelected = true
                          
-                      case .termsOfService:
-                         openURL(URL(string: "https://www.google.com")!)
+                      case .termsAndConditions:
+                         openURL(URL(string: "https://www.craft.do/s/8qbSqHR1lisYl3")!)
                          
                          
                       case .privacyPolicy:
-                         openURL(URL(string: "https://www.apple.com")!)
+                         openURL(URL(string: "https://www.craft.do/s/H8euwSq2jDDABJ")!)
                          
                       }
                    }
