@@ -20,8 +20,7 @@ struct SelectBudgetPeriodView: View {
    @State var isSubscriptionsPresented: Bool = false
    
    private var isPremium: Bool {
-//      purchaseService.isSubscriptionActive
-      true
+      purchaseService.isSubscriptionActive
    }
 
    enum Period: Equatable, Identifiable {
