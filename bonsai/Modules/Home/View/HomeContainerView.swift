@@ -70,8 +70,17 @@ struct HomeContainerView: View {
          .round()
    }
 
-   func totalBalance() -> Int {
-      income().intValue - expense().intValue
+   func totalBalance() -> NSDecimalNumber {
+      transactions
+         .lazy
+         .reduce(into: NSDecimalNumber.zero, { partialResult, dec in
+            if dec.type == .expense {
+               partialResult = partialResult.subtracting(dec.amount)
+            } else if dec.type == .income {
+               partialResult = partialResult.adding(dec.amount)
+            }
+         })
+         .round()
    }
    
    func allTransactions() -> [NSDecimalNumber] {
@@ -114,10 +123,7 @@ struct HomeContainerView: View {
             return []
          }
       }()
-      return BudgetView(
-         categories: categories,
-         transactions: filterTransaction(by: categories)
-      )
+      return BudgetView(data: categories)
       .cornerRadius(13)
       .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
    }

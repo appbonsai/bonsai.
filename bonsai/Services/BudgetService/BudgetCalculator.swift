@@ -70,15 +70,19 @@ final class BudgetCalculator: ObservableObject {
    static func mostExpensiveCategories(
       budget: Budget,
       transactions: some Sequence<Transaction>
-   ) -> [Category] {
-      let sortedCategories = transactions
-         .sorted { $0.amount > $1.amount }
-         .compactMap { $0.category }
-      if sortedCategories.count > 3 {
-         return Array(sortedCategories[0...2])
-      } else {
-         return sortedCategories
+   ) -> Array<(Category, Decimal)> {
+
+      var totalExpensesByCategory: [Category: Decimal] = [:]
+      for transaction in transactions where transaction.type == .expense {
+         guard let category = transaction.category else { continue }
+         totalExpensesByCategory[category, default: .zero] += transaction.amount as Decimal
       }
+
+      return Array(totalExpensesByCategory
+         .lazy
+         .filter { $0.value > 0 }
+         .sorted { $0.value > $1.value }
+         .prefix(3))
    }
 }
 

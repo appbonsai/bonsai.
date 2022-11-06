@@ -36,9 +36,8 @@ struct CircularProgressView: View {
 }
 
 struct BudgetView: View {
-   
-   var categories: [Category]
-   var transactions: [Transaction]
+
+   let data: Array<(Category, Decimal)>
 
    @State var progress: Double = 0.7
 
@@ -53,7 +52,7 @@ struct BudgetView: View {
                .cornerRadius(13)
                .opacity(0.8)
 
-            if categories.count > 0 {
+            if data.count > 0 {
                Text(L.Home_category)
                   .font(BonsaiFont.subtitle_15)
                   .foregroundColor(BonsaiColor.text)
@@ -63,14 +62,11 @@ struct BudgetView: View {
             }
 
             VStack(spacing: 8) {
-               ForEach(categories, id: \.id) { category in
+               ForEach(data, id: \.0) { (category, amount) in
 
                   BudgetCellView(
                      title: category.title,
-                     amount: transactions
-                        .filter { $0.category == category && $0.type == .expense }
-                        .map { $0.amount.intValue }
-                        .reduce(0, +),
+                     amount: (amount as NSDecimalNumber).intValue,
                      color: category.color.asGradient,
                      icon: category.image
                   )
@@ -84,7 +80,7 @@ struct BudgetView: View {
 }
 struct BudgetView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetView(categories: [], transactions: [])
+        BudgetView(data: [])
             .previewLayout(.fixed(width: 358, height:330))
             .environmentObject(
                 BudgetCalculator()
