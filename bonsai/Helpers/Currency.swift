@@ -85,7 +85,7 @@ public extension Currency {
          set {
             let context = DataController.sharedInstance.container.viewContext
             UserPreferences(context: context, currencyCode: newValue.code)
-            try! context.save()
+            try? context.save()
          }
       }
 
