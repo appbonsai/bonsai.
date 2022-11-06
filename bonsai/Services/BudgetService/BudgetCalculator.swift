@@ -84,6 +84,26 @@ final class BudgetCalculator: ObservableObject {
          .sorted { $0.value > $1.value }
          .prefix(3))
    }
+   
+   static func calculatePercentDailyDifference(
+      budget: Budget,
+      transactions: any Sequence<Transaction>
+   ) -> NSDecimalNumber {
+      left(budget: budget, transactions: transactions)
+         .dividing(by: budget.amount)
+         .multiplying(by: 100)
+         .round()
+   }
+
+   static func calculatePercentDailyDifference(
+      currentDailyBudget: NSDecimalNumber,
+      startDailyBudget: NSDecimalNumber
+   ) -> NSDecimalNumber {
+      currentDailyBudget
+         .dividing(by: startDailyBudget)
+         .multiplying(by: 100)
+         .round()
+   }
 }
 
 extension Sequence where Element == Transaction {
