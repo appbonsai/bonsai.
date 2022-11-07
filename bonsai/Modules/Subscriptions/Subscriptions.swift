@@ -170,10 +170,10 @@ struct Subscriptions: View {
     }
     
     private func textGroup() -> some View {
-        let termsOfServiceUrl = "https://duckduckgo.com"
+        let termsOfServiceUrl = "https://www.craft.do/s/8qbSqHR1lisYl3"
         let termsOfServicelink = "[\(L.Terms_of_Service)](\(termsOfServiceUrl))"
         
-        let privacyPolicyUrl = "https://duckduckgo.com"
+        let privacyPolicyUrl = "https://www.craft.do/s/H8euwSq2jDDABJ"
         let privacyPolicylink = "[\(L.Privacy_Policy)](\(privacyPolicyUrl))"
         
         let text =
