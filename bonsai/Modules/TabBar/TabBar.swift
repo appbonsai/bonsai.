@@ -56,7 +56,7 @@ struct TabBar: View {
             .frame(width: proxy.size.width, height: proxy.size.height)
             .background {
                if budget != nil {
-                  GifImage("bonsai3_png")
+                  GifImage("bonsai_orange_png")
                      .offset(
                         x: {
                            if selection == 0 {

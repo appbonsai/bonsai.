@@ -108,7 +108,7 @@ struct BudgetDetails: View {
                Text(L.ownBudget)
                   .foregroundColor(.white)
                   .font(BonsaiFont.title_20)
-               GifImage("bonsai4_png")
+               GifImage("bonsai_purple_png")
                   .frame(width: 200, height: 200)
                Text(
                     """
