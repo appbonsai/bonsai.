@@ -54,6 +54,7 @@ enum BonsaiImage {
    
    static var star: Image { Image(systemName: "star.square") }
    
+   static var light: Image { Image(systemName: "light.max") }
 }
 
 enum BonsaiColor {

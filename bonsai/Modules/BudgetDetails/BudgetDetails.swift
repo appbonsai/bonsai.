@@ -43,6 +43,7 @@ struct BudgetDetails: View {
    @State private var isOperationPresented = false
    @State private var isEditBudgetPresented = false
    @State private var isCreateBudgetPresented = false
+   @State private var isSuggestionPresented = false
 
    private func budgetMoneyTitleView() -> some View {
       HStack(alignment: .center, spacing: 24) {
@@ -165,7 +166,16 @@ struct BudgetDetails: View {
                         .padding(.top, 16)
 
                      Spacer()
-
+                     BonsaiImage.light
+                        .foregroundColor(.white)
+                        .font(.system(size: 22))
+                        .padding(.trailing, 12)
+                        .onTapGesture {
+                           if budget != nil {
+                              isSuggestionPresented = true
+                           }
+                        }
+                     
                      BonsaiImage.pencil
                         .foregroundColor(.white)
                         .font(.system(size: 22))
@@ -212,6 +222,10 @@ struct BudgetDetails: View {
             isCreateEditBudgetPresented: $isCreateBudgetPresented
          )
       })
+      .popover(isPresented: $isSuggestionPresented, content: {
+         SuggestionTipView(isSuggestionPresented: $isSuggestionPresented)
+      })
+      
    }
 }
 
