@@ -21,7 +21,7 @@
 "Daily_budget" = "Щоденний бюджет";
 "Budget_greeting" = "Слава Україні!";
 "Drag_up_hint" = "Свайпни до гори щоб побачити останні операції";
-"Drag_down_hint" = "Drag down to create new operation";
+"Drag_down_hint" = "Свайпни вниз, щоб створити нову операцію";
 "Home_category" = "Найвитратніші категорії";
 "Revenue_title" = "Дохід";
 "Expenses_title" = "Витрати";
@@ -40,7 +40,7 @@
 "SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
 
 //TODO:
-"AllSet_text" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";
+"AllSet_text" = "Вітаємо! Тепер у вас є повний доступ до преміум-функціям Bonsai.";
 
 "Best_value" = "Найкраща пропозиція";
 "Choose_your_plan" = "Обері свій план";
@@ -50,3 +50,71 @@
 "Terms_of_Service" = "умовами обслуговування";
 "Privacy_Policy" = "політикою конфіденційності";
 "Restore_Purchases" = "Відновити покупки";
+
+
+"Transactions_title" = "Транзакції";
+
+"Cancel_title" = "Скасувати";
+"Done_title" = "Готово";
+
+"Other_title" = "Інше";
+
+"Charts_title" = "Графіки";
+"Period_title" = "Період";
+"Choose_title" = "Вибрати";
+"Budget_until_title" = "Бюджет до";
+"Save_title" = "Зберегти";
+"Close_title" = "Закрити";
+"Back_title" = "Назад";
+"OK_title" = "OK";
+
+
+"Bonsai_premium_features" = "Бонсай Преміум Фічі";
+
+"delete_Budget_Confirmation" = "Ви впевнені, що хочете видалити цей бюджет?";
+
+"you_dont_own_a_budget_yet" = "У вас ще немає бюджету";
+
+"unlock_budget" = "Бюджет відкриває ваше прекрасне дерево бонсай";
+
+"create_budget" = "Почніть складати бюджет зараз!";
+
+"choose_budget_period_or" = "або";
+
+"choose_budget_period_custom" = "Власний";
+
+"choose_budget_period_custom_premium" = "Власний період";
+"choose_budget_period_premium" = "Преміум";
+
+"Net_Worth" = "Чистий капітал";
+
+"This_month" = "Цей місяць";
+
+"Learn_more" = "Дізнатися більше";
+
+"subscriptions_month" = "місяць";
+
+"out_of" = "поза";
+
+
+"premium_descriptions" = "Преміум-підписка відкриває повну потужність бонсай. Жодних обмежень, жодної реклами, спеціальних значків тощо";
+
+"premium_planDescription" = "З преміум-підпискою ви отримуєте необмежений доступ до функцій.";
+
+// Premium_features
+
+"Unlimited_categories" = "Необмежена кількість категорій";
+"Unlimited_categories_descriptions" = "Ви можете створювати необмежену кількість категорій, не соромтеся вказувати свої транзакції";
+
+"Unlimited_tags" = "Необмежена кількість тегів";
+"Unlimited_tags_descriptions" = "Отримайте необмежену можливість додавати теги для ваших потреб";
+
+"Flexible_budget" = "Гнучкий бюджет";
+"Flexible_budget_descriptions" = "Установити гнучкі дні для бюджетів";
+
+"No_ads" = "Немає реклами";
+"No_ads_descriptions" = "Ви не побачите реклами. Вам це справді не потрібно";
+
+"special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
+
+"special_for_UA" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";

@@ -98,7 +98,7 @@ struct SubscriptionCell: View {
                             .bold()
                     }
             }
-                Text("\(subscription.pricePerMonth) / month")
+           Text("\(subscription.pricePerMonth) / \(L.subscriptions_month)")
                     .foregroundColor(BonsaiColor.purple3)
                     .font(.system(size: 14))
             Spacer()

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CircularProgressView: View {
+
    let progress: Double
 
    var body: some View {
@@ -35,8 +36,8 @@ struct CircularProgressView: View {
 }
 
 struct BudgetView: View {
-   var categories: [Category]
-   var transactions: [Transaction]
+
+   let data: Array<(Category, Decimal)>
 
    @State var progress: Double = 0.7
 
@@ -51,43 +52,38 @@ struct BudgetView: View {
                .cornerRadius(13)
                .opacity(0.8)
 
-            Text(L.Home_category)
-               .font(BonsaiFont.subtitle_15)
-               .foregroundColor(BonsaiColor.text)
-               .padding(.top, 16)
-               .padding(.horizontal, 16)
+            if data.count > 0 {
+               Text(L.Home_category)
+                  .font(BonsaiFont.subtitle_15)
+                  .foregroundColor(BonsaiColor.text)
+                  .padding(.top, 16)
+                  .padding(.horizontal, 16)
+                  .padding(.bottom, 8)
+            }
 
-            VStack(spacing: 0) {
-               ForEach(categories, id: \.id) { category in
+            VStack(spacing: 8) {
+               ForEach(data, id: \.0) { (category, amount) in
 
                   BudgetCellView(
                      title: category.title,
-                     amount: transactions
-                        .filter { $0.category == category && $0.type == .expense }
-                        .map { $0.amount.intValue }
-                        .reduce(0, +),
+                     amount: (amount as NSDecimalNumber).intValue,
                      color: category.color.asGradient,
                      icon: category.image
                   )
+                  .padding(.bottom, 8)
                }
             }
             .padding(.horizontal, 16)
-
-            Spacer()
          }
       }
    }
 }
 struct BudgetView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetView(categories: [], transactions: [])
+        BudgetView(data: [])
             .previewLayout(.fixed(width: 358, height:330))
             .environmentObject(
-                BudgetService(
-                    
-                    budgetRepository: BudgetRepository(),
-                    budgetCalculations: BudgetCalculations()
-                )
+                BudgetCalculator()
             )
     }
 }

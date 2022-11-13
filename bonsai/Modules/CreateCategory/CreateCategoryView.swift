@@ -111,7 +111,7 @@ struct CreateCategoryView: View {
                   isPresented = false
                   completion?(nil)
                }) {
-                  Text("Cancel")
+                  Text(L.cancel)
                      .foregroundColor(BonsaiColor.secondary)
                }
             }
@@ -145,7 +145,7 @@ struct CreateCategoryView: View {
                   isPresented = false
                   completion?(category)
                }) {
-                  Text("Done")
+                  Text(L.done)
                      .if(imageNotSelected == false && title.isEmpty == false, transform: { text in
                         text.foregroundColor(BonsaiColor.secondary)
                      })

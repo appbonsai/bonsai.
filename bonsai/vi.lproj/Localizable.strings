@@ -21,7 +21,7 @@
 "Daily_budget" = "Ngân sách hàng ngày";
 "Budget_greeting" = "Hey, bạn đang làm tốt!";
 "Drag_up_hint" = "Kéo lên để xem các thao tác cuối cùng của bạn";
-"Drag_down_hint" = "Drag down to create new operation";
+"Drag_down_hint" = "Kéo xuống để tạo giao dịch mới";
 "Home_category" = "Các thể loại đắt tiền nhất";
 "Revenue_title" = "Huê lợi";
 "Expenses_title" = "Chi phí";
@@ -40,8 +40,8 @@
 "SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
 
 //TODO:
-"AllSet_text" = "Tất cả các thiết lập
- text";
+
+"AllSet_text" = "Xin chúc mừng! Bây giờ bạn có toàn quyền truy cập vào chức năng cao cấp của Bonsai.";
 
 "Best_value" = "Giá trị tốt nhất";
 "Choose_your_plan" = "Chọn kế hoạch của bạn";
@@ -51,3 +51,70 @@
 "Terms_of_Service" = "Điều khoản dịch vụ ";
 "Privacy_Policy" = "Chính sách quyền riêng tư";
 "Restore_Purchases" = "Khôi phục các giao dịch mua";
+
+
+"Trans transaction_title" = "Giao dịch";
+"Cancel_title" = "Hủy";
+"Done_title" = "Xong";
+
+"Other_title" = "Khác";
+
+"Charts_title" = "Biểu đồ";
+"Period_title" = "Giai đoạn";
+"Choose_title" = "Chọn";
+"Budget_until_title" = "Ngân sách cho đến khi";
+"Save_title" = "Lưu";
+"Close_title" = "Đóng";
+"Back_title" = "Quay lại";
+"OK_title" = "OK";
+
+
+"Bonsai_premium_features" = "Bonsai tính năng cao cấp";
+
+"delete_Budget_Confirmation" = "Bạn có chắc chắn muốn xóa ngân sách này không?";
+
+"you_dont_own_a_budget_yet" = "Bạn chưa có ngân sách";
+
+"unlock_budget" = "Ngân sách sẽ mở khóa cây bonsai đẹp của bạn";
+
+"create_budget" = "Bắt đầu lập ngân sách ngay bây giờ!";
+
+"select_budget_period_or" = "hoặc";
+
+"select_budget_period_custom" = "Tùy chỉnh";
+
+"select_budget_period_custom_premium" = "Thời gian tùy chỉnh";
+"select_budget_period_premium" = "Cao cấp";
+
+"Net_Worth" = "Giá trị thực";
+
+"This_month" = "Tháng này";
+
+"Learn_more" = "Tìm hiểu thêm";
+
+"subscribe_month" = "tháng";
+
+"out_of" = "từ";
+
+
+"premium_descriptions" = "Đăng ký trả phí giải phóng toàn bộ sức mạnh của cây cảnh. Không giới hạn, không quảng cáo, biểu tượng tùy chỉnh và hơn thế nữa";
+
+"premium_planDescription" = "Với đăng ký cao cấp, bạn có quyền truy cập không giới hạn vào chức năng.";
+
+// Tính năng cao cấp
+
+"Unlimited_categories" = "Danh mục không giới hạn";
+"Unlimited_categories_descriptions" = "Bạn có thể tạo danh mục không giới hạn, thoải mái chỉ định giao dịch của mình";
+
+"Unlimited_tags" = "Thẻ không giới hạn";
+"Unlimited_tags_descriptions" = "Nhận cơ hội không giới hạn để thêm thẻ theo nhu cầu của bạn";
+
+"Flex_budget" = "Ngân sách linh hoạt";
+"Flex_budget_descriptions" = "Đặt ngày trong khoảng thời gian linh hoạt cho ngân sách";
+
+"No_ads" = "Không có quảng cáo";
+"No_ads_descriptions" = "Bạn sẽ không thấy quảng cáo. Bạn thực sự không cần cái này";
+
+"special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
+
+"special_for_UA" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";

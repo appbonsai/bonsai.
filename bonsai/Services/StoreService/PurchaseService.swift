@@ -30,6 +30,10 @@ final class PurchaseService: ObservableObject {
           return String(describing: Self.self)
       }
    }
+   
+   var isUKRStoreFront: Bool {
+      storefront?.countryCode == UKR.typeName
+   }
     
    private let storefront = SKPaymentQueue.default().storefront
     
@@ -69,7 +73,9 @@ final class PurchaseService: ObservableObject {
             }
             if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
                self.isSubscriptionActive = allEntitlements.isActive
-               self.isShownAllSet = true
+               if allEntitlements.isActive {
+                  self.isShownAllSet = true
+               }
                completion()
             }
          }
@@ -84,7 +90,9 @@ final class PurchaseService: ObservableObject {
          }
          if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
             self.isSubscriptionActive = allEntitlements.isActive
-            self.isShownAllSet = true
+            if allEntitlements.isActive {
+               self.isShownAllSet = true
+            }
             completion()
          } 
       }

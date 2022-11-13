@@ -22,7 +22,7 @@
 "Daily_budget" = "Budżet dzienny";
 "Budget_greeting" = "Przystojniaku, dobrze ci idzie!";
 "Drag_up_hint" = "Przeciągnij w górę, aby zobaczyć swoje ostatnie operacje";
-"Drag_down_hint" = "Drag down to create new operation";
+"Drag_down_hint" = "Przeciągnij w dół, aby utworzyć nową operację";
 "Home_category" = "Najdroższe kategorie";
 
 "Revenue_title" = "Przychody";
@@ -42,7 +42,7 @@
 "SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
 
 //TODO:
-"AllSet_text" = "Wszystkie Zestawy text";
+"AllSet_text" = "Gratulacje! Teraz masz pełny dostęp do funkcji premium Bonsai.";
 
 "Best_value" = "Najlepsza wartość";
 "Choose_your_plan" = "Wybierz swój plan";
@@ -52,3 +52,69 @@
 "Terms_of_Service" = "Warunki korzystania z usługi";
 "Privacy_Policy" = "Polityka prywatności";
 "Restore_Purchases" = "Przywróć zakupy";
+
+"Transactions_title" = "Transakcje";
+"Cancel_title" = "Anuluj";
+"Done_title" = "Gotowe";
+
+"Other_title" = "Inne";
+
+"Charts_title" = "Wykresy";
+"Okres_title" = "Okres";
+"Choose_title" = "Wybierz";
+"Budget_until_title" = "Budżet do";
+"Save_title" = "Zapisz";
+"Close_title" = "Zamknij";
+"Back_title" = "Wstecz";
+"OK_title" = "OK";
+
+
+"delete_Budget_Confirmation" = "Czy na pewno chcesz usunąć ten budżet?";
+
+"Bonsai_premium_features" = "Funkcje premium Bonsai";
+
+"you_dont_own_a_budget_yet" = "Nie masz jeszcze budżetu";
+
+"unlock_budget" = "Budżet odblokowuje twoje piękne drzewko bonsai";
+
+"create_budget" = "Rozpocznij budżetowanie już teraz!";
+
+"choose_budget_period_or" = "lub";
+
+"choose_budget_period_custom" = "Niestandardowy";
+
+"choose_budget_period_custom_premium" = "Okres niestandardowy";
+"choose_budget_period_premium" = "Premium";
+
+"Net_Worth" = "Wartość netto";
+
+"This_month" = "Ten miesiąc";
+
+"Learn_more" = "Dowiedz się więcej";
+
+"subscriptions_month" = "miesiąc";
+
+"out_of" = "poza";
+
+
+"premium_descriptions" = "Subskrypcja Premium uwalnia pełną moc bonsai. Bez ograniczeń, bez reklam, niestandardowych ikon i nie tylko";
+
+"premium_planDescription" = "Dzięki subskrypcji premium otrzymujesz nieograniczony dostęp do funkcjonalności.";
+
+// Funkcje_premium
+
+"Unlimited_categories" = "Nieograniczone kategorie";
+"Unlimited_categories_descriptions" = "Możesz tworzyć nieograniczoną liczbę kategorii, możesz określić swoje transakcje";
+
+"Unlimited_tags" = "Nieograniczone tagi";
+"Unlimited_tags_descriptions" = "Uzyskaj nieograniczoną możliwość dodawania tagów do swoich potrzeb";
+
+"Flexible_budget" = "Elastyczny budżet";
+"Flexible_budget_descriptions" = "Ustaw dni elastycznego okresu dla budżetów";
+
+"No_ads" = "Brak reklam";
+"No_ads_descriptions" = "Nie zobaczysz reklam. Naprawdę tego nie potrzebujesz";
+
+"special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
+
+"special_for_UA" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";

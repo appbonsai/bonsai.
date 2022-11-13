@@ -23,6 +23,7 @@ struct GifImage: UIViewRepresentable {
         webView.isOpaque = false
         webView.backgroundColor = .clear
         webView.scrollView.backgroundColor = .clear
+       webView.isUserInteractionEnabled = false
               
        if let url = Bundle.main.url(forResource: name, withExtension: "png") {
           let data = try! Data(contentsOf: url)

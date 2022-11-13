@@ -83,7 +83,9 @@ public extension Currency {
             }
          }
          set {
-            userPreferenceCurrencyCode = newValue.code
+            let context = DataController.sharedInstance.container.viewContext
+            UserPreferences(context: context, currencyCode: newValue.code)
+            try? context.save()
          }
       }
 
@@ -97,8 +99,13 @@ public extension Currency {
          return set
       }
 
-      @UserDefault("Currency.Validated.userPreferenceCurrencyCode")
-      static var userPreferenceCurrencyCode: String?
+      static var userPreferenceCurrencyCode: String? {
+         try? DataController.sharedInstance.container
+            .viewContext
+            .fetch(UserPreferences.fetchRequest())
+            .first?
+            .currencyCode
+      }
 
       // MARK: - Identifiable
 

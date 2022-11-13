@@ -63,7 +63,7 @@ struct Subscriptions: View {
                     Button(action: {
                         isPresented = false
                     }) {
-                        Text("Cancel")
+                        Text(L.cancel)
                             .foregroundColor(BonsaiColor.secondary)
                     }
                 }
@@ -150,13 +150,13 @@ struct Subscriptions: View {
                     .bold()
                     .foregroundColor(BonsaiColor.purple6)
                 
-                Text("With a premium subscription you get unlimited access to the functionality.")
+               Text(L.premium_planDescription)
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
                     .foregroundColor(BonsaiColor.purple6)
                     .padding(.top, -2)
                     .padding(.horizontal)
-                let learnMore = Text("Learn more")
+               let learnMore = Text(L.Learn_more)
                     .bold()
                     .foregroundColor(BonsaiColor.blueLight)
                     .shimmering(duration: 2.5)
@@ -170,10 +170,10 @@ struct Subscriptions: View {
     }
     
     private func textGroup() -> some View {
-        let termsOfServiceUrl = "https://duckduckgo.com"
+        let termsOfServiceUrl = "https://www.craft.do/s/8qbSqHR1lisYl3"
         let termsOfServicelink = "[\(L.Terms_of_Service)](\(termsOfServiceUrl))"
         
-        let privacyPolicyUrl = "https://duckduckgo.com"
+        let privacyPolicyUrl = "https://www.craft.do/s/H8euwSq2jDDABJ"
         let privacyPolicylink = "[\(L.Privacy_Policy)](\(privacyPolicyUrl))"
         
         let text =

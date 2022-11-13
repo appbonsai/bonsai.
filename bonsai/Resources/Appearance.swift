@@ -49,6 +49,12 @@ enum BonsaiImage {
    static var textformatAlt: Image { Image(systemName: "textformat.alt") }
    static var pencil: Image { Image(systemName: "rectangle.and.pencil.and.ellipsis") }
    static var settings: Image { Image(systemName: "slider.horizontal.3") }
+   
+   static var folder: Image { Image(systemName: "folder.fill") }
+   
+   static var star: Image { Image(systemName: "star.square") }
+   
+   static var light: Image { Image(systemName: "light.max") }
 }
 
 enum BonsaiColor {

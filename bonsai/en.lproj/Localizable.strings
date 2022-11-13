@@ -15,10 +15,10 @@
 "Onboarding_3_title" = "Be more mindful spending";
 "Onboarding_3_description" = "Be mindful spending, and you will be closer to financial freedom.";
 
-"Money_left" = "Money left";
-"Money_spent" = "Money spent";
-"Total_budget" = "Total budget";
-"Daily_budget" = "Daily budget";
+"Money_left" = "Remaining";
+"Money_spent" = "Used";
+"Total_budget" = "Total";
+"Daily_budget" = "Daily";
 "Budget_greeting" = "Hey, you are doing well!";
 "Drag_up_hint" = "Tap here to see your last operations";
 "Drag_down_hint" = "Drag down to create new operation";
@@ -40,13 +40,87 @@
 "SelectCurrencyPage.Choose_default_currency" = "Choose default currency";
 
 //TODO:
-"AllSet_text" = "AllSet text";
+"AllSet_text" = "Congratulations! Now you have full access to Bonsai premium function.";
 
 "Best_value" = "Best value";
 "Choose_your_plan" = "Choose your plan";
 
 "Subscription_description" = "By subscribing you agree to our ";
 "Merge_And" = " and ";
-"Terms_of_Service" = "Terms of Service";
+"Terms_of_Service" = "Terms & Conditions";
 "Privacy_Policy" = "Privacy Policy";
 "Restore_Purchases" = "Restore Purchases";
+
+
+"Transactions_title" = "Transactions";
+
+
+// Toolbar nav
+
+"Cancel_title" = "Cancel";
+"Done_title" = "Done";
+
+
+// Other
+
+"Other_title" = "Other";
+
+"Charts_title" = "Charts";
+"Period_title" = "Period";
+"Choose_title" = "Choose";
+"Budget_until_title" = "Budget until";
+"Save_title" = "Save";
+"Close_title" = "Close";
+"Back_title" = "Back";
+"OK_title" = "OK";
+
+"delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
+
+"Bonsai_premium_features" = "Bonsai premium features";
+
+"you_dont_own_a_budget_yet" = "You don't own a budget yet";
+
+"unlock_budget" = "Budget unlocks your beautiful bonsai tree";
+
+"create_budget" = "Start budgeting now!";
+
+"choose_budget_period_or" = "or";
+
+"choose_budget_period_custom" = "Custom";
+
+"choose_budget_period_custom_premium" = "Custom period";
+"choose_budget_period_premium" = "Premium";
+
+"Net_Worth" = "Net Worth";
+
+"This_month" = "This month";
+
+"Learn_more" = "Learn more";
+
+"subscriptions_month" = "month";
+
+"out_of" = "out of";
+
+
+"premium_descriptions" = "Premium subscription unleashes full power of bonsai. No limits, no ads, custom icons and more";
+
+"premium_planDescription" = "With a premium subscription you get unlimited access to the functionality.";
+
+// Premium_features
+
+"Unlimited_categories" = "Unlimited categories";
+"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your transactions";
+
+"Unlimited_tags" = "Unlimited tags";
+"Unlimited_tags_descriptions" = "Get unlimited opportunity to add tags for your needs";
+
+"Flexible_budget" = "Flexible budget";
+"Flexible_budget_descriptions" = "Set flexible period days for budgets";
+
+"No_ads" = "No ads";
+"No_ads_descriptions" = "You won't see ads. You truly don't need this";
+
+
+"special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
+
+"special_for_UA" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";

@@ -23,13 +23,21 @@ struct SettingsContainerView: View {
     
     
     private let others: [OtherRows] = [
-        .premiumFeature, .termsOfService, .privacyPolicy
+        .premiumFeature, .termsAndConditions, .privacyPolicy
     ]
 
     private enum OtherRows: String {
-        case premiumFeature = "Bonsai premium features"
-        case termsOfService = "Terms of Service"
-        case privacyPolicy = "Privacy Policy"
+        case premiumFeature
+        case termsAndConditions
+        case privacyPolicy 
+        
+        var label: String {
+            switch self {
+            case .premiumFeature: return L.Bonsai_premium_features
+            case .termsAndConditions: return L.Terms_of_Service
+            case .privacyPolicy: return L.Privacy_Policy
+            }
+        }
     }
     
     var body: some View {
@@ -44,10 +52,10 @@ struct SettingsContainerView: View {
              //            }
              //            .listRowBackground(BonsaiColor.card)
              //
-             Section(header: Text("other")) {
+             Section(header: Text(L.other)) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
                    HStack {
-                      Text(item.rawValue)
+                      Text(item.label)
                       Spacer()
                    }
                    .contentShape(Rectangle())
@@ -57,12 +65,12 @@ struct SettingsContainerView: View {
                       case .premiumFeature:
                          isPremiumSelected = true
                          
-                      case .termsOfService:
-                         openURL(URL(string: "https://www.google.com")!)
+                      case .termsAndConditions:
+                         openURL(URL(string: "https://www.craft.do/s/8qbSqHR1lisYl3")!)
                          
                          
                       case .privacyPolicy:
-                         openURL(URL(string: "https://www.apple.com")!)
+                         openURL(URL(string: "https://www.craft.do/s/H8euwSq2jDDABJ")!)
                          
                       }
                    }
@@ -80,7 +88,7 @@ struct SettingsContainerView: View {
                 Button(action: {
                    isPresented = false
                 }) {
-                   Text("Cancel")
+                   Text(L.cancel)
                       .foregroundColor(BonsaiColor.secondary)
                 }
              }
