@@ -66,7 +66,7 @@ struct SettingsContainerView: View {
                          isPremiumSelected = true
                          
                       case .termsAndConditions:
-                         openURL(URL(string: "https://www.craft.do/s/8qbSqHR1lisYl3")!)
+                         openURL(URL(string: "https://www.craft.do/s/nk6c7jUpWgPhQg")!)
                          
                          
                       case .privacyPolicy:
