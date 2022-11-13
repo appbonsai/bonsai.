@@ -46,7 +46,7 @@ extension ChartsView {
       return Double(Int(truncating: amount) * 100 / total)
    }
 
-   func income() -> NSDecimalNumber {
+   private func income() -> NSDecimalNumber {
       transactions.reduce(into: [Transaction]()) { partialResult, transaction in
          partialResult.append(transaction)
       }
@@ -57,7 +57,7 @@ extension ChartsView {
       })
    }
 
-   func expense() -> NSDecimalNumber {
+   private func expense() -> NSDecimalNumber {
       transactions.reduce(into: [Transaction]()) { partialResult, transaction in
          partialResult.append(transaction)
       }
@@ -76,7 +76,7 @@ extension ChartsView {
                    leftTitle: "Amount (\(Currency.Validated.current.symbol))")
    }
 
-   func separateForMonth() -> OrderedDictionary<String, Double> {
+   private func separateForMonth() -> OrderedDictionary<String, Double> {
       var dic: OrderedDictionary<String, Double> = [:]
       transactions.forEach {
          dic[$0.date.monthName] = 0
