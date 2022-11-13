@@ -20,6 +20,7 @@ extension ChartsView {
                     sliceData.categoryTitle == transaction.category?.title
                 }) {
                     pieChartSliceData[index].amount += transaction.amount.doubleValue
+                    pieChartSliceData[index].percentages = countPercantage(using: Int(pieChartSliceData[index].amount))
                 } else {
                     pieChartSliceData.append(
                         PieChartSliceData(
@@ -28,7 +29,7 @@ extension ChartsView {
                             categoryTitle: (transaction.category?.title ?? "No Category"),
                             icon: (transaction.category?.image ?? .icon(.noCategory)),
                             amount: transaction.amount.doubleValue,
-                            percentages: countPercantage(using: transaction.amount),
+                            percentages: countPercantage(using: transaction.amount.intValue),
                             pieSlice: nil
                         )
                     )
@@ -51,13 +52,14 @@ extension ChartsView {
         )
     }
     
-    private func countPercantage(using amount: NSDecimalNumber) -> Double {
+    private func countPercantage(using amount: Int) -> Double {
         let total = transactions
             .filter {$0.date > Date().startOfMonth }
+            .filter { $0.type == .expense }
             .map { $0.amount.intValue }
             .reduce(0, +)
         
-        return Double(Int(truncating: amount) * 100 / total)
+        return Double(amount * 100 / total)
     }
     
     private func income() -> NSDecimalNumber {
