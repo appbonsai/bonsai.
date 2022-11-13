@@ -27,7 +27,7 @@ struct PieChartSliceData: Identifiable {
     let color: Color
     let categoryTitle: String
     let icon: Category.Image
-    let amount: Double
+    var amount: Double
     let percentages: Double
     var pieSlice: PieSlice? 
     let id = UUID()
