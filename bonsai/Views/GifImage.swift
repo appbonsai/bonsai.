@@ -34,7 +34,6 @@ struct GifImage: UIViewRepresentable {
         URLCache.shared.diskCapacity = 0
         URLCache.shared.memoryCapacity = 0
         loadGif(webView: uiView)
-        uiView.reload()
     }
     
     private func loadGif(webView: WKWebView) {
