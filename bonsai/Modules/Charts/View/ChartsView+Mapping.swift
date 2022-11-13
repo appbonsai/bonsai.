@@ -15,6 +15,7 @@ extension ChartsView {
          pieChartSlices:
             transactions
             .filter {$0.date > Date().startOfMonth }
+            .filter { $0.category != nil } 
             .map { PieChartSliceData(
                disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
                color: ($0.category?.color ?? .noCategory).asColor,
