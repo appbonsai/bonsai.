@@ -76,7 +76,7 @@ public class Transaction: NSManagedObject, Identifiable {
       self.account = account
       self.type = type
       self.currency = currency
-      tags.forEach(addToTags(_:))
+      self.addToTags(tags as NSSet)
    }
 
    func update(
@@ -111,8 +111,8 @@ public class Transaction: NSManagedObject, Identifiable {
          self.currency = currency
       }
       if let tags = tags, self.tags != tags {
-         self.tags.forEach(removeFromTags(_:))
-         tags.forEach(addToTags(_:))
+         removeFromTags(self.tags as NSSet)
+         addToTags(tags as NSSet)
       }
    }
 
@@ -121,11 +121,6 @@ public class Transaction: NSManagedObject, Identifiable {
    }
 
    // MARK: Generated accessors for tags
-   @objc(addTagsObject:)
-   @NSManaged public func addToTags(_ value: Tag)
-
-   @objc(removeTagsObject:)
-   @NSManaged public func removeFromTags(_ value: Tag)
 
    @objc(addTags:)
    @NSManaged public func addToTags(_ values: NSSet)
