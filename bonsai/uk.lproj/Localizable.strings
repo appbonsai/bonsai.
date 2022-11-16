@@ -45,11 +45,16 @@
 "Best_value" = "Найкраща пропозиція";
 "Choose_your_plan" = "Обері свій план";
 
+"Subscription_description_1" = "Можна скасувати у будь-який час. Передплата автоматично продовжується.";
 "Subscription_description" = "Підписуючись, ви погоджуєтесь з нашими ";
 "Merge_And" = " та ";
 "Terms_of_Service" = "умовами обслуговування";
 "Privacy_Policy" = "політикою конфіденційності";
 "Restore_Purchases" = "Відновити покупки";
+
+"Due" = "Оплата";
+"Due_Today" = "Оплата сьогодні";
+"Days_Free" = "(%@ днів безкоштовно)";
 
 
 "Transactions_title" = "Транзакції";

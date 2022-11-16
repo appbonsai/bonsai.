@@ -46,11 +46,16 @@
 "Best_value" = "Лучшее предложение";
 "Choose_your_plan" = "Выбери свой план";
 
+"Subscription_description_1" = "Можно отменить в любое время. Подписка автоматически продлевается.";
 "Subscription_description" = "Подписываясь, вы соглашаетесь с нашими ";
 "Merge_And" = " и ";
 "Terms_of_Service" = "условиями обслуживания";
 "Privacy_Policy" = "политикой конфиденциальности";
 "Restore_Purchases" = "Восстановить покупки";
+
+"Due" = "Оплата";
+"Due_Today" = "Оплата сегодня";
+"Days_Free" = "(%@ дней бесплатно)";
 
 
 "Transactions_title" = "Транзакции";

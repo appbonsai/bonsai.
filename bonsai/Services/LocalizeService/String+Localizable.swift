@@ -8,7 +8,11 @@
 import Foundation
 
 extension String {
-    func localized() -> String {
-        NSLocalizedString(self, tableName: "Localizable", bundle: .main, value: self, comment: self)
+   func localized(args: [String] = []) -> String {
+      let localizedString = NSLocalizedString(self, tableName: "Localizable", bundle: .main, value: self, comment: self)
+      if args.isEmpty == false {
+         return String(format: localizedString, "7")
+      }
+      return localizedString
     }
 }

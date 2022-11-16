@@ -47,11 +47,16 @@
 "Best_value" = "Najlepsza wartość";
 "Choose_your_plan" = "Wybierz swój plan";
 
+"Subscription_description_1" = "Anuluj w dowolnym momencie. Subskrypcja odnawia się automatycznie.";
 "Subscription_description" = "Subskrybując wyrażasz zgodę na nasze ";
 "Merge_And" = " i ";
 "Terms_of_Service" = "Warunki korzystania z usługi";
 "Privacy_Policy" = "Polityka prywatności";
 "Restore_Purchases" = "Przywróć zakupy";
+
+"Due" = "Należny";
+"Due_Today" = "Do dziś";
+"Days_Free" = "(%@ dni za darmo)";
 
 "Transactions_title" = "Transakcje";
 "Cancel_title" = "Anuluj";

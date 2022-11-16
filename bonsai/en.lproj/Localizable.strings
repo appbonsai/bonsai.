@@ -45,12 +45,16 @@
 "Best_value" = "Best value";
 "Choose_your_plan" = "Choose your plan";
 
+"Subscription_description_1" = "Cancel anytime. Subscription auto-renews.";
 "Subscription_description" = "By subscribing you agree to our ";
 "Merge_And" = " and ";
 "Terms_of_Service" = "Terms & Conditions";
 "Privacy_Policy" = "Privacy Policy";
 "Restore_Purchases" = "Restore Purchases";
 
+"Due" = "Due";
+"Due_Today" = "Due today";
+"Days_Free" = "(%@ days free)";
 
 "Transactions_title" = "Transactions";
 

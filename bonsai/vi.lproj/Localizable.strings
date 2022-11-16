@@ -46,12 +46,16 @@
 "Best_value" = "Giá trị tốt nhất";
 "Choose_your_plan" = "Chọn kế hoạch của bạn";
 
+"Subscription_description_1" = "Hủy bất cứ lúc nào. Đăng ký tự động gia hạn.";
 "Subscription_description" = "Bằng cách đăng ký, bạn đồng ý với  ";
 "Merge_And" = " và ";
 "Terms_of_Service" = "Điều khoản dịch vụ ";
 "Privacy_Policy" = "Chính sách quyền riêng tư";
 "Restore_Purchases" = "Khôi phục các giao dịch mua";
 
+"Due" = "Quá hạn";
+"Due_Today" = "Đến hạn hôm nay";
+"Days_Free" = "(%@ ngày miễn phí)";
 
 "Trans transaction_title" = "Giao dịch";
 "Cancel_title" = "Hủy";

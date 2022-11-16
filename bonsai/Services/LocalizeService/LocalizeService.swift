@@ -46,11 +46,16 @@ class LocalizeService {
    static let AllSet_text = "AllSet_text".localized()
    static let Best_value = "Best_value".localized()
    static let Choose_your_plan = "Choose_your_plan".localized()
+   static let Subscription_description_1 = "Subscription_description_1".localized()
    static let Subscription_description = "Subscription_description".localized()
    static let Merge_And = "Merge_And".localized()
    static let Terms_of_Service = "Terms_of_Service".localized()
    static let Privacy_Policy = "Privacy_Policy".localized()
    static let Restore_Purchases = "Restore_Purchases".localized()
+
+   static let Due = "Due".localized()
+   static let Due_Today = "Due_Today".localized()
+   static func Days_Free(_ days: Int) -> String { "Days_Free".localized(args: [String(days)]) }
 
    // SelectCurrencyPage
 
