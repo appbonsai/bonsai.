@@ -31,8 +31,6 @@ struct CreateCategoryView: View {
       self._isPresented = isPresented
       self.completion = completion
 
-      UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
-
       var colors = Color.allCases.reduce(OrderedDictionary<Color, Bool>())
       { partialResult, color in
          var res = partialResult

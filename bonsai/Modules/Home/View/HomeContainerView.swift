@@ -234,9 +234,9 @@ struct HomeContainerView: View {
       }
       .popover(isPresented: $isCurrencySelectionPresented) {
          SelectCurrencyPage(
-            isPresented: $isCurrencySelectionPresented,
             currencies: Currency.Validated.all,
-            selectedCurrency: .current
+            selectedCurrency: .current,
+            isPresented: $isCurrencySelectionPresented
          )
       }
       .popover(isPresented: $isCreateEditBudgetPresented, content: {

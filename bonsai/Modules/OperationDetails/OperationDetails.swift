@@ -44,9 +44,6 @@ struct OperationDetails: View {
 
     init(isPresented: Binding<Bool>, transaction: Transaction? = nil) {
         self._isPresented = isPresented
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         if let transaction = transaction {
             self.kind = .edit(transaction)
             self._selectedOperation = .init(
@@ -215,14 +212,14 @@ struct OperationDetails: View {
         } // NavigationView
         .popover(isPresented: $isCategoriesViewPresented) {
             CategoriesContainerView(
-                isPresented: $isCategoriesViewPresented,
-                selectedCategory: $category
+                selectedCategory: $category,
+                isPresented: $isCategoriesViewPresented
             )
         }
         .popover(isPresented: $isTagsViewPresented) {
             TagsContainerView(
-                isPresented: $isTagsViewPresented,
-                selectedTags: $tags
+                selectedTags: $tags,
+                isPresented: $isTagsViewPresented
             )
         }
         .interactiveDismissDisabled(kind == .new)
