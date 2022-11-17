@@ -161,7 +161,7 @@ struct BudgetDetails: View {
                      DragDownHintView().frame(maxWidth: .infinity)
                   }
                   HStack {
-                      BudgetNameView(name: budget?.name ?? L.Budget.defaultName)
+                      BudgetNameView(name: budget?.name.takeIfNotEmpty() ?? L.Budget.defaultName)
                         .padding(.leading, 16)
                         .padding(.top, 16)
 
