@@ -60,7 +60,6 @@ struct Subscriptions: View {
                      ScrollViewReader { value in
                         gifView()
                            .padding(.bottom, 12)
-                           .padding(.top, 20)
 
                         planDescription()
                            .padding(.bottom, 12)
