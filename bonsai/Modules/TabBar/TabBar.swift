@@ -15,7 +15,7 @@ struct TabBar: View {
     private let tabBarImages: [Image] = [
         Image(systemName: "chart.bar.fill"),
         Image(systemName: "house.fill"),
-        Image("tree.fill")
+        Image(Asset.treeFill.name)
     ]
     
     @FetchRequest(sortDescriptors: [])

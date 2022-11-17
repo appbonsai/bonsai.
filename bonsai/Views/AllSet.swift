@@ -24,7 +24,7 @@ struct AllSet: View {
             )
             .overlay(
                 VStack {
-                    Image("AllSet_1")
+                    Image(Asset.allSet1.name)
                         .resizable()
                         .scaledToFit()
                         .clipped()

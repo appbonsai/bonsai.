@@ -130,7 +130,7 @@ struct HomeContainerView: View {
    
    
    fileprivate func buildCreateBudgetView() -> some View {
-      Image("create_budget")
+       Image(Asset.createBudget.name)
          .resizable()
          .scaledToFit()
          .onTapGesture {
