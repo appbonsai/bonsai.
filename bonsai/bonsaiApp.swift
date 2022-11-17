@@ -34,6 +34,8 @@ struct bonsaiApp: App {
            let revenueCatApiKey = keys["revenueCatApiKey"] as? String {
             Purchases.configure(withAPIKey: revenueCatApiKey)
         }
+
+        UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
     }
 }
 
