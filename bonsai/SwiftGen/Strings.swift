@@ -185,17 +185,20 @@ internal enum L10n {
     }
   }
   internal enum Category {
+    /// Category Name
+    internal static let name = L10n.tr("Localizable", "category.name", fallback: "Category Name")
+    /// New Category
+    internal static let new = L10n.tr("Localizable", "category.new", fallback: "New Category")
     /// No category
     internal static let noCategory = L10n.tr("Localizable", "category.no_category", fallback: "No category")
+    /// Categories
+    internal static let title = L10n.tr("Localizable", "category.title", fallback: "Categories")
   }
   internal enum Charts {
     internal enum Balance {
       /// This chart will show you how your balance changes over time
       internal static let empty = L10n.tr("Localizable", "charts.balance.empty", fallback: "This chart will show you how your balance changes over time")
-      /// Localizable.strings
-      ///   bonsai
-      /// 
-      ///   Created by antuan.khoanh on 06/09/2022.
+      /// Balance
       internal static let title = L10n.tr("Localizable", "charts.balance.title", fallback: "Balance")
     }
     internal enum Expenses {
@@ -248,6 +251,17 @@ internal enum L10n {
     internal static let premiumFeatures = L10n.tr("Localizable", "settings.premium_features", fallback: "Premium Features")
     /// Terms of Service
     internal static let terms = L10n.tr("Localizable", "settings.terms", fallback: "Terms of Service")
+  }
+  internal enum Tags {
+    /// Tag Name
+    internal static let name = L10n.tr("Localizable", "tags.name", fallback: "Tag Name")
+    /// New Tag
+    internal static let new = L10n.tr("Localizable", "tags.new", fallback: "New Tag")
+    /// Localizable.strings
+    ///   bonsai
+    /// 
+    ///   Created by antuan.khoanh on 06/09/2022.
+    internal static let title = L10n.tr("Localizable", "tags.title", fallback: "Tags")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

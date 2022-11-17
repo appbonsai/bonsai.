@@ -6,6 +6,14 @@
   
 */
 
+"tags.title" = "Tags";
+"tags.name" = "Tag Name";
+"tags.new" = "New Tag";
+
+"category.title" = "Categories";
+"category.name" = "Category Name";
+"category.new" = "New Category";
+
 "charts.balance.title" = "Balance";
 "charts.balance.empty" = "This chart will show you how your balance changes over time";
 "charts.expenses.title" = "Expenses";

@@ -60,7 +60,7 @@ struct CategoriesContainerView: View {
                .padding(.top, 24)
                .padding(.horizontal, 16)
             } // ZStack
-            .navigationTitle("Category")
+            .navigationTitle(L.Category.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                ToolbarItem(placement: .navigationBarLeading) {

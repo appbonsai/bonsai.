@@ -79,7 +79,7 @@ struct CreateCategoryView: View {
 
                      CategoryNewTitleView(
                         title: $title,
-                        placeholder: "Category Name"
+                        placeholder: L.Category.name
                      )
                      .frame(height: 56, alignment: .center)
                      .background(SwiftUI.Color(hex: 0x3d3c4d))
@@ -103,7 +103,7 @@ struct CreateCategoryView: View {
             } // ScrollView
             .padding(.top, 8)
          } // ZStack
-         .navigationTitle("New Category")
+         .navigationTitle(L.Category.new)
          .navigationBarTitleDisplayMode(.inline)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

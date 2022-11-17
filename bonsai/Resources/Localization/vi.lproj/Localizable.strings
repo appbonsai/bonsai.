@@ -6,6 +6,14 @@
   
 */
 
+"tags.title" = "Thẻ";
+"tags.name" = "Tên Thẻ";
+"tags.new" = "Thẻ Mới";
+
+"category.title" = "Thể Loại";
+"category.name" = "Tên Danh mục";
+"category.new" = "Danh Mục mới";
+
 "charts.balance.title" = "Số dư";
 "charts.balance.empty" = "Biểu đồ này sẽ cho bạn thấy số dư của bạn thay đổi như thế nào theo thời gian";
 "charts.expenses.title" = "Chi phí";

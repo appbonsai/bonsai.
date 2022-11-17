@@ -30,7 +30,7 @@ struct CreateTagView: View {
 
             CategoryNewTitleView(
                title: $title,
-               placeholder: "Tag Name"
+               placeholder: L.Tags.name
             )
             .focused($fieldIsFocused)
             .frame(height: 56, alignment: .center)
@@ -38,7 +38,7 @@ struct CreateTagView: View {
             .cornerRadius(13)
             .padding([.bottom, .leading, .trailing, .top], 16)
          } // ZStack
-         .navigationTitle("New Tag")
+         .navigationTitle(L.Tags.new)
          .navigationBarTitleDisplayMode(.inline)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

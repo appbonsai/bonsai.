@@ -6,6 +6,14 @@
   
 */
 
+"tags.title" = "Tagi";
+"tags.name" = "Nazwa Znacznika";
+"tags.new" = "Nowy Znacznik";
+
+"category.title" = "Kategorie";
+"category.name" = "Nazwa Kategorii";
+"category.new" = "Nowa Kategoria";
+
 "charts.balance.title" = "Saldo";
 "charts.balance.empty" = "Ten wykres pokazuje, jak saldo zmienia się w czasie";
 "charts.expenses.title" = "Wydatki";

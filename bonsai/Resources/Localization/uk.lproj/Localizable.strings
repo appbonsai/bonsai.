@@ -6,6 +6,14 @@
   
 */
 
+"tags.title" = "Теги";
+"tags.name" = "Назва Тегу";
+"tags.new" = "Новий Тег";
+
+"category.title" = "Категорії";
+"category.name" = "Назва Категорії";
+"category.new" = "Нова Категорія";
+
 "charts.balance.title" = "Баланс";
 "charts.balance.empty" = "Ця діаграма покаже вам, як ваш баланс змінюється з часом";
 "charts.expenses.title" = "Витрати";
