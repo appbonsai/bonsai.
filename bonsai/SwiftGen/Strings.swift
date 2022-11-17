@@ -167,8 +167,8 @@ internal enum L10n {
     internal static let create = L10n.tr("Localizable", "budget.create", fallback: "Create")
     /// Edit Budget
     internal static let edit = L10n.tr("Localizable", "budget.edit", fallback: "Edit Budget")
-    /// Name (Optional)
-    internal static let name = L10n.tr("Localizable", "budget.name", fallback: "Name (Optional)")
+    /// Name (optional)
+    internal static let name = L10n.tr("Localizable", "budget.name", fallback: "Name (optional)")
     /// Localizable.strings
     ///   bonsai
     /// 
@@ -186,6 +186,26 @@ internal enum L10n {
   internal enum Category {
     /// No category
     internal static let noCategory = L10n.tr("Localizable", "category.no_category", fallback: "No category")
+  }
+  internal enum Operation {
+    /// Add Tag
+    internal static let addTag = L10n.tr("Localizable", "operation.add_tag", fallback: "Add Tag")
+    /// Amount
+    internal static let amount = L10n.tr("Localizable", "operation.amount", fallback: "Amount")
+    /// Category (optional)
+    internal static let category = L10n.tr("Localizable", "operation.category", fallback: "Category (optional)")
+    /// Edit Operation
+    internal static let edit = L10n.tr("Localizable", "operation.edit", fallback: "Edit Operation")
+    /// Expense
+    internal static let expense = L10n.tr("Localizable", "operation.expense", fallback: "Expense")
+    /// Revenue
+    internal static let income = L10n.tr("Localizable", "operation.income", fallback: "Revenue")
+    /// New Operation
+    internal static let new = L10n.tr("Localizable", "operation.new", fallback: "New Operation")
+    /// Title (optional)
+    internal static let title = L10n.tr("Localizable", "operation.title", fallback: "Title (optional)")
+    /// Transfer
+    internal static let transfer = L10n.tr("Localizable", "operation.transfer", fallback: "Transfer")
   }
   internal enum Settings {
     /// Privacy Policy

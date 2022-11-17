@@ -21,6 +21,16 @@
 
 "category.no_category" = "Brak kategorii";
 
+"operation.new" = "Nowa operacja";
+"operation.edit" = "Edytuj operację";
+"operation.amount" = "Kwota";
+"operation.title" = "Tytuł";
+"operation.category" = "Kategoria";
+"operation.add_tag" = "Dodaj tag";
+"operation.expense" = "Wydatek";
+"operation.income" = "Dochód";
+"operation.transfer" = "Transfer";
+
 "Onboarding_1_title" = "Witamy!";
 "Onboarding_1_description" = "Bonsai reprezentuje drzewo pieniędzy. Ustal cele finansowe, śledź przepływ pieniędzy, obserwuj swoje nawyki finansowe.";
 

@@ -10,7 +10,7 @@
 "budget.edit" = "Редактировать бюджет";
 "budget.create" = "Создать";
 "budget.save" = "Сохранить";
-"budget.name" = "Имя (Необязательно)";
+"budget.name" = "Имя (необязательно)";
 "budget.amount" = "Общая сумма";
 "budget.delete.button" = "Удалить бюджет";
 "budget.delete.confirmation" = "Да, удалить мой бюджет";
@@ -20,6 +20,16 @@
 "settings.policy" = "Политика конфиденциальности";
 
 "category.no_category" = "Без категории";
+
+"operation.new" = "Новая операция";
+"operation.edit" = "Редактировать операцию";
+"operation.amount" = "Сумма";
+"operation.title" = "Заголовок";
+"operation.category" = "Категория";
+"operation.add_tag" = "Добавить тег";
+"operation.expense" = "Расход";
+"operation.income" = "Доход";
+"operation.transfer" = "Перевод";
 
 "Onboarding_1_title" = "Добро пожаловать!";
 "Onboarding_1_description" = "Бонсай представляет собой денежное дерево. Ставьте финансовые цели, отслеживайте свой денежный поток, отмечайте свои финансовые привычки.";

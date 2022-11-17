@@ -10,7 +10,7 @@
 "budget.edit" = "Edit Budget";
 "budget.create" = "Create";
 "budget.save" = "Save";
-"budget.name" = "Name (Optional)";
+"budget.name" = "Name (optional)";
 "budget.amount" = "Amount";
 "budget.delete.button" = "Delete budget";
 "budget.delete.confirmation" = "Yes, delete my budget";
@@ -20,6 +20,16 @@
 "settings.policy" = "Privacy Policy";
 
 "category.no_category" = "No category";
+
+"operation.new" = "New Operation";
+"operation.edit" = "Edit Operation";
+"operation.amount" = "Amount";
+"operation.title" = "Title";
+"operation.category" = "Category";
+"operation.add_tag" = "Add Tag";
+"operation.expense" = "Expense";
+"operation.income" = "Revenue";
+"operation.transfer" = "Transfer";
 
 "Onboarding_1_title" = "Welcome!";
 "Onboarding_1_description" = "Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.";

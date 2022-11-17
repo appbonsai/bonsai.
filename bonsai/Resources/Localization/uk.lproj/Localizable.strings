@@ -10,7 +10,7 @@
 "budget.edit" = "Редагувати бюджет";
 "budget.create" = "Створити";
 "budget.save" = "Зберегти";
-"budget.name" = "Ім'я (Необов'язково)";
+"budget.name" = "Ім'я (необов'язково)";
 "budget.amount" = "Загальна сума";
 "budget.delete.button" = "Видалити бюджет";
 "budget.delete.confirmation" = "Так, видалити мій бюджет";
@@ -20,6 +20,16 @@
 "settings.policy" = "Політика конфіденційності";
 
 "category.no_category" = "Без категорії";
+
+"operation.new" = "Нова операція";
+"operation.edit" = "Редагувати операцію";
+"operation.amount" = "Сума";
+"operation.title" = "Назва";
+"operation.category" = "Категорія";
+"operation.add_tag" = "Додати тег";
+"operation.expense" = "Витрати";
+"operation.income" = "Дохід";
+"operation.transfer" = "Передача";
 
 "Onboarding_1_title" = "Ласкаво просимо!";
 "Onboarding_1_description" = "Бонсай представляє грошове дерево. Зазначте фінансові цілі, відстежуйте грошові потоки, звертайте увагу на свої фінансові звички.";
