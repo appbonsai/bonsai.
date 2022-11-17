@@ -6,6 +6,15 @@
   
 */
 
+"budget.new" = "Nowy budżet";
+"budget.edit" = "Edytuj budżet";
+"budget.create" = "Utwórz";
+"budget.save" = "Zapisz";
+"budget.name" = "Nazwa (opcjonalnie)";
+"budżet.kwota" = "Kwota";
+"budget.delete.button" = "Usuń budżet";
+"budget.delete.confirmation" = "Tak, usuń mój budżet";
+
 "Onboarding_1_title" = "Witamy!";
 "Onboarding_1_description" = "Bonsai reprezentuje drzewo pieniędzy. Ustal cele finansowe, śledź przepływ pieniędzy, obserwuj swoje nawyki finansowe.";
 

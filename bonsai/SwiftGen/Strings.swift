@@ -92,10 +92,7 @@ internal enum L10n {
   internal static let okTitle = L10n.tr("Localizable", "OK_title", fallback: "OK")
   /// Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.
   internal static let onboarding1Description = L10n.tr("Localizable", "Onboarding_1_description", fallback: "Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.")
-  /// Localizable.strings
-  ///   bonsai
-  /// 
-  ///   Created by antuan.khoanh on 06/09/2022.
+  /// Welcome!
   internal static let onboarding1Title = L10n.tr("Localizable", "Onboarding_1_title", fallback: "Welcome!")
   /// Just using your phone, you can manage all your cashflow more easy and detailed.
   internal static let onboarding2Description = L10n.tr("Localizable", "Onboarding_2_description", fallback: "Just using your phone, you can manage all your cashflow more easy and detailed.")
@@ -164,6 +161,29 @@ internal enum L10n {
     internal static let chooseDefaultCurrency = L10n.tr("Localizable", "SelectCurrencyPage.Choose_default_currency", fallback: "Choose default currency")
     /// Confirm
     internal static let confirm = L10n.tr("Localizable", "SelectCurrencyPage.Confirm", fallback: "Confirm")
+  }
+  internal enum Budget {
+    /// Amount
+    internal static let amount = L10n.tr("Localizable", "budget.amount", fallback: "Amount")
+    /// Create
+    internal static let create = L10n.tr("Localizable", "budget.create", fallback: "Create")
+    /// Edit Budget
+    internal static let edit = L10n.tr("Localizable", "budget.edit", fallback: "Edit Budget")
+    /// Name (Optional)
+    internal static let name = L10n.tr("Localizable", "budget.name", fallback: "Name (Optional)")
+    /// Localizable.strings
+    ///   bonsai
+    /// 
+    ///   Created by antuan.khoanh on 06/09/2022.
+    internal static let new = L10n.tr("Localizable", "budget.new", fallback: "New Budget")
+    /// Save
+    internal static let save = L10n.tr("Localizable", "budget.save", fallback: "Save")
+    internal enum Delete {
+      /// Delete budget
+      internal static let button = L10n.tr("Localizable", "budget.delete.button", fallback: "Delete budget")
+      /// Yes, delete my budget
+      internal static let confirmation = L10n.tr("Localizable", "budget.delete.confirmation", fallback: "Yes, delete my budget")
+    }
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

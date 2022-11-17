@@ -30,7 +30,6 @@ internal enum Asset {
   internal static let iconLight = ImageAsset(name: "icon-light")
   internal static let icon = ImageAsset(name: "icon")
   internal static let accountBalance = ImageAsset(name: "account_balance")
-  internal static let accountBalanceWallet = ImageAsset(name: "account_balance_wallet")
   internal static let arrowGreenUp = ImageAsset(name: "arrow-green-up")
   internal static let arrowRedDown = ImageAsset(name: "arrow-red-down")
   internal static let createBudget = ImageAsset(name: "create_budget")
