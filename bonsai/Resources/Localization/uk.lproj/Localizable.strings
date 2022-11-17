@@ -6,6 +6,14 @@
   
 */
 
+"charts.balance.title" = "Баланс";
+"charts.balance.empty" = "Ця діаграма покаже вам, як ваш баланс змінюється з часом";
+"charts.expenses.title" = "Витрати";
+"charts.expenses.empty" = "Ця діаграма покаже всі категорії, на які ви витратили гроші";
+"charts.legend.balance" = "Баланс";
+"charts.legend.period" = "Період часу";
+"charts.legend.amount" = "Сума (%@)";
+
 "budget.new" = "Новий Бюджет";
 "budget.edit" = "Редагувати бюджет";
 "budget.create" = "Створити";

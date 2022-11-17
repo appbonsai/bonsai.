@@ -23,7 +23,7 @@ struct ChartsView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 24) {
-                    ChartContainer(title: "Balance") {
+                    ChartContainer(title: L.Charts.Balance.title) {
                         let chartData = mapToBarChartData()
                         if !chartData.pieces.isEmpty {
                             BarChartView(
@@ -32,10 +32,10 @@ struct ChartsView: View {
                                 )
                             )
                         } else {
-                            EmptyChart(description: "This chart will show you how your balance changes over time")
+                            EmptyChart(description: L.Charts.Balance.empty)
                         }
                     }
-                    ChartContainer(title: "Expenses", chartSize: .big) {
+                    ChartContainer(title: L.Charts.Expenses.title, chartSize: .big) {
                         let chartData = mapToPieChartData()
                         if !chartData.pieChartSlices.isEmpty {
                             PieChartView(
@@ -44,7 +44,7 @@ struct ChartsView: View {
                                 )
                             )
                         } else {
-                            EmptyChart(description: "This chart will show all categories that you spent money on")
+                            EmptyChart(description: L.Charts.Expenses.empty)
                         }
                     }
                 }

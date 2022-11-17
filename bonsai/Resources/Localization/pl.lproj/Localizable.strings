@@ -6,6 +6,14 @@
   
 */
 
+"charts.balance.title" = "Saldo";
+"charts.balance.empty" = "Ten wykres pokazuje, jak saldo zmienia się w czasie";
+"charts.expenses.title" = "Wydatki";
+"charts.expenses.empty" = "Ten wykres pokaże wszystkie kategorie, na które wydałeś pieniądze";
+"charts.legend.balance" = "Saldo";
+"charts.legend.period" = "Okres czasu";
+"charts.legend.amount" = "Kwota (%@)";
+
 "budget.new" = "Nowy budżet";
 "budget.edit" = "Edytuj budżet";
 "budget.create" = "Utwórz";

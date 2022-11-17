@@ -169,10 +169,7 @@ internal enum L10n {
     internal static let edit = L10n.tr("Localizable", "budget.edit", fallback: "Edit Budget")
     /// Name (optional)
     internal static let name = L10n.tr("Localizable", "budget.name", fallback: "Name (optional)")
-    /// Localizable.strings
-    ///   bonsai
-    /// 
-    ///   Created by antuan.khoanh on 06/09/2022.
+    /// New Budget
     internal static let new = L10n.tr("Localizable", "budget.new", fallback: "New Budget")
     /// Save
     internal static let save = L10n.tr("Localizable", "budget.save", fallback: "Save")
@@ -187,13 +184,40 @@ internal enum L10n {
     /// No category
     internal static let noCategory = L10n.tr("Localizable", "category.no_category", fallback: "No category")
   }
+  internal enum Charts {
+    internal enum Balance {
+      /// This chart will show you how your balance changes over time
+      internal static let empty = L10n.tr("Localizable", "charts.balance.empty", fallback: "This chart will show you how your balance changes over time")
+      /// Localizable.strings
+      ///   bonsai
+      /// 
+      ///   Created by antuan.khoanh on 06/09/2022.
+      internal static let title = L10n.tr("Localizable", "charts.balance.title", fallback: "Balance")
+    }
+    internal enum Expenses {
+      /// This chart will show all categories that you spent money on
+      internal static let empty = L10n.tr("Localizable", "charts.expenses.empty", fallback: "This chart will show all categories that you spent money on")
+      /// Expenses
+      internal static let title = L10n.tr("Localizable", "charts.expenses.title", fallback: "Expenses")
+    }
+    internal enum Legend {
+      /// Amount (%@)
+      internal static func amount(_ p1: Any) -> String {
+        return L10n.tr("Localizable", "charts.legend.amount", String(describing: p1), fallback: "Amount (%@)")
+      }
+      /// Balance
+      internal static let balance = L10n.tr("Localizable", "charts.legend.balance", fallback: "Balance")
+      /// Time Period
+      internal static let period = L10n.tr("Localizable", "charts.legend.period", fallback: "Time Period")
+    }
+  }
   internal enum Operation {
     /// Add Tag
     internal static let addTag = L10n.tr("Localizable", "operation.add_tag", fallback: "Add Tag")
     /// Amount
     internal static let amount = L10n.tr("Localizable", "operation.amount", fallback: "Amount")
-    /// Category (optional)
-    internal static let category = L10n.tr("Localizable", "operation.category", fallback: "Category (optional)")
+    /// Category
+    internal static let category = L10n.tr("Localizable", "operation.category", fallback: "Category")
     /// Edit Operation
     internal static let edit = L10n.tr("Localizable", "operation.edit", fallback: "Edit Operation")
     /// Expense
@@ -202,8 +226,8 @@ internal enum L10n {
     internal static let income = L10n.tr("Localizable", "operation.income", fallback: "Revenue")
     /// New Operation
     internal static let new = L10n.tr("Localizable", "operation.new", fallback: "New Operation")
-    /// Title (optional)
-    internal static let title = L10n.tr("Localizable", "operation.title", fallback: "Title (optional)")
+    /// Title
+    internal static let title = L10n.tr("Localizable", "operation.title", fallback: "Title")
     /// Transfer
     internal static let transfer = L10n.tr("Localizable", "operation.transfer", fallback: "Transfer")
   }

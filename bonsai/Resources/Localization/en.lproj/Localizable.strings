@@ -6,6 +6,14 @@
   
 */
 
+"charts.balance.title" = "Balance";
+"charts.balance.empty" = "This chart will show you how your balance changes over time";
+"charts.expenses.title" = "Expenses";
+"charts.expenses.empty" = "This chart will show all categories that you spent money on";
+"charts.legend.balance" = "Balance";
+"charts.legend.period" = "Time Period";
+"charts.legend.amount" = "Amount (%@)";
+
 "budget.new" = "New Budget";
 "budget.edit" = "Edit Budget";
 "budget.create" = "Create";

@@ -6,6 +6,14 @@
   
 */
 
+"charts.balance.title" = "Số dư";
+"charts.balance.empty" = "Biểu đồ này sẽ cho bạn thấy số dư của bạn thay đổi như thế nào theo thời gian";
+"charts.expenses.title" = "Chi phí";
+"charts.expenses.empty" = "Biểu đồ này sẽ hiển thị tất cả danh mục mà bạn đã chi tiền cho";
+"charts.legend.balance" = "Số dư";
+"charts.legend.period" = "Khoảng thời gian";
+"charts.legend.amount" = "Số tiền (%@)";
+
 "budget.new" = "Ngân sách mới";
 "budget.edit" = "Chỉnh sửa ngân sách";
 "budget.create" = "Tạo";
