@@ -15,6 +15,10 @@
 "budget.delete.button" = "Удалить бюджет";
 "budget.delete.confirmation" = "Да, удалить мой бюджет";
 
+"settings.premium_features" = "Премиум возможности";
+"settings.terms" = "Условия обслуживания";
+"settings.policy" = "Политика конфиденциальности";
+
 "Onboarding_1_title" = "Добро пожаловать!";
 "Onboarding_1_description" = "Бонсай представляет собой денежное дерево. Ставьте финансовые цели, отслеживайте свой денежный поток, отмечайте свои финансовые привычки.";
 
@@ -80,9 +84,6 @@
 "Close_title" = "Закрыть";
 "Back_title" = "Назад";
 "OK_title" = "ОК";
-
-
-"Bonsai_premium_features" = "Премиум возможности";
 
 "delete_Budget_Confirmation" = "Вы уверены, что хотите удалить этот бюджет?";
 

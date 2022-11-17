@@ -33,9 +33,9 @@ struct SettingsContainerView: View {
         
         var label: String {
             switch self {
-            case .premiumFeature: return L.bonsaiPremiumFeatures
-            case .termsAndConditions: return L.termsOfService
-            case .privacyPolicy: return L.privacyPolicy
+            case .premiumFeature: return L.Settings.premiumFeatures
+            case .termsAndConditions: return L.Settings.terms
+            case .privacyPolicy: return L.Settings.policy
             }
         }
     }

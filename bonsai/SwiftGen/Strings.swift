@@ -18,8 +18,6 @@ internal enum L10n {
   internal static let backTitle = L10n.tr("Localizable", "Back_title", fallback: "Back")
   /// Best value
   internal static let bestValue = L10n.tr("Localizable", "Best_value", fallback: "Best value")
-  /// Bonsai premium features
-  internal static let bonsaiPremiumFeatures = L10n.tr("Localizable", "Bonsai_premium_features", fallback: "Bonsai premium features")
   /// Hey, you are doing well!
   internal static let budgetGreeting = L10n.tr("Localizable", "Budget_greeting", fallback: "Hey, you are doing well!")
   /// Budget
@@ -184,6 +182,14 @@ internal enum L10n {
       /// Yes, delete my budget
       internal static let confirmation = L10n.tr("Localizable", "budget.delete.confirmation", fallback: "Yes, delete my budget")
     }
+  }
+  internal enum Settings {
+    /// Privacy Policy
+    internal static let policy = L10n.tr("Localizable", "settings.policy", fallback: "Privacy Policy")
+    /// Premium Features
+    internal static let premiumFeatures = L10n.tr("Localizable", "settings.premium_features", fallback: "Premium Features")
+    /// Terms of Service
+    internal static let terms = L10n.tr("Localizable", "settings.terms", fallback: "Terms of Service")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

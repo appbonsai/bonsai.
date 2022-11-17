@@ -15,6 +15,10 @@
 "budget.delete.button" = "Usuń budżet";
 "budget.delete.confirmation" = "Tak, usuń mój budżet";
 
+"settings.premium_features" = "Funkcje premium";
+"settings.terms" = "Warunki korzystania z usługi";
+"settings.policy" = "Polityka prywatności";
+
 "Onboarding_1_title" = "Witamy!";
 "Onboarding_1_description" = "Bonsai reprezentuje drzewo pieniędzy. Ustal cele finansowe, śledź przepływ pieniędzy, obserwuj swoje nawyki finansowe.";
 
@@ -84,8 +88,6 @@
 
 
 "delete_Budget_Confirmation" = "Czy na pewno chcesz usunąć ten budżet?";
-
-"Bonsai_premium_features" = "Funkcje premium Bonsai";
 
 "you_dont_own_a_budget_yet" = "Nie masz jeszcze budżetu";
 

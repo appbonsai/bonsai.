@@ -15,6 +15,10 @@
 "budget.delete.button" = "Delete budget";
 "budget.delete.confirmation" = "Yes, delete my budget";
 
+"settings.premium_features" = "Premium Features";
+"settings.terms" = "Terms of Service";
+"settings.policy" = "Privacy Policy";
+
 "Onboarding_1_title" = "Welcome!";
 "Onboarding_1_description" = "Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.";
 
@@ -88,8 +92,6 @@
 "OK_title" = "OK";
 
 "delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
-
-"Bonsai_premium_features" = "Bonsai premium features";
 
 "you_dont_own_a_budget_yet" = "You don't own a budget yet";
 
