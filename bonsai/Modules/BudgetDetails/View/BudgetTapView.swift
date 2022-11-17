@@ -20,6 +20,7 @@ struct BudgetTapView: View {
          Text(title)
             .font(BonsaiFont.body_17)
             .foregroundColor(BonsaiColor.text)
+            .multilineTextAlignment(.center)
             .shimmering(duration: 3.0)
       }
    }

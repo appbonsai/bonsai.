@@ -58,8 +58,8 @@ internal enum L10n {
   internal static let doneTitle = L10n.tr("Localizable", "Done_title", fallback: "Done")
   /// Drag down to create new operation
   internal static let dragDownHint = L10n.tr("Localizable", "Drag_down_hint", fallback: "Drag down to create new operation")
-  /// Tap here to see your last operations
-  internal static let dragUpHint = L10n.tr("Localizable", "Drag_up_hint", fallback: "Tap here to see your last operations")
+  /// Drag up to see your last operations
+  internal static let dragUpHint = L10n.tr("Localizable", "Drag_up_hint", fallback: "Drag up to see your last operations")
   /// Due
   internal static let due = L10n.tr("Localizable", "Due", fallback: "Due")
   /// Due today
@@ -136,14 +136,14 @@ internal enum L10n {
   internal static let thisMonth = L10n.tr("Localizable", "This_month", fallback: "This month")
   /// Total
   internal static let totalBudget = L10n.tr("Localizable", "Total_budget", fallback: "Total")
-  /// Transactions
-  internal static let transactionsTitle = L10n.tr("Localizable", "Transactions_title", fallback: "Transactions")
+  /// Operations
+  internal static let transactionsTitle = L10n.tr("Localizable", "Transactions_title", fallback: "Operations")
   /// Start Trial and Subscribe
   internal static let tryForFree = L10n.tr("Localizable", "Try_for_free", fallback: "Start Trial and Subscribe")
   /// Unlimited categories
   internal static let unlimitedCategories = L10n.tr("Localizable", "Unlimited_categories", fallback: "Unlimited categories")
-  /// You can create unlimited categories, feel free to specify your transactions
-  internal static let unlimitedCategoriesDescriptions = L10n.tr("Localizable", "Unlimited_categories_descriptions", fallback: "You can create unlimited categories, feel free to specify your transactions")
+  /// You can create unlimited categories, feel free to specify your operation
+  internal static let unlimitedCategoriesDescriptions = L10n.tr("Localizable", "Unlimited_categories_descriptions", fallback: "You can create unlimited categories, feel free to specify your operation")
   /// Unlimited tags
   internal static let unlimitedTags = L10n.tr("Localizable", "Unlimited_tags", fallback: "Unlimited tags")
   /// Get unlimited opportunity to add tags for your needs
@@ -165,6 +165,8 @@ internal enum L10n {
     internal static let amount = L10n.tr("Localizable", "budget.amount", fallback: "Amount")
     /// Create
     internal static let create = L10n.tr("Localizable", "budget.create", fallback: "Create")
+    /// Budget
+    internal static let defaultName = L10n.tr("Localizable", "budget.default_name", fallback: "Budget")
     /// Edit Budget
     internal static let edit = L10n.tr("Localizable", "budget.edit", fallback: "Edit Budget")
     /// Name (optional)
@@ -173,6 +175,8 @@ internal enum L10n {
     internal static let new = L10n.tr("Localizable", "budget.new", fallback: "New Budget")
     /// Save
     internal static let save = L10n.tr("Localizable", "budget.save", fallback: "Save")
+    /// Drag up to see budget operations
+    internal static let swipeUpSuggestion = L10n.tr("Localizable", "budget.swipe_up_suggestion", fallback: "Drag up to see budget operations")
     internal enum Delete {
       /// Delete budget
       internal static let button = L10n.tr("Localizable", "budget.delete.button", fallback: "Delete budget")
@@ -210,6 +214,12 @@ internal enum L10n {
       /// Time Period
       internal static let period = L10n.tr("Localizable", "charts.legend.period", fallback: "Time Period")
     }
+  }
+  internal enum Date {
+    /// Today
+    internal static let today = L10n.tr("Localizable", "date.today", fallback: "Today")
+    /// Yesterday
+    internal static let yesterday = L10n.tr("Localizable", "date.yesterday", fallback: "Yesterday")
   }
   internal enum Operation {
     /// Add Tag

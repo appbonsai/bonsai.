@@ -9,22 +9,22 @@ import Foundation
 
 extension Date {
 
-   func dateString() -> String {
-      if Calendar.current.isDateInToday(self) {
-         return "Today"
-      }
-      if Calendar.current.isDateInYesterday(self) {
-         return "Yesterday"
-      }
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateStyle = .long
-      return dateFormatter.string(from: self)
-   }
+    func dateString() -> String {
+        if Calendar.current.isDateInToday(self) {
+            return L.Date.today
+        }
+        if Calendar.current.isDateInYesterday(self) {
+            return L.Date.yesterday
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        return dateFormatter.string(from: self)
+    }
 
-   /*
-    static func from(year: Int, month: Int, day: Int) -> Self
-    Used only for mocking date
-    */
+    /*
+     static func from(year: Int, month: Int, day: Int) -> Self
+     Used only for mocking date
+     */
 
     static func from(year: Int, month: Int, day: Int) -> Date {
         var calendar = Calendar(identifier: .gregorian)

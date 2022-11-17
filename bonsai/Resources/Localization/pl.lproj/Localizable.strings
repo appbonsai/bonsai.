@@ -22,6 +22,11 @@
 "budżet.kwota" = "Kwota";
 "budget.delete.button" = "Usuń budżet";
 "budget.delete.confirmation" = "Tak, usuń mój budżet";
+"budget.swipe_up_suggestion" = "Przeciągnij w górę, aby zobaczyć operacje budżetowe";
+"budget.default_name" = "Budżet";
+
+"date.today" = "Dzisiaj";
+"data.yesterday" = "Wczoraj";
 
 "settings.premium_features" = "Funkcje premium";
 "settings.terms" = "Warunki korzystania z usługi";

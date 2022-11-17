@@ -22,6 +22,11 @@
 "budget.amount" = "Số tiền";
 "budget.delete.button" = "Xóa ngân sách";
 "budget.delete.confirmation" = "Có, xóa ngân sách của tôi";
+"budget.swipe_up_suggestion" = "Kéo lên để xem hoạt động ngân sách";
+"budget.default_name" = "Ngân sách";
+
+"date.today" = "Hôm nay";
+"date.yesterday" = "Hôm qua";
 
 "settings.premium_features" = "Tính năng cao cấp";
 "settings.terms" = "Điều khoản dịch vụ";

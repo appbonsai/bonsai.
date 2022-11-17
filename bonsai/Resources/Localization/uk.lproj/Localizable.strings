@@ -22,6 +22,11 @@
 "budget.amount" = "Загальна сума";
 "budget.delete.button" = "Видалити бюджет";
 "budget.delete.confirmation" = "Так, видалити мій бюджет";
+"budget.swipe_up_suggestion" = "Перетягніть вгору, щоб побачити бюджетні операції";
+"budget.default_name" = "Бюджет";
+
+"date.today" = "Сьогодні";
+"date.yesterday" = "Учора";
 
 "settings.premium_features" = "Преміум можливості";
 "settings.terms" = "Умови обслуговування";

@@ -84,7 +84,7 @@ struct BudgetDetails: View {
 
 
    private func tapViewTransactions() -> some View {
-      BudgetTapView(title: "Tap here to see budget operations")
+       BudgetTapView(title: L.Budget.swipeUpSuggestion)
          .onTapGesture {
             isPresented = true
          }
@@ -161,7 +161,7 @@ struct BudgetDetails: View {
                      DragDownHintView().frame(maxWidth: .infinity)
                   }
                   HStack {
-                     BudgetNameView(name: budget?.name ?? "Budget")
+                      BudgetNameView(name: budget?.name ?? L.Budget.defaultName)
                         .padding(.leading, 16)
                         .padding(.top, 16)
 

@@ -22,6 +22,11 @@
 "budget.amount" = "Amount";
 "budget.delete.button" = "Delete budget";
 "budget.delete.confirmation" = "Yes, delete my budget";
+"budget.swipe_up_suggestion" = "Drag up to see budget operations";
+"budget.default_name" = "Budget";
+
+"date.today" = "Today";
+"date.yesterday" = "Yesterday";
 
 "settings.premium_features" = "Premium Features";
 "settings.terms" = "Terms of Service";
@@ -53,7 +58,7 @@
 "Total_budget" = "Total";
 "Daily_budget" = "Daily";
 "Budget_greeting" = "Hey, you are doing well!";
-"Drag_up_hint" = "Tap here to see your last operations";
+"Drag_up_hint" = "Drag up to see your last operations";
 "Drag_down_hint" = "Drag down to create new operation";
 "Home_category" = "The most expensive categories";
 "Revenue_title" = "Revenue";
@@ -89,7 +94,7 @@
 "Due_Today" = "Due today";
 "Days_Free" = "(%@ days free)";
 
-"Transactions_title" = "Transactions";
+"Transactions_title" = "Operations";
 
 
 // Toolbar nav
@@ -144,7 +149,7 @@
 // Premium_features
 
 "Unlimited_categories" = "Unlimited categories";
-"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your transactions";
+"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your operation";
 
 "Unlimited_tags" = "Unlimited tags";
 "Unlimited_tags_descriptions" = "Get unlimited opportunity to add tags for your needs";

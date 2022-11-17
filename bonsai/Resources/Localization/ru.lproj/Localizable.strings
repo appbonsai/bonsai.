@@ -22,6 +22,11 @@
 "budget.amount" = "Общая сумма";
 "budget.delete.button" = "Удалить бюджет";
 "budget.delete.confirmation" = "Да, удалить мой бюджет";
+"budget.swipe_up_suggestion" = "Свайп, чтобы увидеть операции бюджета";
+"budget.default_name" = "Бюджет";
+
+"date.today" = "Сегодня";
+"date.yesterday" = "Вчера";
 
 "settings.premium_features" = "Премиум возможности";
 "settings.terms" = "Условия обслуживания";
@@ -53,8 +58,8 @@
 "Total_budget" = "Всего";
 "Daily_budget" = "Ежедневно";
 "Budget_greeting" = "Эй, а ты хорош!";
-"Drag_up_hint" = "Свайпни вверх чтобы увидеть транзакции";
-"Drag_down_hint" = "Свапни вниз чтобы создать транзакцию";
+"Drag_up_hint" = "Свайп, чтобы увидеть операции";
+"Drag_down_hint" = "Свайп, чтобы создать операцию";
 "Home_category" = "Самые затратные категории";
 "Revenue_title" = "Доход";
 "Expenses_title" = "Расход";
@@ -91,7 +96,7 @@
 "Days_Free" = "(%@ дней бесплатно)";
 
 
-"Transactions_title" = "Транзакции";
+"Transactions_title" = "Операции";
 "Cancel_title" = "Отмена";
 "Done_title" = "Готово";
 "Other_title" = "Другое";
@@ -138,7 +143,7 @@
 // Premium_features
 
 "Unlimited_categories" = "Неограниченное количество категорий";
-"Unlimited_categories_descriptions" = "Вы можете создавать неограниченное количество категорий, не стесняйтесь указывать свои транзакции";
+"Unlimited_categories_descriptions" = "Вы можете создавать неограниченное количество категорий, не стесняйтесь указывать свои операции";
 
 "Unlimited_tags" = "Неограниченное количество тегов";
 "Unlimited_tags_descriptions" = "Получите неограниченную возможность добавлять теги для своих нужд";
