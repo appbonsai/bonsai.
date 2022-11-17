@@ -26,7 +26,7 @@ extension ChartsView {
                         PieChartSliceData(
                             disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
                             color: (transaction.category?.color ?? .noCategory).asColor,
-                            categoryTitle: (transaction.category?.title ?? "No Category"),
+                            categoryTitle: (transaction.category?.title ?? L.Category.noCategory),
                             icon: (transaction.category?.image ?? .icon(.noCategory)),
                             amount: transaction.amount.doubleValue,
                             percentages: countPercantage(using: transaction.amount.intValue),

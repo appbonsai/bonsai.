@@ -19,6 +19,8 @@
 "settings.terms" = "Warunki korzystania z usługi";
 "settings.policy" = "Polityka prywatności";
 
+"category.no_category" = "Brak kategorii";
+
 "Onboarding_1_title" = "Witamy!";
 "Onboarding_1_description" = "Bonsai reprezentuje drzewo pieniędzy. Ustal cele finansowe, śledź przepływ pieniędzy, obserwuj swoje nawyki finansowe.";
 

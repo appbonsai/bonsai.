@@ -183,6 +183,10 @@ internal enum L10n {
       internal static let confirmation = L10n.tr("Localizable", "budget.delete.confirmation", fallback: "Yes, delete my budget")
     }
   }
+  internal enum Category {
+    /// No category
+    internal static let noCategory = L10n.tr("Localizable", "category.no_category", fallback: "No category")
+  }
   internal enum Settings {
     /// Privacy Policy
     internal static let policy = L10n.tr("Localizable", "settings.policy", fallback: "Privacy Policy")

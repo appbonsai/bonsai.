@@ -19,6 +19,8 @@
 "settings.terms" = "Terms of Service";
 "settings.policy" = "Privacy Policy";
 
+"category.no_category" = "No category";
+
 "Onboarding_1_title" = "Welcome!";
 "Onboarding_1_description" = "Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.";
 
