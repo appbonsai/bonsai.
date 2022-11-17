@@ -48,13 +48,13 @@ struct BudgetDetails: View {
    private func budgetMoneyTitleView() -> some View {
       HStack(alignment: .center, spacing: 24) {
          BudgetMoneyTitleView(
-            title: L.Money_left,
+            title: L.moneyLeft,
             amount: totalMoneyLeft,
             titleColor: BonsaiColor.green
          )
          .padding(.leading, 24)
          BudgetMoneyTitleView(
-            title: L.Money_spent,
+            title: L.moneySpent,
             amount: totalMoneySpent,
             titleColor: BonsaiColor.secondary
          )
@@ -65,14 +65,14 @@ struct BudgetDetails: View {
    private func budgetMoneyCardView() -> some View {
       HStack(alignment: .center, spacing: 16) {
          BudgetMoneyCardView(
-            title: L.Total_budget,
+            title: L.totalBudget,
             subtitle: "\(budget?.amount ?? .zero)\(Currency.Validated.current.symbol)",
             titleColor: BonsaiColor.mainPurple,
             icon: Image(Asset.accountBalance.name)
          )
 
          BudgetMoneyCardView(
-            title: L.Daily_budget,
+            title: L.dailyBudget,
             subtitle: "\(moneyCanSpendDaily)\(Currency.Validated.current.symbol)",
             titleColor: BonsaiColor.mainPurple,
             icon: Image(systemName: "arrow.clockwise")
@@ -106,14 +106,14 @@ struct BudgetDetails: View {
          Spacer(minLength: 80)
          VStack(alignment: .center, spacing: 12) {
             Group {
-               Text(L.ownBudget)
+               Text(L.youDontOwnABudgetYet)
                   .foregroundColor(.white)
                   .font(BonsaiFont.title_20)
                GifImage("bonsai_purple_png")
                   .frame(width: 200, height: 200)
                Text(
                     """
-                    \(L.unlock_budget)
+                    \(L.unlockBudget)
                     """
                )
                .multilineTextAlignment(.center)
@@ -122,7 +122,7 @@ struct BudgetDetails: View {
                Button {
                   isCreateBudgetPresented = true
                } label: {
-                  Text(L.create_budget)
+                  Text(L.createBudget)
                }
                .buttonStyle(PrimaryButtonStyle())
             }.padding(16)

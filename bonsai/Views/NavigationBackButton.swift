@@ -18,7 +18,7 @@ struct NavigationBackButton: View {
             Image(systemName: "chevron.backward")
                .font(.system(size: 16, weight: .medium))
                .foregroundColor(BonsaiColor.secondary)
-            Text(L.back)
+            Text(L.backTitle)
                .foregroundColor(BonsaiColor.secondary)
          }
       }

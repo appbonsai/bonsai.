@@ -77,14 +77,14 @@ struct SelectBudgetPeriodView: View {
                ForEach(items) { item in
                   if item == .custom {
                      VStack {
-                        Text(L.choose_budget_period_or)
+                        Text(L.chooseBudgetPeriodOr)
                         if isPremium {
                            DatePicker(
                               selection: $date,
                               in: Date().addingTimeInterval(24 * 60 * 60)...,
                               displayedComponents: [.date],
                               label: {
-                                 Text(L.choose_budget_period_custom)
+                                 Text(L.chooseBudgetPeriodCustom)
                                     .font(BonsaiFont.body_15)
                                     .foregroundColor(.white)
                               }
@@ -119,11 +119,11 @@ struct SelectBudgetPeriodView: View {
                               .foregroundColor(BonsaiColor.card)
                               .overlay {
                                  HStack {
-                                    Text(L.choose_budget_period_custom_premium)
+                                    Text(L.chooseBudgetPeriodCustomPremium)
                                        .font(BonsaiFont.body_15)
                                        .padding(.leading, 16)
                                     Spacer()
-                                    Text(L.choose_budget_period_premium)
+                                    Text(L.chooseBudgetPeriodPremium)
                                        .font(BonsaiFont.subtitle_15)
                                        .foregroundColor(BonsaiColor.mainPurple)
                                        .padding(.trailing, 16)
@@ -197,7 +197,7 @@ struct SelectBudgetPeriodView: View {
                      RoundedRectangle(cornerRadius: 13)
                         .frame(width: 192, height: 48)
                         .foregroundColor(BonsaiColor.mainPurple)
-                     Text(L.choose)
+                     Text(L.chooseTitle)
                         .foregroundColor(BonsaiColor.card)
                         .font(.system(size: 17))
                         .bold()
@@ -207,7 +207,7 @@ struct SelectBudgetPeriodView: View {
             } //VStack
             .padding(.top, 20)
          }
-         .navigationTitle(L.period)
+         .navigationTitle(L.periodTitle)
          .popover(isPresented: $isSubscriptionsPresented, content: {
             Subscriptions(isPresented: $isSubscriptionsPresented)
          })

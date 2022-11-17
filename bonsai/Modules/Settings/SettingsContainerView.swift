@@ -33,9 +33,9 @@ struct SettingsContainerView: View {
         
         var label: String {
             switch self {
-            case .premiumFeature: return L.Bonsai_premium_features
-            case .termsAndConditions: return L.Terms_of_Service
-            case .privacyPolicy: return L.Privacy_Policy
+            case .premiumFeature: return L.bonsaiPremiumFeatures
+            case .termsAndConditions: return L.termsOfService
+            case .privacyPolicy: return L.privacyPolicy
             }
         }
     }
@@ -43,16 +43,7 @@ struct SettingsContainerView: View {
     var body: some View {
        NavigationView {
           List {
-             //            Section(header: Text("home background theme")) {
-             //                BackgroundChangeRow()
-             //            }
-             //            .listRowBackground(BonsaiColor.card)
-             //            Section(header: Text("app icon")) {
-             //                AppIconChangeRow()
-             //            }
-             //            .listRowBackground(BonsaiColor.card)
-             //
-             Section(header: Text(L.other)) {
+             Section(header: Text(L.otherTitle)) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
                    HStack {
                       Text(item.label)
@@ -88,7 +79,7 @@ struct SettingsContainerView: View {
                 Button(action: {
                    isPresented = false
                 }) {
-                   Text(L.cancel)
+                   Text(L.cancelTitle)
                       .foregroundColor(BonsaiColor.secondary)
                 }
              }

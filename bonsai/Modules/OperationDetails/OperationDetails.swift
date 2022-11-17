@@ -191,7 +191,7 @@ struct OperationDetails: View {
                         }
                      }
                   } label: {
-                     Text(L.save)
+                     Text(L.saveTitle)
                   } // Button
                   .buttonStyle(PrimaryButtonStyle())
                   .padding([.top, .bottom], 12)
@@ -207,7 +207,7 @@ struct OperationDetails: View {
                   focusedField = nil
                   isPresented = false
                }) {
-                  Text(L.cancel)
+                  Text(L.cancelTitle)
                      .foregroundColor(BonsaiColor.secondary)
                }
             }

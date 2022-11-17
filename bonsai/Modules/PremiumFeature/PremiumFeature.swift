@@ -29,7 +29,7 @@ struct PremiumFeature: View {
             
             ScrollView(showsIndicators: false) {
                VStack(alignment: .center) {
-                  Text(L.premium_descriptions)
+                  Text(L.premiumDescriptions)
                      .frame(maxWidth: .infinity)
                      .multilineTextAlignment(.center)
                      .font(.system(size: 17))
@@ -62,26 +62,26 @@ struct PremiumFeature: View {
       
       var premiums: [Premium] = [
          .init(
-            name: L.Unlimited_categories,
-            description: L.Unlimited_categories_descriptions,
+            name: L.unlimitedCategories,
+            description: L.unlimitedCategoriesDescriptions,
             icon: BonsaiImage.folder,
             gifImage: "new_category"
          ),
          .init(
-            name: L.Unlimited_tags,
-            description: L.Unlimited_tags_descriptions,
+            name: L.unlimitedTags,
+            description: L.unlimitedTagsDescriptions,
             icon: BonsaiImage.tag,
             gifImage: "new_tag"
          ),
          .init(
-            name: L.Flexible_budget,
-            description: L.Flexible_budget_descriptions,
+            name: L.flexibleBudget,
+            description: L.flexibleBudgetDescriptions,
             icon: BonsaiImage.calendar,
             gifImage: "custom_budget"
          ),
          .init(
-            name: L.No_ads,
-            description: L.No_ads_descriptions,
+            name: L.noAds,
+            description: L.noAdsDescriptions,
             icon: BonsaiImage.star,
             gifImage: "no_ads"
          )
@@ -89,8 +89,8 @@ struct PremiumFeature: View {
       
       if purchaseService.isUKRStoreFront {
          premiums.insert(
-            .init(name: L.special_for_UA_title,
-                  description: L.special_for_UA,
+            .init(name: L.specialForUATitle,
+                  description: L.specialForUA,
                   icon: Image.init("UA"),
                   gifImage: "ua23"),
             at: 0)

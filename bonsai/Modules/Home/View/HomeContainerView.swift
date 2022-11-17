@@ -26,7 +26,7 @@ struct HomeContainerView: View {
    private var budget: Budget? { budgets.first }
 
    private func tapViewTransactions() -> some View {
-      BudgetTapView(title: L.Drag_up_hint)
+      BudgetTapView(title: L.dragUpHint)
          .onTapGesture {
             isTransactionsPresented = true
          }
@@ -164,7 +164,7 @@ struct HomeContainerView: View {
                if UserSettings.showDragDownHint {
                   DragDownHintView().frame(maxWidth: .infinity)
                }
-               Text(L.Net_Worth)
+               Text(L.netWorth)
                   .font(BonsaiFont.subtitle_15)
                   .foregroundColor(BonsaiColor.text)
                   .padding(.top, 16)
@@ -184,19 +184,19 @@ struct HomeContainerView: View {
                         isSettingPresented = true
                      }
                }
-               Text(L.This_month)
+               Text(L.thisMonth)
                   .font(BonsaiFont.subtitle_15)
                   .foregroundColor(BonsaiColor.text)
                   .padding(.top, 28)
                HStack(alignment: .center, spacing: 12) {
                   BudgetMoneyCardView(
-                     title: L.Revenue_title,
+                     title: L.revenueTitle,
                      subtitle: "\(income()) \(Currency.Validated.current.symbol)",
                      titleColor: BonsaiColor.green,
                      icon: nil
                   )
                   BudgetMoneyCardView(
-                     title: L.Expenses_title,
+                     title: L.expensesTitle,
                      subtitle: "\(expense()) \(Currency.Validated.current.symbol)",
                      titleColor: BonsaiColor.secondary,
                      icon: nil
@@ -205,7 +205,7 @@ struct HomeContainerView: View {
                .frame(height: 76)
                .padding(.top, 8)
                
-               Text(L.Budget_title)
+               Text(L.budgetTitle)
                   .font(BonsaiFont.subtitle_15)
                   .foregroundColor(BonsaiColor.text)
                   .padding(.top, 28)

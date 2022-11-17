@@ -125,7 +125,7 @@ struct Subscriptions: View {
                Button(action: {
                   isPresented = false
                }) {
-                  Text(L.cancel)
+                  Text(L.cancelTitle)
                      .foregroundColor(BonsaiColor.secondary)
                }
             }
@@ -136,7 +136,7 @@ struct Subscriptions: View {
    private func restorePurchase() -> some View {
       HStack(alignment: .center) {
          Spacer()
-         Text(L.Restore_Purchases)
+         Text(L.restorePurchases)
             .font(.system(size: 14))
             .foregroundColor(BonsaiColor.secondary)
             .onTapGesture {
@@ -158,7 +158,7 @@ struct Subscriptions: View {
       VStack(spacing: 4) {
          HStack(spacing: 0) {
             Text({ () -> String in
-               var text = L.Due
+               var text = L.due
                let date = Date().addingTimeInterval(TimeInterval(daysFree * 24 * 60 * 60))
                let formatter = DateFormatter()
                formatter.dateFormat = "dd MMMM yyyy"
@@ -173,9 +173,9 @@ struct Subscriptions: View {
          .foregroundColor(.white)
          .opacity(0.7)
          HStack(spacing: 0) {
-            Text(L.Due_Today)
+            Text(L.dueToday)
             Text(" ")
-            Text(L.Days_Free(daysFree))
+            Text(L.daysFree(daysFree))
                .foregroundColor(BonsaiColor.green)
             Spacer()
             Text(trialPrice)
@@ -209,7 +209,7 @@ struct Subscriptions: View {
                   })
                }
 
-            Text(L.Try_for_free)
+            Text(L.tryForFree)
                .foregroundColor(BonsaiColor.card)
                .font(.system(size: 17))
                .bold()
@@ -222,18 +222,18 @@ struct Subscriptions: View {
       HStack(alignment: .center) {
          Spacer()
          VStack(alignment: .center) {
-            Text(L.Choose_your_plan)
+            Text(L.chooseYourPlan)
                .font(.system(size: 20))
                .bold()
                .foregroundColor(BonsaiColor.purple6)
 
-            Text(L.premium_planDescription)
+            Text(L.premiumPlanDescription)
                .frame(maxWidth: .infinity)
                .multilineTextAlignment(.center)
                .foregroundColor(BonsaiColor.purple6)
                .padding(.top, -2)
                .padding(.horizontal)
-            let learnMore = Text(L.Learn_more)
+            let learnMore = Text(L.learnMore)
                .bold()
                .foregroundColor(BonsaiColor.blueLight)
                .shimmering(duration: 2.5)
@@ -248,17 +248,17 @@ struct Subscriptions: View {
 
    private func textGroup() -> some View {
       let termsOfServiceUrl = "https://www.craft.do/s/nk6c7jUpWgPhQg"
-      let termsOfServicelink = "[\(L.Terms_of_Service)](\(termsOfServiceUrl))"
+      let termsOfServicelink = "[\(L.termsOfService)](\(termsOfServiceUrl))"
 
       let privacyPolicyUrl = "https://www.craft.do/s/H8euwSq2jDDABJ"
-      let privacyPolicylink = "[\(L.Privacy_Policy)](\(privacyPolicyUrl))"
+      let privacyPolicylink = "[\(L.privacyPolicy)](\(privacyPolicyUrl))"
 
       let text =
-      Text(L.Subscription_description_1) +
+      Text(L.subscriptionDescription1) +
       Text("\n") +
-      Text(L.Subscription_description) +
+      Text(L.subscriptionDescription) +
       Text(.init(termsOfServicelink)).foregroundColor(BonsaiColor.secondary).bold() +
-      Text(L.Merge_And) +
+      Text(L.mergeAnd) +
       Text(.init(privacyPolicylink))
          .foregroundColor(BonsaiColor.secondary).bold() +
       Text(".")
@@ -270,7 +270,7 @@ struct Subscriptions: View {
    }
 
    private func continueWidthButton() -> CGFloat {
-      let flexibleWidth: CGFloat = L.Try_for_free.widthOfString(usingFont: .systemFont(ofSize: 17), inset: 30)
+      let flexibleWidth: CGFloat = L.tryForFree.widthOfString(usingFont: .systemFont(ofSize: 17), inset: 30)
       let standart: CGFloat = 200
       return flexibleWidth > standart ? flexibleWidth : standart
    }

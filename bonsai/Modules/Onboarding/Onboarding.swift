@@ -21,16 +21,16 @@ struct Onboarding: View {
    private let dataSource: [OnboardingDataSource] = [
       .init(
          image: "bonsai_1",
-         title: L.onboarding_1_title,
-         description: L.onboarding_1_description),
+         title: L.onboarding1Title,
+         description: L.onboarding1Description),
       .init(
          image: "bonsai_2",
-         title: L.onboarding_2_title,
-         description: L.onboarding_2_description),
+         title: L.onboarding2Title,
+         description: L.onboarding2Description),
       .init(
          image: "bonsai_3",
-         title: L.onboarding_3_title,
-         description: L.onboarding_3_description),
+         title: L.onboarding3Title,
+         description: L.onboarding3Description),
    ]
 
    var body: some View {
@@ -68,7 +68,7 @@ struct Onboarding: View {
                         RoundedRectangle(cornerRadius: 13)
                            .frame(width: 192, height: 48)
                            .foregroundColor(BonsaiColor.mainPurple)
-                        Text(L.Continue_button)
+                        Text(L.continueButton)
                            .foregroundColor(BonsaiColor.card)
                            .font(.system(size: 17))
                            .bold()

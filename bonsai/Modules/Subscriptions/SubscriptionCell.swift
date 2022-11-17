@@ -71,9 +71,9 @@ struct SubscriptionCell: View {
                 HStack {
                     ZStack {
                         RoundedRectangle(cornerRadius: 8)
-                            .frame(width: L.Best_value.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
+                            .frame(width: L.bestValue.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
                             .foregroundColor(BonsaiColor.green)
-                        Text(L.Best_value)
+                        Text(L.bestValue)
                             .foregroundColor(.black)
                             .font(.system(size: 12))
                             .bold()
@@ -98,7 +98,7 @@ struct SubscriptionCell: View {
                             .bold()
                     }
             }
-           Text("\(subscription.pricePerMonth) / \(L.subscriptions_month)")
+           Text("\(subscription.pricePerMonth) / \(L.subscriptionsMonth)")
                     .foregroundColor(BonsaiColor.purple3)
                     .font(.system(size: 14))
             Spacer()
