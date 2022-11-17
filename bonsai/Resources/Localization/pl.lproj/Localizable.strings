@@ -27,7 +27,7 @@
 "budget.create" = "Utwórz";
 "budget.save" = "Zapisz";
 "budget.name" = "Nazwa (opcjonalnie)";
-"budżet.kwota" = "Kwota";
+"budget.amount" = "Kwota";
 "budget.delete.button" = "Usuń budżet";
 "budget.delete.confirmation" = "Tak, usuń mój budżet";
 "budget.swipe_up_suggestion" = "Przeciągnij w górę, aby zobaczyć operacje budżetowe";
