@@ -6,6 +6,52 @@
   
 */
 
+"tags.title" = "Теги";
+"tags.name" = "Имя Тега";
+"tags.new" = "Новый Тег";
+
+"category.title" = "Категории";
+"category.name" = "Имя Категории";
+"category.new" = "Новая Категория";
+
+"charts.balance.title" = "Баланс";
+"charts.balance.empty" = "Эта диаграмма покажет вам, как со временем меняется ваш баланс";
+"charts.expenses.title" = "Расходы";
+"charts.expenses.empty" = "Эта диаграмма покажет все категории, на которые вы потратили деньги";
+"charts.legend.balance" = "Баланс";
+"charts.legend.period" = "Период";
+"charts.legend.amount" = "Сумма (%@)";
+
+"budget.new" = "Новый Бюджет";
+"budget.edit" = "Редактировать бюджет";
+"budget.create" = "Создать";
+"budget.save" = "Сохранить";
+"budget.name" = "Имя (необязательно)";
+"budget.amount" = "Общая сумма";
+"budget.delete.button" = "Удалить бюджет";
+"budget.delete.confirmation" = "Да, удалить мой бюджет";
+"budget.swipe_up_suggestion" = "Свайп, чтобы увидеть операции бюджета";
+"budget.default_name" = "Бюджет";
+
+"date.today" = "Сегодня";
+"date.yesterday" = "Вчера";
+
+"settings.premium_features" = "Премиум возможности";
+"settings.terms" = "Условия обслуживания";
+"settings.policy" = "Политика конфиденциальности";
+
+"category.no_category" = "Без категории";
+
+"operation.new" = "Новая операция";
+"operation.edit" = "Редактировать операцию";
+"operation.amount" = "Сумма";
+"operation.title" = "Заголовок";
+"operation.category" = "Категория";
+"operation.add_tag" = "Добавить тег";
+"operation.expense" = "Расход";
+"operation.income" = "Доход";
+"operation.transfer" = "Перевод";
+
 "Onboarding_1_title" = "Добро пожаловать!";
 "Onboarding_1_description" = "Бонсай представляет собой денежное дерево. Ставьте финансовые цели, отслеживайте свой денежный поток, отмечайте свои финансовые привычки.";
 
@@ -20,8 +66,8 @@
 "Total_budget" = "Всего";
 "Daily_budget" = "Ежедневно";
 "Budget_greeting" = "Эй, а ты хорош!";
-"Drag_up_hint" = "Свайпни вверх чтобы увидеть транзакции";
-"Drag_down_hint" = "Свапни вниз чтобы создать транзакцию";
+"Drag_up_hint" = "Свайп, чтобы увидеть операции";
+"Drag_down_hint" = "Свайп, чтобы создать операцию";
 "Home_category" = "Самые затратные категории";
 "Revenue_title" = "Доход";
 "Expenses_title" = "Расход";
@@ -30,7 +76,7 @@
 
 
 "Continue_button" = "Продолжить";
-"Try_for_free" = "Попробовать бесплатно";
+"Try_for_free" = "Начать пробную версию и подписаться";
 "AllSet_title" = "Все готово";
 
 // SelectCurrencyPage
@@ -40,20 +86,24 @@
 "SelectCurrencyPage.Choose_default_currency" = "Выбор валюты по-умолчанию";
 
 //TODO:
-"AllSet_text" = "Все готово текст";
 "AllSet_text" = "Поздравляем! Теперь у вас есть полный доступ к премиум функциям Бонсай.";
 
 "Best_value" = "Лучшее предложение";
 "Choose_your_plan" = "Выбери свой план";
 
+"Subscription_description_1" = "Можно отменить в любое время. Подписка автоматически продлевается.";
 "Subscription_description" = "Подписываясь, вы соглашаетесь с нашими ";
 "Merge_And" = " и ";
 "Terms_of_Service" = "условиями обслуживания";
 "Privacy_Policy" = "политикой конфиденциальности";
 "Restore_Purchases" = "Восстановить покупки";
 
+"Due" = "Оплата";
+"Due_Today" = "Оплата сегодня";
+"Days_Free" = "(%@ дней бесплатно)";
 
-"Transactions_title" = "Транзакции";
+
+"Transactions_title" = "Операции";
 "Cancel_title" = "Отмена";
 "Done_title" = "Готово";
 "Other_title" = "Другое";
@@ -66,9 +116,6 @@
 "Close_title" = "Закрыть";
 "Back_title" = "Назад";
 "OK_title" = "ОК";
-
-
-"Bonsai_premium_features" = "Бонсай Премиум Фичи";
 
 "delete_Budget_Confirmation" = "Вы уверены, что хотите удалить этот бюджет?";
 
@@ -85,7 +132,7 @@
 "choose_budget_period_custom_premium" = "Кастомный период";
 "choose_budget_period_premium" = "Премиум";
 
-"Net_Worth" = "Собственное состояние";
+"Net_Worth" = "Баланс";
 
 "This_month" = "Этот месяц";
 
@@ -103,7 +150,7 @@
 // Premium_features
 
 "Unlimited_categories" = "Неограниченное количество категорий";
-"Unlimited_categories_descriptions" = "Вы можете создавать неограниченное количество категорий, не стесняйтесь указывать свои транзакции";
+"Unlimited_categories_descriptions" = "Вы можете создавать неограниченное количество категорий, не стесняйтесь указывать свои операции";
 
 "Unlimited_tags" = "Неограниченное количество тегов";
 "Unlimited_tags_descriptions" = "Получите неограниченную возможность добавлять теги для своих нужд";
@@ -112,7 +159,7 @@
 "Flexible_budget_descriptions" = "Установите дни гибкого периода для бюджетов";
 
 "No_ads" = "Без рекламы";
-"No_ads_descriptions" = "Вы не увидите рекламу. Вам это действительно не нужно";
+"No_ads_descriptions" = "Никакой рекламы в приложении. Сфокусируйтесь на главном";
 
 "special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
 

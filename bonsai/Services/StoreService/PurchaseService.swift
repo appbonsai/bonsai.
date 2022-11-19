@@ -19,7 +19,7 @@ final class PurchaseService: ObservableObject {
       }
    }
    
-   @Published var viewModel: SubscriptionViewModel = .init(packages: [])
+   @Published var packages: [Package] = []
    @Published var isSubscriptionActive = false
    @Published var isShownAllSet = false
     
@@ -44,7 +44,7 @@ final class PurchaseService: ObservableObject {
          .sink(receiveCompletion: { error in
             print("error \(error)")
          }, receiveValue: { [weak self] pkg in
-             self?.viewModel = SubscriptionViewModel(packages: pkg)
+             self?.packages = pkg
          })
          .store(in: &disposeBag)
    }

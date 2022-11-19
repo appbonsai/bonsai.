@@ -53,7 +53,7 @@ struct BudgetHeaderView: View {
                .padding(.leading, 20)
 
             VStack(alignment: .leading) {
-               Text(L.Money_spent)
+               Text(L.moneySpent)
                   .font(BonsaiFont.body_17)
                   .fontWeight(.regular)
                   .foregroundColor(BonsaiColor.text)
@@ -61,7 +61,7 @@ struct BudgetHeaderView: View {
                Text("\(Currency.Validated.current.symbol) \(getTotalMoneySpent())")
                   .font(BonsaiFont.title_28)
                   .foregroundColor(.white)
-               Text("\(L.out_of) \(Currency.Validated.current.symbol)\(getTotalBudgetAmount())")
+               Text("\(L.outOf) \(Currency.Validated.current.symbol)\(getTotalBudgetAmount())")
                   .font(BonsaiFont.body_15)
                   .fontWeight(.regular)
                   .foregroundColor(BonsaiColor.text)

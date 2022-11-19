@@ -6,6 +6,52 @@
   
 */
 
+"tags.title" = "Thẻ";
+"tags.name" = "Tên Thẻ";
+"tags.new" = "Thẻ Mới";
+
+"category.title" = "Thể Loại";
+"category.name" = "Tên Danh mục";
+"category.new" = "Danh Mục mới";
+
+"charts.balance.title" = "Số dư";
+"charts.balance.empty" = "Biểu đồ này sẽ cho bạn thấy số dư của bạn thay đổi như thế nào theo thời gian";
+"charts.expenses.title" = "Chi phí";
+"charts.expenses.empty" = "Biểu đồ này sẽ hiển thị tất cả danh mục mà bạn đã chi tiền cho";
+"charts.legend.balance" = "Số dư";
+"charts.legend.period" = "Khoảng thời gian";
+"charts.legend.amount" = "Số tiền (%@)";
+
+"budget.new" = "Ngân sách mới";
+"budget.edit" = "Chỉnh sửa ngân sách";
+"budget.create" = "Tạo";
+"budget.save" = "Lưu";
+"budget.name" = "Tên (tùy chọn)";
+"budget.amount" = "Số tiền";
+"budget.delete.button" = "Xóa ngân sách";
+"budget.delete.confirmation" = "Có, xóa ngân sách của tôi";
+"budget.swipe_up_suggestion" = "Kéo lên để xem hoạt động ngân sách";
+"budget.default_name" = "Ngân sách";
+
+"date.today" = "Hôm nay";
+"date.yesterday" = "Hôm qua";
+
+"settings.premium_features" = "Tính năng cao cấp";
+"settings.terms" = "Điều khoản dịch vụ";
+"settings.policy" = "Chính sách bảo mật";
+
+"category.no_category" = "Không có danh mục";
+
+"operation.new" = "Hoạt động mới";
+"operation.edit" = "Thao tác chỉnh sửa";
+"operation.amount" = "Số tiền";
+"operation.title" = "Tiêu đề";
+"operation.category" = "Danh mục";
+"operation.add_tag" = "Thêm Thẻ";
+"operation.expense" = "Chi phí";
+"operation.income" = "Doanh thu";
+"operation.transfer" = "Chuyển giao";
+
 "Onboarding_1_title" = "Chào mừng!";
 "Onboarding_1_description" = "Cây Bonsai là cây tiền. Đặt mục tiêu tài chính, theo dõi tiền nong, lưu ý quẩn lý thói quen tài chính của bạn.";
 
@@ -30,7 +76,7 @@
 
 
 "Continue_button" = "Tiếp tục";
-"Try_for_free" = "Thử miễn phí";
+"Try_for_free" = "Bắt đầu dùng thử và đăng ký";
 "AllSet_title" = "Tất cả các thiết lập";
 
 // SelectCurrencyPage
@@ -46,12 +92,16 @@
 "Best_value" = "Giá trị tốt nhất";
 "Choose_your_plan" = "Chọn kế hoạch của bạn";
 
+"Subscription_description_1" = "Hủy bất cứ lúc nào. Đăng ký tự động gia hạn.";
 "Subscription_description" = "Bằng cách đăng ký, bạn đồng ý với  ";
 "Merge_And" = " và ";
 "Terms_of_Service" = "Điều khoản dịch vụ ";
 "Privacy_Policy" = "Chính sách quyền riêng tư";
 "Restore_Purchases" = "Khôi phục các giao dịch mua";
 
+"Due" = "Quá hạn";
+"Due_Today" = "Đến hạn hôm nay";
+"Days_Free" = "(%@ ngày miễn phí)";
 
 "Trans transaction_title" = "Giao dịch";
 "Cancel_title" = "Hủy";
@@ -68,8 +118,6 @@
 "Back_title" = "Quay lại";
 "OK_title" = "OK";
 
-
-"Bonsai_premium_features" = "Bonsai tính năng cao cấp";
 
 "delete_Budget_Confirmation" = "Bạn có chắc chắn muốn xóa ngân sách này không?";
 

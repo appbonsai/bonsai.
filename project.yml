@@ -14,6 +14,7 @@ targets:
         UILaunchStoryboardName: LaunchScreen
         UIUserInterfaceStyle: Dark
         UIBackgroundModes: [remote-notification]
+        UIRequiresFullScreen: YES
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.bonsai.tree.app

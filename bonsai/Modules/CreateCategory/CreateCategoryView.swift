@@ -31,8 +31,6 @@ struct CreateCategoryView: View {
       self._isPresented = isPresented
       self.completion = completion
 
-      UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
-
       var colors = Color.allCases.reduce(OrderedDictionary<Color, Bool>())
       { partialResult, color in
          var res = partialResult
@@ -79,7 +77,7 @@ struct CreateCategoryView: View {
 
                      CategoryNewTitleView(
                         title: $title,
-                        placeholder: "Category Name"
+                        placeholder: L.Category.name
                      )
                      .frame(height: 56, alignment: .center)
                      .background(SwiftUI.Color(hex: 0x3d3c4d))
@@ -103,7 +101,7 @@ struct CreateCategoryView: View {
             } // ScrollView
             .padding(.top, 8)
          } // ZStack
-         .navigationTitle("New Category")
+         .navigationTitle(L.Category.new)
          .navigationBarTitleDisplayMode(.inline)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -111,7 +109,7 @@ struct CreateCategoryView: View {
                   isPresented = false
                   completion?(nil)
                }) {
-                  Text(L.cancel)
+                  Text(L.cancelTitle)
                      .foregroundColor(BonsaiColor.secondary)
                }
             }
@@ -145,7 +143,7 @@ struct CreateCategoryView: View {
                   isPresented = false
                   completion?(category)
                }) {
-                  Text(L.done)
+                  Text(L.doneTitle)
                      .if(imageNotSelected == false && title.isEmpty == false, transform: { text in
                         text.foregroundColor(BonsaiColor.secondary)
                      })

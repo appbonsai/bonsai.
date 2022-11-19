@@ -20,6 +20,7 @@ struct BudgetTapView: View {
          Text(title)
             .font(BonsaiFont.body_17)
             .foregroundColor(BonsaiColor.text)
+            .multilineTextAlignment(.center)
             .shimmering(duration: 3.0)
       }
    }
@@ -27,6 +28,6 @@ struct BudgetTapView: View {
 
 struct BudgetDragUpView_Previews: PreviewProvider {
    static var previews: some View {
-      BudgetTapView(title: L.Drag_up_hint)
+      BudgetTapView(title: L.dragUpHint)
    }
 }

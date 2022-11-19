@@ -19,7 +19,7 @@ extension OperationDetails {
             self = .income
          case .expense:
             self = .expense
-         case .transfer(let _):
+         case .transfer:
             assertionFailure("Unexpected branch, transfer is not supported yet")
             self = .transfer
          }
@@ -39,20 +39,20 @@ extension OperationDetails.OperationType {
       case .expense:
          return .init(
             color: BonsaiColor.secondary,
-            image: Image(uiImage: Asset.trendingDown.image),
-            title: "Expense"
+            image: Image(Asset.trendingDown.name),
+            title: L.Operation.expense
          )
       case .income:
          return .init(
             color: BonsaiColor.green,
-            image: Image(uiImage: Asset.trendingUp.image),
-            title: "Revenue"
+            image: Image(Asset.trendingUp.name),
+            title: L.Operation.income
          )
       case .transfer:
          return .init(
             color: BonsaiColor.blue,
-            image: Image(uiImage: Asset.trendingFlat.image),
-            title: "Transfer"
+            image: Image(Asset.trendingFlat.name),
+            title: L.Operation.transfer
          )
       }
    }

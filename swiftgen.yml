@@ -1,6 +1,12 @@
 xcassets:
   inputs:
-    - bonsai/Assets.xcassets
+    - bonsai/Resources/Assets.xcassets
   outputs:
     - templateName: swift5
       output: bonsai/SwiftGen/Assets.swift
+strings:
+  inputs:
+    - bonsai/Resources/Localization/en.lproj
+  outputs:
+    templateName: structured-swift5
+    output: bonsai/SwiftGen/Strings.swift

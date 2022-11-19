@@ -26,7 +26,7 @@ extension ChartsView {
                         PieChartSliceData(
                             disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
                             color: (transaction.category?.color ?? .noCategory).asColor,
-                            categoryTitle: (transaction.category?.title ?? "No Category"),
+                            categoryTitle: (transaction.category?.title ?? L.Category.noCategory),
                             icon: (transaction.category?.image ?? .icon(.noCategory)),
                             amount: transaction.amount.doubleValue,
                             percentages: countPercantage(using: transaction.amount.intValue),
@@ -85,11 +85,15 @@ extension ChartsView {
     }
     
     func mapToBarChartData() -> BarChartData {
-        BarChartData(piecesColor: BonsaiColor.mainPurple,
-                     pieces: separateForMonth().map { .init(label: $0.key, value: $0.value) },
-                     legends: [.init(color: BonsaiColor.mainPurple, title: "Balance")],
-                     bottomTitle: "Time Period",
-                     leftTitle: "Amount (\(Currency.Validated.current.symbol))")
+        BarChartData(
+            piecesColor: BonsaiColor.mainPurple,
+            pieces: separateForMonth()
+                .map { .init(label: $0.key, value: $0.value) },
+            legends: [.init(color: BonsaiColor.mainPurple,
+                            title: L.Charts.Legend.balance)],
+            bottomTitle: L.Charts.Legend.period,
+            leftTitle: L.Charts.Legend.amount(Currency.Validated.current.symbol)
+        )
     }
     
     private func separateForMonth() -> OrderedDictionary<String, Double> {

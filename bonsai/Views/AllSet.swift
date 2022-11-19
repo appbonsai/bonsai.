@@ -24,17 +24,17 @@ struct AllSet: View {
             )
             .overlay(
                 VStack {
-                    Image("AllSet_1")
+                    Image(Asset.allSet1.name)
                         .resizable()
                         .scaledToFit()
                         .clipped()
                         .frame(width: 228, height: 228)
                     VStack {
-                       Text(L.AllSet_title)
+                       Text(L.allSetTitle)
                             .padding(.top, 7)
                             .font(.system(size: 28).bold())
                             .padding(.bottom, 2)
-                       Text(L.AllSet_text)
+                       Text(L.allSetText)
                             .font(.system(size: 17))
                             .padding([.leading, .trailing], 28)
                         
@@ -45,7 +45,7 @@ struct AllSet: View {
                            .onTapGesture {
                                isPresented = false
                            }
-                           Text(L.close)
+                           Text(L.closeTitle)
                                 .foregroundColor(BonsaiColor.card)
                                 .font(.system(size: 17))
                                 .bold()

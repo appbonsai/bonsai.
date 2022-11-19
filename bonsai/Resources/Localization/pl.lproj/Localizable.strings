@@ -6,6 +6,52 @@
   
 */
 
+"tags.title" = "Tagi";
+"tags.name" = "Nazwa Znacznika";
+"tags.new" = "Nowy Znacznik";
+
+"category.title" = "Kategorie";
+"category.name" = "Nazwa Kategorii";
+"category.new" = "Nowa Kategoria";
+
+"charts.balance.title" = "Saldo";
+"charts.balance.empty" = "Ten wykres pokazuje, jak saldo zmienia się w czasie";
+"charts.expenses.title" = "Wydatki";
+"charts.expenses.empty" = "Ten wykres pokaże wszystkie kategorie, na które wydałeś pieniądze";
+"charts.legend.balance" = "Saldo";
+"charts.legend.period" = "Okres czasu";
+"charts.legend.amount" = "Kwota (%@)";
+
+"budget.new" = "Nowy budżet";
+"budget.edit" = "Edytuj budżet";
+"budget.create" = "Utwórz";
+"budget.save" = "Zapisz";
+"budget.name" = "Nazwa (opcjonalnie)";
+"budget.amount" = "Kwota";
+"budget.delete.button" = "Usuń budżet";
+"budget.delete.confirmation" = "Tak, usuń mój budżet";
+"budget.swipe_up_suggestion" = "Przeciągnij w górę, aby zobaczyć operacje budżetowe";
+"budget.default_name" = "Budżet";
+
+"date.today" = "Dzisiaj";
+"data.yesterday" = "Wczoraj";
+
+"settings.premium_features" = "Funkcje premium";
+"settings.terms" = "Warunki korzystania z usługi";
+"settings.policy" = "Polityka prywatności";
+
+"category.no_category" = "Brak kategorii";
+
+"operation.new" = "Nowa operacja";
+"operation.edit" = "Edytuj operację";
+"operation.amount" = "Kwota";
+"operation.title" = "Tytuł";
+"operation.category" = "Kategoria";
+"operation.add_tag" = "Dodaj tag";
+"operation.expense" = "Wydatek";
+"operation.income" = "Dochód";
+"operation.transfer" = "Transfer";
+
 "Onboarding_1_title" = "Witamy!";
 "Onboarding_1_description" = "Bonsai reprezentuje drzewo pieniędzy. Ustal cele finansowe, śledź przepływ pieniędzy, obserwuj swoje nawyki finansowe.";
 
@@ -32,7 +78,7 @@
 
 
 "Continue_button" = "Kontynuuj";
-"Try_for_free" = "Wypróbuj za darmo";
+"Try_for_free" = "Rozpocznij okres próbny i subskrybuj";
 "AllSet_title" = "Wszystkie Zestawy";
 
 // SelectCurrencyPage
@@ -47,11 +93,16 @@
 "Best_value" = "Najlepsza wartość";
 "Choose_your_plan" = "Wybierz swój plan";
 
+"Subscription_description_1" = "Anuluj w dowolnym momencie. Subskrypcja odnawia się automatycznie.";
 "Subscription_description" = "Subskrybując wyrażasz zgodę na nasze ";
 "Merge_And" = " i ";
 "Terms_of_Service" = "Warunki korzystania z usługi";
 "Privacy_Policy" = "Polityka prywatności";
 "Restore_Purchases" = "Przywróć zakupy";
+
+"Due" = "Należny";
+"Due_Today" = "Do dziś";
+"Days_Free" = "(%@ dni za darmo)";
 
 "Transactions_title" = "Transakcje";
 "Cancel_title" = "Anuluj";
@@ -70,8 +121,6 @@
 
 
 "delete_Budget_Confirmation" = "Czy na pewno chcesz usunąć ten budżet?";
-
-"Bonsai_premium_features" = "Funkcje premium Bonsai";
 
 "you_dont_own_a_budget_yet" = "Nie masz jeszcze budżetu";
 

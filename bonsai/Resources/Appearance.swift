@@ -22,18 +22,6 @@ enum BonsaiFont {
 }
 
 enum BonsaiImage {
-   static var xmarkCircle: Image { Image(systemName: "xmark.circle") }
-   static var xmarkSquare: Image { Image(systemName: "xmark.square") }
-   static var crossVialFill: Image { Image(systemName: "cross.vial.fill") }
-   static var crossVial: Image { Image(systemName: "cross.vial") }
-   static var forkKnifeCircleFill: Image { Image(systemName: "fork.knife.circle.fill") }
-   static var forkKnifeCircle: Image { Image(systemName: "fork.knife.circle") }
-   static var fuelpumpFill: Image { Image(systemName: "fuelpump.fill") }
-   static var fuelpump: Image { Image(systemName: "fuelpump") }
-   static var graduationcapCircleFill: Image { Image(systemName: "graduationcap.circle.fill") }
-   static var graduationcapCircle: Image { Image(systemName: "graduationcap.circle") }
-   static var pawprintFill: Image { Image(systemName: "pawprint.fill") }
-   static var amount: Image { Image(systemName: "dollarsign.circle") }
    static var calendar: Image { Image(systemName: "calendar") }
    static var category: Image { Image(systemName: "folder") }
    static var tag: Image { Image(systemName: "tag") }
@@ -45,15 +33,11 @@ enum BonsaiImage {
    static var textBubble: Image { Image(systemName: "text.bubble") }
    static var xMark: Image { Image(systemName: "xmark") }
    static var plus: Image { Image(systemName: "plus") }
-   static var smile: Image { Image(systemName: "face.smiling") }
    static var textformatAlt: Image { Image(systemName: "textformat.alt") }
    static var pencil: Image { Image(systemName: "rectangle.and.pencil.and.ellipsis") }
    static var settings: Image { Image(systemName: "slider.horizontal.3") }
-   
    static var folder: Image { Image(systemName: "folder.fill") }
-   
    static var star: Image { Image(systemName: "star.square") }
-   
    static var light: Image { Image(systemName: "light.max") }
 }
 

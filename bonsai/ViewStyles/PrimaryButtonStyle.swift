@@ -21,6 +21,7 @@ struct PrimaryButtonStyle: ButtonStyle {
              .frame(maxWidth: UIScreen.main.bounds.width / 1.5)
              .foregroundColor(BonsaiColor.card)
              .font(BonsaiFont.title_headline_17)
+             .multilineTextAlignment(.center)
              .background(BonsaiColor.mainPurple)
              .cornerRadius(13)
              .scaleEffect(configuration.isPressed ? 0.9 : 1)

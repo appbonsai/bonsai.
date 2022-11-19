@@ -8,6 +8,9 @@
 #elseif os(tvOS) || os(watchOS)
   import UIKit
 #endif
+#if canImport(SwiftUI)
+  import SwiftUI
+#endif
 
 // Deprecated typealiases
 @available(*, deprecated, renamed: "ColorAsset.Color", message: "This typealias will be removed in SwiftGen 7.0")
@@ -22,23 +25,26 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
+  internal static let allSet1 = ImageAsset(name: "AllSet_1")
   internal static let iconDark = ImageAsset(name: "icon-dark")
   internal static let iconLight = ImageAsset(name: "icon-light")
   internal static let icon = ImageAsset(name: "icon")
-  internal static let tree = ImageAsset(name: "Tree")
   internal static let accountBalance = ImageAsset(name: "account_balance")
-  internal static let accountBalanceWallet = ImageAsset(name: "account_balance_wallet")
-  internal static let sunMax = ImageAsset(name: "sun.max")
   internal static let arrowGreenUp = ImageAsset(name: "arrow-green-up")
   internal static let arrowRedDown = ImageAsset(name: "arrow-red-down")
-  internal static let chartsDisabled = ImageAsset(name: "charts_disabled")
-  internal static let chartsSelected = ImageAsset(name: "charts_selected")
-  internal static let homeDisabled = ImageAsset(name: "home_disabled")
-  internal static let homeSelected = ImageAsset(name: "home_selected")
-  internal static let settingDisabled = ImageAsset(name: "setting_disabled")
+  internal static let createBudget = ImageAsset(name: "create_budget")
+  internal static let treeFill = ImageAsset(name: "tree.fill")
   internal static let trendingDown = ImageAsset(name: "trending_down")
   internal static let trendingFlat = ImageAsset(name: "trending_flat")
   internal static let trendingUp = ImageAsset(name: "trending_up")
+  internal static let bonsai1 = ImageAsset(name: "bonsai_1")
+  internal static let bonsai2 = ImageAsset(name: "bonsai_2")
+  internal static let bonsai3 = ImageAsset(name: "bonsai_3")
+  internal static let ua = ImageAsset(name: "UA")
+  internal static let bonsai4 = ImageAsset(name: "bonsai_4")
+  internal static let pathCheckbox = ImageAsset(name: "path_checkbox")
+  internal static let pathChecked = ImageAsset(name: "path_checked")
+  internal static let undrawJapanUbgk1 = ImageAsset(name: "undraw_japan_ubgk 1")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
@@ -72,6 +78,13 @@ internal final class ColorAsset {
   }
   #endif
 
+  #if canImport(SwiftUI)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  internal private(set) lazy var swiftUIColor: SwiftUI.Color = {
+    SwiftUI.Color(asset: self)
+  }()
+  #endif
+
   fileprivate init(name: String) {
     self.name = name
   }
@@ -90,6 +103,16 @@ internal extension ColorAsset.Color {
     #endif
   }
 }
+
+#if canImport(SwiftUI)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+internal extension SwiftUI.Color {
+  init(asset: ColorAsset) {
+    let bundle = BundleToken.bundle
+    self.init(asset.name, bundle: bundle)
+  }
+}
+#endif
 
 internal struct ImageAsset {
   internal fileprivate(set) var name: String
@@ -127,6 +150,13 @@ internal struct ImageAsset {
     return result
   }
   #endif
+
+  #if canImport(SwiftUI)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  internal var swiftUIImage: SwiftUI.Image {
+    SwiftUI.Image(asset: self)
+  }
+  #endif
 }
 
 internal extension ImageAsset.Image {
@@ -144,6 +174,26 @@ internal extension ImageAsset.Image {
     #endif
   }
 }
+
+#if canImport(SwiftUI)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+internal extension SwiftUI.Image {
+  init(asset: ImageAsset) {
+    let bundle = BundleToken.bundle
+    self.init(asset.name, bundle: bundle)
+  }
+
+  init(asset: ImageAsset, label: Text) {
+    let bundle = BundleToken.bundle
+    self.init(asset.name, bundle: bundle, label: label)
+  }
+
+  init(decorative asset: ImageAsset) {
+    let bundle = BundleToken.bundle
+    self.init(decorative: asset.name, bundle: bundle)
+  }
+}
+#endif
 
 // swiftlint:disable convenience_type
 private final class BundleToken {

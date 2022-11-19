@@ -6,6 +6,52 @@
   
 */
 
+"tags.title" = "Tags";
+"tags.name" = "Tag Name";
+"tags.new" = "New Tag";
+
+"category.title" = "Categories";
+"category.name" = "Category Name";
+"category.new" = "New Category";
+
+"charts.balance.title" = "Balance";
+"charts.balance.empty" = "This chart will show you how your balance changes over time";
+"charts.expenses.title" = "Expenses";
+"charts.expenses.empty" = "This chart will show all categories that you spent money on";
+"charts.legend.balance" = "Balance";
+"charts.legend.period" = "Time Period";
+"charts.legend.amount" = "Amount (%@)";
+
+"budget.new" = "New Budget";
+"budget.edit" = "Edit Budget";
+"budget.create" = "Create";
+"budget.save" = "Save";
+"budget.name" = "Name (optional)";
+"budget.amount" = "Amount";
+"budget.delete.button" = "Delete budget";
+"budget.delete.confirmation" = "Yes, delete my budget";
+"budget.swipe_up_suggestion" = "Drag up to see budget operations";
+"budget.default_name" = "Budget";
+
+"date.today" = "Today";
+"date.yesterday" = "Yesterday";
+
+"settings.premium_features" = "Premium Features";
+"settings.terms" = "Terms of Service";
+"settings.policy" = "Privacy Policy";
+
+"category.no_category" = "No category";
+
+"operation.new" = "New Operation";
+"operation.edit" = "Edit Operation";
+"operation.amount" = "Amount";
+"operation.title" = "Title";
+"operation.category" = "Category";
+"operation.add_tag" = "Add Tag";
+"operation.expense" = "Expense";
+"operation.income" = "Revenue";
+"operation.transfer" = "Transfer";
+
 "Onboarding_1_title" = "Welcome!";
 "Onboarding_1_description" = "Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.";
 
@@ -20,7 +66,7 @@
 "Total_budget" = "Total";
 "Daily_budget" = "Daily";
 "Budget_greeting" = "Hey, you are doing well!";
-"Drag_up_hint" = "Tap here to see your last operations";
+"Drag_up_hint" = "Drag up to see your last operations";
 "Drag_down_hint" = "Drag down to create new operation";
 "Home_category" = "The most expensive categories";
 "Revenue_title" = "Revenue";
@@ -30,7 +76,7 @@
 
 
 "Continue_button" = "Continue";
-"Try_for_free" = "Try for free";
+"Try_for_free" = "Start Trial and Subscribe";
 "AllSet_title" = "All set";
 
 // SelectCurrencyPage
@@ -45,14 +91,18 @@
 "Best_value" = "Best value";
 "Choose_your_plan" = "Choose your plan";
 
+"Subscription_description_1" = "Cancel anytime. Subscription auto-renews.";
 "Subscription_description" = "By subscribing you agree to our ";
 "Merge_And" = " and ";
 "Terms_of_Service" = "Terms & Conditions";
 "Privacy_Policy" = "Privacy Policy";
 "Restore_Purchases" = "Restore Purchases";
 
+"Due" = "Due";
+"Due_Today" = "Due today";
+"Days_Free" = "(%@ days free)";
 
-"Transactions_title" = "Transactions";
+"Transactions_title" = "Operations";
 
 
 // Toolbar nav
@@ -75,8 +125,6 @@
 "OK_title" = "OK";
 
 "delete_Budget_Confirmation" = "Are you sure you want to delete this budget?";
-
-"Bonsai_premium_features" = "Bonsai premium features";
 
 "you_dont_own_a_budget_yet" = "You don't own a budget yet";
 
@@ -109,7 +157,7 @@
 // Premium_features
 
 "Unlimited_categories" = "Unlimited categories";
-"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your transactions";
+"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your operation";
 
 "Unlimited_tags" = "Unlimited tags";
 "Unlimited_tags_descriptions" = "Get unlimited opportunity to add tags for your needs";

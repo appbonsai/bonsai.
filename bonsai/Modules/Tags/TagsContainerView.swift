@@ -10,32 +10,22 @@ import OrderedCollections
 
 struct TagsContainerView: View {
 
-   @EnvironmentObject var purchaseService: PurchaseService
-   @State private var isSubscriptionPresented = false
+    @EnvironmentObject var purchaseService: PurchaseService
+    @State private var isSubscriptionPresented = false
 
-   private var isPremium: Bool {
-      if purchaseService.isSubscriptionActive {
-         return true
-      }
-      let limitedTags = 3
-      return selectedTags.count < limitedTags
-   }
-   
-   @FetchRequest(sortDescriptors: [])
-   var tags: FetchedResults<Tag>
-   @Binding var selectedTags: OrderedSet<Tag>
-   @Binding var isPresented: Bool
-   @State var isCreateTagPresented: Bool = false
+    private var isPremium: Bool {
+        if purchaseService.isSubscriptionActive {
+            return true
+        }
+        let limitedTags = 3
+        return selectedTags.count < limitedTags
+    }
 
-   init(isPresented: Binding<Bool>,
-        selectedTags: Binding<OrderedSet<Tag>>
-   ) {
-      self._isPresented = isPresented
-      self._selectedTags = selectedTags
-      UINavigationBar
-         .appearance()
-         .titleTextAttributes = [.foregroundColor: UIColor.white]
-   }
+    @FetchRequest(sortDescriptors: [])
+    var tags: FetchedResults<Tag>
+    @Binding var selectedTags: OrderedSet<Tag>
+    @Binding var isPresented: Bool
+    @State var isCreateTagPresented: Bool = false
 
     var body: some View {
         LoadingAllSet(isShowing: $purchaseService.isShownAllSet) {
@@ -62,7 +52,7 @@ struct TagsContainerView: View {
                     .padding(.top, 24)
                     .padding(.horizontal, 16)
                 } // ZStack
-                .navigationTitle("Tags")
+                .navigationTitle(L.Tags.title)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -99,12 +89,12 @@ struct TagsContainerView: View {
 }
 
 struct TagsContainerView_Previews: PreviewProvider {
-   static var previews: some View {
-      TagsContainerView(
-         isPresented: .constant(true),
-         selectedTags: .constant([])
-      )
-         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-         .previewDisplayName("iPhone 12")
-   }
+    static var previews: some View {
+        TagsContainerView(
+            selectedTags: .constant([]),
+            isPresented: .constant(true)
+        )
+        .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+        .previewDisplayName("iPhone 12")
+    }
 }
