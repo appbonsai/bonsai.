@@ -79,6 +79,8 @@ final class PurchaseService: ObservableObject {
                     completion()
                 }
                 if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
+                    self.purchaseDate = customerInfo?.entitlements.all[Pro.typeName]?.latestPurchaseDate?.dateString() ?? ""
+                    self.expirationDate = customerInfo?.entitlements.all[Pro.typeName]?.expirationDate?.dateString() ?? ""
                     self.isSubscriptionActive = allEntitlements.isActive
                     if allEntitlements.isActive {
                         self.isShownAllSet = true
@@ -96,6 +98,8 @@ final class PurchaseService: ObservableObject {
                 completion()
             }
             if let allEntitlements = customerInfo?.entitlements.all[Pro.typeName] {
+                self.purchaseDate = customerInfo?.entitlements.all[Pro.typeName]?.latestPurchaseDate?.dateString() ?? ""
+                self.expirationDate = customerInfo?.entitlements.all[Pro.typeName]?.expirationDate?.dateString() ?? ""
                 self.isSubscriptionActive = allEntitlements.isActive
                 if allEntitlements.isActive {
                     self.isShownAllSet = true

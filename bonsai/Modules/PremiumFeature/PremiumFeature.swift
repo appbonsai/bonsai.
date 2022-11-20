@@ -50,7 +50,12 @@ struct PremiumFeature: View {
                     if purchaseService.isSubscriptionActive {
                         SubscriptionStatusCell(premium: subscriptionStatus)
                             .onTapGesture {
-                                self.premium = subscriptionStatus
+                                self.premium = .init(
+                                    name: "Your subscription has been completed",
+                                    description: "Purchase date: \(purchaseService.purchaseDate)\nExpirationDate: \(purchaseService.expirationDate)",
+                                    icon: BonsaiImage.star_fill,
+                                    gifImage: "bonsai_green_png"
+                                )
                                 isPresentedPremiumDescription = true
                             }
                     } else {
