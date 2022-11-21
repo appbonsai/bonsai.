@@ -22,7 +22,6 @@ struct BudgetMoneyCardView: View {
             .scaledToFit()
             .frame(width: 24, height: 24)
             .foregroundColor(BonsaiColor.purple4)
-            .opacity(0.8)
             .padding(.top, 16)
          } else {
             Spacer()
@@ -37,8 +36,7 @@ struct BudgetMoneyCardView: View {
       }
       .frame(maxWidth: .infinity, alignment: .leading)
       .padding(.leading, 16)
-      .background(BonsaiColor.card.opacity(0.7))
-      .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
+      .background(BonsaiColor.card)
       .cornerRadius(13)
    }
 }
