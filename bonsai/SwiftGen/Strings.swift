@@ -54,6 +54,8 @@ internal enum L10n {
   }
   /// Are you sure you want to delete this budget?
   internal static let deleteBudgetConfirmation = L10n.tr("Localizable", "delete_Budget_Confirmation", fallback: "Are you sure you want to delete this budget?")
+  /// Dying tree, bad things happens, but you have a chance to recovery!
+  internal static let dieTreeDescription = L10n.tr("Localizable", "DieTreeDescription", fallback: "Dying tree, bad things happens, but you have a chance to recovery!")
   /// Done
   internal static let doneTitle = L10n.tr("Localizable", "Done_title", fallback: "Done")
   /// Drag down to create new operation
@@ -66,12 +68,14 @@ internal enum L10n {
   internal static let dueToday = L10n.tr("Localizable", "Due_Today", fallback: "Due today")
   /// Expenses
   internal static let expensesTitle = L10n.tr("Localizable", "Expenses_title", fallback: "Expenses")
-  /// Expiration date
-  internal static let expirationDate = L10n.tr("Localizable", "ExpirationDate", fallback: "Expiration date")
+  /// Expiration date: 
+  internal static let expirationDate = L10n.tr("Localizable", "ExpirationDate", fallback: "Expiration date: ")
   /// Flexible budget
   internal static let flexibleBudget = L10n.tr("Localizable", "Flexible_budget", fallback: "Flexible budget")
   /// Set flexible period days for budgets
   internal static let flexibleBudgetDescriptions = L10n.tr("Localizable", "Flexible_budget_descriptions", fallback: "Set flexible period days for budgets")
+  /// Excellent tree, keep doing and your tree would be fantastic!
+  internal static let greenTreeDescription = L10n.tr("Localizable", "GreenTreeDescription", fallback: "Excellent tree, keep doing and your tree would be fantastic!")
   /// The most expensive categories
   internal static let homeCategory = L10n.tr("Localizable", "Home_category", fallback: "The most expensive categories")
   /// Learn more
@@ -102,6 +106,8 @@ internal enum L10n {
   internal static let onboarding3Description = L10n.tr("Localizable", "Onboarding_3_description", fallback: "Be mindful spending, and you will be closer to financial freedom.")
   /// Be more mindful spending
   internal static let onboarding3Title = L10n.tr("Localizable", "Onboarding_3_title", fallback: "Be more mindful spending")
+  /// Orange tree, something goes wrong, try to reduce your daily expenses!
+  internal static let orangeTreeDescription = L10n.tr("Localizable", "OrangeTreeDescription", fallback: "Orange tree, something goes wrong, try to reduce your daily expenses!")
   /// Other
   internal static let otherTitle = L10n.tr("Localizable", "Other_title", fallback: "Other")
   /// out of
@@ -114,8 +120,10 @@ internal enum L10n {
   internal static let premiumPlanDescription = L10n.tr("Localizable", "premium_planDescription", fallback: "With a premium subscription you get unlimited access to the functionality.")
   /// Privacy Policy
   internal static let privacyPolicy = L10n.tr("Localizable", "Privacy_Policy", fallback: "Privacy Policy")
-  /// Purchase date:
-  internal static let purchaseDate = L10n.tr("Localizable", "PurchaseDate", fallback: "Purchase date:")
+  /// Purchase date: 
+  internal static let purchaseDate = L10n.tr("Localizable", "PurchaseDate", fallback: "Purchase date: ")
+  /// Purple tree, try to use money more wisly and keep going!
+  internal static let purpleTreeDescription = L10n.tr("Localizable", "PurpleTreeDescription", fallback: "Purple tree, try to use money more wisly and keep going!")
   /// Restore Purchases
   internal static let restorePurchases = L10n.tr("Localizable", "Restore_Purchases", fallback: "Restore Purchases")
   /// Revenue
@@ -144,6 +152,8 @@ internal enum L10n {
   internal static let totalBudget = L10n.tr("Localizable", "Total_budget", fallback: "Total")
   /// Operations
   internal static let transactionsTitle = L10n.tr("Localizable", "Transactions_title", fallback: "Operations")
+  /// Tree progress
+  internal static let treeProgress = L10n.tr("Localizable", "TreeProgress", fallback: "Tree progress")
   /// Start Trial and Subscribe
   internal static let tryForFree = L10n.tr("Localizable", "Try_for_free", fallback: "Start Trial and Subscribe")
   /// Unlimited categories

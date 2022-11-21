@@ -169,3 +169,8 @@
 
 "PurchaseDate" = "Дата подписки: ";
 "ExpirationDate" = "Срок действия: ";
+
+"DieTreeDescription" = "Dying tree, bad things happens, but you have a chance to recovery!";
+"OrangeTreeDescription" = "Orange tree, something goes wrong, try to reduce your daily expenses!";
+"PurpleTreeDescription" = "Purple tree, try to use money more wisly and keep going!";
+"GreenTreeDescription" = "Excellent tree, keep doing and your tree would be fantastic!";
