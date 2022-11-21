@@ -172,7 +172,8 @@
 "PurchaseDate" = "Ngày đang ký: ";
 "ExpirationDate" = "Ngày hết hạn: ";
 
-"DieTreeDescription" = "Dying tree, bad things happens, but you have a chance to recovery!";
-"OrangeTreeDescription" = "Orange tree, something goes wrong, try to reduce your daily expenses!";
-"PurpleTreeDescription" = "Purple tree, try to use money more wisly and keep going!";
-"GreenTreeDescription" = "Excellent tree, keep doing and your tree would be fantastic!";
+
+"DieTreeDescription" = "Điều tồi tệ xảy ra... Bạn có cơ hội phục hồi cái cây sắp chết này! Hãy tiêu tiền một cách khôn ngoan hơn.";
+"OrangeTreeDescription" = "Đã xảy ra sự cố. Cố gắng giảm chi tiêu hàng ngày của bạn! Mang theo cây cam này.";
+"PurpleTreeDescription" = "Cần tí nữa! Đây là cây Tím, để mắt cân hàng ngày";
+"GreenTreeDescription" = "Tuyệt vời! Đây là cây xanh, tiếp tục làm và cây của bạn sẽ tuyệt vời!";

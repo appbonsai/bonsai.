@@ -172,7 +172,8 @@
 "PurchaseDate" = "Дата оформлення: ";
 "ExpirationDate" = "Дата закінчення: ";
 
-"DieTreeDescription" = "Dying tree, bad things happens, but you have a chance to recovery!";
-"OrangeTreeDescription" = "Orange tree, something goes wrong, try to reduce your daily expenses!";
-"PurpleTreeDescription" = "Purple tree, try to use money more wisly and keep going!";
-"GreenTreeDescription" = "Excellent tree, keep doing and your tree would be fantastic!";
+
+"DieTreeDescription" = "Погані речі трапляються... У вас є шанс відновити це вмираюче дерево! Спробуйте витрачати гроші з розумом.";
+"OrangeTreeDescription" = "Щось пішло не так. Спробуйте скоротити щоденні витрати! Візьміть це апельсинове дерево.";
+"PurpleTreeDescription" = "Потрібно трохи більше! Це Пурпурне дерево, стежте за щоденним балансом";
+"GreenTreeDescription" = "Чудова робота! Це Зелене дерево, продовжуйте і ваше дерево буде фантастичним!";

@@ -173,7 +173,7 @@
 "PurchaseDate" = "Data zakupu: ";
 "ExpirationDate" = "Data wygaśnięcia: ";
 
-"DieTreeDescription" = "Dying tree, bad things happens, but you have a chance to recovery!";
-"OrangeTreeDescription" = "Orange tree, something goes wrong, try to reduce your daily expenses!";
-"PurpleTreeDescription" = "Purple tree, try to use money more wisly and keep going!";
-"GreenTreeDescription" = "Excellent tree, keep doing and your tree would be fantastic!";
+"DieTreeDescription" = "Złe rzeczy się zdarzają... Masz szansę na odzyskanie tego umierającego drzewa! Staraj się mądrzej wydawać pieniądze.";
+"OrangeTreeDescription" = "Coś idzie nie tak. Spróbuj zmniejszyć swoje codzienne wydatki! Noś to drzewko pomarańczowe.";
+"PurpleTreeDescription" = "Potrzebuję trochę więcej! To fioletowe drzewo, miej oko na dzienny bilans";
+"GreenTreeDescription" = "Doskonała robota! To zielone drzewo, rób tak dalej, a twoje drzewko będzie fantastyczne!";
