@@ -66,6 +66,8 @@ internal enum L10n {
   internal static let dueToday = L10n.tr("Localizable", "Due_Today", fallback: "Due today")
   /// Expenses
   internal static let expensesTitle = L10n.tr("Localizable", "Expenses_title", fallback: "Expenses")
+  /// Expiration date
+  internal static let expirationDate = L10n.tr("Localizable", "ExpirationDate", fallback: "Expiration date")
   /// Flexible budget
   internal static let flexibleBudget = L10n.tr("Localizable", "Flexible_budget", fallback: "Flexible budget")
   /// Set flexible period days for budgets
@@ -112,6 +114,8 @@ internal enum L10n {
   internal static let premiumPlanDescription = L10n.tr("Localizable", "premium_planDescription", fallback: "With a premium subscription you get unlimited access to the functionality.")
   /// Privacy Policy
   internal static let privacyPolicy = L10n.tr("Localizable", "Privacy_Policy", fallback: "Privacy Policy")
+  /// Purchase date:
+  internal static let purchaseDate = L10n.tr("Localizable", "PurchaseDate", fallback: "Purchase date:")
   /// Restore Purchases
   internal static let restorePurchases = L10n.tr("Localizable", "Restore_Purchases", fallback: "Restore Purchases")
   /// Revenue
@@ -122,6 +126,8 @@ internal enum L10n {
   internal static let specialForUA = L10n.tr("Localizable", "special_for_UA", fallback: "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!")
   /// Повністю безкоштовна довічна підписка для українців
   internal static let specialForUATitle = L10n.tr("Localizable", "special_for_UA_title", fallback: "Повністю безкоштовна довічна підписка для українців")
+  /// Your subscription has been completed.
+  internal static let subscriptionComplete = L10n.tr("Localizable", "subscription_complete", fallback: "Your subscription has been completed.")
   /// By subscribing you agree to our 
   internal static let subscriptionDescription = L10n.tr("Localizable", "Subscription_description", fallback: "By subscribing you agree to our ")
   /// Cancel anytime. Subscription auto-renews.
