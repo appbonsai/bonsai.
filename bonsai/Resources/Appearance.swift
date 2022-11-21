@@ -39,6 +39,8 @@ enum BonsaiImage {
    static var folder: Image { Image(systemName: "folder.fill") }
    static var star: Image { Image(systemName: "star.square") }
    static var light: Image { Image(systemName: "light.max") }
+   static var star_leadinghal: Image { Image(systemName: "star.leadinghalf.filled") }
+   static var star_fill: Image { Image(systemName: "star.fill") }
 }
 
 enum BonsaiColor {

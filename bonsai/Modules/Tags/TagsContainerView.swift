@@ -18,7 +18,7 @@ struct TagsContainerView: View {
             return true
         }
         let limitedTags = 3
-        return selectedTags.count < limitedTags
+        return tags.count < limitedTags
     }
 
     @FetchRequest(sortDescriptors: [])
