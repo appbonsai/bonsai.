@@ -134,8 +134,8 @@ internal enum L10n {
   internal static let specialForUA = L10n.tr("Localizable", "special_for_UA", fallback: "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!")
   /// Повністю безкоштовна довічна підписка для українців
   internal static let specialForUATitle = L10n.tr("Localizable", "special_for_UA_title", fallback: "Повністю безкоштовна довічна підписка для українців")
-  /// Your subscription has been completed.
-  internal static let subscriptionComplete = L10n.tr("Localizable", "subscription_complete", fallback: "Your subscription has been completed.")
+  /// Bonsai Premium is active
+  internal static let subscriptionComplete = L10n.tr("Localizable", "subscription_complete", fallback: "Bonsai Premium is active")
   /// By subscribing you agree to our 
   internal static let subscriptionDescription = L10n.tr("Localizable", "Subscription_description", fallback: "By subscribing you agree to our ")
   /// Cancel anytime. Subscription auto-renews.
