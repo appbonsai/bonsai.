@@ -158,8 +158,8 @@ internal enum L10n {
   internal static let tryForFree = L10n.tr("Localizable", "Try_for_free", fallback: "Start Trial and Subscribe")
   /// Unlimited categories
   internal static let unlimitedCategories = L10n.tr("Localizable", "Unlimited_categories", fallback: "Unlimited categories")
-  /// You can create unlimited categories, feel free to specify your operation
-  internal static let unlimitedCategoriesDescriptions = L10n.tr("Localizable", "Unlimited_categories_descriptions", fallback: "You can create unlimited categories, feel free to specify your operation")
+  /// You can create unlimited categories, feel free to specify your operations
+  internal static let unlimitedCategoriesDescriptions = L10n.tr("Localizable", "Unlimited_categories_descriptions", fallback: "You can create unlimited categories, feel free to specify your operations")
   /// Unlimited tags
   internal static let unlimitedTags = L10n.tr("Localizable", "Unlimited_tags", fallback: "Unlimited tags")
   /// Get unlimited opportunity to add tags for your needs
