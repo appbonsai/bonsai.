@@ -39,6 +39,7 @@ struct PremiumDescription: View {
                     .padding(.horizontal)
                     .padding(.bottom, 8)
                     .font(.system(size: 14))
+                    .multilineTextAlignment(.center)
                     .foregroundColor(BonsaiColor.purple6)
                 
                 ZStack {
@@ -61,6 +62,16 @@ struct PremiumDescription: View {
 
 struct PremiumDescription_Previews: PreviewProvider {
     static var previews: some View {
-       PremiumDescription(isPresented: .constant(true), premium: .constant(.init(name: "", description: "", icon: BonsaiImage.tag, gifImage: "")))
+        PremiumDescription(
+            isPresented: .constant(true),
+            premium: .constant(
+                .init(
+                    name: "Test Name",
+                    description: "Test Description Test Description Test Description Test Description",
+                    icon: BonsaiImage.tag,
+                    gifImage: ""
+                )
+            )
+        )
     }
 }
