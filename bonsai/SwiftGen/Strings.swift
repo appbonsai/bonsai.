@@ -90,8 +90,8 @@ internal enum L10n {
   internal static let netWorth = L10n.tr("Localizable", "Net_Worth", fallback: "Net Worth")
   /// No ads
   internal static let noAds = L10n.tr("Localizable", "No_ads", fallback: "No ads")
-  /// You won't see ads. You truly don't need this
-  internal static let noAdsDescriptions = L10n.tr("Localizable", "No_ads_descriptions", fallback: "You won't see ads. You truly don't need this")
+  /// You won't see ads. Focus on the essentials
+  internal static let noAdsDescriptions = L10n.tr("Localizable", "No_ads_descriptions", fallback: "You won't see ads. Focus on the essentials")
   /// OK
   internal static let okTitle = L10n.tr("Localizable", "OK_title", fallback: "OK")
   /// Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.
