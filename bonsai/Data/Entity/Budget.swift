@@ -12,7 +12,7 @@ import CoreData
 public class Budget: NSManagedObject, Identifiable {
 
     @NSManaged public var id: UUID
-    
+
     @NSManaged public var name: String
 
     @NSManaged public var amount: NSDecimalNumber
@@ -21,17 +21,13 @@ public class Budget: NSManagedObject, Identifiable {
 
     @NSManaged public var createdDate: Date
 
-    // After the period, the same period with the same money plan starts again
-    @NSManaged public var isRecurrent: Bool
-
     @discardableResult convenience init(
         context: NSManagedObjectContext,
         id: UUID = UUID(),
         name: String,
         totalAmount: NSDecimalNumber,
         periodDays: Int64,
-        createdDate: Date,
-        isRecurrent: Bool = false
+        createdDate: Date
     ) {
         self.init(context: context)
         self.name = name
@@ -39,7 +35,6 @@ public class Budget: NSManagedObject, Identifiable {
         self.amount = totalAmount
         self.periodDays = periodDays
         self.createdDate = createdDate
-        self.isRecurrent = false
     }
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Budget> {
