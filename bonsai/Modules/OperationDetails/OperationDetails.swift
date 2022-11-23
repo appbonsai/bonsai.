@@ -78,7 +78,7 @@ struct OperationDetails: View {
                     VStack(spacing: 0) {
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack(alignment: .center, spacing: 0) {
-                                OperationTypeSelectorView(
+                                SegmentControlView.with(
                                     operations: [.expense, .income],
                                     selectedOperation: $selectedOperation
                                 )
