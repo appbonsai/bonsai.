@@ -142,15 +142,19 @@ struct BarChartView: View {
       currentValue = "\(viewModel.chartData.pieces[index].value)"
       currentLabel = viewModel.chartData.pieces[index].label
    }
-
-   func labelOffset(in width: CGFloat) -> CGFloat {
-      let currentIndex = Int(touchLocation * CGFloat(viewModel.chartData.pieces.count))
-      guard currentIndex < viewModel.chartData.pieces.count && currentIndex >= 0 else { return 0 }
-      let cellWidth = width / CGFloat(viewModel.chartData.pieces.count)
-      let actualWidth = width - cellWidth
-      let position = cellWidth * CGFloat(currentIndex) - actualWidth / 2
-      return position
-   }
+    
+    func labelOffset(in width: CGFloat) -> CGFloat {
+        let currentIndex = Int(touchLocation * CGFloat(viewModel.chartData.pieces.count))
+        guard currentIndex < viewModel.chartData.pieces.count && currentIndex >= 0 else { return 0 }
+        let pieCount = viewModel.chartData.pieces.count
+        if pieCount != 0 {
+            let cellWidth = width / CGFloat(pieCount)
+            let actualWidth = width - cellWidth
+            let position = cellWidth * CGFloat(currentIndex) - actualWidth / 2
+            return position
+        }
+        return .zero
+    }
 }
 
 struct BarChartView_Previews: PreviewProvider {

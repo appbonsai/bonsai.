@@ -46,11 +46,14 @@ final class ChartViewModel: ObservableObject {
    }
 
    private func countPercantage(using amount: NSDecimalNumber) -> Double {
-      let total = transactions
-         .map { $0.amount.intValue }
-         .reduce(0, +)
-
-      return Double(Int(truncating: amount) * 100 / total)
+       let total = transactions
+           .map { $0.amount.intValue }
+           .reduce(0, +)
+       if total != 0 {
+           return Double(Int(truncating: amount) * 100 / total)
+       } else {
+           return .zero
+       }
    }
 
    //    init(mainContext: NSManagedObjectContext = DataController.sharedInstance.container.viewContext) {

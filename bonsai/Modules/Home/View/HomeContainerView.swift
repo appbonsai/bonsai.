@@ -91,12 +91,12 @@ struct HomeContainerView: View {
     
     func calculateRevenuePercentage() -> Int {
         let dividend = (income().intValue + expense().intValue)
-        return dividend != 0 ? (income().intValue * 100 / dividend) : 0
+        return dividend != 0 ? (income().intValue * 100 / dividend) : .zero
     }
     
     func calculateExpensePercentage() -> Int {
         let dividend = (income().intValue + expense().intValue)
-        return dividend != 0 ? (expense().intValue * 100 / dividend) : 0
+        return dividend != 0 ? (expense().intValue * 100 / dividend) : .zero
     }
     
     func filterTransaction(by categories: [Category]) -> [Transaction] {

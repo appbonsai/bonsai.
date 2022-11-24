@@ -58,8 +58,11 @@ extension ChartsView {
             .filter { $0.type == .expense }
             .map { $0.amount.intValue }
             .reduce(0, +)
-        
-        return Double(amount * 100 / total)
+        if total != 0 {
+            return Double(amount * 100 / total)
+        } else {
+            return .zero
+        }
     }
     
     private func income() -> NSDecimalNumber {

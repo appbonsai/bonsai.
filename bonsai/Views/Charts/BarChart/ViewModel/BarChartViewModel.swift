@@ -26,7 +26,11 @@ final class BarChartViewModel: ObservableObject {
         } else if max > 0 && value < 0 {
             return (100 - abs((value * 100 / max)))/100
         } else /* if max < 0 */ {
-            return Double(max) / abs(value)
+            if value != 0 {
+                return Double(max) / abs(value)
+            } else {
+                return .zero
+            }
         }
     }
     

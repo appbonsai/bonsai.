@@ -32,8 +32,11 @@ class BudgetTreeService: ObservableObject {
         let budgetTransactions = transactions.filter { $0.date >= budget.createdDate }
         let totalSpent = BudgetCalculator.spent(budget: budget, transactions: budgetTransactions)
         let all = budget.amount
-        
-        return totalSpent.doubleValue * 100.0 / all.doubleValue
+        if all.doubleValue != 0 {
+            return totalSpent.doubleValue * 100.0 / all.doubleValue
+        } else {
+            return .zero
+        }
     }
     
     func getTreeState(transactions: [Transaction], budget: Budget) -> TreeState {
