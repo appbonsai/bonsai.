@@ -90,8 +90,8 @@ internal enum L10n {
   internal static let netWorth = L10n.tr("Localizable", "Net_Worth", fallback: "Net Worth")
   /// No ads
   internal static let noAds = L10n.tr("Localizable", "No_ads", fallback: "No ads")
-  /// You won't see ads. You truly don't need this
-  internal static let noAdsDescriptions = L10n.tr("Localizable", "No_ads_descriptions", fallback: "You won't see ads. You truly don't need this")
+  /// You won't see ads. Focus on the essentials
+  internal static let noAdsDescriptions = L10n.tr("Localizable", "No_ads_descriptions", fallback: "You won't see ads. Focus on the essentials")
   /// OK
   internal static let okTitle = L10n.tr("Localizable", "OK_title", fallback: "OK")
   /// Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.
@@ -134,8 +134,8 @@ internal enum L10n {
   internal static let specialForUA = L10n.tr("Localizable", "special_for_UA", fallback: "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!")
   /// Повністю безкоштовна довічна підписка для українців
   internal static let specialForUATitle = L10n.tr("Localizable", "special_for_UA_title", fallback: "Повністю безкоштовна довічна підписка для українців")
-  /// Your subscription has been completed.
-  internal static let subscriptionComplete = L10n.tr("Localizable", "subscription_complete", fallback: "Your subscription has been completed.")
+  /// Bonsai Premium is active
+  internal static let subscriptionComplete = L10n.tr("Localizable", "subscription_complete", fallback: "Bonsai Premium is active")
   /// By subscribing you agree to our 
   internal static let subscriptionDescription = L10n.tr("Localizable", "Subscription_description", fallback: "By subscribing you agree to our ")
   /// Cancel anytime. Subscription auto-renews.
@@ -158,8 +158,8 @@ internal enum L10n {
   internal static let tryForFree = L10n.tr("Localizable", "Try_for_free", fallback: "Start Trial and Subscribe")
   /// Unlimited categories
   internal static let unlimitedCategories = L10n.tr("Localizable", "Unlimited_categories", fallback: "Unlimited categories")
-  /// You can create unlimited categories, feel free to specify your operation
-  internal static let unlimitedCategoriesDescriptions = L10n.tr("Localizable", "Unlimited_categories_descriptions", fallback: "You can create unlimited categories, feel free to specify your operation")
+  /// You can create unlimited categories, feel free to specify your operations
+  internal static let unlimitedCategoriesDescriptions = L10n.tr("Localizable", "Unlimited_categories_descriptions", fallback: "You can create unlimited categories, feel free to specify your operations")
   /// Unlimited tags
   internal static let unlimitedTags = L10n.tr("Localizable", "Unlimited_tags", fallback: "Unlimited tags")
   /// Get unlimited opportunity to add tags for your needs

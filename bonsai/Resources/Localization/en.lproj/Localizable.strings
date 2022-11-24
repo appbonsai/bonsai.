@@ -157,7 +157,7 @@
 // Premium_features
 
 "Unlimited_categories" = "Unlimited categories";
-"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your operation";
+"Unlimited_categories_descriptions" = "You can create unlimited categories, feel free to specify your operations";
 
 "Unlimited_tags" = "Unlimited tags";
 "Unlimited_tags_descriptions" = "Get unlimited opportunity to add tags for your needs";
@@ -166,14 +166,14 @@
 "Flexible_budget_descriptions" = "Set flexible period days for budgets";
 
 "No_ads" = "No ads";
-"No_ads_descriptions" = "You won't see ads. You truly don't need this";
+"No_ads_descriptions" = "You won't see ads. Focus on the essentials";
 
 
 "special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
 
 "special_for_UA" = "Сподіваюсь, що поряд з тобою твої близькі люди і ви всі у безпеці. Дякую тобі, що ти з нами! Одного дня усі жахіття закінчаться нашою перемогою. Ти знаєш шо потрібно робити, Слава Україні!";
 
-"subscription_complete" = "Your subscription has been completed.";
+"subscription_complete" = "Bonsai Premium is active";
 
 "PurchaseDate" = "Purchase date: ";
 "ExpirationDate" = "Expiration date: ";
