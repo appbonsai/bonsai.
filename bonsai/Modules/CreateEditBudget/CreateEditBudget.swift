@@ -99,11 +99,7 @@ struct CreateEditBudget: View {
     }
 
     var isDisabled: Bool {
-        if budget == nil {
-            return $amount.wrappedValue.isEmpty && $title.wrappedValue.isEmpty
-        } else {
-            return kind != .edit
-        }
+        return $amount.wrappedValue == ""
     }
 
     var body: some View {
@@ -124,18 +120,20 @@ struct CreateEditBudget: View {
                     Spacer()
 
                     Button {
-                        if let budget {
-                            budget.amount = NSDecimalNumber(string: amount)
-                            budget.periodDays = Int64(periodDays)
-                            budget.name = title
-                        } else {
-                            bonsai.Budget(
-                                context: moc,
-                                name: title,
-                                totalAmount: .init(string: amount),
-                                periodDays: Int64(periodDays),
-                                createdDate: createdDate
-                            )
+                        if $amount.wrappedValue != "" {
+                            if let budget {
+                                budget.amount = NSDecimalNumber(string: amount)
+                                budget.periodDays = Int64(periodDays)
+                                budget.name = title
+                            } else {
+                                bonsai.Budget(
+                                    context: moc,
+                                    name: title,
+                                    totalAmount: .init(string: amount),
+                                    periodDays: Int64(periodDays),
+                                    createdDate: createdDate
+                                )
+                            }
                         }
                         do {
                             try moc.save()
@@ -143,7 +141,6 @@ struct CreateEditBudget: View {
                             assertionFailure(e.localizedDescription)
                         }
                         isCreateEditBudgetPresented = false
-
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 13)
