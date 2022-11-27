@@ -89,6 +89,7 @@ struct TabBar: View {
         } // VStack
         .padding(.top, 20)
         .background(BonsaiColor.back)
+        .ignoresSafeArea(.keyboard)
     }
 }
 
