@@ -36,8 +36,15 @@ struct bonsaiApp: App {
         }
 
         UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.hex(0x1D1C22)
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
 }
 
