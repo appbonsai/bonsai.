@@ -72,7 +72,7 @@ struct TagsContainerView: View {
                     }
                 }
             } // NavigationView
-            .popover(isPresented: $isCreateTagPresented) {
+            .fullScreenCover(isPresented: $isCreateTagPresented) {
                 CreateTagView(isPresented: $isCreateTagPresented) { tag in
                     if let tag = tag, tag.title.isEmpty == false {
                         self.selectedTags.append(tag)

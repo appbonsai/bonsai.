@@ -73,7 +73,7 @@ struct TransactionsList: View {
          } // ScrollView
       }
       .listStyle(.plain)
-      .popover(isPresented: $isTransactionDetailsPresented) { [selectedTransaction] in
+      .fullScreenCover(isPresented: $isTransactionDetailsPresented) { [selectedTransaction] in
          OperationDetails(
             isPresented: $isTransactionDetailsPresented,
             transaction: selectedTransaction
