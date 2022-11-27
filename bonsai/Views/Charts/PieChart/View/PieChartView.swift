@@ -10,9 +10,9 @@ import SwiftUI
 struct PieChartView: View {
     @ObservedObject var viewModel: PieChartViewModel
     
-    @State var touchLocation = CGPoint(x: 0, y: 0) // x: -1 y: -1 means that user isn't touching the view
+    @State var touchLocation = CGPoint(x: -1, y: -1) // x: -1 y: -1 means that user isn't touching the view
     @State var currentSliceData: PieChartSliceData? = nil
-    @State var isFirstSeen: Bool = true
+//    @State var isFirstSeen: Bool = true
 
     var body: some View {
         ZStack {
@@ -51,20 +51,28 @@ struct PieChartView: View {
                                     touchLocation = position.location
                                     updateCurrentValue(pieSize: pieSize)
                                 })
+                                .onEnded({ _ in
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        withAnimation(Animation.easeInOut) {
+                                            resetValues()
+                                        }
+                                    }
+                                })
                         )
                     }
-                    .onAppear {
-                        if isFirstSeen {
-                            let slice = viewModel.chartData.pieChartSlices.last
-                            touchLocation = .init(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
-                            currentSliceData = slice
-                        }
-                        isFirstSeen = true
-                    }
-                    .onDisappear {
-                        isFirstSeen = false
-                    }
                     
+//                    .onAppear {
+//                        if isFirstSeen {
+//                            let slice = viewModel.chartData.pieChartSlices.last
+//                            touchLocation = .init(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
+//                            currentSliceData = slice
+//                        }
+//                        isFirstSeen = true
+//                    }
+//                    .onDisappear {
+//                        isFirstSeen = false
+//                    }
+//
                     ZStack {
                         Circle()
                             .foregroundColor(BonsaiColor.card)
@@ -120,17 +128,15 @@ struct PieChartView: View {
     }
     
     func updateCurrentValue(pieSize: CGRect)  {
-        guard let angle = viewModel.angleAtTouchLocation(inPie: pieSize, touchLocation: touchLocation) else {
-            return
-        }
-        let currentIndex = viewModel
-            .chartData
-            .pieChartSlices
-            .firstIndex(where: {
-                $0.pieSlice!.startDegree < angle && $0.pieSlice!.endDegree > angle
-            }) ?? -1
+        guard let angle = viewModel.angleAtTouchLocation(inPie: pieSize, touchLocation: touchLocation)    else { return }
+        let currentIndex = viewModel.chartData.pieChartSlices.firstIndex(where: { $0.pieSlice!.startDegree < angle && $0.pieSlice!.endDegree > angle }) ?? -1
         
         currentSliceData = viewModel.chartData.pieChartSlices[currentIndex]
+    }
+    
+    func resetValues() {
+        touchLocation = CGPoint(x: -1, y: -1)
+        currentSliceData = nil
     }
     
     func sliceIsTouched(pieSliceData: PieChartSliceData, inPie pieSize: CGRect) -> Bool {
