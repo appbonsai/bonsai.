@@ -231,7 +231,7 @@ struct HomeContainerView: View {
                 .padding(.bottom, 24)
         }
         
-        .popover(isPresented: $isOperationPresented) {
+        .fullScreenCover(isPresented: $isOperationPresented) {
             OperationDetails(isPresented: $isOperationPresented).onAppear {
                 UserSettings.incrementCountOfDragsDown()
             }
@@ -243,7 +243,7 @@ struct HomeContainerView: View {
                 isPresented: $isCurrencySelectionPresented
             )
         }
-        .popover(isPresented: $isCreateEditBudgetPresented, content: {
+        .fullScreenCover(isPresented: $isCreateEditBudgetPresented, content: {
             CreateEditBudget(
                 kind: .new,
                 isCreateEditBudgetPresented: $isCreateEditBudgetPresented

@@ -209,18 +209,18 @@ struct BudgetDetails: View {
         .popover(isPresented: $isPresented, content: {
             TransactionsList(kind: .budget, isPresented: $isPresented)
         })
-        .popover(isPresented: $isOperationPresented) {
+        .fullScreenCover(isPresented: $isOperationPresented) {
             OperationDetails(isPresented: $isOperationPresented).onAppear {
                 UserSettings.incrementCountOfDragsDown()
             }
         }
-        .popover(isPresented: $isEditBudgetPresented, content: {
+        .fullScreenCover(isPresented: $isEditBudgetPresented, content: {
             CreateEditBudget(
                 kind: .edit,
                 isCreateEditBudgetPresented: $isEditBudgetPresented
             )
         })
-        .popover(isPresented: $isCreateBudgetPresented, content: {
+        .fullScreenCover(isPresented: $isCreateBudgetPresented, content: {
             CreateEditBudget(
                 kind: .new,
                 isCreateEditBudgetPresented: $isCreateBudgetPresented

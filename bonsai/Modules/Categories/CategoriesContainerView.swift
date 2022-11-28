@@ -70,7 +70,7 @@ struct CategoriesContainerView: View {
                     }
                 }
             } // NavigationView
-            .popover(isPresented: $isCreateCategoryPresented) {
+            .fullScreenCover(isPresented: $isCreateCategoryPresented) {
                 CreateCategoryView(isPresented: $isCreateCategoryPresented) { category in
                     if let category = category {
                         self.selectedCategory = category
