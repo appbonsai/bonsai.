@@ -13,9 +13,11 @@ struct PremiumFeature: View {
     @State var premium: Premium = .init(name: "", description: "", icon: BonsaiImage.tag, gifImage: "")
     @EnvironmentObject var purchaseService: PurchaseService
     @State private var isSubscriptionPresented = false
+    @Binding var isPresentedFromSubscription: Bool
 
-    init(isPresented: Binding<Bool>) {
+    init(isPresented: Binding<Bool>, isPresentedFromSubscription: Binding<Bool>) {
         self._isPresented = isPresented
+        self._isPresentedFromSubscription = isPresentedFromSubscription
     }
     
     var body: some View {
@@ -47,22 +49,24 @@ struct PremiumFeature: View {
                                 isPresentedPremiumDescription = true
                             }
                     }
-                    if purchaseService.isSubscriptionActive {
-                        SubscriptionStatusCell(premium: subscriptionStatus)
-                            .onTapGesture {
-                                self.premium = .init(
-                                    name: L.subscriptionComplete,
-                                    description: "\(L.purchaseDate) \(purchaseService.purchaseDate)\n\(L.expirationDate) \(purchaseService.expirationDate)",
-                                    icon: BonsaiImage.star_fill,
-                                    gifImage: "bonsai_green_png"
-                                )
-                                isPresentedPremiumDescription = true
-                            }
-                    } else {
-                        SubscriptionStatusCell(premium: getSubscription)
-                            .onTapGesture {
-                                isSubscriptionPresented = true
-                            }
+                    if !isPresentedFromSubscription {
+                        if purchaseService.isSubscriptionActive {
+                            SubscriptionStatusCell(premium: subscriptionStatus)
+                                .onTapGesture {
+                                    self.premium = .init(
+                                        name: L.subscriptionComplete,
+                                        description: "\(L.purchaseDate) \(purchaseService.purchaseDate)\n\(L.expirationDate) \(purchaseService.expirationDate)",
+                                        icon: BonsaiImage.star_fill,
+                                        gifImage: "bonsai_green_png"
+                                    )
+                                    isPresentedPremiumDescription = true
+                                }
+                        } else {
+                            SubscriptionStatusCell(premium: getSubscription)
+                                .onTapGesture {
+                                    isSubscriptionPresented = true
+                                }
+                        }
                     }
                 }
                 .padding([.top, .bottom], 12)
@@ -73,7 +77,7 @@ struct PremiumFeature: View {
                     premium: $premium
                 )
             }
-            .popover(isPresented: $isSubscriptionPresented) {
+            .fullScreenCover(isPresented: $isSubscriptionPresented) {
                 Subscriptions(isPresented: $isSubscriptionPresented)
             }
         }
@@ -181,6 +185,6 @@ struct SubscriptionStatusCell: View {
 
 struct PremiumFeature_Previews: PreviewProvider {
     static var previews: some View {
-        PremiumFeature(isPresented: .constant(true))
+        PremiumFeature(isPresented: .constant(true), isPresentedFromSubscription: .constant(false))
     }
 }

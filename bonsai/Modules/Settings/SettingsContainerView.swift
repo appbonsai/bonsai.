@@ -71,7 +71,9 @@ struct SettingsContainerView: View {
              .listRowBackground(BonsaiColor.card)
           }
           .popover(isPresented: $isPremiumSelected, content: {
-             PremiumFeature(isPresented: $isPremiumSelected)
+              PremiumFeature(
+                isPresented: $isPremiumSelected,
+                isPresentedFromSubscription: .constant(false))
           })
           .navigationBarTitleDisplayMode(.inline)
           .toolbar {

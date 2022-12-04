@@ -116,7 +116,7 @@ struct Subscriptions: View {
             }
          })
          .popover(isPresented: $isFeaturePremiumPresented) {
-            PremiumFeature(isPresented: $isFeaturePremiumPresented)
+             PremiumFeature(isPresented: $isFeaturePremiumPresented, isPresentedFromSubscription: .constant(true))
          }
          .navigationBarTitleDisplayMode(.inline)
          .toolbar {

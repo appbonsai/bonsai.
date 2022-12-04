@@ -80,7 +80,7 @@ struct TagsContainerView: View {
                     }
                 }
             }
-            .popover(isPresented: $isSubscriptionPresented) {
+            .fullScreenCover(isPresented: $isSubscriptionPresented) {
                 Subscriptions(isPresented: $isSubscriptionPresented)
             }
         }

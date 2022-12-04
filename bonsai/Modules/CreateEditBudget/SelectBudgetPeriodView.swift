@@ -208,7 +208,7 @@ struct SelectBudgetPeriodView: View {
             .padding(.top, 20)
          }
          .navigationTitle(L.periodTitle)
-         .popover(isPresented: $isSubscriptionsPresented, content: {
+         .fullScreenCover(isPresented: $isSubscriptionsPresented, content: {
             Subscriptions(isPresented: $isSubscriptionsPresented)
          })
       }
