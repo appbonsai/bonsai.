@@ -26,6 +26,50 @@ struct TagsContainerView: View {
     @Binding var selectedTags: OrderedSet<Tag>
     @Binding var isPresented: Bool
     @State var isCreateTagPresented: Bool = false
+    
+    @State var isDeleteConfirmationPresented = false
+    @Environment(\.managedObjectContext) private var moc
+    
+    func removeTagButton() -> some View {
+        BonsaiImage.trash
+            .onTapGesture {
+                isDeleteConfirmationPresented = true
+            }
+            .foregroundColor(BonsaiColor.secondary)
+            .opacity(0.8)
+            .confirmationDialog(
+                L.deleteBudgetConfirmation,
+                isPresented: $isDeleteConfirmationPresented,
+                titleVisibility: .visible
+            ) {
+                Button(L.Budget.Delete.confirmation, role: .destructive) {
+                    if !selectedTags.isEmpty {
+                        selectedTags.forEach {
+                            moc.delete($0)
+                            do {
+                                try moc.save()
+                            } catch (let e) {
+                                assertionFailure(e.localizedDescription)
+                            }
+                        }
+                        self.selectedTags = []
+                    }
+                 
+                }
+                Button(L.cancelTitle, role: .cancel) {
+                    isDeleteConfirmationPresented = false
+                }
+            }
+    }
+    
+    func deselectTags() -> some View {
+        BonsaiImage.unselect
+            .onTapGesture {
+                selectedTags = []
+            }
+            .foregroundColor(BonsaiColor.blueLight)
+            .opacity(0.8)
+    }
 
     var body: some View {
         LoadingAllSet(isShowing: $purchaseService.isShownAllSet) {
@@ -56,7 +100,22 @@ struct TagsContainerView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationBackButton(isPresented: $isPresented)
+                        Button(action: {
+                            isPresented = false
+                        }) {
+                            Text(L.saveTitle)
+                                .foregroundColor(BonsaiColor.blueLight)
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if tags.count != 0 {
+                            deselectTags()
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if tags.count != 0 {
+                            removeTagButton()
+                        }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {

@@ -216,7 +216,7 @@ struct OperationDetails: View {
                 isPresented: $isCategoriesViewPresented
             )
         }
-        .popover(isPresented: $isTagsViewPresented) {
+        .fullScreenCover(isPresented: $isTagsViewPresented) {
             TagsContainerView(
                 selectedTags: $tags,
                 isPresented: $isTagsViewPresented
