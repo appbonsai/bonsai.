@@ -22,71 +22,73 @@ enum BonsaiFont {
 }
 
 enum BonsaiImage {
-   static var calendar: Image { Image(systemName: "calendar") }
-   static var category: Image { Image(systemName: "folder") }
-   static var tag: Image { Image(systemName: "tag") }
-   static var title: Image { Image(systemName: "text.bubble") }
-   static var arrowUpCircle: Image { Image(systemName: "arrow.up.circle") }
-   static var chevronForward: Image { Image(systemName: "chevron.forward") }
-   static var chevronDown: Image { Image(systemName: "chevron.down") }
-   static var chevronUp: Image { Image(systemName: "chevron.up") }
-   static var textBubble: Image { Image(systemName: "text.bubble") }
-   static var xMark: Image { Image(systemName: "xmark") }
-   static var plus: Image { Image(systemName: "plus") }
-   static var textformatAlt: Image { Image(systemName: "textformat.alt") }
-   static var pencil: Image { Image(systemName: "rectangle.and.pencil.and.ellipsis") }
-   static var settings: Image { Image(systemName: "slider.horizontal.3") }
-   static var folder: Image { Image(systemName: "folder.fill") }
-   static var star: Image { Image(systemName: "star.square") }
-   static var light: Image { Image(systemName: "light.max") }
-   static var star_leadinghal: Image { Image(systemName: "star.leadinghalf.filled") }
-   static var star_fill: Image { Image(systemName: "star.fill") }
+    static var calendar: Image { Image(systemName: "calendar") }
+    static var category: Image { Image(systemName: "folder") }
+    static var tag: Image { Image(systemName: "tag") }
+    static var title: Image { Image(systemName: "text.bubble") }
+    static var arrowUpCircle: Image { Image(systemName: "arrow.up.circle") }
+    static var chevronForward: Image { Image(systemName: "chevron.forward") }
+    static var chevronDown: Image { Image(systemName: "chevron.down") }
+    static var chevronUp: Image { Image(systemName: "chevron.up") }
+    static var textBubble: Image { Image(systemName: "text.bubble") }
+    static var xMark: Image { Image(systemName: "xmark") }
+    static var plus: Image { Image(systemName: "plus") }
+    static var textformatAlt: Image { Image(systemName: "textformat.alt") }
+    static var pencil: Image { Image(systemName: "rectangle.and.pencil.and.ellipsis") }
+    static var settings: Image { Image(systemName: "slider.horizontal.3") }
+    static var folder: Image { Image(systemName: "folder.fill") }
+    static var star: Image { Image(systemName: "star.square") }
+    static var light: Image { Image(systemName: "light.max") }
+    static var star_leadinghal: Image { Image(systemName: "star.leadinghalf.filled") }
+    static var star_fill: Image { Image(systemName: "star.fill") }
+    static var trash: Image { Image(systemName: "trash") }
+    static var unselect: Image { Image(systemName: "filemenu.and.selection") }
 }
 
 enum BonsaiColor {
-
-   /*
-    UIKit 1 column
-    */
-   static let mainPurple = Color(hex: 0x9791FE)
-   static let purple2 = Color(hex: 0xA49FFE)
-   static let purple3 = Color(hex: 0xB1ACFE)
-   static let purple4 = Color(hex: 0xBEBAFE)
-   static let purple5 = Color(hex: 0xCBC8FE)
-   static let purple6 = Color(hex: 0xD8D6FF)
-
-   /*
-    UIKit 2 column
-    */
-   static let disabled = Color(hex: 0x4E4B76)
-   static let green = Color(hex: 0x34CE8D)
-   static let text = Color(hex: 0xE5E3FF)
-
-   /*
-    UIKit 3 column
-    */
-   static let card = Color(hex: 0x292838)
-   static let blue = Color(hex: 0x34A0CE)
-   static let blue_dark = Color(hex: 0x0052D4)
-   static let pink = Color(hex: 0xC84E89)
-
-   /*
-    UIKit 4 column
-    */
-   static let back = Color(hex: 0x1D1C22)
-   static let secondary = Color(hex: 0xF86D70)
-   static let blueLight = Color(hex: 0x1FA2FF)
-   static let orange = Color(hex: 0xFFE259)
-
-   /*
-    Not in UIKit
-    */
-   static let newPurple = Color(hex: 0x6C63FF)
-   static let separator = Color(hex: 0x343150)
-   static let prompt = Color(hex: 0x686599)
     
     /*
-      Disables colors for charts
+     UIKit 1 column
+     */
+    static let mainPurple = Color(hex: 0x9791FE)
+    static let purple2 = Color(hex: 0xA49FFE)
+    static let purple3 = Color(hex: 0xB1ACFE)
+    static let purple4 = Color(hex: 0xBEBAFE)
+    static let purple5 = Color(hex: 0xCBC8FE)
+    static let purple6 = Color(hex: 0xD8D6FF)
+    
+    /*
+     UIKit 2 column
+     */
+    static let disabled = Color(hex: 0x4E4B76)
+    static let green = Color(hex: 0x34CE8D)
+    static let text = Color(hex: 0xE5E3FF)
+    
+    /*
+     UIKit 3 column
+     */
+    static let card = Color(hex: 0x292838)
+    static let blue = Color(hex: 0x34A0CE)
+    static let blue_dark = Color(hex: 0x0052D4)
+    static let pink = Color(hex: 0xC84E89)
+    
+    /*
+     UIKit 4 column
+     */
+    static let back = Color(hex: 0x1D1C22)
+    static let secondary = Color(hex: 0xF86D70)
+    static let blueLight = Color(hex: 0x1FA2FF)
+    static let orange = Color(hex: 0xFFE259)
+    
+    /*
+     Not in UIKit
+     */
+    static let newPurple = Color(hex: 0x6C63FF)
+    static let separator = Color(hex: 0x343150)
+    static let prompt = Color(hex: 0x686599)
+    
+    /*
+     Disables colors for charts
      */
     
     enum ChartDisabledColors {

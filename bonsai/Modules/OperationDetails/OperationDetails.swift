@@ -210,7 +210,7 @@ struct OperationDetails: View {
                 }
             }
         } // NavigationView
-        .popover(isPresented: $isCategoriesViewPresented) {
+        .fullScreenCover(isPresented: $isCategoriesViewPresented) {
             CategoriesContainerView(
                 selectedCategory: $category,
                 isPresented: $isCategoriesViewPresented

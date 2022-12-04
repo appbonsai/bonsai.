@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CategoriesContainerView: View {
-
+    
     @EnvironmentObject var purchaseService: PurchaseService
     @State private var isSubscriptionPresented = false
-
+    
     private var isPremium: Bool {
         if purchaseService.isSubscriptionActive {
             return true
@@ -19,14 +19,56 @@ struct CategoriesContainerView: View {
         let limitedCategories = 3
         return categories.count < limitedCategories
     }
-
+    
     @FetchRequest(sortDescriptors: [SortDescriptor(\.title)])
     var categories: FetchedResults<Category>
-
+    
     @Binding var selectedCategory: Category?
     @Binding var isPresented: Bool
     @State var isCreateCategoryPresented: Bool = false
-
+    
+    @State var isDeleteConfirmationPresented = false
+    @Environment(\.managedObjectContext) private var moc
+    
+    func removeCategoryButton() -> some View {
+        BonsaiImage.trash
+            .onTapGesture {
+                isDeleteConfirmationPresented = true
+            }
+            .foregroundColor(BonsaiColor.secondary)
+            .opacity(0.8)
+            .confirmationDialog(
+                L.deleteBudgetConfirmation,
+                isPresented: $isDeleteConfirmationPresented,
+                titleVisibility: .visible
+            ) {
+                Button(L.Budget.Delete.confirmation, role: .destructive) {
+                    if let selectedCategory {
+                        moc.delete(selectedCategory)
+                        do {
+                            try moc.save()
+                        } catch (let e) {
+                            assertionFailure(e.localizedDescription)
+                        }
+                        self.selectedCategory = nil
+                    }
+                }
+                Button(L.cancelTitle, role: .cancel) {
+                    isDeleteConfirmationPresented = false
+                }
+            }
+    }
+    
+    func deselectCategory() -> some View {
+        BonsaiImage.unselect
+            .onTapGesture {
+                selectedCategory = nil
+            }
+            .foregroundColor(BonsaiColor.blueLight)
+            .opacity(0.8)
+    }
+    
+    
     var body: some View {
         LoadingAllSet(isShowing: $purchaseService.isShownAllSet) {
             NavigationView {
@@ -54,7 +96,22 @@ struct CategoriesContainerView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationBackButton(isPresented: $isPresented)
+                        Button(action: {
+                            isPresented = false
+                        }) {
+                            Text(L.saveTitle)
+                                .foregroundColor(BonsaiColor.blueLight)
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if categories.count != 0 {
+                            deselectCategory()
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        if categories.count != 0 {
+                            removeCategoryButton()
+                        }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
@@ -68,6 +125,7 @@ struct CategoriesContainerView: View {
                                 .foregroundColor(BonsaiColor.mainPurple)
                         }
                     }
+                    
                 }
             } // NavigationView
             .fullScreenCover(isPresented: $isCreateCategoryPresented) {
