@@ -211,6 +211,16 @@ struct SelectBudgetPeriodView: View {
          .fullScreenCover(isPresented: $isSubscriptionsPresented, content: {
             Subscriptions(isPresented: $isSubscriptionsPresented)
          })
+         .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+               Button(action: {
+                   isPresented = false
+               }) {
+                  Text(L.cancelTitle)
+                     .foregroundColor(BonsaiColor.secondary)
+               }
+            }
+         }
       }
    }
 

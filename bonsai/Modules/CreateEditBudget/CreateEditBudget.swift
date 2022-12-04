@@ -169,7 +169,7 @@ struct CreateEditBudget: View {
                }
             }
         }
-        .popover(isPresented: $isPeriodDaysPresented) {
+        .fullScreenCover(isPresented: $isPeriodDaysPresented) {
             SelectBudgetPeriodView(
                 isPresented: $isPeriodDaysPresented,
                 period: $periodDays
