@@ -11,7 +11,6 @@ struct CreateEditBudget: View {
 
     enum Kind: Equatable { case new, edit }
     let kind: Kind
-
     @State var isPeriodDaysPresented: Bool = false
     @Binding var isCreateEditBudgetPresented: Bool
 
@@ -159,6 +158,16 @@ struct CreateEditBudget: View {
                 .padding(.top, 20)
             }
             .navigationTitle(kind == .new ? L.Budget.new : L.Budget.edit)
+            .toolbar {
+               ToolbarItem(placement: .navigationBarLeading) {
+                  Button(action: {
+                      isCreateEditBudgetPresented = false
+                  }) {
+                     Text(L.cancelTitle)
+                        .foregroundColor(BonsaiColor.secondary)
+                  }
+               }
+            }
         }
         .popover(isPresented: $isPeriodDaysPresented) {
             SelectBudgetPeriodView(
@@ -173,6 +182,7 @@ struct CreateEditBudget: View {
                 amount = String(budget.amount.intValue)
             }
         }
+   
     }
 }
 
