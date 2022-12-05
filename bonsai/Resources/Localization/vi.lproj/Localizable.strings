@@ -6,13 +6,21 @@
   
 */
 
+"period.select.week" = "Tuần";
+"period.select.TwoWeek" = "2 Tuần";
+"period.select.Threeweek" = "3 Tuần";
+"period.select.month" = "Tháng";
+"period.select.custom" = "Ngày tùy chỉnh";
+
 "tags.title" = "Thẻ";
 "tags.name" = "Tên Thẻ";
 "tags.new" = "Thẻ Mới";
+"tags.delete.confirmation" = "Có, xóa thẻ";
 
 "category.title" = "Thể Loại";
 "category.name" = "Tên Danh mục";
 "category.new" = "Danh Mục mới";
+"category.delete.confirmation" = "Có, xóa danh mục";
 
 "charts.balance.title" = "Số dư";
 "charts.balance.empty" = "Biểu đồ này sẽ cho bạn thấy số dư của bạn thay đổi như thế nào theo thời gian";

@@ -6,13 +6,21 @@
   
 */
 
+"period.select.week" = "Tydzień";
+"period.select.TwoWeek" = "2 tygodnie";
+"period.select.Threeweek" = "3 tygodnie";
+"period.select.month" = "Miesiąc";
+"period.select.custom" = "Elastyczny termin";
+
 "tags.title" = "Tagi";
 "tags.name" = "Nazwa Znacznika";
 "tags.new" = "Nowy Znacznik";
+"tags.delete.confirmation" = "Tak, usuń tagi";
 
 "category.title" = "Kategorie";
 "category.name" = "Nazwa Kategorii";
 "category.new" = "Nowa Kategoria";
+"category.delete.confirmation" = "Tak, usuń kategorię";
 
 "charts.balance.title" = "Saldo";
 "charts.balance.empty" = "Ten wykres pokazuje, jak saldo zmienia się w czasie";

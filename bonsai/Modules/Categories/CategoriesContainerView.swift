@@ -42,7 +42,7 @@ struct CategoriesContainerView: View {
                 isPresented: $isDeleteConfirmationPresented,
                 titleVisibility: .visible
             ) {
-                Button(L.Budget.Delete.confirmation, role: .destructive) {
+                Button(L.Category.Delete.confirmation, role: .destructive) {
                     if let selectedCategory {
                         moc.delete(selectedCategory)
                         do {

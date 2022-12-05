@@ -6,13 +6,21 @@
   
 */
 
+"period.select.week" = "Неделя";
+"period.select.TwoWeek" = "2 недели";
+"period.select.Threeweek" = "3 недели";
+"период.выбрать.месяц" = "Месяц";
+"period.select.custom" = "Пользовательская дата";
+
 "tags.title" = "Теги";
 "tags.name" = "Имя Тега";
 "tags.new" = "Новый Тег";
+"tags.delete.confirmation" = "Да, удалить теги";
 
 "category.title" = "Категории";
 "category.name" = "Имя Категории";
 "category.new" = "Новая Категория";
+"category.delete.confirmation" = "Да, удалить категорию";
 
 "charts.balance.title" = "Баланс";
 "charts.balance.empty" = "Эта диаграмма покажет вам, как со временем меняется ваш баланс";

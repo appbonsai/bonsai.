@@ -6,13 +6,22 @@
   
 */
 
+
+"period.select.week" = "Week";
+"period.select.TwoWeek" = "2 Weeks";
+"period.select.Threeweek" = "3 Weeks";
+"period.select.month" = "Month";
+"period.select.custom" = "Custom date";
+
 "tags.title" = "Tags";
 "tags.name" = "Tag Name";
 "tags.new" = "New Tag";
+"tags.delete.confirmation" = "Yes, delete tags";
 
 "category.title" = "Categories";
 "category.name" = "Category Name";
 "category.new" = "New Category";
+"category.delete.confirmation" = "Yes, delete category";
 
 "charts.balance.title" = "Balance";
 "charts.balance.empty" = "This chart will show you how your balance changes over time";
@@ -184,3 +193,5 @@
 "OrangeTreeDescription" = "Something goes wrong. Try to reduce your daily expenses! Carry this orange tree.";
 "PurpleTreeDescription" = "Need a little more! There is Purple tree, keep eyes on daily balance";
 "GreenTreeDescription" = "Excellent work! There is Green tree, keep doing and your tree will be fantastic!";
+
+

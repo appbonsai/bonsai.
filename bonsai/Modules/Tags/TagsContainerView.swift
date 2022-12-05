@@ -42,7 +42,7 @@ struct TagsContainerView: View {
                 isPresented: $isDeleteConfirmationPresented,
                 titleVisibility: .visible
             ) {
-                Button(L.Budget.Delete.confirmation, role: .destructive) {
+                Button(L.Tags.Delete.confirmation, role: .destructive) {
                     if !selectedTags.isEmpty {
                         selectedTags.forEach {
                             moc.delete($0)

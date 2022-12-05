@@ -46,15 +46,15 @@ struct SelectBudgetPeriodView: View {
       fileprivate var description: String {
          switch self {
          case .week:
-            return "Weekly"
+             return L.Period.Select.week
          case .twoWeeks:
-            return "2 Weeks"
+             return L.Period.Select.twoWeek
          case .threeWeeks:
-            return "3 Weeks"
+             return L.Period.Select.threeweek
          case .month:
-            return "Month"
+             return L.Period.Select.month
          case .custom:
-            return "Custom"
+             return L.Period.Select.custom
          }
       }
    }

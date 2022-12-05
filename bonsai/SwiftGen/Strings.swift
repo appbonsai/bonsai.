@@ -209,6 +209,10 @@ internal enum L10n {
     internal static let noCategory = L10n.tr("Localizable", "category.no_category", fallback: "No category")
     /// Categories
     internal static let title = L10n.tr("Localizable", "category.title", fallback: "Categories")
+    internal enum Delete {
+      /// Yes, delete category
+      internal static let confirmation = L10n.tr("Localizable", "category.delete.confirmation", fallback: "Yes, delete category")
+    }
   }
   internal enum Charts {
     internal enum Balance {
@@ -260,6 +264,23 @@ internal enum L10n {
     /// Transfer
     internal static let transfer = L10n.tr("Localizable", "operation.transfer", fallback: "Transfer")
   }
+  internal enum Period {
+    internal enum Select {
+      /// Custom
+      internal static let custom = L10n.tr("Localizable", "period.select.custom", fallback: "Custom")
+      /// Month
+      internal static let month = L10n.tr("Localizable", "period.select.month", fallback: "Month")
+      /// 3 Weeks
+      internal static let threeweek = L10n.tr("Localizable", "period.select.Threeweek", fallback: "3 Weeks")
+      /// 2 Weeks
+      internal static let twoWeek = L10n.tr("Localizable", "period.select.TwoWeek", fallback: "2 Weeks")
+      /// Localizable.strings
+      ///   bonsai
+      /// 
+      ///   Created by antuan.khoanh on 06/09/2022.
+      internal static let week = L10n.tr("Localizable", "period.select.week", fallback: "Weekly")
+    }
+  }
   internal enum Settings {
     /// Privacy Policy
     internal static let policy = L10n.tr("Localizable", "settings.policy", fallback: "Privacy Policy")
@@ -273,11 +294,12 @@ internal enum L10n {
     internal static let name = L10n.tr("Localizable", "tags.name", fallback: "Tag Name")
     /// New Tag
     internal static let new = L10n.tr("Localizable", "tags.new", fallback: "New Tag")
-    /// Localizable.strings
-    ///   bonsai
-    /// 
-    ///   Created by antuan.khoanh on 06/09/2022.
+    /// Tags
     internal static let title = L10n.tr("Localizable", "tags.title", fallback: "Tags")
+    internal enum Delete {
+      /// Yes, delete tags
+      internal static let confirmation = L10n.tr("Localizable", "tags.delete.confirmation", fallback: "Yes, delete tags")
+    }
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
