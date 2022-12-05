@@ -105,16 +105,6 @@ struct Subscriptions: View {
                }
             }
          }
-         .onAppear {
-            if packages.isEmpty {
-               isShowActivityIndicator = true
-            }
-         }
-         .onChange(of: packages, perform: { newValue in
-            if newValue.isEmpty == false {
-               isShowActivityIndicator = false
-            }
-         })
          .popover(isPresented: $isFeaturePremiumPresented) {
              PremiumFeature(isPresented: $isFeaturePremiumPresented, isPresentedFromSubscription: .constant(true))
          }
@@ -200,10 +190,7 @@ struct Subscriptions: View {
                .frame(width: continueWidthButton(), height: 48)
                .foregroundColor(BonsaiColor.mainPurple)
                .onTapGesture {
-
-                  isShowActivityIndicator = true
                   purchaseService.buy(package: selectedPackage, completion: {
-                     isShowActivityIndicator = false
                      isPresented = false
                   })
                }

@@ -70,77 +70,76 @@ struct CategoriesContainerView: View {
     
     
     var body: some View {
-        LoadingAllSet(isShowing: $purchaseService.isShownAllSet) {
-            NavigationView {
-                ZStack {
-                    BonsaiColor.back
-                        .ignoresSafeArea()
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 16) {
-                            ForEach(categories) { category in
-                                CategoriesCellView(
-                                    isSelected: category == selectedCategory,
-                                    category: category
-                                )
-                                .onTapGesture {
-                                    selectedCategory = category
-                                }
-                            } // ForEach
-                        } // VStack
-                        .padding(2)
-                    } // ScrollView
-                    .padding(.top, 24)
-                    .padding(.horizontal, 16)
-                } // ZStack
-                .navigationTitle(L.Category.title)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: {
-                            isPresented = false
-                        }) {
-                            Text(L.saveTitle)
-                                .foregroundColor(BonsaiColor.blueLight)
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        if categories.count != 0 {
-                            deselectCategory()
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        if categories.count != 0 {
-                            removeCategoryButton()
-                        }
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            if isPremium {
-                                isCreateCategoryPresented = true
-                            } else {
-                                isSubscriptionPresented = true
+        NavigationView {
+            ZStack {
+                BonsaiColor.back
+                    .ignoresSafeArea()
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        ForEach(categories) { category in
+                            CategoriesCellView(
+                                isSelected: category == selectedCategory,
+                                category: category
+                            )
+                            .onTapGesture {
+                                selectedCategory = category
                             }
-                        }) {
-                            BonsaiImage.plus
-                                .foregroundColor(BonsaiColor.mainPurple)
+                        } // ForEach
+                    } // VStack
+                    .padding(2)
+                } // ScrollView
+                .padding(.top, 24)
+                .padding(.horizontal, 16)
+            } // ZStack
+            .navigationTitle(L.Category.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        isPresented = false
+                    }) {
+                        Text(L.saveTitle)
+                            .foregroundColor(BonsaiColor.blueLight)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if categories.count != 0 {
+                        deselectCategory()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if categories.count != 0 {
+                        removeCategoryButton()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        if isPremium {
+                            isCreateCategoryPresented = true
+                        } else {
+                            isSubscriptionPresented = true
                         }
-                    }
-                    
-                }
-            } // NavigationView
-            .fullScreenCover(isPresented: $isCreateCategoryPresented) {
-                CreateCategoryView(isPresented: $isCreateCategoryPresented) { category in
-                    if let category = category {
-                        self.selectedCategory = category
-                        self.isPresented = false
+                    }) {
+                        BonsaiImage.plus
+                            .foregroundColor(BonsaiColor.mainPurple)
                     }
                 }
+                
             }
-            .fullScreenCover(isPresented: $isSubscriptionPresented) {
-                Subscriptions(isPresented: $isSubscriptionPresented)
+        } // NavigationView
+        .fullScreenCover(isPresented: $isCreateCategoryPresented) {
+            CreateCategoryView(isPresented: $isCreateCategoryPresented) { category in
+                if let category = category {
+                    self.selectedCategory = category
+                    self.isPresented = false
+                }
             }
         }
+        .fullScreenCover(isPresented: $isSubscriptionPresented) {
+            Subscriptions(isPresented: $isSubscriptionPresented)
+        }
     }
+    
 }
 
 struct CategoriesContainerView_Previews: PreviewProvider {
