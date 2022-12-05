@@ -11,19 +11,9 @@ import RevenueCat
 @main
 struct bonsaiApp: App {
     
-    @StateObject private var dataController = DataController.sharedInstance
-    @StateObject private var purchaseService = PurchaseService()
-    @StateObject private var chartViewModel = ChartViewModel()
-    @StateObject private var budgetTreeService = BudgetTreeService()
-    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
-                .environment(\.persistentContainer, dataController.container)
-                .environmentObject(purchaseService)
-                .environmentObject(chartViewModel)
-                .environmentObject(budgetTreeService)
+            SplashScreen()
         }
     }
     

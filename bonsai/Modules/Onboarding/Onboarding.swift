@@ -35,12 +35,9 @@ struct Onboarding: View {
 
    var body: some View {
       NavigationView {
-         VStack {
-            /*
-             open TabBar() || Subscriptions()
-             */
-            NavigationLink(
-               destination: TabBar().navigationBarHidden(true), isActive: $isPresenting) { }
+          VStack {
+              NavigationLink(
+                destination: TabBar().navigationBarHidden(true), isActive: $isPresenting) { }
             ZStack {
 
                if selection == 0 {
@@ -52,7 +49,9 @@ struct Onboarding: View {
                }
                VStack {
                   RoundedRectangle(cornerRadius: 13)
-                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.8)
+                     .frame(
+                        width: UIScreen.main.bounds.width,
+                        height: UIScreen.main.bounds.height * 0.8)
                      .foregroundColor(.clear)
                   Button {
                      if selection != dataSource.count - 1 {
