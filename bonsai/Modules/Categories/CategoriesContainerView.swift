@@ -139,7 +139,7 @@ struct CategoriesContainerView: View {
             }
         }
         .fullScreenCover(isPresented: $isSubscriptionPresented) {
-            Subscriptions(isPresented: $isSubscriptionPresented)
+            Subscriptions()
         }
     }
     

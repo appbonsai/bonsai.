@@ -43,7 +43,7 @@ struct LoadingAllSet<Content>: View where Content: View {
                     .disabled(self.isShowing)
                     .blur(radius: self.isShowing ? 3 : 0)
                 
-                AllSet(isPresented: $isShowing)
+                AllSet()
                     .offset(y: isShowing ?
                             0 :
                              UIScreen.main.bounds.height)

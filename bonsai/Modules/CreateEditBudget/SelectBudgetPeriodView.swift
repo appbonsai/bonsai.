@@ -209,7 +209,7 @@ struct SelectBudgetPeriodView: View {
          }
          .navigationTitle(L.periodTitle)
          .fullScreenCover(isPresented: $isSubscriptionsPresented, content: {
-            Subscriptions(isPresented: $isSubscriptionsPresented)
+             Subscriptions()
          })
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

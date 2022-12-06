@@ -9,11 +9,8 @@ import SwiftUI
 
 struct AllSet: View {
     
-    @Binding var isPresented: Bool
-    
-    init(isPresented: Binding<Bool>) {
-        self._isPresented = isPresented
-    }
+    @Environment(\.dismiss) var dismiss
+  
     var body: some View {
         
         BonsaiColor.card
@@ -43,7 +40,7 @@ struct AllSet: View {
                            .frame(width: 192, height: 48)
                            .foregroundColor(BonsaiColor.mainPurple)
                            .onTapGesture {
-                               isPresented = false
+                               dismiss()
                            }
                            Text(L.closeTitle)
                                 .foregroundColor(BonsaiColor.card)
@@ -61,6 +58,6 @@ struct AllSet: View {
 
 struct AllSet_Previews: PreviewProvider {
     static var previews: some View {
-        AllSet(isPresented: .constant(true))
+        AllSet()
     }
 }

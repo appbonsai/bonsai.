@@ -78,7 +78,7 @@ struct PremiumFeature: View {
                 )
             }
             .fullScreenCover(isPresented: $isSubscriptionPresented) {
-                Subscriptions(isPresented: $isSubscriptionPresented)
+                Subscriptions()
             }
         }
     }
