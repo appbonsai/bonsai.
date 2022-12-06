@@ -15,6 +15,8 @@ struct Subscriptions: View {
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var purchaseService: PurchaseService
+    let completion: (() -> Void)?
+
     
     var packages: [Package] {
         purchaseService.packages
@@ -45,8 +47,9 @@ struct Subscriptions: View {
             })
     }
     
-    init() {
+    init(completion: (() -> Void)?) {
         UINavigationBar.changeAppearance(clear: true)
+        self.completion = completion
     }
     
     var body: some View {
@@ -132,6 +135,8 @@ struct Subscriptions: View {
                     isShowActivityIndicator = true
                     purchaseService.restorePurchase {
                         isShowActivityIndicator = false
+                        dismiss()
+                        completion?()
                     }
                 }
             Spacer()
@@ -183,9 +188,11 @@ struct Subscriptions: View {
     
     private func continueButton() -> some View {
         Button {
+            isShowActivityIndicator = true
             purchaseService.buy(package: selectedPackage, completion: {
-//                isAllSetPresented = true
+                isShowActivityIndicator = false 
                 dismiss()
+                completion?()
             })
         } label: {
             Text(L.tryForFree)
@@ -259,7 +266,7 @@ struct Subscriptions: View {
 
 struct Subscriptions_Previews: PreviewProvider {
     static var previews: some View {
-        Subscriptions()
+        Subscriptions(completion: {})
             .environmentObject(PurchaseService())
     }
 }

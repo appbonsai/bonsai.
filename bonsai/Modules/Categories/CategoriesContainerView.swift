@@ -11,7 +11,8 @@ struct CategoriesContainerView: View {
     
     @EnvironmentObject var purchaseService: PurchaseService
     @State private var isSubscriptionPresented = false
-    
+    @State private var isAllSetPresented = false
+
     private var isPremium: Bool {
         if purchaseService.isSubscriptionActive {
             return true
@@ -139,7 +140,12 @@ struct CategoriesContainerView: View {
             }
         }
         .fullScreenCover(isPresented: $isSubscriptionPresented) {
-            Subscriptions()
+            Subscriptions(completion: {
+                isAllSetPresented = true
+            })
+        }
+        .fullScreenCover(isPresented: $isAllSetPresented) {
+            AllSet()
         }
     }
     

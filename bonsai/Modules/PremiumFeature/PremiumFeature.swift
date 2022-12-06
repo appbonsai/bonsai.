@@ -14,6 +14,7 @@ struct PremiumFeature: View {
     @EnvironmentObject var purchaseService: PurchaseService
     @State private var isSubscriptionPresented = false
     @Binding var isPresentedFromSubscription: Bool
+    @State private var isAllSetPresented = false
 
     init(isPresented: Binding<Bool>, isPresentedFromSubscription: Binding<Bool>) {
         self._isPresented = isPresented
@@ -78,7 +79,12 @@ struct PremiumFeature: View {
                 )
             }
             .fullScreenCover(isPresented: $isSubscriptionPresented) {
-                Subscriptions()
+                Subscriptions(completion: {
+                    isAllSetPresented = true
+                })
+            }
+            .fullScreenCover(isPresented: $isAllSetPresented) {
+                AllSet()
             }
         }
     }
