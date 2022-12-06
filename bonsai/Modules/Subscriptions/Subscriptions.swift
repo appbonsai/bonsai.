@@ -183,25 +183,18 @@ struct Subscriptions: View {
    }
 
    private func continueButton() -> some View {
-      HStack(alignment: .center) {
-         Spacer()
-         ZStack {
-            RoundedRectangle(cornerRadius: 13)
-               .frame(width: continueWidthButton(), height: 48)
-               .foregroundColor(BonsaiColor.mainPurple)
-               .onTapGesture {
-                  purchaseService.buy(package: selectedPackage, completion: {
-                     isPresented = false
-                  })
-               }
-
-            Text(L.tryForFree)
+       Button {
+           purchaseService.buy(package: selectedPackage, completion: {
+              isPresented = false
+           })
+       } label: {
+           Text(L.tryForFree)
                .foregroundColor(BonsaiColor.card)
                .font(.system(size: 17))
                .bold()
-         }
-         Spacer()
-      }
+       }
+       .foregroundColor(BonsaiColor.mainPurple)
+       .buttonStyle(PrimaryButtonStyle())
    }
 
    private func planDescription() -> some View {
