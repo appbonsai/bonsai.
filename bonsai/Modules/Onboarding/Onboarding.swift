@@ -32,6 +32,10 @@ struct Onboarding: View {
          title: L.onboarding3Title,
          description: L.onboarding3Description),
    ]
+    
+    init() {
+        UINavigationBar.changeAppearance(clear: true)
+    }
 
    var body: some View {
       NavigationView {
