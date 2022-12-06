@@ -38,11 +38,12 @@ struct TagsContainerView: View {
             .foregroundColor(BonsaiColor.secondary)
             .opacity(0.8)
             .confirmationDialog(
-                L.deleteBudgetConfirmation,
+                selectedTags == [] ? L.Tags.Select.confirmation : L.Delete.Tags.confirmation,
                 isPresented: $isDeleteConfirmationPresented,
                 titleVisibility: .visible
             ) {
-                Button(L.Tags.Delete.confirmation, role: .destructive) {
+                Button(selectedTags == [] ? "" : L.Tags.Delete.confirmation,
+                       role: selectedTags == [] ? .cancel : .destructive) {
                     if !selectedTags.isEmpty {
                         selectedTags.forEach {
                             moc.delete($0)

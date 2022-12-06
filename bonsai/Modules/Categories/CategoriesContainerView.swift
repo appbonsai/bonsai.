@@ -38,11 +38,14 @@ struct CategoriesContainerView: View {
             .foregroundColor(BonsaiColor.secondary)
             .opacity(0.8)
             .confirmationDialog(
-                L.deleteBudgetConfirmation,
+                selectedCategory == nil ? L.Category.Select.confirmation : L.Delete.Category.confirmation,
                 isPresented: $isDeleteConfirmationPresented,
                 titleVisibility: .visible
             ) {
-                Button(L.Category.Delete.confirmation, role: .destructive) {
+                Button(
+                    selectedCategory == nil ? "" : L.Category.Delete.confirmation,
+                    role: selectedCategory == nil ? .cancel : .destructive
+                ) {
                     if let selectedCategory {
                         moc.delete(selectedCategory)
                         do {

@@ -213,6 +213,10 @@ internal enum L10n {
       /// Yes, delete category
       internal static let confirmation = L10n.tr("Localizable", "category.delete.confirmation", fallback: "Yes, delete category")
     }
+    internal enum Select {
+      /// You should select category
+      internal static let confirmation = L10n.tr("Localizable", "category.select.confirmation", fallback: "You should select category")
+    }
   }
   internal enum Charts {
     internal enum Balance {
@@ -244,6 +248,16 @@ internal enum L10n {
     /// Yesterday
     internal static let yesterday = L10n.tr("Localizable", "date.yesterday", fallback: "Yesterday")
   }
+  internal enum Delete {
+    internal enum Category {
+      /// Are you sure you want to delete this category?
+      internal static let confirmation = L10n.tr("Localizable", "delete.category.confirmation", fallback: "Are you sure you want to delete this category?")
+    }
+    internal enum Tags {
+      /// Are you sure you want to delete this tags?
+      internal static let confirmation = L10n.tr("Localizable", "delete.tags.confirmation", fallback: "Are you sure you want to delete this tags?")
+    }
+  }
   internal enum Operation {
     /// Add Tag
     internal static let addTag = L10n.tr("Localizable", "operation.add_tag", fallback: "Add Tag")
@@ -266,8 +280,8 @@ internal enum L10n {
   }
   internal enum Period {
     internal enum Select {
-      /// Custom
-      internal static let custom = L10n.tr("Localizable", "period.select.custom", fallback: "Custom")
+      /// Custom date
+      internal static let custom = L10n.tr("Localizable", "period.select.custom", fallback: "Custom date")
       /// Month
       internal static let month = L10n.tr("Localizable", "period.select.month", fallback: "Month")
       /// 3 Weeks
@@ -278,7 +292,7 @@ internal enum L10n {
       ///   bonsai
       /// 
       ///   Created by antuan.khoanh on 06/09/2022.
-      internal static let week = L10n.tr("Localizable", "period.select.week", fallback: "Weekly")
+      internal static let week = L10n.tr("Localizable", "period.select.week", fallback: "Week")
     }
   }
   internal enum Settings {
@@ -297,8 +311,12 @@ internal enum L10n {
     /// Tags
     internal static let title = L10n.tr("Localizable", "tags.title", fallback: "Tags")
     internal enum Delete {
-      /// Yes, delete tags
-      internal static let confirmation = L10n.tr("Localizable", "tags.delete.confirmation", fallback: "Yes, delete tags")
+      /// Yes, delete selected tags
+      internal static let confirmation = L10n.tr("Localizable", "tags.delete.confirmation", fallback: "Yes, delete selected tags")
+    }
+    internal enum Select {
+      /// You should select tags
+      internal static let confirmation = L10n.tr("Localizable", "tags.select.confirmation", fallback: "You should select tags")
     }
   }
 }

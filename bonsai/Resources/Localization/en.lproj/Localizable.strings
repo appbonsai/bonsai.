@@ -13,15 +13,20 @@
 "period.select.month" = "Month";
 "period.select.custom" = "Custom date";
 
+"delete.tags.confirmation" = "Are you sure you want to delete this tags?";
+"delete.category.confirmation" = "Are you sure you want to delete this category?";
+
 "tags.title" = "Tags";
 "tags.name" = "Tag Name";
 "tags.new" = "New Tag";
-"tags.delete.confirmation" = "Yes, delete tags";
+"tags.delete.confirmation" = "Yes, delete selected tags";
+"tags.select.confirmation" = "You should select tags";
 
 "category.title" = "Categories";
 "category.name" = "Category Name";
 "category.new" = "New Category";
 "category.delete.confirmation" = "Yes, delete category";
+"category.select.confirmation" = "You should select category";
 
 "charts.balance.title" = "Balance";
 "charts.balance.empty" = "This chart will show you how your balance changes over time";
