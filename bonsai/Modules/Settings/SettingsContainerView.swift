@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsContainerView: View {
 
     @State var isPremiumSelected: Bool = false
+    @EnvironmentObject var languageSettings: LanguageSettings
 
     @Environment(\.openURL) var openURL
 

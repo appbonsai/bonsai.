@@ -13,7 +13,10 @@ struct bonsaiApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashScreen()
+            LanguageManagerView(.deviceLanguage) {
+                SplashScreen()
+                    .transition(.opacity)
+            }
         }
     }
     
