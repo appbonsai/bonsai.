@@ -63,14 +63,14 @@ struct CategoriesContainerView: View {
             }
     }
     
-    func deselectCategory() -> some View {
-        BonsaiImage.unselect
-            .onTapGesture {
-                selectedCategory = nil
-            }
-            .foregroundColor(BonsaiColor.blueLight)
-            .opacity(0.8)
-    }
+//    func deselectCategory() -> some View {
+//        BonsaiImage.unselect
+//            .onTapGesture {
+//                selectedCategory = nil
+//            }
+//            .foregroundColor(BonsaiColor.blueLight)
+//            .opacity(0.8)
+//    }
     
     
     var body: some View {
@@ -86,7 +86,11 @@ struct CategoriesContainerView: View {
                                 category: category
                             )
                             .onTapGesture {
-                                selectedCategory = category
+                                if selectedCategory == category {
+                                    selectedCategory = nil
+                                } else {
+                                    selectedCategory = category
+                                }
                             }
                         } // ForEach
                     } // VStack
@@ -103,14 +107,14 @@ struct CategoriesContainerView: View {
                         isPresented = false
                     }) {
                         Text(L.saveTitle)
-                            .foregroundColor(BonsaiColor.blueLight)
+                            .foregroundColor(BonsaiColor.mainPurple)
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    if categories.count != 0 {
-                        deselectCategory()
-                    }
-                }
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    if categories.count != 0 {
+//                        deselectCategory()
+//                    }
+//                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if categories.count != 0 {
                         removeCategoryButton()
