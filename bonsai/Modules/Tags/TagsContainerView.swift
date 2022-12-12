@@ -64,15 +64,6 @@ struct TagsContainerView: View {
             }
     }
     
-    func deselectTags() -> some View {
-        BonsaiImage.unselect
-            .onTapGesture {
-                selectedTags = []
-            }
-            .foregroundColor(BonsaiColor.blueLight)
-            .opacity(0.8)
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -108,11 +99,7 @@ struct TagsContainerView: View {
                             .foregroundColor(BonsaiColor.blueLight)
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    if tags.count != 0 {
-                        deselectTags()
-                    }
-                }
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if tags.count != 0 {
                         removeTagButton()

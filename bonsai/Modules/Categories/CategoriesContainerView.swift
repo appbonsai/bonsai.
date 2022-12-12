@@ -63,16 +63,6 @@ struct CategoriesContainerView: View {
             }
     }
     
-//    func deselectCategory() -> some View {
-//        BonsaiImage.unselect
-//            .onTapGesture {
-//                selectedCategory = nil
-//            }
-//            .foregroundColor(BonsaiColor.blueLight)
-//            .opacity(0.8)
-//    }
-    
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -110,11 +100,6 @@ struct CategoriesContainerView: View {
                             .foregroundColor(BonsaiColor.mainPurple)
                     }
                 }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    if categories.count != 0 {
-//                        deselectCategory()
-//                    }
-//                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if categories.count != 0 {
                         removeCategoryButton()
