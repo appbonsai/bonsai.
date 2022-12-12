@@ -106,7 +106,7 @@ struct CategoriesContainerView: View {
                     Button(action: {
                         isPresented = false
                     }) {
-                        Text(L.saveTitle)
+                        Text(LocalizedStringKey("Save_title"))
                             .foregroundColor(BonsaiColor.mainPurple)
                     }
                 }

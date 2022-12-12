@@ -104,7 +104,7 @@ struct TagsContainerView: View {
                     Button(action: {
                         isPresented = false
                     }) {
-                        Text(L.saveTitle)
+                        Text(LocalizedStringKey("Save_title"))
                             .foregroundColor(BonsaiColor.blueLight)
                     }
                 }

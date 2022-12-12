@@ -108,7 +108,7 @@ struct OperationDetails: View {
                                         .frame(height: 1)
                                         .padding([.leading, .trailing], 16)
                                 }
-                                TitleView(title: L.Operation.title, image: BonsaiImage.textBubble, text: $title)
+                                TitleView(title: "operation.title", image: BonsaiImage.textBubble, text: $title)
                                     .cornerRadius(13, corners: [.bottomLeft, .bottomRight])
                                     .focused($focusedField, equals: .title)
                                 TagsInputView(
@@ -188,7 +188,7 @@ struct OperationDetails: View {
                                 }
                             }
                         } label: {
-                            Text(L.saveTitle)
+                            Text(LocalizedStringKey("Save_title"))
                         } // Button
                         .buttonStyle(PrimaryButtonStyle())
                         .padding([.top, .bottom], 12)
@@ -196,7 +196,7 @@ struct OperationDetails: View {
                     } // VStack
                 } // ScrollViewReader
             } // ZStack
-            .navigationTitle(kind == .new ? L.Operation.new : L.Operation.edit)
+            .navigationTitle(LocalizedStringKey(kind == .new ? "operation.new" : "operation.edit"))
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

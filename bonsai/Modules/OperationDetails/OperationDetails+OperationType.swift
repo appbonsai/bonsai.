@@ -40,19 +40,19 @@ extension OperationDetails.OperationType {
          return .init(
             color: BonsaiColor.secondary,
             image: Image(Asset.trendingDown.name),
-            title: L.Operation.expense
+            title: "operation.expense"
          )
       case .income:
          return .init(
             color: BonsaiColor.green,
             image: Image(Asset.trendingUp.name),
-            title: L.Operation.income
+            title: "operation.income"
          )
       case .transfer:
          return .init(
             color: BonsaiColor.blue,
             image: Image(Asset.trendingFlat.name),
-            title: L.Operation.transfer
+            title: "operation.transfer"
          )
       }
    }

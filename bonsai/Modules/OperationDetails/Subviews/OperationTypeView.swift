@@ -16,7 +16,7 @@ struct OperationTypeView: View {
             Spacer(minLength: 4)
             operation.viewModel.image
                 .foregroundColor(operation.viewModel.color)
-            Text(operation.viewModel.title)
+            Text(LocalizedStringKey(operation.viewModel.title))
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor(BonsaiColor.text)
                 .lineLimit(1)
