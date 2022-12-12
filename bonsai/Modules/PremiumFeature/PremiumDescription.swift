@@ -30,12 +30,12 @@ struct PremiumDescription: View {
             }
 
             VStack(alignment: .center) {
-                Text(premium.name)
+                Text(LocalizedStringKey(premium.name))
                     .font(.system(size: 17))
                     .foregroundColor(BonsaiColor.purple6)
                     .bold()
                     .padding([.top, .bottom], 4)
-                Text(premium.description)
+                Text(LocalizedStringKey(premium.description))
                     .padding(.horizontal)
                     .padding(.bottom, 8)
                     .font(.system(size: 14))
@@ -50,7 +50,7 @@ struct PremiumDescription: View {
                           isPresented = false
                       }
                       
-                   Text(L.okTitle)
+                   Text(LocalizedStringKey("OK_title"))
                       .foregroundColor(BonsaiColor.card)
                       .font(.system(size: 17))
                       .bold()

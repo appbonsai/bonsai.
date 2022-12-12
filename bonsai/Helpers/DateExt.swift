@@ -11,10 +11,10 @@ extension Date {
 
     func dateString() -> String {
         if Calendar.current.isDateInToday(self) {
-            return L.Date.today
+            return "date.today"
         }
         if Calendar.current.isDateInYesterday(self) {
-            return L.Date.yesterday
+            return "date.yesterday"
         }
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long

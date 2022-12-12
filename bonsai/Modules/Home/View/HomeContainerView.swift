@@ -26,7 +26,7 @@ struct HomeContainerView: View {
     private var budget: Budget? { budgets.first }
     
     private func tapViewTransactions() -> some View {
-        BudgetTapView(title: L.dragUpHint)
+        BudgetTapView(title: "Drag_up_hint")
             .onTapGesture {
                 isTransactionsPresented = true
             }
@@ -190,7 +190,7 @@ struct HomeContainerView: View {
                         .padding(.top, 28)
                     HStack(alignment: .center, spacing: 12) {
                         BudgetMoneyCardView(
-                            title: L.revenueTitle,
+                            title: "Revenue_title",
                             subtitle: "\(income()) \(Currency.Validated.current.symbol)",
                             titleColor: BonsaiColor.green,
                             icon: nil
@@ -198,7 +198,7 @@ struct HomeContainerView: View {
                         .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
                         
                         BudgetMoneyCardView(
-                            title: L.expensesTitle,
+                            title: "Expenses_title",
                             subtitle: "\(expense()) \(Currency.Validated.current.symbol)",
                             titleColor: BonsaiColor.secondary,
                             icon: nil

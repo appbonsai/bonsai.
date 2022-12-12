@@ -20,7 +20,7 @@ struct BudgetTransactionHeader: View {
           }
           .padding(.top, 20)
 
-          Text(L.transactionsTitle)
+          Text("Transactions_title")
              .font(BonsaiFont.title_headline_17)
              .foregroundColor(Color.white)
              .padding(.leading, 16)

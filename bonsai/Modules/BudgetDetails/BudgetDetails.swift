@@ -48,13 +48,13 @@ struct BudgetDetails: View {
     private func budgetMoneyTitleView() -> some View {
         HStack(alignment: .center, spacing: 24) {
             BudgetMoneyTitleView(
-                title: L.moneyLeft,
+                title: "Money_left",
                 amount: totalMoneyLeft,
                 titleColor: BonsaiColor.green
             )
             .padding(.leading, 24)
             BudgetMoneyTitleView(
-                title: L.moneySpent,
+                title: "Money_spent",
                 amount: totalMoneySpent,
                 titleColor: BonsaiColor.secondary
             )
@@ -65,7 +65,7 @@ struct BudgetDetails: View {
     private func budgetMoneyCardView() -> some View {
         HStack(alignment: .center, spacing: 16) {
             BudgetMoneyCardView(
-                title: L.totalBudget,
+                title: "Total_budget",
                 subtitle: "\(budget?.amount ?? .zero)\(Currency.Validated.current.symbol)",
                 titleColor: BonsaiColor.mainPurple,
                 icon: Image(Asset.accountBalance.name)
@@ -74,7 +74,7 @@ struct BudgetDetails: View {
 
             
             BudgetMoneyCardView(
-                title: L.dailyBudget,
+                title: "Daily_budget",
                 subtitle: "\(moneyCanSpendDaily)\(Currency.Validated.current.symbol)",
                 titleColor: BonsaiColor.mainPurple,
                 icon: Image(systemName: "arrow.clockwise")
@@ -88,7 +88,7 @@ struct BudgetDetails: View {
     
     
     private func tapViewTransactions() -> some View {
-        BudgetTapView(title: L.Budget.swipeUpSuggestion)
+        BudgetTapView(title: "budget.swipe_up_suggestion")
             .onTapGesture {
                 isPresented = true
             }
@@ -110,15 +110,13 @@ struct BudgetDetails: View {
             Spacer(minLength: 80)
             VStack(alignment: .center, spacing: 12) {
                 Group {
-                    Text(L.youDontOwnABudgetYet)
+                    Text("you_dont_own_a_budget_yet")
                         .foregroundColor(.white)
                         .font(BonsaiFont.title_20)
                     GifImage("bonsai_purple_png")
                         .frame(width: 200, height: 200)
                     Text(
-                    """
-                    \(L.unlockBudget)
-                    """
+                    "unlock_budget"
                     )
                     .multilineTextAlignment(.center)
                     .foregroundColor(.white)
@@ -126,7 +124,7 @@ struct BudgetDetails: View {
                     Button {
                         isCreateBudgetPresented = true
                     } label: {
-                        Text(L.createBudget)
+                        Text("create_budget")
                     }
                     .buttonStyle(PrimaryButtonStyle())
                 }.padding(16)
@@ -165,7 +163,7 @@ struct BudgetDetails: View {
                             DragDownHintView().frame(maxWidth: .infinity)
                         }
                         HStack {
-                            BudgetNameView(name: budget?.name.takeIfNotEmpty() ?? L.Budget.defaultName)
+                            BudgetNameView(name: budget?.name.takeIfNotEmpty() ?? "default_name")
                                 .padding(.leading, 16)
                                 .padding(.top, 16)
                             

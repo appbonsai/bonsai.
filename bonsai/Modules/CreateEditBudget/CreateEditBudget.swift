@@ -31,7 +31,7 @@ struct CreateEditBudget: View {
 
     func amountView(text: Binding<String>) -> some View {
         AmountView(
-            amountTitle: L.Budget.amount,
+            amountTitle: "budget.amount",
             operation: .income,
             currency: currency,
             text: text
@@ -46,7 +46,7 @@ struct CreateEditBudget: View {
     }
 
     func titleView(text: Binding<String>) -> some View {
-        TitleView(title: L.Budget.name,
+        TitleView(title: "budget.name",
                   image:  BonsaiImage.textformatAlt,
                   text: text)
         .cornerRadius(13)

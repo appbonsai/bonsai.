@@ -33,7 +33,7 @@ struct PremiumFeature: View {
                 
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .center) {
-                        Text(L.premiumDescriptions)
+                        Text(LocalizedStringKey("premium_descriptions"))
                             .frame(maxWidth: .infinity)
                             .multilineTextAlignment(.center)
                             .font(.system(size: 17))
@@ -55,7 +55,7 @@ struct PremiumFeature: View {
                             SubscriptionStatusCell(premium: subscriptionStatus)
                                 .onTapGesture {
                                     self.premium = .init(
-                                        name: L.subscriptionComplete,
+                                        name: "subscription_complete",
                                         description: "\(L.purchaseDate) \(purchaseService.purchaseDate)\n\(L.expirationDate) \(purchaseService.expirationDate)",
                                         icon: BonsaiImage.star_fill,
                                         gifImage: "bonsai_green_png"
@@ -91,7 +91,7 @@ struct PremiumFeature: View {
     
     var getSubscription: Premium {
         .init(
-            name: L.tryForFree,
+            name: "Try_for_free",
             description: "",
             icon: BonsaiImage.star_leadinghal,
             gifImage: "")
@@ -99,7 +99,7 @@ struct PremiumFeature: View {
     
     var subscriptionStatus: Premium {
         .init(
-            name: L.subscriptionComplete,
+            name: "subscription_complete",
             description: "\(L.purchaseDate)\(purchaseService.purchaseDate)\n\(L.expirationDate)\(purchaseService.expirationDate)",
             icon: BonsaiImage.star_fill,
             gifImage: "bonsai_green_png")
@@ -109,26 +109,26 @@ struct PremiumFeature: View {
         
         var premiums: [Premium] = [
             .init(
-                name: L.unlimitedCategories,
-                description: L.unlimitedCategoriesDescriptions,
+                name: "Unlimited_categories",
+                description: "Unlimited_categories_descriptions",
                 icon: BonsaiImage.folder,
                 gifImage: "new_category"
             ),
             .init(
-                name: L.unlimitedTags,
-                description: L.unlimitedTagsDescriptions,
+                name: "Unlimited_tags",
+                description: "Unlimited_tags_descriptions",
                 icon: BonsaiImage.tag,
                 gifImage: "new_tag"
             ),
             .init(
-                name: L.flexibleBudget,
-                description: L.flexibleBudgetDescriptions,
+                name: "Flexible_budget",
+                description: "Flexible_budget_descriptions",
                 icon: BonsaiImage.calendar,
                 gifImage: "custom_budget"
             ),
             .init(
-                name: L.noAds,
-                description: L.noAdsDescriptions,
+                name: "No_ads",
+                description: "No_ads_descriptions",
                 icon: BonsaiImage.star,
                 gifImage: "no_ads"
             )
@@ -173,7 +173,7 @@ struct SubscriptionStatusCell: View {
                     premium.icon
                         .padding([.leading ,.trailing], 10)
                     
-                    Text(premium.name)
+                    Text(LocalizedStringKey(premium.name))
                         .font(.system(size: 17))
                         .bold()
                         .padding(.bottom, 2)

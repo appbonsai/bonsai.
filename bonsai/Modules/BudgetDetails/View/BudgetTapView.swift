@@ -17,7 +17,7 @@ struct BudgetTapView: View {
             .renderingMode(.template)
             .foregroundColor(Color.white)
             .padding(.bottom, 5)
-         Text(title)
+         Text(LocalizedStringKey(title))
             .font(BonsaiFont.body_17)
             .foregroundColor(BonsaiColor.text)
             .multilineTextAlignment(.center)

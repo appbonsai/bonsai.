@@ -23,7 +23,7 @@ struct TitleView: View {
             .font(BonsaiFont.body_17)
             .foregroundColor(BonsaiColor.purple3)
             .placeholder(
-               Text(title)
+               Text(LocalizedStringKey(title))
                   .foregroundColor(BonsaiColor.prompt),
                show: text.isEmpty
             )

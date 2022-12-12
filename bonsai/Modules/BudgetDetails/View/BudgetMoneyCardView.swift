@@ -26,10 +26,10 @@ struct BudgetMoneyCardView: View {
          } else {
             Spacer()
          }
-         Text(title)
+         Text(LocalizedStringKey(title))
             .font(BonsaiFont.subtitle_15)
             .foregroundColor(titleColor)
-         Text(subtitle)
+         Text(LocalizedStringKey(subtitle))
             .font(BonsaiFont.title_22)
             .foregroundColor(BonsaiColor.text)
          Spacer()

@@ -34,7 +34,7 @@ struct TransactionCell: View {
         init(transaction: Transaction) {
             self.color = (transaction.category?.color ?? .noCategory).asGradient
             self.icon = (transaction.category?.image ?? .icon(.noCategory))
-            self.title = transaction.title?.takeIfNotEmpty() ?? transaction.category?.title ?? L.Category.noCategory
+            self.title = transaction.title?.takeIfNotEmpty() ?? transaction.category?.title ?? "no_category"
             self.type = transaction.type
             self.amount = transaction.amount.stringValue
         }

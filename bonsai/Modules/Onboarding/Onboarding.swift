@@ -21,16 +21,16 @@ struct Onboarding: View {
    private let dataSource: [OnboardingDataSource] = [
       .init(
          image: "bonsai_1",
-         title: L.onboarding1Title,
-         description: L.onboarding1Description),
+         title: "Onboarding_1_title",
+         description: "Onboarding_1_description"),
       .init(
          image: "bonsai_2",
-         title: L.onboarding2Title,
-         description: L.onboarding2Description),
+         title: "Onboarding_2_title",
+         description: "Onboarding_2_description"),
       .init(
          image: "bonsai_3",
-         title: L.onboarding3Title,
-         description: L.onboarding3Description),
+         title: "Onboarding_3_title",
+         description: "Onboarding_3_description"),
    ]
     
     init() {

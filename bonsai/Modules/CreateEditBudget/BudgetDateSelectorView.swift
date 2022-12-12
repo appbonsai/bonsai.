@@ -21,7 +21,7 @@ struct BudgetDateSelectorView: View {
             .foregroundColor(BonsaiColor.purple3)
             .font(BonsaiFont.body_17)
          Spacer()
-         Text(selectedPeriod)
+         Text(LocalizedStringKey(selectedPeriod))
             .foregroundColor(BonsaiColor.purple3)
             .font(BonsaiFont.body_17)
          (BonsaiImage.chevronForward)

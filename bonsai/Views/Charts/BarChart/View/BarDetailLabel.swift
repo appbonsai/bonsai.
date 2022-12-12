@@ -12,7 +12,7 @@ struct BarDetailLabel: View {
     let color: Color
     
     var body: some View {
-        Text(title)
+        Text(LocalizedStringKey(title))
             .font(BonsaiFont.caption_11)
             .foregroundColor(color)
             .padding(10)

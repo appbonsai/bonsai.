@@ -27,7 +27,7 @@ struct ChartContainer<Chart>: View where Chart : View {
     var chartView: Chart
     var body: some View {
         VStack(alignment: .leading) {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .foregroundColor(.white)
                 .font(BonsaiFont.title_20)
                         

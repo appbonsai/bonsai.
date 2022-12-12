@@ -38,7 +38,7 @@ struct BudgetCellView: View {
 //               .foregroundColor(BonsaiColor.secondary)
 //               .frame(width: 32, height: 32)
 //               .padding(.vertical, 8)
-            Text(title)
+            Text(LocalizedStringKey(title))
                .font(BonsaiFont.body_15)
                .foregroundColor(BonsaiColor.text)
                .padding(.leading, 10)

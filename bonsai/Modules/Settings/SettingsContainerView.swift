@@ -34,9 +34,9 @@ struct SettingsContainerView: View {
         
         var label: String {
             switch self {
-            case .premiumFeature: return L.Settings.premiumFeatures
-            case .termsAndConditions: return L.Settings.terms
-            case .privacyPolicy: return L.Settings.policy
+            case .premiumFeature: return "settings.premium_features"
+            case .termsAndConditions: return "settings.terms"
+            case .privacyPolicy: return "settings.policy"
             }
         }
     }
@@ -44,10 +44,10 @@ struct SettingsContainerView: View {
     var body: some View {
        NavigationView {
           List {
-             Section(header: Text(L.otherTitle)) {
+             Section(header: Text(LocalizedStringKey("Other_title"))) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
                    HStack {
-                      Text(item.label)
+                       Text(LocalizedStringKey(item.label))
                       Spacer()
                    }
                    .contentShape(Rectangle())
@@ -82,7 +82,7 @@ struct SettingsContainerView: View {
                 Button(action: {
                    isPresented = false
                 }) {
-                   Text(L.cancelTitle)
+                   Text(LocalizedStringKey("Cancel_title"))
                       .foregroundColor(BonsaiColor.secondary)
                 }
              }
@@ -185,5 +185,6 @@ struct SettingsContainerView_Previews: PreviewProvider {
 
 let bgs = ["bonsai_1", "bonsai_2", "bonsai_3", "bonsai_4"]
 let appIcons = ["icon-dark", "icon-light", "icon-dark", "icon-light", "icon-dark", "icon-light"]
+
 
 

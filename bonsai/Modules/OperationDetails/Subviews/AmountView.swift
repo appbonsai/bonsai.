@@ -26,7 +26,7 @@ struct AmountView: View {
             .foregroundColor(operation.viewModel.color)
             .keyboardType(.decimalPad)
             .placeholder(
-               Text(amountTitle)
+               Text(LocalizedStringKey(amountTitle))
                   .foregroundColor(BonsaiColor.prompt),
                show: text.isEmpty
             )

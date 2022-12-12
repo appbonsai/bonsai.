@@ -24,7 +24,7 @@ struct BudgetMoneyTitleView: View {
             Text("\(Currency.Validated.current.symbol)\(amount)")
                 .font(BonsaiFont.title_34)
                 .foregroundColor(BonsaiColor.text)
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(BonsaiFont.subtitle_15)
                 .foregroundColor(titleColor)
         }

@@ -26,7 +26,7 @@ struct PremiumFeatureCell: View {
                    premium.icon
                         .padding([.leading ,.trailing], 10)
                     
-                    Text(premium.name)
+                    Text(LocalizedStringKey(premium.name))
                         .font(.system(size: 17))
                         .bold()
                         .padding(.bottom, 2)

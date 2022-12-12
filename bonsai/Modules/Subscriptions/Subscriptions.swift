@@ -117,7 +117,7 @@ struct Subscriptions: View {
                     Button(action: {
                         dismiss()
                     }) {
-                        Text(L.cancelTitle)
+                        Text(LocalizedStringKey("Cancel_title"))
                             .foregroundColor(BonsaiColor.secondary)
                     }
                 }
@@ -128,7 +128,7 @@ struct Subscriptions: View {
     private func restorePurchase() -> some View {
         HStack(alignment: .center) {
             Spacer()
-            Text(L.restorePurchases)
+            Text(LocalizedStringKey("Restore_Purchases"))
                 .font(.system(size: 14))
                 .foregroundColor(BonsaiColor.secondary)
                 .onTapGesture {
@@ -166,7 +166,7 @@ struct Subscriptions: View {
             .foregroundColor(.white)
             .opacity(0.7)
             HStack(spacing: 0) {
-                Text(L.dueToday)
+                Text(LocalizedStringKey("Due_Today"))
                 Text(" ")
                 Text(L.daysFree(daysFree))
                     .foregroundColor(BonsaiColor.green)
@@ -195,7 +195,7 @@ struct Subscriptions: View {
                 completion?()
             })
         } label: {
-            Text(L.tryForFree)
+            Text(LocalizedStringKey("Try_for_free"))
                 .foregroundColor(BonsaiColor.card)
                 .font(.system(size: 17))
                 .bold()
@@ -208,18 +208,18 @@ struct Subscriptions: View {
         HStack(alignment: .center) {
             Spacer()
             VStack(alignment: .center) {
-                Text(L.chooseYourPlan)
+                Text(LocalizedStringKey("Choose_your_plan"))
                     .font(.system(size: 20))
                     .bold()
                     .foregroundColor(BonsaiColor.purple6)
                 
-                Text(L.premiumPlanDescription)
+                Text(LocalizedStringKey("premium_planDescription"))
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
                     .foregroundColor(BonsaiColor.purple6)
                     .padding(.top, -2)
                     .padding(.horizontal)
-                let learnMore = Text(L.learnMore)
+                let learnMore = Text(LocalizedStringKey("Learn_more"))
                     .bold()
                     .foregroundColor(BonsaiColor.blueLight)
                     .shimmering(duration: 2.5)
@@ -240,11 +240,11 @@ struct Subscriptions: View {
         let privacyPolicylink = "[\(L.privacyPolicy)](\(privacyPolicyUrl))"
         
         let text =
-        Text(L.subscriptionDescription1) +
+        Text(LocalizedStringKey("Subscription_description_1")) +
         Text("\n") +
-        Text(L.subscriptionDescription) +
+        Text(LocalizedStringKey("Subscription_description")) +
         Text(.init(termsOfServicelink)).foregroundColor(BonsaiColor.secondary).bold() +
-        Text(L.mergeAnd) +
+        Text(LocalizedStringKey("Merge_And")) +
         Text(.init(privacyPolicylink))
             .foregroundColor(BonsaiColor.secondary).bold() +
         Text(".")
