@@ -70,7 +70,7 @@ struct CreateEditBudget: View {
     @State var isDeleteConfirmationPresented = false
 
     func removeBudgetButton() -> some View {
-        Button(L.Budget.Delete.button) {
+        Button(LocalizedStringKey("budget.delete.button")) {
             isDeleteConfirmationPresented = true
         }
         .foregroundColor(.red)

@@ -77,7 +77,6 @@ struct SubscriptionCell: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(BonsaiColor.green)
-                .disabled(true)
                 .padding(.bottom, 2)
                 .shimmering(duration: 3)
             }

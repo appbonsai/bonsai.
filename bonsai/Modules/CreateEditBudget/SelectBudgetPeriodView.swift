@@ -46,15 +46,15 @@ struct SelectBudgetPeriodView: View {
         fileprivate var description: String {
             switch self {
             case .week:
-                return L.Period.Select.week
+                return "period.select.week"
             case .twoWeeks:
-                return L.Period.Select.twoWeek
+                return "period.select.TwoWeek"
             case .threeWeeks:
-                return L.Period.Select.threeweek
+                return "period.select.Threeweek"
             case .month:
-                return L.Period.Select.month
+                return "period.select.month"
             case .custom:
-                return L.Period.Select.custom
+                return "period.select.custom"
             }
         }
     }
@@ -77,14 +77,14 @@ struct SelectBudgetPeriodView: View {
                     ForEach(items) { item in
                         if item == .custom {
                             VStack {
-                                Text(L.chooseBudgetPeriodOr)
+                                Text(LocalizedStringKey("choose_budget_period_or"))
                                 if isPremium {
                                     DatePicker(
                                         selection: $date,
                                         in: Date().addingTimeInterval(24 * 60 * 60)...,
                                         displayedComponents: [.date],
                                         label: {
-                                            Text(L.chooseBudgetPeriodCustom)
+                                            Text(LocalizedStringKey("choose_budget_period_custom"))
                                                 .font(BonsaiFont.body_15)
                                                 .foregroundColor(.white)
                                         }
@@ -119,11 +119,11 @@ struct SelectBudgetPeriodView: View {
                                         .foregroundColor(BonsaiColor.card)
                                         .overlay {
                                             HStack {
-                                                Text(L.chooseBudgetPeriodCustomPremium)
+                                                Text(LocalizedStringKey("choose_budget_period_custom_premium"))
                                                     .font(BonsaiFont.body_15)
                                                     .padding(.leading, 16)
                                                 Spacer()
-                                                Text(L.chooseBudgetPeriodPremium)
+                                                Text(LocalizedStringKey("choose_budget_period_premium"))
                                                     .font(BonsaiFont.subtitle_15)
                                                     .foregroundColor(BonsaiColor.mainPurple)
                                                     .padding(.trailing, 16)
@@ -145,7 +145,7 @@ struct SelectBudgetPeriodView: View {
                                 .foregroundColor(BonsaiColor.card)
                                 .overlay {
                                     HStack {
-                                        Text(item.description)
+                                        Text(LocalizedStringKey(item.description))
                                             .font(BonsaiFont.body_15)
                                             .padding(.leading, 16)
                                         Spacer()
@@ -197,7 +197,7 @@ struct SelectBudgetPeriodView: View {
                             RoundedRectangle(cornerRadius: 13)
                                 .frame(width: 192, height: 48)
                                 .foregroundColor(BonsaiColor.mainPurple)
-                            Text(L.chooseTitle)
+                            Text(LocalizedStringKey("Choose_title"))
                                 .foregroundColor(BonsaiColor.card)
                                 .font(.system(size: 17))
                                 .bold()
@@ -207,7 +207,7 @@ struct SelectBudgetPeriodView: View {
                 } //VStack
                 .padding(.top, 20)
             }
-            .navigationTitle(L.periodTitle)
+            .navigationTitle(LocalizedStringKey("Period_title"))
             .fullScreenCover(isPresented: $isSubscriptionPresented) {
                 Subscriptions(completion: {
                     isAllSetPresented = true
