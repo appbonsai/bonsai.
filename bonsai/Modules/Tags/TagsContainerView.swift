@@ -58,7 +58,7 @@ struct TagsContainerView: View {
                     }
                     
                 }
-                Button(L.cancelTitle, role: .cancel) {
+                Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
                     isDeleteConfirmationPresented = false
                 }
             }

@@ -40,7 +40,7 @@ struct CreateTagView: View {
                         isPresented = false
                         completion?(nil)
                     }) {
-                        Text(L.cancelTitle)
+                        Text(LocalizedStringKey("Cancel_title"))
                             .foregroundColor(BonsaiColor.secondary)
                     }
                 }

@@ -221,7 +221,7 @@ struct SelectBudgetPeriodView: View {
                     Button(action: {
                         isPresented = false
                     }) {
-                        Text(L.cancelTitle)
+                        Text(LocalizedStringKey("Cancel_title"))
                             .foregroundColor(BonsaiColor.secondary)
                     }
                 }

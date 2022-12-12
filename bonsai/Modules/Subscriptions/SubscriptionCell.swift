@@ -68,18 +68,16 @@ struct SubscriptionCell: View {
                 .padding(.bottom, 2)
             if subscription.isMostPopular {
                 Spacer()
-                HStack {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                        
-                            .frame(width: L.bestValue.widthOfString(usingFont: .systemFont(ofSize: 12), inset: 20), height: 22)
-                            .foregroundColor(BonsaiColor.green)
-                        Text(LocalizedStringKey("Best_value"))
-                            .foregroundColor(.black)
-                            .font(.system(size: 12))
-                            .bold()
-                    }
+                
+                Button {} label: {
+                    Text(LocalizedStringKey("Best_value"))
+                        .foregroundColor(.black)
+                        .font(.system(size: 12))
+                        .bold()
                 }
+                .buttonStyle(.borderedProminent)
+                .tint(BonsaiColor.green)
+                .disabled(true)
                 .padding(.bottom, 2)
                 .shimmering(duration: 3)
             }

@@ -164,7 +164,7 @@ struct HomeContainerView: View {
                     if UserSettings.showDragDownHint {
                         DragDownHintView().frame(maxWidth: .infinity)
                     }
-                    Text(L.netWorth)
+                    Text(LocalizedStringKey("Net_Worth"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
                         .padding(.top, 16)
@@ -184,7 +184,7 @@ struct HomeContainerView: View {
                                 isSettingPresented = true
                             }
                     }
-                    Text(L.thisMonth)
+                    Text(LocalizedStringKey("This_month"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
                         .padding(.top, 28)
@@ -209,7 +209,7 @@ struct HomeContainerView: View {
                     .frame(height: 76)
                     .padding(.top, 8)
                     
-                    Text(L.budgetTitle)
+                    Text(LocalizedStringKey("Budget_title"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
                         .padding(.top, 28)

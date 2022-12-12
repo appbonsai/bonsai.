@@ -27,11 +27,11 @@ struct AllSet: View {
                         .clipped()
                         .frame(width: 228, height: 228)
                     VStack {
-                       Text(L.allSetTitle)
+                        Text(LocalizedStringKey("AllSet_title"))
                             .padding(.top, 7)
                             .font(.system(size: 28).bold())
                             .padding(.bottom, 2)
-                       Text(L.allSetText)
+                       Text(LocalizedStringKey("AllSet_text"))
                             .font(.system(size: 17))
                             .padding([.leading, .trailing], 28)
                         

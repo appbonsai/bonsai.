@@ -25,7 +25,7 @@ struct CategoryNewTitleView: View {
             )
          )
          .placeholder(
-            Text(placeholder)
+            Text(LocalizedStringKey(placeholder))
                .font(BonsaiFont.title_22)
                .foregroundColor(BonsaiColor.prompt)
                .frame(maxWidth: .infinity, alignment: .center)

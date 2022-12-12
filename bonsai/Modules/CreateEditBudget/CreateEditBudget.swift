@@ -91,7 +91,7 @@ struct CreateEditBudget: View {
                     isCreateEditBudgetPresented = false
                 }
             }
-            Button(L.cancelTitle, role: .cancel) {
+            Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
                 isDeleteConfirmationPresented = false
             }
         }
@@ -146,7 +146,7 @@ struct CreateEditBudget: View {
                                 .frame(width: 192, height: 48)
                                 .foregroundColor(BonsaiColor.mainPurple)
 
-                            Text(kind == . new ? L.Budget.create : L.Budget.save)
+                            Text(LocalizedStringKey(kind == . new ? "budget.create" : "budget.save"))
                                 .foregroundColor(BonsaiColor.card)
                                 .font(.system(size: 17))
                                 .bold()
@@ -157,13 +157,13 @@ struct CreateEditBudget: View {
                 } // VStack
                 .padding(.top, 20)
             }
-            .navigationTitle(kind == .new ? L.Budget.new : L.Budget.edit)
+            .navigationTitle(LocalizedStringKey(kind == .new ? "budget.new" : "budget.edit"))
             .toolbar {
                ToolbarItem(placement: .navigationBarLeading) {
                   Button(action: {
                       isCreateEditBudgetPresented = false
                   }) {
-                     Text(L.cancelTitle)
+                     Text(LocalizedStringKey("Cancel_title"))
                         .foregroundColor(BonsaiColor.secondary)
                   }
                }

@@ -204,7 +204,7 @@ struct OperationDetails: View {
                         focusedField = nil
                         isPresented = false
                     }) {
-                        Text(L.cancelTitle)
+                        Text(LocalizedStringKey("Cancel_title"))
                             .foregroundColor(BonsaiColor.secondary)
                     }
                 }

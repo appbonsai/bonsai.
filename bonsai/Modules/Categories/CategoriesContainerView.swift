@@ -57,7 +57,7 @@ struct CategoriesContainerView: View {
                         self.selectedCategory = nil
                     }
                 }
-                Button(L.cancelTitle, role: .cancel) {
+                Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
                     isDeleteConfirmationPresented = false
                 }
             }

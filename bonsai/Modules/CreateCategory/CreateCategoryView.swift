@@ -77,7 +77,7 @@ struct CreateCategoryView: View {
 
                      CategoryNewTitleView(
                         title: $title,
-                        placeholder: L.Category.name
+                        placeholder: "category.name"
                      )
                      .frame(height: 56, alignment: .center)
                      .background(SwiftUI.Color(hex: 0x3d3c4d))
@@ -109,7 +109,7 @@ struct CreateCategoryView: View {
                   isPresented = false
                   completion?(nil)
                }) {
-                  Text(L.cancelTitle)
+                  Text(LocalizedStringKey("Cancel_title"))
                      .foregroundColor(BonsaiColor.secondary)
                }
             }

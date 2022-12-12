@@ -19,7 +19,7 @@ struct SuggestionTipView: View {
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
-                Text(L.treeProgress)
+                Text(LocalizedStringKey("TreeProgress"))
                     .font(BonsaiFont.title_28)
                     .foregroundColor(BonsaiColor.text)
                     .padding(.top, 12)
@@ -37,10 +37,10 @@ struct SuggestionTipView: View {
 }
 
 var arr: [Suggest] = [
-    .init(image: "bonsai_die_png", color: BonsaiColor.separator, text: L.dieTreeDescription),
-    .init(image: "bonsai_orange_png", color: BonsaiColor.orange, text: L.orangeTreeDescription),
-    .init(image: "bonsai_purple_png", color: BonsaiColor.mainPurple, text: L.purpleTreeDescription),
-    .init(image: "bonsai_green_png", color: BonsaiColor.green, text: L.greenTreeDescription),
+    .init(image: "bonsai_die_png", color: BonsaiColor.separator, text: "DieTreeDescription"),
+    .init(image: "bonsai_orange_png", color: BonsaiColor.orange, text: "OrangeTreeDescription"),
+    .init(image: "bonsai_purple_png", color: BonsaiColor.mainPurple, text: "PurpleTreeDescription"),
+    .init(image: "bonsai_green_png", color: BonsaiColor.green, text: "GreenTreeDescription"),
 ]
 
 struct Suggest: Hashable {
@@ -74,7 +74,7 @@ struct ContentCellView: View {
                             .frame(width: 150, height: 150)
                         Spacer()
                         HStack {
-                            Text(text)
+                            Text(LocalizedStringKey(text))
                                 .foregroundColor(.white)
                                 .font(BonsaiFont.body_17)
                                 .padding([.leading, .trailing], 10)
