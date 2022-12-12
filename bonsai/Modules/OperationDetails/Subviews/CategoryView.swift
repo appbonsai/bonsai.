@@ -33,7 +33,7 @@ struct CategoryView: View {
          } else {
             noCategoryView
          }
-          Text(category?.title ?? L.Operation.category)
+          Text(LocalizedStringKey(category?.title ?? "operation.category"))
             .foregroundColor(category == nil ? BonsaiColor.prompt : BonsaiColor.purple3)
             .font(BonsaiFont.body_17)
          Spacer()

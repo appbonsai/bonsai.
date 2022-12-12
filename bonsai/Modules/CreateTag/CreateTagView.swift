@@ -24,7 +24,7 @@ struct CreateTagView: View {
 
                 CategoryNewTitleView(
                     title: $title,
-                    placeholder: L.Tags.name
+                    placeholder: "tags.name"
                 )
                 .focused($fieldIsFocused)
                 .frame(height: 56, alignment: .center)
@@ -32,7 +32,7 @@ struct CreateTagView: View {
                 .cornerRadius(13)
                 .padding([.bottom, .leading, .trailing, .top], 16)
             } // ZStack
-            .navigationTitle(L.Tags.new)
+            .navigationTitle(LocalizedStringKey("tags.new"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -60,7 +60,7 @@ struct CreateTagView: View {
                         isPresented = false
                         completion?(tag)
                     }) {
-                        Text(L.doneTitle)
+                        Text(LocalizedStringKey("Done_title"))
                             .if($title.wrappedValue.isEmpty == false, transform: { text in
                                 text.foregroundColor(BonsaiColor.secondary)
                             })

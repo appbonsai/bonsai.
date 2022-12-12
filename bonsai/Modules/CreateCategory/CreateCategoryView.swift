@@ -143,7 +143,7 @@ struct CreateCategoryView: View {
                   isPresented = false
                   completion?(category)
                }) {
-                  Text(L.doneTitle)
+                  Text(LocalizedStringKey("Done_title"))
                      .if(imageNotSelected == false && title.isEmpty == false, transform: { text in
                         text.foregroundColor(BonsaiColor.secondary)
                      })

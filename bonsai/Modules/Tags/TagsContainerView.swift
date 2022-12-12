@@ -97,7 +97,7 @@ struct TagsContainerView: View {
                 .padding(.top, 24)
                 .padding(.horizontal, 16)
             } // ZStack
-            .navigationTitle(L.Tags.title)
+            .navigationTitle(LocalizedStringKey("tags.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

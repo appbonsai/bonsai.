@@ -49,12 +49,12 @@ struct TagBubbleView: View {
                 
                 HStack(spacing: 10) {
                     
-                    Text({ () -> String in
+                    Text({ () -> LocalizedStringKey in
                         switch kind {
                         case .tag(let tag, _):
-                            return tag.title
+                            return LocalizedStringKey(tag.title)
                         case .newTagButton:
-                            return L.Operation.addTag
+                            return LocalizedStringKey("operation.add_tag")
                         }
                     }())
                     .font(BonsaiFont.body_15)

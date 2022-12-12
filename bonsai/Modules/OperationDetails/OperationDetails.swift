@@ -83,7 +83,7 @@ struct OperationDetails: View {
                                     selectedOperation: $selectedOperation
                                 )
                                 AmountView(
-                                    amountTitle: L.Operation.amount,
+                                    amountTitle: "operation.amount",
                                     operation: selectedOperation,
                                     currency: currency,
                                     text: $amount
