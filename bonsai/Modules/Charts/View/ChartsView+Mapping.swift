@@ -91,7 +91,7 @@ extension ChartsView {
         BarChartData(
             piecesColor: BonsaiColor.mainPurple,
             pieces: separateForMonth()
-                .map { .init(label: $0.key, value: $0.value) },
+                .map { .init(label: $0.key.prefix(3).description, value: $0.value) },
             legends: [.init(color: BonsaiColor.mainPurple,
                             title: L.Charts.Legend.balance)],
             bottomTitle: L.Charts.Legend.period,
