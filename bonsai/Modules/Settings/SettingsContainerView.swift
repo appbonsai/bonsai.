@@ -26,21 +26,33 @@ struct SettingsContainerView: View {
     
     
     private let others: [OtherRows] = [
-        .premiumFeature, .termsAndConditions, .privacyPolicy, .language
+        .termsAndConditions, .privacyPolicy
     ]
-
-    private enum OtherRows: String {
+    
+    private let general: [GeneralRows] = [
+        .premiumFeature, .language
+    ]
+    
+    private enum GeneralRows: String {
         case premiumFeature
-        case termsAndConditions
-        case privacyPolicy
         case language
         
         var label: String {
             switch self {
             case .premiumFeature: return "settings.premium_features"
+            case .language: return "change.language"
+            }
+        }
+    }
+
+    private enum OtherRows: String {
+        case termsAndConditions
+        case privacyPolicy
+        
+        var label: String {
+            switch self {
             case .termsAndConditions: return "settings.terms"
             case .privacyPolicy: return "settings.policy"
-            case .language: return "change.language"
             }
         }
     }
@@ -48,6 +60,27 @@ struct SettingsContainerView: View {
     var body: some View {
        NavigationView {
           List {
+              Section(header: Text(LocalizedStringKey("General_title"))) {
+                 ForEach(Array(general.enumerated()), id: \.offset) { index, item in
+                    HStack {
+                        Text(LocalizedStringKey(item.label))
+                       Spacer()
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                       
+                       switch general[index] {
+                       case .premiumFeature:
+                          isPremiumSelected = true
+  
+                       case .language:
+                           isLanguageSelected = true
+                       }
+                    }
+                 }
+              }
+              .listRowBackground(BonsaiColor.card)
+              
              Section(header: Text(LocalizedStringKey("Other_title"))) {
                 ForEach(Array(others.enumerated()), id: \.offset) { index, item in
                    HStack {
@@ -58,24 +91,17 @@ struct SettingsContainerView: View {
                    .onTapGesture {
                       
                       switch others[index] {
-                      case .premiumFeature:
-                         isPremiumSelected = true
-                         
                       case .termsAndConditions:
                          openURL(URL(string: "https://www.craft.do/s/nk6c7jUpWgPhQg")!)
                          
-                         
                       case .privacyPolicy:
                          openURL(URL(string: "https://www.craft.do/s/H8euwSq2jDDABJ")!)
-                         
-                      case .language:
-                          isLanguageSelected = true
                       }
                    }
                 }
              }
-             
              .listRowBackground(BonsaiColor.card)
+              
           }
           .popover(isPresented: $isPremiumSelected, content: {
               PremiumFeature(
