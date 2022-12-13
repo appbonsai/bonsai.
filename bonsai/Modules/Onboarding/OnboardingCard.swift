@@ -26,13 +26,13 @@ struct OnboardingCard: View {
                         .foregroundColor(.clear)
 
                     VStack(alignment: .leading) {
-                        Text(dataSource.title)
+                        Text(LocalizedStringKey(dataSource.title))
                             .bold()
                             .font(.system(size: 28))
                             .foregroundColor(BonsaiColor.mainPurple)
                             .padding([.leading, .trailing], 32)
                             .padding(.bottom, 8)
-                        Text(dataSource.description)
+                        Text(LocalizedStringKey(dataSource.description))
                             .font(.system(size: 15))
                             .padding([.leading, .trailing], 32)
                             .padding(.bottom, 40)

@@ -8,17 +8,14 @@
 import SwiftUI
 
 struct SettingsContainerView: View {
-
+    
     @State var isPremiumSelected: Bool = false
     @State var isLanguageSelected: Bool = false
-
-    @EnvironmentObject var languageSettings: LanguageSettings
-
+    
     @Environment(\.openURL) var openURL
+    @Environment(\.dismiss) var dismiss
 
-   @Binding var isPresented: Bool
-   init(isPresented: Binding<Bool>) {
-      self._isPresented = isPresented
+    init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
         UITableView.appearance().separatorStyle = .none
         UITableView.appearance().backgroundColor = UIColor(BonsaiColor.back)
@@ -44,7 +41,7 @@ struct SettingsContainerView: View {
             }
         }
     }
-
+    
     private enum OtherRows: String {
         case termsAndConditions
         case privacyPolicy
@@ -58,71 +55,71 @@ struct SettingsContainerView: View {
     }
     
     var body: some View {
-       NavigationView {
-          List {
-              Section(header: Text(LocalizedStringKey("General_title"))) {
-                 ForEach(Array(general.enumerated()), id: \.offset) { index, item in
-                    HStack {
-                        Text(LocalizedStringKey(item.label))
-                       Spacer()
+        NavigationView {
+            List {
+                Section(header: Text(LocalizedStringKey("General_title"))) {
+                    ForEach(Array(general.enumerated()), id: \.offset) { index, item in
+                        HStack {
+                            Text(LocalizedStringKey(item.label))
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            
+                            switch general[index] {
+                            case .premiumFeature:
+                                isPremiumSelected = true
+                                
+                            case .language:
+                                isLanguageSelected = true
+                            }
+                        }
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                       
-                       switch general[index] {
-                       case .premiumFeature:
-                          isPremiumSelected = true
-  
-                       case .language:
-                           isLanguageSelected = true
-                       }
+                }
+                .listRowBackground(BonsaiColor.card)
+                
+                Section(header: Text(LocalizedStringKey("Other_title"))) {
+                    ForEach(Array(others.enumerated()), id: \.offset) { index, item in
+                        HStack {
+                            Text(LocalizedStringKey(item.label))
+                            Spacer()
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            
+                            switch others[index] {
+                            case .termsAndConditions:
+                                openURL(URL(string: "https://www.craft.do/s/nk6c7jUpWgPhQg")!)
+                                
+                            case .privacyPolicy:
+                                openURL(URL(string: "https://www.craft.do/s/H8euwSq2jDDABJ")!)
+                            }
+                        }
                     }
-                 }
-              }
-              .listRowBackground(BonsaiColor.card)
-              
-             Section(header: Text(LocalizedStringKey("Other_title"))) {
-                ForEach(Array(others.enumerated()), id: \.offset) { index, item in
-                   HStack {
-                       Text(LocalizedStringKey(item.label))
-                      Spacer()
-                   }
-                   .contentShape(Rectangle())
-                   .onTapGesture {
-                      
-                      switch others[index] {
-                      case .termsAndConditions:
-                         openURL(URL(string: "https://www.craft.do/s/nk6c7jUpWgPhQg")!)
-                         
-                      case .privacyPolicy:
-                         openURL(URL(string: "https://www.craft.do/s/H8euwSq2jDDABJ")!)
-                      }
-                   }
                 }
-             }
-             .listRowBackground(BonsaiColor.card)
-              
-          }
-          .popover(isPresented: $isPremiumSelected, content: {
-              PremiumFeature(
-                isPresented: $isPremiumSelected,
-                isPresentedFromSubscription: .constant(false))
-          })
-          .fullScreenCover(isPresented: $isLanguageSelected, content: {
-              ChangeLanguage(isPresented: $isLanguageSelected)
-          })
-          .navigationBarTitleDisplayMode(.inline)
-          .toolbar {
-             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                   isPresented = false
-                }) {
-                   Text(LocalizedStringKey("Cancel_title"))
-                      .foregroundColor(BonsaiColor.secondary)
+                .listRowBackground(BonsaiColor.card)
+                
+            }
+            .popover(isPresented: $isPremiumSelected, content: {
+                PremiumFeature(
+                    isPresented: $isPremiumSelected,
+                    isPresentedFromSubscription: .constant(false))
+            })
+            .popover(isPresented: $isLanguageSelected, content: {
+                ChangeLanguage()
+            })
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Text(LocalizedStringKey("Cancel_title"))
+                            .foregroundColor(BonsaiColor.secondary)
+                    }
                 }
-             }
-          }
-       }
+            }
+        }
     }
     
 }
@@ -130,7 +127,7 @@ struct SettingsContainerView: View {
 struct AppIconChangeRow: View {
     
     @State var selectedRow: Int = 0
-
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 20) {
@@ -141,11 +138,11 @@ struct AppIconChangeRow: View {
                             .frame(width: 62, height: 62)
                             .scaledToFit()
                             .overlay(
-                               RoundedRectangle(cornerRadius: 13)
-                                  .stroke(
-                                     BonsaiColor.mainPurple,
-                                     lineWidth: selectedRow == index ? 2 : 0
-                                  )
+                                RoundedRectangle(cornerRadius: 13)
+                                    .stroke(
+                                        BonsaiColor.mainPurple,
+                                        lineWidth: selectedRow == index ? 2 : 0
+                                    )
                             )
                         Text("default")
                     }
@@ -170,7 +167,7 @@ struct BackgroundChangeRow: View {
     
     @State var bgSelected: String = bgs.first ?? "bonsai_1"
     @State var selectedRow: Int = 0
-
+    
     var body: some View {
         VStack {
             Image(bgSelected)
@@ -191,30 +188,30 @@ struct BackgroundChangeRow: View {
                             Text("bonsai")
                         }
                         .overlay(
-                           RoundedRectangle(cornerRadius: 8)
-                              .stroke(
-                                 BonsaiColor.mainPurple,
-                                 lineWidth: (selectedRow == index) ? 2 : 0
-                              )
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(
+                                    BonsaiColor.mainPurple,
+                                    lineWidth: (selectedRow == index) ? 2 : 0
+                                )
                         )
                         .onTapGesture {
                             bgSelected = bgs[index]
                             selectedRow = index
                         }
                     }
-                
+                    
                 }
             }
         }
         .padding([.top, .bottom], 12)
-
+        
     }
 }
 
 
 struct SettingsContainerView_Previews: PreviewProvider {
     static var previews: some View {
-       SettingsContainerView(isPresented: .constant(false))
+        SettingsContainerView()
     }
 }
 

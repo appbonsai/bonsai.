@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ChangeLanguage: View {
-    
-    @Binding var isPresented: Bool
+    @Environment(\.dismiss) var dismiss
     @State var selectedRow: Int = 0
+    @AppUserDefault(.selectedLanguage, defaultValue: nil)
+    private var _language: String?
+    @EnvironmentObject var languageSettings: LanguageSettings
 
     let availableLanguages: [Languages] = [
         .uk, .en, .pl, .vi, .ru
@@ -43,6 +45,11 @@ struct ChangeLanguage: View {
                             .onTapGesture {
                                 selectedRow = index
                             }
+                            .onAppear {
+                                if let defaultLanguage = availableLanguages.firstIndex(where: { $0 == .en }) {
+                                    selectedRow = availableLanguages.firstIndex(where: { $0.rawValue == _language }) ?? defaultLanguage
+                                }
+                            }
                         } // ForEach
                     } // VStack
                     .padding(2)
@@ -55,7 +62,7 @@ struct ChangeLanguage: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        isPresented = false
+                        dismiss()
                     }) {
                         Text(LocalizedStringKey("Cancel_title"))
                             .foregroundColor(BonsaiColor.secondary)
@@ -63,7 +70,8 @@ struct ChangeLanguage: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        isPresented = false
+                        languageSettings.selectedLanguage = availableLanguages[selectedRow]
+                        dismiss()
                     }) {
                         Text(LocalizedStringKey("Save_title"))
                             .foregroundColor(BonsaiColor.blueLight)
@@ -74,36 +82,8 @@ struct ChangeLanguage: View {
     }
 }
 
-
-struct ChangeLanguageCellView: View {
-    
-    let isSelected: Bool
-    
-    let title: String
-    
-    var body: some View {
-        HStack() {
-            Text(LocalizedStringKey(title))
-                .foregroundColor(BonsaiColor.text)
-                .font(BonsaiFont.body_17)
-            Spacer()
-        }
-        .padding([.vertical, .leading], 20)
-        .background(BonsaiColor.card)
-        .cornerRadius(13)
-        .overlay(
-            RoundedRectangle(cornerRadius: 13)
-                .stroke(
-                    BonsaiColor.mainPurple,
-                    lineWidth: isSelected ? 2 : 0
-                )
-        )
-        
-    }
-}
-
 struct ChangeLanguage_Previews: PreviewProvider {
     static var previews: some View {
-        ChangeLanguage(isPresented: .constant(true))
+        ChangeLanguage()
     }
 }

@@ -250,7 +250,7 @@ struct HomeContainerView: View {
             )
         })
         .popover(isPresented: $isSettingPresented, content: {
-            SettingsContainerView(isPresented: $isSettingPresented)
+            SettingsContainerView()
         })
         .popover(isPresented: $isTransactionsPresented, content: {
             TransactionsList(kind: .all, isPresented: $isTransactionsPresented)
