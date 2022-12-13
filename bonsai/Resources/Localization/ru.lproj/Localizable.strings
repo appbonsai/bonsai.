@@ -6,6 +6,8 @@
   
 */
 
+"change.language" = "Язык";
+
 "period.select.week" = "Неделя";
 "period.select.TwoWeek" = "2 недели";
 "period.select.Threeweek" = "3 недели";

@@ -19,6 +19,6 @@ enum UserSettings {
    }
 
    static var showDragDownHint: Bool {
-      countOfDragsDown <= 4
+      countOfDragsDown <= 8
    }
 }

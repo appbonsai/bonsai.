@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsContainerView: View {
 
     @State var isPremiumSelected: Bool = false
+    @State var isLanguageSelected: Bool = false
+
     @EnvironmentObject var languageSettings: LanguageSettings
 
     @Environment(\.openURL) var openURL
@@ -24,19 +26,21 @@ struct SettingsContainerView: View {
     
     
     private let others: [OtherRows] = [
-        .premiumFeature, .termsAndConditions, .privacyPolicy
+        .premiumFeature, .termsAndConditions, .privacyPolicy, .language
     ]
 
     private enum OtherRows: String {
         case premiumFeature
         case termsAndConditions
-        case privacyPolicy 
+        case privacyPolicy
+        case language
         
         var label: String {
             switch self {
             case .premiumFeature: return "settings.premium_features"
             case .termsAndConditions: return "settings.terms"
             case .privacyPolicy: return "settings.policy"
+            case .language: return "change.language"
             }
         }
     }
@@ -64,6 +68,8 @@ struct SettingsContainerView: View {
                       case .privacyPolicy:
                          openURL(URL(string: "https://www.craft.do/s/H8euwSq2jDDABJ")!)
                          
+                      case .language:
+                          isLanguageSelected = true
                       }
                    }
                 }
@@ -75,6 +81,9 @@ struct SettingsContainerView: View {
               PremiumFeature(
                 isPresented: $isPremiumSelected,
                 isPresentedFromSubscription: .constant(false))
+          })
+          .fullScreenCover(isPresented: $isLanguageSelected, content: {
+              ChangeLanguage(isPresented: $isLanguageSelected)
           })
           .navigationBarTitleDisplayMode(.inline)
           .toolbar {
