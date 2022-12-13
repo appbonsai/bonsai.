@@ -10,7 +10,8 @@ import SwiftUI
 struct ChangeLanguage: View {
     
     @Binding var isPresented: Bool
-    
+    @State var selectedRow: Int = 0
+
     let availableLanguages: [Languages] = [
         .uk, .en, .pl, .vi, .ru
     ]
@@ -23,7 +24,25 @@ struct ChangeLanguage: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 16) {
                         ForEach(Array(availableLanguages.enumerated()), id: \.offset) { index, lan in
-                            ChangeLanguageCellView(isSelected: true, title: lan.fullnameLanguage)
+                            HStack() {
+                                Text(LocalizedStringKey(lan.fullnameLanguage))
+                                    .foregroundColor(BonsaiColor.text)
+                                    .font(BonsaiFont.body_17)
+                                Spacer()
+                            }
+                            .padding([.vertical, .leading], 20)
+                            .background(BonsaiColor.card)
+                            .cornerRadius(13)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 13)
+                                    .stroke(
+                                        BonsaiColor.mainPurple,
+                                        lineWidth: selectedRow == index ? 2 : 0
+                                    )
+                            )
+                            .onTapGesture {
+                                selectedRow = index
+                            }
                         } // ForEach
                     } // VStack
                     .padding(2)
