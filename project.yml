@@ -35,8 +35,6 @@ targets:
         product: OrderedCollections
       - package: purchases-ios
         product: RevenueCat
-      - package: LanguageManager-SwiftUI
-        product: LanguageManager-SwiftUI
     scheme:
       bonsai:
         - bonsai
