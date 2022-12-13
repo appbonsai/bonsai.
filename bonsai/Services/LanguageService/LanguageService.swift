@@ -132,6 +132,17 @@ public enum Languages: String {
     case es419 = "es-419"
     case ptPT = "pt-PT"
     case deviceLanguage
+    
+    var fullnameLanguage: String {
+        switch self {
+        case .en: return "English"
+        case .uk: return "Українська"
+        case .ru: return "Русский"
+        case .pl: return "Polski"
+        case .vi: return "Tiếng việt"
+        default: return "English"
+        }
+    }
 }
 
 import Foundation

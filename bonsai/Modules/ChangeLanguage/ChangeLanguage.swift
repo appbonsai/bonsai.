@@ -12,7 +12,7 @@ struct ChangeLanguage: View {
     @Binding var isPresented: Bool
     
     let availableLanguages: [Languages] = [
-        .en, .uk, .ru, .pl, .vi
+        .uk, .en, .pl, .vi, .ru
     ]
     
     var body: some View {
@@ -23,7 +23,7 @@ struct ChangeLanguage: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 16) {
                         ForEach(Array(availableLanguages.enumerated()), id: \.offset) { index, lan in
-                            ChangeLanguageCellView(isSelected: true, title: lan.rawValue)
+                            ChangeLanguageCellView(isSelected: true, title: lan.fullnameLanguage)
                         } // ForEach
                     } // VStack
                     .padding(2)
@@ -31,7 +31,7 @@ struct ChangeLanguage: View {
                 .padding(.top, 24)
                 .padding(.horizontal, 16)
             } // ZStack
-            .navigationTitle(LocalizedStringKey("tags.title"))
+            .navigationTitle(LocalizedStringKey("change.language"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
