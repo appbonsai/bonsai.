@@ -74,6 +74,11 @@ internal enum L10n {
   internal static let flexibleBudget = L10n.tr("Localizable", "Flexible_budget", fallback: "Flexible budget")
   /// Set flexible period days for budgets
   internal static let flexibleBudgetDescriptions = L10n.tr("Localizable", "Flexible_budget_descriptions", fallback: "Set flexible period days for budgets")
+  /// Localizable.strings
+  ///   bonsai
+  /// 
+  ///   Created by antuan.khoanh on 06/09/2022.
+  internal static let generalTitle = L10n.tr("Localizable", "General_title", fallback: "General")
   /// Excellent work! There is Green tree, keep doing and your tree will be fantastic!
   internal static let greenTreeDescription = L10n.tr("Localizable", "GreenTreeDescription", fallback: "Excellent work! There is Green tree, keep doing and your tree will be fantastic!")
   /// The most expensive categories
@@ -218,6 +223,10 @@ internal enum L10n {
       internal static let confirmation = L10n.tr("Localizable", "category.select.confirmation", fallback: "You should select category")
     }
   }
+  internal enum Change {
+    /// Language
+    internal static let language = L10n.tr("Localizable", "change.language", fallback: "Language")
+  }
   internal enum Charts {
     internal enum Balance {
       /// This chart will show you how your balance changes over time
@@ -288,10 +297,7 @@ internal enum L10n {
       internal static let threeweek = L10n.tr("Localizable", "period.select.Threeweek", fallback: "3 Weeks")
       /// 2 Weeks
       internal static let twoWeek = L10n.tr("Localizable", "period.select.TwoWeek", fallback: "2 Weeks")
-      /// Localizable.strings
-      ///   bonsai
-      /// 
-      ///   Created by antuan.khoanh on 06/09/2022.
+      /// Week
       internal static let week = L10n.tr("Localizable", "period.select.week", fallback: "Week")
     }
   }
@@ -328,7 +334,6 @@ internal enum L10n {
 extension L10n {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String) -> String {
     let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
-      
     return String(format: format, locale: Locale.current, arguments: args)
   }
 }
