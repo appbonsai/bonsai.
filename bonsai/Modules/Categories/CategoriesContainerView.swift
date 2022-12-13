@@ -38,14 +38,12 @@ struct CategoriesContainerView: View {
             }
             .foregroundColor(BonsaiColor.secondary)
             .opacity(0.8)
-            .confirmationDialog(
-                selectedCategory == nil ? L.Category.Select.confirmation : L.Delete.Category.confirmation,
+            .confirmationDialog(LocalizedStringKey("delete.category.confirmation"),
                 isPresented: $isDeleteConfirmationPresented,
                 titleVisibility: .visible
             ) {
-                Button(
-                    selectedCategory == nil ? "" : L.Category.Delete.confirmation,
-                    role: selectedCategory == nil ? .cancel : .destructive
+                Button(LocalizedStringKey("category.delete.confirmation"),
+                    role: .destructive
                 ) {
                     if let selectedCategory {
                         moc.delete(selectedCategory)
@@ -89,7 +87,7 @@ struct CategoriesContainerView: View {
                 .padding(.top, 24)
                 .padding(.horizontal, 16)
             } // ZStack
-            .navigationTitle(L.Category.title)
+            .navigationTitle(LocalizedStringKey("category.title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

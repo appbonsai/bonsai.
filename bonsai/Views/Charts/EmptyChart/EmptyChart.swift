@@ -13,7 +13,7 @@ struct EmptyChart: View {
         ZStack {
             BonsaiColor.card
             
-            Text(description)
+            Text(LocalizedStringKey(description))
                 .font(BonsaiFont.title_20)
                 .multilineTextAlignment(.center)
 

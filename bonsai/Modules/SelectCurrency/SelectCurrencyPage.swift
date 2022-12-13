@@ -54,7 +54,7 @@ struct SelectCurrencyPage: View {
                         if let selectedCurrency = selectedCurrency {
                             Text("\(L.SelectCurrencyPage.choose) \(selectedCurrency.symbol)")
                         } else {
-                            Text(L.SelectCurrencyPage.confirm)
+                            Text(LocalizedStringKey("SelectCurrencyPage.Confirm"))
                         }
                     }
                     .buttonStyle(PrimaryButtonStyle())
@@ -62,7 +62,7 @@ struct SelectCurrencyPage: View {
                     .disabled(selectedCurrency == nil)
                 } // VStack
             } // ZStack
-            .navigationTitle(L.SelectCurrencyPage.chooseDefaultCurrency)
+            .navigationTitle(LocalizedStringKey("SelectCurrencyPage.Choose_default_currency"))
             .navigationBarTitleDisplayMode(.inline)
         } // NavigationView
         .interactiveDismissDisabled(true)

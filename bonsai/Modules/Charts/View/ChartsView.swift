@@ -16,14 +16,14 @@ struct ChartsView: View {
     // MARK: - View
     var body: some View {
         VStack(alignment: .leading) {
-            Text(L.chartsTitle)
+            Text(LocalizedStringKey("Charts_title"))
                 .font(BonsaiFont.title_28)
                 .foregroundColor(BonsaiColor.text)
                 .padding(.top, 8)
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 24) {
-                    ChartContainer(title: L.Charts.Balance.title) {
+                    ChartContainer(title: "charts.balance.title") {
                         let chartData = mapToBarChartData()
                         if !chartData.pieces.isEmpty {
                             BarChartView(
@@ -32,10 +32,10 @@ struct ChartsView: View {
                                 )
                             )
                         } else {
-                            EmptyChart(description: L.Charts.Balance.empty)
+                            EmptyChart(description: "charts.balance.empty")
                         }
                     }
-                    ChartContainer(title: L.Charts.Expenses.title, chartSize: .big) {
+                    ChartContainer(title: "charts.expenses.title", chartSize: .big) {
                         let chartData = mapToPieChartData()
                         if !chartData.pieChartSlices.isEmpty {
                             PieChartView(
@@ -44,7 +44,7 @@ struct ChartsView: View {
                                 )
                             )
                         } else {
-                            EmptyChart(description: L.Charts.Expenses.empty)
+                            EmptyChart(description: "charts.balance.empty")
                         }
                     }
                 }

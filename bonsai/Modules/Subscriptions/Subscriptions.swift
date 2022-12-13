@@ -255,12 +255,6 @@ struct Subscriptions: View {
             .multilineTextAlignment(.center)
     }
     
-    private func continueWidthButton() -> CGFloat {
-        let flexibleWidth: CGFloat = L.tryForFree.widthOfString(usingFont: .systemFont(ofSize: 17), inset: 30)
-        let standart: CGFloat = 200
-        return flexibleWidth > standart ? flexibleWidth : standart
-    }
-    
 }
 
 

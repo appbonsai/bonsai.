@@ -26,7 +26,7 @@ extension ChartsView {
                         PieChartSliceData(
                             disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
                             color: (transaction.category?.color ?? .noCategory).asColor,
-                            categoryTitle: (transaction.category?.title ?? L.Category.noCategory),
+                            categoryTitle: (transaction.category?.title ?? "category.no_category"),
                             icon: (transaction.category?.image ?? .icon(.noCategory)),
                             amount: transaction.amount.doubleValue,
                             percentages: countPercantage(using: transaction.amount.intValue),
@@ -93,8 +93,8 @@ extension ChartsView {
             pieces: separateForMonth()
                 .map { .init(label: $0.key.prefix(3).description, value: $0.value) },
             legends: [.init(color: BonsaiColor.mainPurple,
-                            title: L.Charts.Legend.balance)],
-            bottomTitle: L.Charts.Legend.period,
+                            title: "charts.legend.balance")],
+            bottomTitle: "charts.legend.period",
             leftTitle: L.Charts.Legend.amount(Currency.Validated.current.symbol)
         )
     }

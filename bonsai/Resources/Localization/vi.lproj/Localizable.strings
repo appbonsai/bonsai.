@@ -6,6 +6,9 @@
   
 */
 
+"delete.tags.confirmation" = "Bạn có chắc chắn muốn xóa thẻ này không?";
+"delete.category.confirmation" = "Bạn có chắc chắn muốn xóa danh mục này không?";
+
 "General_title" = "Toàn thể";
 
 "change.language" = "Ngôn ngữ";

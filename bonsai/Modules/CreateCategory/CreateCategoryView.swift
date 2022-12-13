@@ -101,7 +101,7 @@ struct CreateCategoryView: View {
             } // ScrollView
             .padding(.top, 8)
          } // ZStack
-         .navigationTitle(L.Category.new)
+         .navigationTitle(LocalizedStringKey("category.new"))
          .navigationBarTitleDisplayMode(.inline)
          .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

@@ -22,7 +22,7 @@ struct NavigationBackButton: View {
                 Image(systemName: "chevron.backward")
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(BonsaiColor.secondary)
-                Text(L.backTitle)
+                Text(LocalizedStringKey("Back_title"))
                     .foregroundColor(BonsaiColor.secondary)
             }
         }

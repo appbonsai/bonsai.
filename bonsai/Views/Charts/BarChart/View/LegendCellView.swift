@@ -17,7 +17,7 @@ struct LegendCellView: View {
                 .cornerRadius(16)
                 .foregroundColor(legend.color)
             
-            Text(legend.title)
+            Text(LocalizedStringKey(legend.title))
                 .font(BonsaiFont.caption_12)
                 .foregroundColor(BonsaiColor.text)
         }

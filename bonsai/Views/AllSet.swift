@@ -42,7 +42,7 @@ struct AllSet: View {
                            .onTapGesture {
                                dismiss()
                            }
-                           Text(L.closeTitle)
+                           Text(LocalizedStringKey("Close_title"))
                                 .foregroundColor(BonsaiColor.card)
                                 .font(.system(size: 17))
                                 .bold()

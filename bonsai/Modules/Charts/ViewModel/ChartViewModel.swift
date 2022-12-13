@@ -25,7 +25,7 @@ final class ChartViewModel: ObservableObject {
             PieChartSliceData(
                disabledColor: BonsaiColor.ChartDisabledColors.colors.randomElement(),
                color: ($0.category?.color ?? .noCategory).asColor,
-               categoryTitle: $0.category?.title ?? L.Category.noCategory,
+               categoryTitle: $0.category?.title ?? "category.no_category",
                icon: $0.category?.image ?? .icon(.star),
                amount: countCategoryAmount(for: $0.category),
                percentages: countPercantage(using: $0.amount),

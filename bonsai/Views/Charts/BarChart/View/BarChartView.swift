@@ -21,7 +21,7 @@ struct BarChartView: View {
       HStack {
          // left title
          if let leftTitle = viewModel.chartData.leftTitle {
-            Text(leftTitle)
+            Text(LocalizedStringKey(leftTitle))
                .font(BonsaiFont.caption_12)
                .foregroundColor(BonsaiColor.text)
                .rotated()
@@ -104,7 +104,7 @@ struct BarChartView: View {
                Spacer()
 
                if let bottomTitle = viewModel.chartData.bottomTitle {
-                  Text(bottomTitle)
+                  Text(LocalizedStringKey(bottomTitle))
                      .font(BonsaiFont.caption_12)
                      .foregroundColor(BonsaiColor.text)
                }

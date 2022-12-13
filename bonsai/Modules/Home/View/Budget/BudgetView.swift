@@ -53,7 +53,7 @@ struct BudgetView: View {
                .opacity(0.8)
 
             if data.count > 0 {
-               Text(L.homeCategory)
+               Text(LocalizedStringKey("Home_category"))
                   .font(BonsaiFont.subtitle_15)
                   .foregroundColor(BonsaiColor.text)
                   .padding(.top, 16)

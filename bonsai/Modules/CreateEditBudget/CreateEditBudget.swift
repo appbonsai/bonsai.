@@ -76,11 +76,11 @@ struct CreateEditBudget: View {
         .foregroundColor(.red)
         .opacity(0.8)
         .confirmationDialog(
-            L.deleteBudgetConfirmation,
+            LocalizedStringKey("delete_Budget_Confirmation"),
             isPresented: $isDeleteConfirmationPresented,
             titleVisibility: .visible
         ) {
-            Button(L.Budget.Delete.confirmation, role: .destructive) {
+            Button(LocalizedStringKey("budget.delete.confirmation"), role: .destructive) {
                 if let budget {
                     moc.delete(budget)
                     do {

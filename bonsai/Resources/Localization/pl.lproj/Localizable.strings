@@ -5,6 +5,10 @@
   Created by antuan.khoanh on 06/09/2022.
   
 */
+
+"delete.tags.confirmation" = "Czy na pewno chcesz usunąć te tagi?";
+"delete.category.confirmation" = "Czy na pewno chcesz usunąć tę kategorię?";
+
 "General_title" = "Ogólny";
 
 "change.language" = "Język";

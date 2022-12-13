@@ -28,6 +28,6 @@ struct BudgetTapView: View {
 
 struct BudgetDragUpView_Previews: PreviewProvider {
    static var previews: some View {
-      BudgetTapView(title: L.dragUpHint)
+      BudgetTapView(title: "dragUpHint")
    }
 }

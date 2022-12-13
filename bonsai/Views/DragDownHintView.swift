@@ -10,7 +10,7 @@ import SwiftUI
 struct DragDownHintView: View {
     var body: some View {
         VStack {
-            Text(L.dragDownHint)
+            Text(LocalizedStringKey("Drag_down_hint"))
                 .font(BonsaiFont.body_17)
                 .foregroundColor(BonsaiColor.text)
                 .shimmering(duration: 3.0)

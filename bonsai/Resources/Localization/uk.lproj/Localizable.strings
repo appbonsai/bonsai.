@@ -6,6 +6,9 @@
   
 */
 
+"delete.tags.confirmation" = "Ви впевнені, що хочете видалити ці теги?";
+"delete.category.confirmation" = "Ви впевнені, що хочете видалити цю категорію?";
+
 "General_title" = "Загальне";
 
 "change.language" = "Мова";
