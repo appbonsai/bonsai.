@@ -61,15 +61,19 @@ struct ChangeLanguage: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        dismiss()
-                    }) {
-                        Text(LocalizedStringKey("Cancel_title"))
-                            .foregroundColor(BonsaiColor.secondary)
+                    if UserSettings.isChangeLanguageSeen {
+                        Button(action: {
+                            dismiss()
+                        }) {
+                            Text(LocalizedStringKey("Cancel_title"))
+                                .foregroundColor(BonsaiColor.secondary)
+                        }
                     }
                 }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
+                        UserSettings.isChangeLanguageSeen = true
                         languageSettings.selectedLanguage = availableLanguages[selectedRow]
                         dismiss()
                     }) {

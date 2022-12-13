@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-
-   var body: some View {
-      if UserSettings.isOnboardingSeen {
-         TabBar()
-      } else {
-         Onboarding()
-      }
-   }
+    
+    var body: some View {
+        if UserSettings.isChangeLanguageSeen {
+            if UserSettings.isOnboardingSeen {
+                TabBar()
+            } else {
+                Onboarding()
+            }
+        } else {
+            ChangeLanguage()
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
