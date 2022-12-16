@@ -15,6 +15,7 @@ extension ChartsView {
         transactions
             .filter {$0.date > Date().startOfMonth }
             .filter { $0.category != nil }
+            .filter { $0.type == .expense }
             .forEach { transaction in
                 if let index = pieChartSliceData.firstIndex(where: { sliceData in
                     sliceData.categoryTitle == transaction.category?.title
