@@ -78,7 +78,7 @@ struct ChangeLanguage: View {
                         dismiss()
                     }) {
                         Text(LocalizedStringKey("Save_title"))
-                            .foregroundColor(BonsaiColor.blueLight)
+                            .foregroundColor(BonsaiColor.secondary)
                     }
                 }
             }
