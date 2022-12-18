@@ -16,7 +16,7 @@
 "period.select.month" = "Month";
 "period.select.custom" = "Custom date";
 
-"delete.tags.confirmation" = "Are you sure you want to delete this tags?";
+"delete.tags.confirmation" = "Are you sure you want to delete these tags?";
 "delete.category.confirmation" = "Are you sure you want to delete this category?";
 
 "tags.title" = "Tags";
@@ -73,7 +73,7 @@
 "Onboarding_1_description" = "Bonsai represents the money tree. Set financial goals, track your money flow, notice your financial habits.";
 
 "Onboarding_2_title" = "Manage your money with ease";
-"Onboarding_2_description" = "Just using your phone, you can manage all your cashflow more easy and detailed.";
+"Onboarding_2_description" = "Just using your phone, you can manage all your cashflow more easily and detailed.";
 
 "Onboarding_3_title" = "Be more mindful spending";
 "Onboarding_3_description" = "Be mindful spending, and you will be closer to financial freedom.";
@@ -197,7 +197,7 @@
 
 "TreeProgress" = "Tree progress";
 
-"DieTreeDescription" = "Bad things happens... You have a chance to recovery this dying tree! Try to spend money more wisly.";
+"DieTreeDescription" = "Bad thing happens... You have a chance to recovery this dying tree! Try to spend money more wisely.";
 "OrangeTreeDescription" = "Something goes wrong. Try to reduce your daily expenses! Carry this orange tree.";
 "PurpleTreeDescription" = "Need a little more! There is Purple tree, keep eyes on daily balance";
 "GreenTreeDescription" = "Excellent work! There is Green tree, keep doing and your tree will be fantastic!";
