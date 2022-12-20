@@ -12,6 +12,7 @@ import CoreData
 struct HomeContainerView: View {
     
     @State private var isSettingPresented = false
+    @State private var isBudgetListPresented = false
     @State private var isCreateEditBudgetPresented = false
     @State private var isOperationPresented = false
     @State var showAllSet: Bool = false
@@ -177,6 +178,13 @@ struct HomeContainerView: View {
                         
                         Spacer()
                         
+                        BonsaiImage.plus
+                            .font(.system(size: 22))
+                            .foregroundColor(.white)
+                            .onTapGesture {
+                                isBudgetListPresented = true
+                            }
+                        
                         BonsaiImage.settings
                             .font(.system(size: 22))
                             .foregroundColor(.white)
@@ -245,12 +253,14 @@ struct HomeContainerView: View {
         }
         .fullScreenCover(isPresented: $isCreateEditBudgetPresented, content: {
             CreateEditBudget(
-                kind: .new,
-                isCreateEditBudgetPresented: $isCreateEditBudgetPresented
+                kind: .new
             )
         })
         .popover(isPresented: $isSettingPresented, content: {
             SettingsContainerView()
+        })
+        .popover(isPresented: $isBudgetListPresented, content: {
+            BudgetList()
         })
         .popover(isPresented: $isTransactionsPresented, content: {
             TransactionsList(kind: .all, isPresented: $isTransactionsPresented)

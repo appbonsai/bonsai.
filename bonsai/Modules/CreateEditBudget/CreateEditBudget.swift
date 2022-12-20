@@ -12,7 +12,7 @@ struct CreateEditBudget: View {
     enum Kind: Equatable { case new, edit }
     let kind: Kind
     @State var isPeriodDaysPresented: Bool = false
-    @Binding var isCreateEditBudgetPresented: Bool
+    @Environment(\.dismiss) var dismiss
 
     @State private var currency: Currency.Validated = .current
     @State private var amount: String = ""
@@ -91,7 +91,7 @@ struct CreateEditBudget: View {
                     } catch (let e) {
                         assertionFailure(e.localizedDescription)
                     }
-                    isCreateEditBudgetPresented = false
+                    dismiss()
                 }
             }
             Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
@@ -155,7 +155,7 @@ struct CreateEditBudget: View {
                         } catch (let e) {
                             assertionFailure(e.localizedDescription)
                         }
-                        isCreateEditBudgetPresented = false
+                        dismiss()
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 13)
@@ -177,7 +177,7 @@ struct CreateEditBudget: View {
             .toolbar {
                ToolbarItem(placement: .navigationBarLeading) {
                   Button(action: {
-                      isCreateEditBudgetPresented = false
+                      dismiss()
                   }) {
                      Text(LocalizedStringKey("Cancel_title"))
                         .foregroundColor(BonsaiColor.secondary)
@@ -204,6 +204,6 @@ struct CreateEditBudget: View {
 
 struct CreateEditBudget_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEditBudget(kind: .new, isCreateEditBudgetPresented: .constant(true))
+        CreateEditBudget(kind: .new)
     }
 }

@@ -11,7 +11,8 @@ struct BudgetList: View {
     @EnvironmentObject var purchaseService: PurchaseService
     @State private var isSubscriptionPresented = false
     @State private var isAllSetPresented = false
-    
+    @Environment(\.dismiss) var dismiss
+
     @FetchRequest(sortDescriptors: [])
     private var fetchedBudgets: FetchedResults<Budget>
     @FetchRequest(sortDescriptors: [])
@@ -29,12 +30,10 @@ struct BudgetList: View {
         return limitedAccountBudgets.count < limitedBudgets
     }
     
-    @FetchRequest(sortDescriptors: [])
-    var tags: FetchedResults<Tag>
 //    @Binding var selectedTags: OrderedSet<Tag>
 //    @Binding var isPresented: Bool
     
-    @State var isCreateTagPresented: Bool = false
+    @State var isCreateBudgetPresented: Bool = false
     @State var isDeleteConfirmationPresented = false
     @Environment(\.managedObjectContext) private var moc
     @State var selectedRow: Int = 0
@@ -85,10 +84,10 @@ struct BudgetList: View {
                     .ignoresSafeArea()
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 16) {
-                        ForEach(Array(budgets.enumerated()), id: \.offset) { index, budget in
+                        ForEach(Array(try! moc.fetch(Budget.fetchRequest()).enumerated()), id: \.offset) { index, budget in
                             
                             HStack() {
-                                Text(LocalizedStringKey(budget))
+                                Text(LocalizedStringKey(budget.name))
                                     .foregroundColor(BonsaiColor.text)
                                     .font(BonsaiFont.body_17)
                                 Spacer()
@@ -103,16 +102,9 @@ struct BudgetList: View {
                                         lineWidth: selectedRow == index ? 2 : 0
                                     )
                             )
-                            
-//                            TagCellView(
-//                                isSelected: selectedTags.contains(tag),
-//                                tag: tag
-//                            )
-//                            .onTapGesture {
-//                                if selectedTags.append(tag).inserted == false {
-//                                    selectedTags.remove(tag)
-//                                }
-//                            }
+                            .onTapGesture {
+                                selectedRow = index
+                            }
                         } // ForEach
                     } // VStack
                     .padding(2)
@@ -120,12 +112,12 @@ struct BudgetList: View {
                 .padding(.top, 24)
                 .padding(.horizontal, 16)
             } // ZStack
-            .navigationTitle(LocalizedStringKey("tags.title"))
+            .navigationTitle(LocalizedStringKey("budget.default_name"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-//                        isPresented = false
+                        dismiss()
                     }) {
                         Text(LocalizedStringKey("Save_title"))
                             .foregroundColor(BonsaiColor.blueLight)
@@ -133,14 +125,14 @@ struct BudgetList: View {
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if tags.count != 0 {
+                    if fetchedBudgets.count != 0 {
                         removeTagButton()
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         if isPremium {
-                            isCreateTagPresented = true
+                            isCreateBudgetPresented = true
                         } else {
                             isSubscriptionPresented = true
                         }
@@ -151,13 +143,8 @@ struct BudgetList: View {
                 }
             }
         } // NavigationView
-        .fullScreenCover(isPresented: $isCreateTagPresented) {
-            CreateTagView(isPresented: $isCreateTagPresented) { tag in
-                if let tag = tag, tag.title.isEmpty == false {
-//                    self.selectedTags.append(tag)
-//                    self.isPresented = false
-                }
-            }
+        .fullScreenCover(isPresented: $isCreateBudgetPresented) {
+            CreateEditBudget(kind: .new)
         }
         .fullScreenCover(isPresented: $isSubscriptionPresented) {
             Subscriptions(completion: {
