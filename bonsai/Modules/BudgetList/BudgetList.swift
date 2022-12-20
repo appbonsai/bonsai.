@@ -11,13 +11,22 @@ struct BudgetList: View {
     @EnvironmentObject var purchaseService: PurchaseService
     @State private var isSubscriptionPresented = false
     @State private var isAllSetPresented = false
-
+    
+    @FetchRequest(sortDescriptors: [])
+    private var fetchedBudgets: FetchedResults<Budget>
+    @FetchRequest(sortDescriptors: [])
+    private var accounts: FetchedResults<Account>
+    
     private var isPremium: Bool {
         if purchaseService.isSubscriptionActive {
             return true
         }
-        let limitedTags = 3
-        return tags.count < limitedTags
+        let limitedBudgets = 3
+        var limitedAccountBudgets: [FetchedResults<Budget>.Element] = []
+        for account in accounts {
+            limitedAccountBudgets = fetchedBudgets.filter { $0.accountId == account.id }
+        }
+        return limitedAccountBudgets.count < limitedBudgets
     }
     
     @FetchRequest(sortDescriptors: [])
