@@ -28,6 +28,9 @@ struct CreateEditBudget: View {
     @FetchRequest(sortDescriptors: [])
     private var budgets: FetchedResults<Budget>
     private var budget: Budget? { budgets.first }
+    
+    @FetchRequest(sortDescriptors: [])
+    private var accounts: FetchedResults<Account>
 
     func amountView(text: Binding<String>) -> some View {
         AmountView(
@@ -125,8 +128,21 @@ struct CreateEditBudget: View {
                                 budget.periodDays = Int64(periodDays)
                                 budget.name = title
                             } else {
+                                
+                                /*
+                                 accountID is current selected
+                                 
+                                 */
+                                
+                                #warning("Delete this after account create will be done, and fetch id from selected account")
+                                bonsai.Account(
+                                    context: moc,
+                                    title: "Account 1"
+                                )
+                                
                                 bonsai.Budget(
                                     context: moc,
+                                    accountId: accounts.first?.id ?? UUID(),
                                     name: title,
                                     totalAmount: .init(string: amount),
                                     periodDays: Int64(periodDays),
