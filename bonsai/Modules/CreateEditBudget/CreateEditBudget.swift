@@ -123,7 +123,7 @@ struct CreateEditBudget: View {
 
                     Button {
                         if $amount.wrappedValue != "" {
-                            if let budget {
+                            if let budget, kind == .edit {
                                 budget.amount = NSDecimalNumber(string: amount)
                                 budget.periodDays = Int64(periodDays)
                                 budget.name = title
@@ -135,10 +135,10 @@ struct CreateEditBudget: View {
                                  */
                                 
                                 #warning("Delete this after account create will be done, and fetch id from selected account")
-                                bonsai.Account(
-                                    context: moc,
-                                    title: "Account 1"
-                                )
+//                                bonsai.Account(
+//                                    context: moc,
+//                                    title: "Account 1"
+//                                )
                                 
                                 bonsai.Budget(
                                     context: moc,
@@ -192,7 +192,7 @@ struct CreateEditBudget: View {
             )
         }
         .onAppear {
-            if let budget {
+            if let budget, kind == .edit {
                 periodDays = Int(budget.periodDays)
                 title = budget.name
                 amount = String(budget.amount.intValue)
