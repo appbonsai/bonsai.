@@ -17,6 +17,11 @@ struct BudgetList: View {
     private var fetchedBudgets: FetchedResults<Budget>
     @FetchRequest(sortDescriptors: [])
     private var accounts: FetchedResults<Account>
+    @State var selectedBudget: Budget?
+    
+    init() {
+        self._selectedBudget = .init(initialValue: fetchedBudgets.first)
+    }
     
     private var isPremium: Bool {
         if purchaseService.isSubscriptionActive {
@@ -30,52 +35,9 @@ struct BudgetList: View {
         return limitedAccountBudgets.count < limitedBudgets
     }
     
-//    @Binding var selectedTags: OrderedSet<Tag>
-//    @Binding var isPresented: Bool
-    
     @State var isCreateBudgetPresented: Bool = false
     @State var isDeleteConfirmationPresented = false
     @Environment(\.managedObjectContext) private var moc
-    @State var selectedRow: Int = 0
-
-    
-    let budgets: [String] = [
-       "Budget 1", "Budget 2"
-    ]
-    
-    
-    func removeTagButton() -> some View {
-        BonsaiImage.trash
-            .onTapGesture {
-                isDeleteConfirmationPresented = true
-            }
-            .foregroundColor(BonsaiColor.secondary)
-            .opacity(0.8)
-            .confirmationDialog(
-                LocalizedStringKey("delete.tags.confirmation"),
-                isPresented: $isDeleteConfirmationPresented,
-                titleVisibility: .visible
-            ) {
-                Button(LocalizedStringKey("tags.delete.confirmation"),
-                       role: .destructive) {
-//                    if !selectedTags.isEmpty {
-//                        selectedTags.forEach {
-//                            moc.delete($0)
-//                            do {
-//                                try moc.save()
-//                            } catch (let e) {
-//                                assertionFailure(e.localizedDescription)
-//                            }
-//                        }
-//                        self.selectedTags = []
-//                    }
-                    
-                }
-                Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
-                    isDeleteConfirmationPresented = false
-                }
-            }
-    }
     
     var body: some View {
         NavigationView {
@@ -84,8 +46,7 @@ struct BudgetList: View {
                     .ignoresSafeArea()
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 16) {
-                        ForEach(Array(try! moc.fetch(Budget.fetchRequest()).enumerated()), id: \.offset) { index, budget in
-                            
+                        ForEach(fetchedBudgets) { budget in
                             HStack() {
                                 Text(LocalizedStringKey(budget.name))
                                     .foregroundColor(BonsaiColor.text)
@@ -99,11 +60,15 @@ struct BudgetList: View {
                                 RoundedRectangle(cornerRadius: 13)
                                     .stroke(
                                         BonsaiColor.mainPurple,
-                                        lineWidth: selectedRow == index ? 2 : 0
+                                        lineWidth: budget == selectedBudget ? 2 : 0
                                     )
                             )
                             .onTapGesture {
-                                selectedRow = index
+                                if selectedBudget == budget {
+                                    selectedBudget = nil
+                                } else {
+                                    selectedBudget = budget
+                                }
                             }
                         } // ForEach
                     } // VStack
@@ -126,7 +91,7 @@ struct BudgetList: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if fetchedBudgets.count != 0 {
-                        removeTagButton()
+                        removeBudgetButton()
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -144,7 +109,12 @@ struct BudgetList: View {
             }
         } // NavigationView
         .fullScreenCover(isPresented: $isCreateBudgetPresented) {
-            CreateEditBudget(kind: .new)
+            CreateEditBudget(kind: .new) { budget in
+                if let budget = budget {
+                    self.selectedBudget = budget
+                    dismiss()
+                }
+            }
         }
         .fullScreenCover(isPresented: $isSubscriptionPresented) {
             Subscriptions(completion: {
@@ -154,6 +124,36 @@ struct BudgetList: View {
         .fullScreenCover(isPresented: $isAllSetPresented) {
             AllSet()
         }
+    }
+    
+    func removeBudgetButton() -> some View {
+        BonsaiImage.trash
+            .onTapGesture {
+                isDeleteConfirmationPresented = true
+            }
+            .foregroundColor(BonsaiColor.secondary)
+            .opacity(0.8)
+            .confirmationDialog(
+                LocalizedStringKey("delete.tags.confirmation"),
+                isPresented: $isDeleteConfirmationPresented,
+                titleVisibility: .visible
+            ) {
+                Button(LocalizedStringKey("tags.delete.confirmation"),
+                       role: .destructive) {
+                    if let selectedBudget {
+                        moc.delete(selectedBudget)
+                        do {
+                            try moc.save()
+                        } catch (let e) {
+                            assertionFailure(e.localizedDescription)
+                        }
+                        self.selectedBudget = nil
+                    }
+                }
+                Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
+                    isDeleteConfirmationPresented = false
+                }
+            }
     }
 }
 

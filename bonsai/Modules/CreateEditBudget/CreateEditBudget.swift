@@ -27,11 +27,13 @@ struct CreateEditBudget: View {
 
     @FetchRequest(sortDescriptors: [])
     private var budgets: FetchedResults<Budget>
+    #warning("fetch selected budget instead of first")
     private var budget: Budget? { budgets.first }
     
     @FetchRequest(sortDescriptors: [])
     private var accounts: FetchedResults<Account>
-
+    var completion: ((Budget?) -> Void)? = nil
+    
     func amountView(text: Binding<String>) -> some View {
         AmountView(
             amountTitle: "budget.amount",
@@ -140,7 +142,7 @@ struct CreateEditBudget: View {
 //                                    title: "Account 1"
 //                                )
                                 
-                                bonsai.Budget(
+                                let budget = bonsai.Budget(
                                     context: moc,
                                     accountId: accounts.first?.id ?? UUID(),
                                     name: title,
@@ -148,6 +150,7 @@ struct CreateEditBudget: View {
                                     periodDays: Int64(periodDays),
                                     createdDate: createdDate
                                 )
+                                completion?(budget)
                             }
                         }
                         do {
@@ -177,6 +180,7 @@ struct CreateEditBudget: View {
             .toolbar {
                ToolbarItem(placement: .navigationBarLeading) {
                   Button(action: {
+                      completion?(nil)
                       dismiss()
                   }) {
                      Text(LocalizedStringKey("Cancel_title"))
