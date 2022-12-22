@@ -259,7 +259,7 @@ struct HomeContainerView: View {
         .popover(isPresented: $isSettingPresented, content: {
             SettingsContainerView()
         })
-        .popover(isPresented: $isBudgetListPresented, content: {
+        .fullScreenCover(isPresented: $isBudgetListPresented, content: {
             BudgetList()
         })
         .popover(isPresented: $isTransactionsPresented, content: {

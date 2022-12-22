@@ -71,6 +71,25 @@ struct BudgetList: View {
                                 }
                             }
                         } // ForEach
+                        
+                        Button {
+                            #warning("Choose and update selected budget")
+                            dismiss()
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 13)
+                                    .frame(width: 192, height: 48)
+                                    .foregroundColor(BonsaiColor.mainPurple)
+
+                                Text(LocalizedStringKey("SelectCurrencyPage.Choose"))
+                                    .foregroundColor(BonsaiColor.card)
+                                    .font(.system(size: 17))
+                                    .bold()
+                            }
+                        }
+                        .opacity(selectedBudget == nil ? 0.5 : 1)
+                        .disabled(selectedBudget == nil)
+                        
                     } // VStack
                     .padding(2)
                 } // ScrollView
@@ -84,8 +103,8 @@ struct BudgetList: View {
                     Button(action: {
                         dismiss()
                     }) {
-                        Text(LocalizedStringKey("Save_title"))
-                            .foregroundColor(BonsaiColor.blueLight)
+                        Text(LocalizedStringKey("Cancel_title"))
+                            .foregroundColor(BonsaiColor.secondary)
                     }
                 }
 
@@ -112,7 +131,6 @@ struct BudgetList: View {
             CreateEditBudget(kind: .new) { budget in
                 if let budget = budget {
                     self.selectedBudget = budget
-                    dismiss()
                 }
             }
         }
