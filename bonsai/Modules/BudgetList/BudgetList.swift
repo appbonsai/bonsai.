@@ -39,6 +39,7 @@ struct BudgetList: View {
     @State var isDeleteConfirmationPresented = false
     @Environment(\.managedObjectContext) private var moc
     
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -48,9 +49,15 @@ struct BudgetList: View {
                     VStack(spacing: 16) {
                         ForEach(fetchedBudgets) { budget in
                             HStack() {
-                                Text(LocalizedStringKey(budget.name))
-                                    .foregroundColor(BonsaiColor.text)
-                                    .font(BonsaiFont.body_17)
+                                VStack(alignment: .leading) {
+                                    Text(LocalizedStringKey(budget.name))
+                                        .foregroundColor(BonsaiColor.text)
+                                        .font(BonsaiFont.title_headline_17)
+                                    Spacer()
+                                    Text("\(budget.amount)")
+                                        .foregroundColor(BonsaiColor.text)
+                                        .font(BonsaiFont.body_17)
+                                }
                                 Spacer()
                             }
                             .padding([.vertical, .leading], 20)
