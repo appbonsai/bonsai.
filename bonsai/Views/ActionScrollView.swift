@@ -69,7 +69,7 @@ struct ActionScrollView<ActionView, Content>: View where ActionView: View, Conte
    }
 
    public var body: some View {
-      ScrollView() {
+      ScrollView(showsIndicators: false) {
          ZStack(alignment: .top) {
             PositionIndicator(type: .moving, coordinateSpace: spaceName)
                .frame(height: 0)
