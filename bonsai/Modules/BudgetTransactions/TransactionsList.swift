@@ -54,6 +54,14 @@ struct TransactionsList: View {
     @State var isTransactionDetailsPresented: Bool = false
     @State var selectedTransaction: Transaction?
     
+    func sectionView(key: String, sum: NSDecimalNumber) -> some View {
+        HStack {
+            Text(LocalizedStringKey(key))
+            Spacer()
+            Text(LocalizedStringKey(String(describing: sum)))
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             BudgetTransactionHeader()
@@ -61,7 +69,14 @@ struct TransactionsList: View {
                 .padding(.vertical)
             List {
                 ForEach(sortedTransactions().elements, id: \.key) { element in
-                    Section(header: Text(LocalizedStringKey(element.key))
+                    let sum = element.value.reduce(NSDecimalNumber.zero) { partialResult, transaction in
+                        if transaction.type == .income {
+                            return transaction.amount.subtracting(partialResult)
+                        } else {
+                            return transaction.amount.adding(partialResult)
+                        }
+                    }
+                    Section(header: sectionView(key: element.key, sum: sum)
                         .font(BonsaiFont.body_15)
                         .foregroundColor(Color.white)
                     ) {
