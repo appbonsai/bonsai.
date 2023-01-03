@@ -34,7 +34,7 @@ struct TransactionsList: View {
     }
     
     func sortedTransactions() -> OrderedDictionary<String, [Transaction]> {
-        allowedTransactions
+        var result = allowedTransactions
             .reduce(into: OrderedDictionary<String, [Transaction]>()) { partialResult, transaction in
                 let date = transaction.date.dateString()
                 if var arr = partialResult[date] {
@@ -44,6 +44,10 @@ struct TransactionsList: View {
                     partialResult[date] = [transaction]
                 }
             }
+        result.sort {
+            $0.key > $1.key
+        }
+        return result
     }
     
     @Binding var isPresented: Bool
