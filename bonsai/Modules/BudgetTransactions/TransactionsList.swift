@@ -58,7 +58,15 @@ struct TransactionsList: View {
         HStack {
             Text(LocalizedStringKey(key))
             Spacer()
-            Text(LocalizedStringKey(String(describing: sum)))
+            if sum < .zero {
+                Text("\(sum.absValue) \(Currency.Validated.current.symbol)")
+                    .font(BonsaiFont.title_headline_17)
+                    .foregroundColor(BonsaiColor.green)
+            } else {
+                Text("-\(sum) \(Currency.Validated.current.symbol)")
+                    .font(BonsaiFont.title_headline_17)
+                    .foregroundColor(BonsaiColor.secondary)
+            }
         }
     }
     
@@ -71,9 +79,9 @@ struct TransactionsList: View {
                 ForEach(sortedTransactions().elements, id: \.key) { element in
                     let sum = element.value.reduce(NSDecimalNumber.zero) { partialResult, transaction in
                         if transaction.type == .income {
-                            return transaction.amount.subtracting(partialResult)
+                            return partialResult.subtracting(transaction.amount)
                         } else {
-                            return transaction.amount.adding(partialResult)
+                            return partialResult.adding(transaction.amount)
                         }
                     }
                     Section(header: sectionView(key: element.key, sum: sum)
@@ -107,5 +115,11 @@ struct TransactionsList_Previews: PreviewProvider {
         TransactionsList(kind: .all, isPresented: .constant(true))
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")
+    }
+}
+
+extension NSDecimalNumber {
+    var absValue: Self {
+        .init(decimal: decimalValue.magnitude)
     }
 }
