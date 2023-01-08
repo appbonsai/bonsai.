@@ -214,14 +214,12 @@ struct BudgetDetails: View {
         }
         .fullScreenCover(isPresented: $isEditBudgetPresented, content: {
             CreateEditBudget(
-                kind: .edit,
-                isCreateEditBudgetPresented: $isEditBudgetPresented
+                kind: .edit
             )
         })
         .fullScreenCover(isPresented: $isCreateBudgetPresented, content: {
             CreateEditBudget(
-                kind: .new,
-                isCreateEditBudgetPresented: $isCreateBudgetPresented
+                kind: .new
             )
         })
         .popover(isPresented: $isSuggestionPresented, content: {

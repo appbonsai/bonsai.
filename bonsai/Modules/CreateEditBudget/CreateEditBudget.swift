@@ -12,7 +12,7 @@ struct CreateEditBudget: View {
     enum Kind: Equatable { case new, edit }
     let kind: Kind
     @State var isPeriodDaysPresented: Bool = false
-    @Binding var isCreateEditBudgetPresented: Bool
+    @Environment(\.dismiss) var dismiss
 
     @State private var currency: Currency.Validated = .current
     @State private var amount: String = ""
@@ -27,8 +27,13 @@ struct CreateEditBudget: View {
 
     @FetchRequest(sortDescriptors: [])
     private var budgets: FetchedResults<Budget>
+    #warning("fetch selected budget instead of first")
     private var budget: Budget? { budgets.first }
-
+    
+    @FetchRequest(sortDescriptors: [])
+    private var accounts: FetchedResults<Account>
+    var completion: ((Budget?) -> Void)? = nil
+    
     func amountView(text: Binding<String>) -> some View {
         AmountView(
             amountTitle: "budget.amount",
@@ -88,7 +93,7 @@ struct CreateEditBudget: View {
                     } catch (let e) {
                         assertionFailure(e.localizedDescription)
                     }
-                    isCreateEditBudgetPresented = false
+                    dismiss()
                 }
             }
             Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
@@ -120,18 +125,32 @@ struct CreateEditBudget: View {
 
                     Button {
                         if $amount.wrappedValue != "" {
-                            if let budget {
+                            if let budget, kind == .edit {
                                 budget.amount = NSDecimalNumber(string: amount)
                                 budget.periodDays = Int64(periodDays)
                                 budget.name = title
                             } else {
-                                bonsai.Budget(
+                                
+                                /*
+                                 accountID is current selected
+                                 
+                                 */
+                                
+                                #warning("Delete this after account create will be done, and fetch id from selected account")
+//                                bonsai.Account(
+//                                    context: moc,
+//                                    title: "Account 1"
+//                                )
+                                
+                                let budget = bonsai.Budget(
                                     context: moc,
+                                    accountId: accounts.first?.id ?? UUID(),
                                     name: title,
                                     totalAmount: .init(string: amount),
                                     periodDays: Int64(periodDays),
                                     createdDate: createdDate
                                 )
+                                completion?(budget)
                             }
                         }
                         do {
@@ -139,7 +158,7 @@ struct CreateEditBudget: View {
                         } catch (let e) {
                             assertionFailure(e.localizedDescription)
                         }
-                        isCreateEditBudgetPresented = false
+                        dismiss()
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 13)
@@ -161,7 +180,8 @@ struct CreateEditBudget: View {
             .toolbar {
                ToolbarItem(placement: .navigationBarLeading) {
                   Button(action: {
-                      isCreateEditBudgetPresented = false
+                      completion?(nil)
+                      dismiss()
                   }) {
                      Text(LocalizedStringKey("Cancel_title"))
                         .foregroundColor(BonsaiColor.secondary)
@@ -176,7 +196,7 @@ struct CreateEditBudget: View {
             )
         }
         .onAppear {
-            if let budget {
+            if let budget, kind == .edit {
                 periodDays = Int(budget.periodDays)
                 title = budget.name
                 amount = String(budget.amount.intValue)
@@ -188,6 +208,6 @@ struct CreateEditBudget: View {
 
 struct CreateEditBudget_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEditBudget(kind: .new, isCreateEditBudgetPresented: .constant(true))
+        CreateEditBudget(kind: .new)
     }
 }
