@@ -178,12 +178,13 @@ struct HomeContainerView: View {
                         
                         Spacer()
                         
-                        BonsaiImage.plus
-                            .font(.system(size: 22))
-                            .foregroundColor(.white)
-                            .onTapGesture {
-                                isBudgetListPresented = true
-                            }
+                        #warning("Add when multiaccounts will be done")
+//                        BonsaiImage.plus
+//                            .font(.system(size: 22))
+//                            .foregroundColor(.white)
+//                            .onTapGesture {
+//                                isBudgetListPresented = true
+//                            }
                         
                         BonsaiImage.settings
                             .font(.system(size: 22))
