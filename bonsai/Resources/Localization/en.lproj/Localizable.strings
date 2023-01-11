@@ -6,6 +6,10 @@
   
 */
 
+"you_dont_have_a_transactions_history_yet" = "You don't have transactions history yet";
+
+"create_transactions" = "Create first transaction now!";
+
 "General_title" = "General";
 
 "change.language" = "Language";

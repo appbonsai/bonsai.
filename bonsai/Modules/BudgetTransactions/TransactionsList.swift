@@ -62,13 +62,13 @@ struct TransactionsList: View {
                 Spacer()
                 VStack(alignment: .center, spacing: 12) {
                     Group {
-                        Text("you_dont_own_a_budget_yet")
+                        Text("you_dont_have_a_transactions_history_yet")
                             .foregroundColor(.white)
                             .font(BonsaiFont.title_20)
                         Button {
                             isOperationPresented = true
                         } label: {
-                            Text("create_budget")
+                            Text("create_transactions")
                         }
                         .buttonStyle(PrimaryButtonStyle())
                     }.padding(16)
