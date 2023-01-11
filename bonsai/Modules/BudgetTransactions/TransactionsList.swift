@@ -65,6 +65,7 @@ struct TransactionsList: View {
                         Text("you_dont_have_a_transactions_history_yet")
                             .foregroundColor(.white)
                             .font(BonsaiFont.title_20)
+                            .multilineTextAlignment(.center)
                         Button {
                             isOperationPresented = true
                         } label: {

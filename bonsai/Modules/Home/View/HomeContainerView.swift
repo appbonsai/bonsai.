@@ -236,8 +236,8 @@ struct HomeContainerView: View {
                 .padding(.horizontal, 16)
             } // ActionScrollView
             tapViewTransactions()
-                .frame(height: 60, alignment: .bottom)
                 .padding(.bottom, 24)
+                .padding([.leading, .trailing], 8)
         }
         
         .fullScreenCover(isPresented: $isOperationPresented) {

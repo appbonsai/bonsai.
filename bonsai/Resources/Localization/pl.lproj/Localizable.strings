@@ -6,6 +6,10 @@
   
 */
 
+"you_dont_have_a_transactions_history_yet" = "Nie masz jeszcze historii transakcji";
+
+"create_transactions" = "Utwórz pierwszą transakcję teraz!";
+
 "delete.tags.confirmation" = "Czy na pewno chcesz usunąć te tagi?";
 "delete.category.confirmation" = "Czy na pewno chcesz usunąć tę kategorię?";
 

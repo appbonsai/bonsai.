@@ -6,6 +6,10 @@
   
 */
 
+"you_dont_have_a_transactions_history_yet" = "У вас еще нет истории транзакций";
+
+"create_transactions" = "Создать первую транзакцию сейчас!";
+
 "delete.tags.confirmation" = "Вы уверены, что хотите удалить эти теги?";
 "delete.category.confirmation" = "Вы уверены, что хотите удалить эту категорию?";
 
