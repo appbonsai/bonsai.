@@ -19,10 +19,15 @@ struct BudgetDetails: View {
     
     private var totalMoneyLeft: NSDecimalNumber {
         guard let budget else { return .zero }
-        return BudgetCalculator.left(
+        
+        let left = BudgetCalculator.left(
             budget: budget,
             transactions: transactions
         )
+        if left < 0 {
+            return .zero
+        }
+        return left
     }
     private var totalMoneySpent: NSDecimalNumber {
         guard let budget else { return .zero }
@@ -33,10 +38,14 @@ struct BudgetDetails: View {
     }
     private var moneyCanSpendDaily: NSDecimalNumber {
         guard let budget else { return .zero }
-        return BudgetCalculator.daily(
+        let daily = BudgetCalculator.daily(
             budget: budget,
             transactions: transactions
         )
+        if daily < 0 {
+            return .zero
+        }
+        return daily
     }
     
     @State var isPresented: Bool = false
