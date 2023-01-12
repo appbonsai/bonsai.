@@ -6,6 +6,10 @@
   
 */
 
+"you_dont_have_a_transactions_history_yet" = "Bạn chưa có lịch sử giao dịch"; 
+
+"create_transactions" = "Tạo giao dịch đầu tiên ngay!";
+
 "delete.tags.confirmation" = "Bạn có chắc chắn muốn xóa thẻ này không?";
 "delete.category.confirmation" = "Bạn có chắc chắn muốn xóa danh mục này không?";
 

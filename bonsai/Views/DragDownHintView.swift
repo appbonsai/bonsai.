@@ -13,6 +13,7 @@ struct DragDownHintView: View {
             Text(LocalizedStringKey("Drag_down_hint"))
                 .font(BonsaiFont.body_17)
                 .foregroundColor(BonsaiColor.text)
+                .multilineTextAlignment(.center)
                 .shimmering(duration: 3.0)
            BonsaiImage.arrowUpCircle
              .renderingMode(.template)

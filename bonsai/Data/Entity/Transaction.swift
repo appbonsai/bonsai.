@@ -12,7 +12,7 @@ import CoreData
 @objc(Transaction)
 public class Transaction: NSManagedObject, Identifiable {
 
-   @NSManaged public var id: UUID
+   @NSManaged public var transactionId: UUID
    @NSManaged public var amount: NSDecimalNumber
    @NSManaged public var title: String?
    @NSManaged public var date: Date
@@ -57,7 +57,7 @@ public class Transaction: NSManagedObject, Identifiable {
 
    @discardableResult convenience init(
       context: NSManagedObjectContext,
-      id: UUID = UUID(),
+      transactionId: UUID = UUID(),
       amount: NSDecimalNumber,
       title: String? = nil,
       date: Date,
@@ -68,7 +68,7 @@ public class Transaction: NSManagedObject, Identifiable {
       currency: Currency.Validated = .current
    ) {
       self.init(context: context)
-      self.id = id
+      self.transactionId = transactionId
       self.amount = amount
       self.title = title
       self.date = date

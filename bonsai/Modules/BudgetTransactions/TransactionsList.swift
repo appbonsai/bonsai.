@@ -12,7 +12,8 @@ struct TransactionsList: View {
     
     enum kind { case all, budget }
     let kind: kind
-    
+    @State private var isOperationPresented = false
+
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date)])
     var transactions: FetchedResults<Transaction>
     
@@ -54,6 +55,32 @@ struct TransactionsList: View {
     @State var isTransactionDetailsPresented: Bool = false
     @State var selectedTransaction: Transaction?
     
+    private var createPlaceholderForEmptyTransactions: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Spacer()
+                VStack(alignment: .center, spacing: 12) {
+                    Group {
+                        Text("you_dont_have_a_transactions_history_yet")
+                            .foregroundColor(.white)
+                            .font(BonsaiFont.title_20)
+                            .multilineTextAlignment(.center)
+                        Button {
+                            isOperationPresented = true
+                        } label: {
+                            Text("create_transactions")
+                        }
+                        .buttonStyle(PrimaryButtonStyle())
+                    }.padding(16)
+                }
+                Spacer()
+            }
+            Spacer()
+        }
+    }
+
+    
     func sectionView(key: String, sum: NSDecimalNumber) -> some View {
         HStack {
             Text(LocalizedStringKey(key))
@@ -75,30 +102,35 @@ struct TransactionsList: View {
             BudgetTransactionHeader()
                 .contentShape(Rectangle())
                 .padding(.vertical)
-            List {
-                ForEach(sortedTransactions().elements, id: \.key) { element in
-                    let sum = element.value.reduce(NSDecimalNumber.zero) { partialResult, transaction in
-                        if transaction.type == .income {
-                            return partialResult.subtracting(transaction.amount)
-                        } else {
-                            return partialResult.adding(transaction.amount)
+            if sortedTransactions().elements.isEmpty {
+                createPlaceholderForEmptyTransactions
+            } else {
+                
+                List {
+                    ForEach(sortedTransactions().elements, id: \.key) { element in
+                        let sum = element.value.reduce(NSDecimalNumber.zero) { partialResult, transaction in
+                            if transaction.type == .income {
+                                return partialResult.subtracting(transaction.amount)
+                            } else {
+                                return partialResult.adding(transaction.amount)
+                            }
                         }
-                    }
-                    Section(header: sectionView(key: element.key, sum: sum)
-                        .font(BonsaiFont.body_15)
-                        .foregroundColor(Color.white)
-                    ) {
-                        ForEach(element.value) { transaction in
-                            TransactionCell(model: .init(transaction: transaction))
-                                .onTapGesture(perform: {
-                                    selectedTransaction = transaction
-                                    isTransactionDetailsPresented = true
-                                })
-                                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                        } // ForEach
-                    } // Section
-                } // ForEach
-            } // ScrollView
+                        Section(header: sectionView(key: element.key, sum: sum)
+                            .font(BonsaiFont.body_15)
+                            .foregroundColor(Color.white)
+                        ) {
+                            ForEach(element.value) { transaction in
+                                TransactionCell(model: .init(transaction: transaction))
+                                    .onTapGesture(perform: {
+                                        selectedTransaction = transaction
+                                        isTransactionDetailsPresented = true
+                                    })
+                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            } // ForEach
+                        } // Section
+                    } // ForEach
+                } // ScrollView
+            }
         }
         .listStyle(.plain)
         .fullScreenCover(isPresented: $isTransactionDetailsPresented) { [selectedTransaction] in
@@ -106,6 +138,9 @@ struct TransactionsList: View {
                 isPresented: $isTransactionDetailsPresented,
                 transaction: selectedTransaction
             )
+        }
+        .fullScreenCover(isPresented: $isOperationPresented) {
+            OperationDetails(isPresented: $isOperationPresented)
         }
     }
 }
