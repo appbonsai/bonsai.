@@ -103,9 +103,7 @@ struct TransactionsList: View {
                 .contentShape(Rectangle())
                 .padding(.vertical)
             if sortedTransactions().elements.isEmpty {
-                
                 createPlaceholderForEmptyTransactions
-                 
             } else {
                 
                 List {

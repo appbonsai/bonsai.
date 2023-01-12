@@ -31,7 +31,9 @@ struct OperationDetails: View {
     @State private var isCategoriesViewPresented: Bool = false
     @State private var isTagsViewPresented: Bool = false
     @State private var isCalendarOpened: Bool = false
-
+    @FetchRequest(sortDescriptors: [])
+    private var fetchedTransactions: FetchedResults<Transaction>
+    
     private let iconSizeSide: CGFloat = 20
 
     @Namespace private var calendarID
@@ -41,6 +43,37 @@ struct OperationDetails: View {
         case title
     }
     @FocusState private var focusedField: Field?
+    @State var isDeleteConfirmationPresented = false
+    @Environment(\.dismiss) var dismiss
+
+    func removeTransactionButton() -> some View {
+        Button(LocalizedStringKey("transaction.delete.button")) {
+            isDeleteConfirmationPresented = true
+        }
+        .foregroundColor(.red)
+        .opacity(0.8)
+        .confirmationDialog(
+            LocalizedStringKey("delete_transaction_Confirmation"),
+            isPresented: $isDeleteConfirmationPresented,
+            titleVisibility: .visible
+        ) {
+            Button(LocalizedStringKey("transaction.delete.confirmation"), role: .destructive) {
+                if case .edit(let transaction) = kind {
+                    moc.delete(transaction)
+                    do {
+                        try moc.save()
+                    } catch (let e) {
+                        assertionFailure(e.localizedDescription)
+                    }
+                    dismiss()
+                   
+                }
+            }
+            Button(LocalizedStringKey("Cancel_title"), role: .cancel) {
+                isDeleteConfirmationPresented = false
+            }
+        }
+    }
 
     init(isPresented: Binding<Bool>, transaction: Transaction? = nil) {
         self._isPresented = isPresented
@@ -128,6 +161,12 @@ struct OperationDetails: View {
                                 .cornerRadius(13)
                                 .padding(.top, 16)
                                 .id(calendarID)
+                                
+                                if case .edit = kind {
+                                    removeTransactionButton()
+                                        .padding(20)
+                                }
+                             
                             } // VStack
                             .padding([.top, .leading, .trailing, .bottom], 16)
                             .onChange(of: isCalendarOpened) { newValue in
@@ -165,7 +204,7 @@ struct OperationDetails: View {
                                 }
                             case .edit(let transaction):
                                 let request = Transaction.fetchRequest()
-                                request.predicate = .init(format: "id == %@", transaction.id as CVarArg)
+                                request.predicate = .init(format: "transactionId == %@", transaction.transactionId as CVarArg)
                                 do {
                                     guard let result = try moc.fetch(request).first else {
                                         assertionFailure("Transaction with id \(transaction.id) not found")
