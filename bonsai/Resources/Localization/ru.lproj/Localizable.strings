@@ -151,7 +151,7 @@
 "choose_budget_period_custom_premium" = "Кастомный период";
 "choose_budget_period_premium" = "Премиум";
 
-"Net_Worth" = "Баланс";
+"net.worth.stat" = "Баланс";
 
 "This_month" = "Этот месяц";
 
@@ -178,7 +178,7 @@
 "Flexible_budget_descriptions" = "Установите дни гибкого периода для бюджетов";
 
 "No_ads" = "Без рекламы";
-"No_ads_descriptions" = "Никакой рекламы в приложении. Сфокусируйтесь на главном";
+"No.ads.descriptions" = "Никакой рекламы в приложении. Сфокусируйтесь на главном";
 
 "special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
 

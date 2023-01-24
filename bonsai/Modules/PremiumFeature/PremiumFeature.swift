@@ -128,7 +128,7 @@ struct PremiumFeature: View {
             ),
             .init(
                 name: "No_ads",
-                description: "No_ads_descriptions",
+                description: "No.ads.descriptions",
                 icon: BonsaiImage.star,
                 gifImage: "no_ads"
             )

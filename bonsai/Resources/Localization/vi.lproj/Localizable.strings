@@ -153,7 +153,7 @@
 "select_budget_period_custom_premium" = "Thời gian tùy chỉnh";
 "select_budget_period_premium" = "Cao cấp";
 
-"Net_Worth" = "Giá trị thực";
+"net.worth.stat" = "Giá trị thực";
 
 "This_month" = "Tháng này";
 
@@ -180,7 +180,7 @@
 "Flex_budget_descriptions" = "Đặt ngày trong khoảng thời gian linh hoạt cho ngân sách";
 
 "No_ads" = "Không có quảng cáo";
-"No_ads_descriptions" = "Bạn sẽ không thấy quảng cáo. Bạn thực sự không cần cái này";
+"No.ads.descriptions" = "Bạn sẽ không thấy quảng cáo. Bạn thực sự không cần cái này";
 
 "special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
 

@@ -154,7 +154,7 @@
 "choose_budget_period_custom_premium" = "Okres niestandardowy";
 "choose_budget_period_premium" = "Premium";
 
-"Net_Worth" = "Wartość netto";
+"net.worth.stat" = "Wartość netto";
 
 "This_month" = "Ten miesiąc";
 
@@ -181,7 +181,7 @@
 "Flexible_budget_descriptions" = "Ustaw dni elastycznego okresu dla budżetów";
 
 "No_ads" = "Brak reklam";
-"No_ads_descriptions" = "Nie zobaczysz reklam. Naprawdę tego nie potrzebujesz";
+"No.ads.descriptions" = "Nie zobaczysz reklam. Naprawdę tego nie potrzebujesz";
 
 "special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
 
