@@ -165,7 +165,7 @@ struct HomeContainerView: View {
                     if UserSettings.showDragDownHint {
                         DragDownHintView().frame(maxWidth: .infinity)
                     }
-                    Text(LocalizedStringKey("Net_Worth"))
+                    Text(LocalizedStringKey("net.worth.stat"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
                         .padding(.top, 16)

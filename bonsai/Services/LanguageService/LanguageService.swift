@@ -117,7 +117,7 @@ public extension String {
 }
 
 public enum Languages: String {
-    case en, vi, ru, uk, pl
+    case en, vi, ru, uk, pl, zh
     
     case enGB = "en-GB"
     case enAU = "en-AU"
@@ -140,6 +140,7 @@ public enum Languages: String {
         case .ru: return "Русский"
         case .pl: return "Polski"
         case .vi: return "Tiếng việt"
+        case .zhHans: return "Chinese"
         default: return "English"
         }
     }

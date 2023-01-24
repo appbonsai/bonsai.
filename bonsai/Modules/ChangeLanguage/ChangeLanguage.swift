@@ -15,7 +15,7 @@ struct ChangeLanguage: View {
     @EnvironmentObject var languageSettings: LanguageSettings
 
     let availableLanguages: [Languages] = [
-        .uk, .en, .pl, .vi, .ru
+        .uk, .en, .pl, .vi, .ru, .zhHans
     ]
     
     var body: some View {

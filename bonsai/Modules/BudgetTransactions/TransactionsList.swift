@@ -46,7 +46,10 @@ struct TransactionsList: View {
                 }
             }
         result.sort {
-            $0.key > $1.key
+            if $0.key == "date.today" {
+                return true
+            }
+            return $0.key > $1.key
         }
         return result
     }

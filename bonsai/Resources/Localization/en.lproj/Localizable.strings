@@ -160,7 +160,7 @@
 "choose_budget_period_custom_premium" = "Custom period";
 "choose_budget_period_premium" = "Premium";
 
-"Net_Worth" = "Net Worth";
+"net.worth.stat" = "Net Worth";
 
 "This_month" = "This month";
 
@@ -187,7 +187,7 @@
 "Flexible_budget_descriptions" = "Set flexible period days for budgets";
 
 "No_ads" = "No ads";
-"No_ads_descriptions" = "You won't see ads. Focus on the essentials";
+"No.ads.descriptions" = "You won't see ads. Focus on the essentials";
 
 
 "special_for_UA_title" = "Повністю безкоштовна довічна підписка для українців";
