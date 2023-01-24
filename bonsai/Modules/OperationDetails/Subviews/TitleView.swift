@@ -12,7 +12,7 @@ struct TitleView: View {
    let title: String
    let image: Image
    @Binding var text: String
-   private let characterLimit = 16
+   private let characterLimit = 30
 
    var body: some View {
       HStack(spacing: 8) {
