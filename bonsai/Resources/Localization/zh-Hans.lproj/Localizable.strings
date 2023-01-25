@@ -138,7 +138,7 @@
 "premium_descriptions" = "高级订阅释放出Bonsai的全部力量。无限制，没有广告，自定义图标等";
 "premium_planDescription" = "订阅高级版，您就可以无限制地使用这些功能。";
 
+"you_dont_have_a_transactions_history_yet" = "您还没有交易历史记录。";
+"create_transactions" = "现在创建您的第一笔交易！";
 
-//You don’t have transaction history yet = "您还没有交易历史记录。";
-//Create first transaction now! = "现在创建您的第一笔交易！"
 
