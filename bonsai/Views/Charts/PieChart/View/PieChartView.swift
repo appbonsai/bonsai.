@@ -51,28 +51,9 @@ struct PieChartView: View {
                                     touchLocation = position.location
                                     updateCurrentValue(pieSize: pieSize)
                                 })
-                                .onEnded({ _ in
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        withAnimation(Animation.easeInOut) {
-                                            resetValues()
-                                        }
-                                    }
-                                })
                         )
                     }
-                    
-//                    .onAppear {
-//                        if isFirstSeen {
-//                            let slice = viewModel.chartData.pieChartSlices.last
-//                            touchLocation = .init(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
-//                            currentSliceData = slice
-//                        }
-//                        isFirstSeen = true
-//                    }
-//                    .onDisappear {
-//                        isFirstSeen = false
-//                    }
-//
+
                     ZStack {
                         Circle()
                             .foregroundColor(BonsaiColor.card)
