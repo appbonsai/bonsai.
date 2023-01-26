@@ -7,7 +7,6 @@
         <relationship name="transaction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Transaction" inverseName="account" inverseEntity="Transaction"/>
     </entity>
     <entity name="Budget" representedClassName="Budget" syncable="YES">
-        <attribute name="accountId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="amount" attributeType="Decimal" defaultValueString="0.0"/>
         <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>

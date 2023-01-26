@@ -11,7 +11,6 @@ import CoreData
 @objc(Budget)
 public class Budget: NSManagedObject, Identifiable {
     
-    @NSManaged public var accountId: UUID
     @NSManaged public var id: UUID
     @NSManaged public var name: String
     @NSManaged public var amount: NSDecimalNumber
@@ -20,7 +19,6 @@ public class Budget: NSManagedObject, Identifiable {
     
     @discardableResult convenience init(
         context: NSManagedObjectContext,
-        accountId: UUID,
         id: UUID = UUID(),
         name: String,
         totalAmount: NSDecimalNumber,
@@ -29,7 +27,6 @@ public class Budget: NSManagedObject, Identifiable {
     ) {
         self.init(context: context)
         self.name = name
-        self.accountId = accountId
         self.id = id
         self.amount = totalAmount
         self.periodDays = periodDays

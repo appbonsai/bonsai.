@@ -144,7 +144,6 @@ struct CreateEditBudget: View {
                                 
                                 let budget = bonsai.Budget(
                                     context: moc,
-                                    accountId: accounts.first?.id ?? UUID(),
                                     name: title,
                                     totalAmount: .init(string: amount),
                                     periodDays: Int64(periodDays),
