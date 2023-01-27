@@ -6,6 +6,10 @@
   
 */
 
+"transaction.delete.button" = "Видалити транзакцію";
+"delete_transaction_Confirmation" = "Ви впевнені, що хочете видалити цю транзакцію?";
+"transaction.delete.confirmation" = "Так, видалити транзакцію";
+
 "you_dont_have_a_transactions_history_yet" = "У вас ще немає історії транзакцій";
 
 "create_transactions" = "Створіть першу транзакцію зараз!";
@@ -80,10 +84,10 @@
 "Onboarding_3_title" = "Будьте обережнішими у витратах";
 "Onboarding_3_description" = "Будьте уважні до витрат, і ви наблизьтесь до фінансової свободи.";
 
-"Money_left" = "Грошей залишилось";
-"Money_spent" = "Грошей витрачено";
-"Total_budget" = "Загальний бюджет";
-"Daily_budget" = "Щоденний бюджет";
+"Money_left" = "Залишилось";
+"Money_spent" = "Витрачено";
+"Total_budget" = "Загально";
+"Daily_budget" = "Щоденно";
 "Budget_greeting" = "Слава Україні!";
 "Drag_up_hint" = "Свайпни до гори щоб побачити останні операції";
 "Drag_down_hint" = "Свайпни вниз, щоб створити нову операцію";

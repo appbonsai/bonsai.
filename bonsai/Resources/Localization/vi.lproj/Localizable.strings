@@ -6,6 +6,10 @@
   
 */
 
+"transaction.delete.button" = "Xóa giao dịch";
+"delete_transaction_Confirmation" = "Bạn có chắc chắn muốn xóa giao dịch này không?";
+"transaction.delete.confirmation" = "Vâng, xóa giao dịch";
+
 "you_dont_have_a_transactions_history_yet" = "Bạn chưa có lịch sử giao dịch"; 
 
 "create_transactions" = "Tạo giao dịch đầu tiên ngay!";

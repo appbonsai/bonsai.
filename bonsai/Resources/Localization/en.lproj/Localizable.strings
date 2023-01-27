@@ -19,6 +19,10 @@
 "period.select.month" = "Month";
 "period.select.custom" = "Custom date";
 
+"transaction.delete.button" = "Delete transaction";
+"delete_transaction_Confirmation" = "Are you sure you want to delete this transaction?";
+"transaction.delete.confirmation" = "Yes, delete transaction";
+
 "delete.tags.confirmation" = "Are you sure you want to delete these tags?";
 "delete.category.confirmation" = "Are you sure you want to delete this category?";
 

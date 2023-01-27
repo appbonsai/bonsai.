@@ -1,4 +1,8 @@
 
+"transaction.delete.button" = "删除交易";
+"delete_transaction_Confirmation" = "你确定要删除此交易吗？";
+"transaction.delete.confirmation" = "是的，删除交易";
+
 "Unlimited_categories" = "无限类别";
 "Unlimited_categories_descriptions" = "您可以创建无限的类别。请随意指定您的操作";
 "Unlimited_tags" = "无限标签";

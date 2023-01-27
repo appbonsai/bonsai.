@@ -174,7 +174,6 @@ struct BudgetDetails: View {
                         HStack {
                             BudgetNameView(name: budget?.name.takeIfNotEmpty() ?? "default_name")
                                 .padding(.leading, 16)
-                                .padding(.top, 16)
                             
                             Spacer()
                             BonsaiImage.light
@@ -199,10 +198,10 @@ struct BudgetDetails: View {
                         } // HStack
                         
                         budgetMoneyTitleView()
-                            .padding(.top, 32)
+                            .padding(.top, 10)
                         
                         budgetMoneyCardView()
-                            .padding(.top, 32)
+                            .padding(.top, 10)
                     } // VStack
                 }
             } // ActionScrollView

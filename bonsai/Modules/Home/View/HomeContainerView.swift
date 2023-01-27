@@ -168,7 +168,6 @@ struct HomeContainerView: View {
                     Text(LocalizedStringKey("net.worth.stat"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
-                        .padding(.top, 16)
                     HStack {
                         Text(verbatim: "\(totalBalance()) \(Currency.Validated.current.symbol)")
                             .font(BonsaiFont.title_34)
@@ -216,7 +215,7 @@ struct HomeContainerView: View {
                         
                     }
                     .frame(height: 76)
-                    .padding(.top, 8)
+                    .padding(.top, 12)
                     
                     Text(LocalizedStringKey("Budget_title"))
                         .font(BonsaiFont.subtitle_15)

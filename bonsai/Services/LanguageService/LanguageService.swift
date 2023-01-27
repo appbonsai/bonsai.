@@ -140,7 +140,7 @@ public enum Languages: String {
         case .ru: return "Русский"
         case .pl: return "Polski"
         case .vi: return "Tiếng việt"
-        case .zhHans: return "Chinese"
+        case .zhHans: return "简体中文"
         default: return "English"
         }
     }

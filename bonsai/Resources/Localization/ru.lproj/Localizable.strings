@@ -6,6 +6,10 @@
   
 */
 
+"transaction.delete.button" = "Удалить транзакцию";
+"delete_transaction_Confirmation" = "Вы уверены, что хотите удалить эту транзакцию?";
+"transaction.delete.confirmation" = "Да, удалить транзакцию";
+
 "you_dont_have_a_transactions_history_yet" = "У вас еще нет истории транзакций";
 
 "create_transactions" = "Создать первую транзакцию сейчас!";

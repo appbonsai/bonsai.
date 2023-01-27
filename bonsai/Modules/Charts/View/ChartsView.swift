@@ -19,7 +19,6 @@ struct ChartsView: View {
             Text(LocalizedStringKey("Charts_title"))
                 .font(BonsaiFont.title_28)
                 .foregroundColor(BonsaiColor.text)
-                .padding(.top, 8)
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 24) {

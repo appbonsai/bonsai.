@@ -6,6 +6,10 @@
   
 */
 
+"transaction.delete.button" = "Usunąć transakcję";
+"delete_transaction_Confirmation" = "Czy na pewno chcesz usunąć tę transakcję?";
+"transaction.delete.confirmation" = "Tak, usuń transakcję";
+
 "you_dont_have_a_transactions_history_yet" = "Nie masz jeszcze historii transakcji";
 
 "create_transactions" = "Utwórz pierwszą transakcję teraz!";
