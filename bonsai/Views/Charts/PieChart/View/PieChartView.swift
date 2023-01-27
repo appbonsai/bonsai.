@@ -81,7 +81,7 @@ struct PieChartView: View {
                 .padding(.top, 16)
                 
                 if let currentSliceData = currentSliceData {
-                    Text(currentSliceData.categoryTitle)
+                    Text(LocalizedStringKey(currentSliceData.categoryTitle))
                         .foregroundColor(currentSliceData.color)
                         .font(BonsaiFont.title_headline_17)
                         .padding(.top, 16)
