@@ -216,15 +216,14 @@ struct BudgetDetails: View {
                         HStack {
                             BudgetNameView(name: budget?.name.takeIfNotEmpty() ?? "default_name")
                                 .padding(.leading, 16)
-                            
                             Spacer()
                         } // HStack
                         
                         budgetMoneyTitleView()
-                            .padding(.top, 10)
+                            .padding(.top, 12)
                         
                         budgetMoneyCardView()
-                            .padding(.top, 10)
+                            .padding(.top, 12)
                     } // VStack
                 }
             } // ActionScrollView
