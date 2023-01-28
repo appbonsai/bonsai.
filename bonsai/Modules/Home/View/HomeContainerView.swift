@@ -12,7 +12,9 @@ import CoreData
 struct HomeContainerView: View {
     
     @State private var isSettingPresented = false
-//    @State private var isBudgetListPresented = false
+    @State private var isBudgetListPresented = false
+    @State private var isAccountListPresented = false
+
     @State private var isCreateEditBudgetPresented = false
     @State private var isOperationPresented = false
     @State var showAllSet: Bool = false
@@ -140,6 +142,51 @@ struct HomeContainerView: View {
             .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 10)
     }
     
+    fileprivate func createHomeCoordinator() -> some View {
+        HStack {
+            Spacer()
+            ZStack {
+                BonsaiColor.card
+                    .blur(radius: 1)
+                    .opacity(0.8)
+                HStack {
+                    Spacer()
+                    BonsaiImage.creditcard
+                        .symbolRenderingMode(.multicolor)
+                        .foregroundStyle(BonsaiColor.green)
+                        .font(.system(size: 22))
+                        .onTapGesture {
+                            isBudgetListPresented = true
+                        }
+                    Spacer()
+                    BonsaiImage.creditcard123
+                        .symbolRenderingMode(.multicolor)
+                        .foregroundStyle(BonsaiColor.orange)
+                        .font(.system(size: 22))
+                        .onTapGesture {
+                            isAccountListPresented = true
+                        }
+                    Spacer()
+                    BonsaiImage.settings
+                        .font(.system(size: 22))
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(BonsaiColor.blue)
+                        .onTapGesture {
+                            isSettingPresented = true
+                        }
+                    Spacer()
+                }
+            }
+            .frame(
+                width: UIScreen.main.bounds.width / 2.5,
+                height: 40,
+                alignment: .center
+            )
+            .cornerRadius(13)
+            Spacer()
+        }
+    }
+    
     var body: some View {
         VStack {
             ActionScrollView(spaceName: "Home") { completion in
@@ -165,9 +212,14 @@ struct HomeContainerView: View {
                     if UserSettings.showDragDownHint {
                         DragDownHintView().frame(maxWidth: .infinity)
                     }
+                    
+                    createHomeCoordinator()
+                    
                     Text(LocalizedStringKey("net.worth.stat"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
+                        .padding(.top, 12)
+
                     HStack {
                         Text(verbatim: "\(totalBalance()) \(Currency.Validated.current.symbol)")
                             .font(BonsaiFont.title_34)
@@ -176,26 +228,11 @@ struct HomeContainerView: View {
                             .foregroundColor(.white)
                         
                         Spacer()
-                        
-                        #warning("Add when multiaccounts will be done")
-//                        BonsaiImage.plus
-//                            .font(.system(size: 22))
-//                            .foregroundColor(.white)
-//                            .onTapGesture {
-//                                isBudgetListPresented = true
-//                            }
-                        
-                        BonsaiImage.settings
-                            .font(.system(size: 22))
-                            .foregroundColor(.white)
-                            .onTapGesture {
-                                isSettingPresented = true
-                            }
                     }
                     Text(LocalizedStringKey("This_month"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
-                        .padding(.top, 28)
+                        .padding(.top, 16)
                     HStack(alignment: .center, spacing: 12) {
                         BudgetMoneyCardView(
                             title: "Revenue_title",
@@ -220,7 +257,7 @@ struct HomeContainerView: View {
                     Text(LocalizedStringKey("Budget_title"))
                         .font(BonsaiFont.subtitle_15)
                         .foregroundColor(BonsaiColor.text)
-                        .padding(.top, 28)
+                        .padding(.top, 16)
                     
                     if budgets.isEmpty {
                         buildCreateBudgetView()
@@ -259,9 +296,12 @@ struct HomeContainerView: View {
         .popover(isPresented: $isSettingPresented, content: {
             SettingsContainerView()
         })
-//        .fullScreenCover(isPresented: $isBudgetListPresented, content: {
-//            BudgetList()
-//        })
+        .fullScreenCover(isPresented: $isBudgetListPresented, content: {
+            BudgetList()
+        })
+        .fullScreenCover(isPresented: $isAccountListPresented, content: {
+            AccountList()
+        })
         .popover(isPresented: $isTransactionsPresented, content: {
             TransactionsList(kind: .all, isPresented: $isTransactionsPresented)
         })

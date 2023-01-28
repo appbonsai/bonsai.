@@ -1,13 +1,13 @@
 //
-//  BudgetList.swift
+//  SwiftUIView.swift
 //  bonsai
 //
-//  Created by antuan.khoanh on 18/12/2022.
+//  Created by antuan.khoanh on 28/01/2023.
 //
 
 import SwiftUI
 
-struct BudgetList: View {
+struct AccountList: View {
     @EnvironmentObject var purchaseService: PurchaseService
     @State private var isSubscriptionPresented = false
     @State private var isAllSetPresented = false
@@ -182,7 +182,7 @@ struct BudgetList: View {
     }
 }
 
-struct BudgetList_Previews: PreviewProvider {
+struct AccountList_Previews: PreviewProvider {
     static var previews: some View {
         BudgetList()
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
@@ -190,3 +190,4 @@ struct BudgetList_Previews: PreviewProvider {
     }
     
 }
+

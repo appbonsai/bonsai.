@@ -35,7 +35,7 @@ enum BonsaiImage {
     static var plus: Image { Image(systemName: "plus") }
     static var textformatAlt: Image { Image(systemName: "textformat.alt") }
     static var pencil: Image { Image(systemName: "rectangle.and.pencil.and.ellipsis") }
-    static var settings: Image { Image(systemName: "slider.horizontal.3") }
+    static var settings: Image { Image(systemName: "gear.circle") }
     static var folder: Image { Image(systemName: "folder.fill") }
     static var star: Image { Image(systemName: "star.square") }
     static var light: Image { Image(systemName: "light.max") }
@@ -43,6 +43,10 @@ enum BonsaiImage {
     static var star_fill: Image { Image(systemName: "star.fill") }
     static var trash: Image { Image(systemName: "trash") }
     static var unselect: Image { Image(systemName: "filemenu.and.selection") }
+    static var hexagongrid: Image { Image(systemName: "circle.hexagongrid.circle.fill") }
+    static var hexagongridFill: Image { Image(systemName: "circle.hexagongrid.fill") }
+    static var creditcard: Image { Image(systemName: "creditcard.circle.fill") }
+    static var creditcard123: Image { Image(systemName: "creditcard.and.123") }
 }
 
 enum BonsaiColor {
