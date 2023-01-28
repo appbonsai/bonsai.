@@ -159,7 +159,7 @@ struct HomeContainerView: View {
                             isBudgetListPresented = true
                         }
                     Spacer()
-                    BonsaiImage.creditcard123
+                    BonsaiImage.creditcardRectangle
                         .symbolRenderingMode(.multicolor)
                         .foregroundStyle(BonsaiColor.orange)
                         .font(.system(size: 22))
@@ -169,8 +169,8 @@ struct HomeContainerView: View {
                     Spacer()
                     BonsaiImage.settings
                         .font(.system(size: 22))
-                        .symbolRenderingMode(.palette)
-                        .foregroundStyle(BonsaiColor.blue)
+                        .symbolRenderingMode(.multicolor)
+                        .foregroundStyle(BonsaiColor.newPurple)
                         .onTapGesture {
                             isSettingPresented = true
                         }

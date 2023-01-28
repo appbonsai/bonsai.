@@ -143,6 +143,47 @@ struct BudgetDetails: View {
         }
     }
     
+    fileprivate func createBudgetCoordinator() -> some View {
+        HStack {
+            Spacer()
+            ZStack {
+                BonsaiColor.card
+                    .blur(radius: 1)
+                    .opacity(0.8)
+                HStack {
+                    Spacer()
+                    BonsaiImage.info
+                        .symbolRenderingMode(.multicolor)
+                        .foregroundStyle(BonsaiColor.green)
+                        .font(.system(size: 22))
+                        .onTapGesture {
+                            if budget != nil {
+                                isSuggestionPresented = true
+                            }
+                        }
+                    Spacer()
+                    BonsaiImage.pencil
+                        .symbolRenderingMode(.multicolor)
+                        .foregroundStyle(BonsaiColor.green)
+                        .font(.system(size: 22))
+                        .onTapGesture {
+                            if budget != nil {
+                                isEditBudgetPresented = true
+                            }
+                        }
+                    Spacer()
+                }
+            }
+            .frame(
+                width: UIScreen.main.bounds.width / 3,
+                height: 40,
+                alignment: .center
+            )
+            .cornerRadius(13)
+            Spacer()
+        }
+    }
+    
     var body: some View {
         VStack {
             ActionScrollView(spaceName: "Budget") { completion in
@@ -171,30 +212,12 @@ struct BudgetDetails: View {
                         if UserSettings.showDragDownHint {
                             DragDownHintView().frame(maxWidth: .infinity)
                         }
+                        createBudgetCoordinator()
                         HStack {
                             BudgetNameView(name: budget?.name.takeIfNotEmpty() ?? "default_name")
                                 .padding(.leading, 16)
                             
                             Spacer()
-                            BonsaiImage.light
-                                .foregroundColor(.white)
-                                .font(.system(size: 22))
-                                .padding(.trailing, 12)
-                                .onTapGesture {
-                                    if budget != nil {
-                                        isSuggestionPresented = true
-                                    }
-                                }
-                            
-                            BonsaiImage.pencil
-                                .foregroundColor(.white)
-                                .font(.system(size: 22))
-                                .padding(.trailing, 12)
-                                .onTapGesture {
-                                    if budget != nil {
-                                        isEditBudgetPresented = true
-                                    }
-                                }
                         } // HStack
                         
                         budgetMoneyTitleView()

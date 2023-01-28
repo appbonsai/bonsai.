@@ -34,8 +34,8 @@ enum BonsaiImage {
     static var xMark: Image { Image(systemName: "xmark") }
     static var plus: Image { Image(systemName: "plus") }
     static var textformatAlt: Image { Image(systemName: "textformat.alt") }
-    static var pencil: Image { Image(systemName: "rectangle.and.pencil.and.ellipsis") }
-    static var settings: Image { Image(systemName: "gear.circle") }
+    static var pencil: Image { Image(systemName: "pencil.circle.fill") }
+    static var settings: Image { Image(systemName: "gearshape.circle.fill") }
     static var folder: Image { Image(systemName: "folder.fill") }
     static var star: Image { Image(systemName: "star.square") }
     static var light: Image { Image(systemName: "light.max") }
@@ -47,6 +47,9 @@ enum BonsaiImage {
     static var hexagongridFill: Image { Image(systemName: "circle.hexagongrid.fill") }
     static var creditcard: Image { Image(systemName: "creditcard.circle.fill") }
     static var creditcard123: Image { Image(systemName: "creditcard.and.123") }
+    static var creditcardRectangle: Image { Image(systemName: "rectangle.on.rectangle.circle.fill") }
+    static var info: Image { Image(systemName: "info.circle.fill") }
+
 }
 
 enum BonsaiColor {
