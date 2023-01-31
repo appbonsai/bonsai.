@@ -14,28 +14,22 @@ struct AccountList: View {
     @Environment(\.dismiss) var dismiss
 
     @FetchRequest(sortDescriptors: [])
-    private var fetchedBudgets: FetchedResults<Budget>
-    @FetchRequest(sortDescriptors: [])
-    private var accounts: FetchedResults<Account>
-    @State var selectedBudget: Budget?
+    private var fetchedAccounts: FetchedResults<Account>
+    @State var selectedAccount: Account?
     
     init() {
-        self._selectedBudget = .init(initialValue: fetchedBudgets.first)
+        self._selectedAccount = .init(initialValue: fetchedAccounts.first)
     }
     
     private var isPremium: Bool {
         if purchaseService.isSubscriptionActive {
             return true
         }
-        let limitedBudgets = 3
-        var limitedAccountBudgets: [FetchedResults<Budget>.Element] = []
-        for account in accounts {
-//            limitedAccountBudgets = fetchedBudgets.filter { $0.accountId == account.id }
-        }
-        return limitedAccountBudgets.count < limitedBudgets
+        let limitedAccounts = 3
+        return fetchedAccounts.count < limitedAccounts
     }
     
-    @State var isCreateBudgetPresented: Bool = false
+    @State var isCreateAccountPresented: Bool = false
     @State var isDeleteConfirmationPresented = false
     @Environment(\.managedObjectContext) private var moc
     
@@ -47,14 +41,14 @@ struct AccountList: View {
                     .ignoresSafeArea()
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(spacing: 16) {
-                        ForEach(fetchedBudgets) { budget in
+                        ForEach(fetchedAccounts) { account in
                             HStack() {
                                 VStack(alignment: .leading) {
-                                    Text(LocalizedStringKey(budget.name))
+                                    Text(LocalizedStringKey(account.title))
                                         .foregroundColor(BonsaiColor.text)
                                         .font(BonsaiFont.title_headline_17)
                                     Spacer()
-                                    Text("\(budget.amount)")
+                                    Text("\(account.id)")
                                         .foregroundColor(BonsaiColor.text)
                                         .font(BonsaiFont.body_17)
                                 }
@@ -67,14 +61,14 @@ struct AccountList: View {
                                 RoundedRectangle(cornerRadius: 13)
                                     .stroke(
                                         BonsaiColor.mainPurple,
-                                        lineWidth: budget == selectedBudget ? 2 : 0
+                                        lineWidth: account == selectedAccount ? 2 : 0
                                     )
                             )
                             .onTapGesture {
-                                if selectedBudget == budget {
-                                    selectedBudget = nil
+                                if selectedAccount == account {
+                                    selectedAccount = nil
                                 } else {
-                                    selectedBudget = budget
+                                    selectedAccount = account
                                 }
                             }
                         } // ForEach
@@ -94,8 +88,8 @@ struct AccountList: View {
                                     .bold()
                             }
                         }
-                        .opacity(selectedBudget == nil ? 0.5 : 1)
-                        .disabled(selectedBudget == nil)
+                        .opacity(selectedAccount == nil ? 0.5 : 1)
+                        .disabled(selectedAccount == nil)
                         
                     } // VStack
                     .padding(2)
@@ -103,7 +97,7 @@ struct AccountList: View {
                 .padding(.top, 24)
                 .padding(.horizontal, 16)
             } // ZStack
-            .navigationTitle(LocalizedStringKey("budget.default_name"))
+            .navigationTitle(LocalizedStringKey("account.default_name"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -116,14 +110,14 @@ struct AccountList: View {
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    if fetchedBudgets.count != 0 {
-                        removeBudgetButton()
+                    if fetchedAccounts.count != 0 {
+                        removeAccountButton()
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         if isPremium {
-                            isCreateBudgetPresented = true
+                            isCreateAccountPresented = true
                         } else {
                             isSubscriptionPresented = true
                         }
@@ -134,13 +128,13 @@ struct AccountList: View {
                 }
             }
         } // NavigationView
-        .fullScreenCover(isPresented: $isCreateBudgetPresented) {
-            CreateEditBudget(kind: .new) { budget in
-                if let budget = budget {
-                    self.selectedBudget = budget
-                }
-            }
-        }
+//        .fullScreenCover(isPresented: $isCreateAccountPresented) {
+//            CreateEditBudget(kind: .new) { budget in
+//                if let budget = budget {
+//                    self.selectedBudget = budget
+//                }
+//            }
+//        }
         .fullScreenCover(isPresented: $isSubscriptionPresented) {
             Subscriptions(completion: {
                 isAllSetPresented = true
@@ -151,7 +145,7 @@ struct AccountList: View {
         }
     }
     
-    func removeBudgetButton() -> some View {
+    func removeAccountButton() -> some View {
         BonsaiImage.trash
             .onTapGesture {
                 isDeleteConfirmationPresented = true
@@ -165,14 +159,14 @@ struct AccountList: View {
             ) {
                 Button(LocalizedStringKey("tags.delete.confirmation"),
                        role: .destructive) {
-                    if let selectedBudget {
-                        moc.delete(selectedBudget)
+                    if let selectedAccount {
+                        moc.delete(selectedAccount)
                         do {
                             try moc.save()
                         } catch (let e) {
                             assertionFailure(e.localizedDescription)
                         }
-                        self.selectedBudget = nil
+                        self.selectedAccount = nil
                     }
                 }
                 Button(LocalizedStringKey("Cancel_title"), role: .cancel) {

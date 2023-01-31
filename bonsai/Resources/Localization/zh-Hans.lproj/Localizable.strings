@@ -1,4 +1,14 @@
 
+"account.new" = "新账户";
+"account.edit" = "编辑账户";
+"account.create" = "创建";
+"account.save" = "保存";
+"account.name" = "名称（可选）";
+"account.delete.button" = "删除账户";
+"account.delete.confirmation" = "是的，删除我的账户";
+"account.swipe_up_suggestion" = "向上拖动以查看账户操作";
+"account.default_name" = "账户";
+
 "transaction.delete.button" = "删除交易";
 "delete_transaction_Confirmation" = "你确定要删除此交易吗？";
 "transaction.delete.confirmation" = "是的，删除交易";

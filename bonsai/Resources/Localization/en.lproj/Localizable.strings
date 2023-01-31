@@ -6,6 +6,16 @@
   
 */
 
+"account.new" = "New account";
+"account.edit" = "Edit account";
+"account.create" = "Create";
+"account.save" = "Save";
+"account.name" = "Name (optional)";
+"account.delete.button" = "Delete account";
+"account.delete.confirmation" = "Yes, delete my account";
+"account.swipe_up_suggestion" = "Drag up to see account operations";
+"account.default_name" = "Account";
+
 "you_dont_have_a_transactions_history_yet" = "You don't have transactions history yet";
 "create_transactions" = "Create first transaction now!";
 

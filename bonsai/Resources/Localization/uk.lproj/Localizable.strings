@@ -6,6 +6,16 @@
   
 */
 
+"account.new" = "Новий обліковий запис";
+"account.edit" = "Редагувати обліковий запис";
+"account.create" = "Створити";
+"account.save" = "Зберегти";
+"account.name" = "Ім'я (необов'язково)";
+"account.delete.button" = "Видалити обліковий запис";
+"account.delete.confirmation" = "Так, видалити мій обліковий запис";
+"account.swipe_up_suggestion" = "Перетягніть вгору, щоб переглянути операції з обліковим записом";
+"account.default_name" = "Обліковий запис";
+
 "transaction.delete.button" = "Видалити транзакцію";
 "delete_transaction_Confirmation" = "Ви впевнені, що хочете видалити цю транзакцію?";
 "transaction.delete.confirmation" = "Так, видалити транзакцію";

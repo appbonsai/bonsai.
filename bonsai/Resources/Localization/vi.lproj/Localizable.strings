@@ -6,6 +6,16 @@
   
 */
 
+"account.new" = "Tài khoản mới";
+"account.edit" = "Sửa tài khoản";
+"account.create" = "Tạo";
+"account.save" = "Lưu";
+"account.name" = "Tên (tùy chọn)";
+"account.delete.button" = "Xóa tài khoản";
+"account.delete.confirmation" = "Có, xóa tài khoản của tôi";
+"account.swipe_up_suggestion" = "Kéo lên để xem các thao tác tài khoản";
+"account.default_name" = "Tài khoản";
+
 "transaction.delete.button" = "Xóa giao dịch";
 "delete_transaction_Confirmation" = "Bạn có chắc chắn muốn xóa giao dịch này không?";
 "transaction.delete.confirmation" = "Vâng, xóa giao dịch";

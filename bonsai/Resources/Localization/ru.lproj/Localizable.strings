@@ -6,6 +6,16 @@
   
 */
 
+"account.new" = "Новый аккаунт";
+"account.edit" = "Редактировать аккаунт";
+"account.create" = "Создать";
+"account.save" = "Сохранить";
+"account.name" = "Имя (необязательно)";
+"account.delete.button" = "Удалить аккаунт";
+"account.delete.confirmation" = "Да, удалить мой аккаунт";
+"account.swipe_up_suggestion" = "Перетащите вверх, чтобы увидеть операции с аккаунтом";
+"account.default_name" = "Аккаунт";
+
 "transaction.delete.button" = "Удалить транзакцию";
 "delete_transaction_Confirmation" = "Вы уверены, что хотите удалить эту транзакцию?";
 "transaction.delete.confirmation" = "Да, удалить транзакцию";
