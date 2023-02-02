@@ -175,7 +175,7 @@ struct BudgetDetails: View {
                 }
             }
             .frame(
-                width: UIScreen.main.bounds.width / 3,
+                width: 80,
                 height: 40,
                 alignment: .center
             )

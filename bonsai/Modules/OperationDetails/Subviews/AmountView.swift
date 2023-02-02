@@ -36,7 +36,6 @@ struct AmountView: View {
                   limit: characterLimit
                )
             )
-            .modifier(DecimalOnly(text: $text))
             .padding(.leading, 8)
       }
       .contentShape(Rectangle())
