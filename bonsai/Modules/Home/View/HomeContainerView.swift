@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 struct HomeContainerView: View {
-    
+    @EnvironmentObject var appStoreModel: AppstoreModel
     @State private var isSettingPresented = false
     @State private var isBudgetListPresented = false
     @State private var isAccountListPresented = false
@@ -209,10 +209,16 @@ struct HomeContainerView: View {
                 }
             } content: {
                 VStack(alignment: .leading, spacing: 0) {
+                    UpdateView(
+                        appURL: appStoreModel.appURL,
+                        showUpdate: appStoreModel.showUpdate
+                    )
+                    .padding(.bottom, 4)
+                    
                     if UserSettings.showDragDownHint {
                         DragDownHintView().frame(maxWidth: .infinity)
                     }
-                    
+  
                     createHomeCoordinator()
                     
                     Text(LocalizedStringKey("net.worth.stat"))

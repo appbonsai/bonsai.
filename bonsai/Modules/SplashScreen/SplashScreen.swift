@@ -12,6 +12,8 @@ struct SplashScreen: View {
     @StateObject private var purchaseService = PurchaseService()
     @StateObject private var chartViewModel = ChartViewModel()
     @StateObject private var budgetTreeService = BudgetTreeService()
+    @StateObject private var appStoreModel = AppstoreModel()
+
     @State var isActive : Bool = false
     @State private var size = 0.8
     @State private var opacity = 0.5
@@ -24,6 +26,7 @@ struct SplashScreen: View {
                 .environmentObject(purchaseService)
                 .environmentObject(chartViewModel)
                 .environmentObject(budgetTreeService)
+                .environmentObject(appStoreModel)
         } else {
             ZStack {
                 BonsaiColor.back
