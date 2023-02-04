@@ -218,7 +218,7 @@ struct BudgetDetails: View {
                                 .padding(.leading, 16)
                             Spacer()
                         } // HStack
-                        
+                        .padding(.top, 4)
                         budgetMoneyTitleView()
                             .padding(.top, 12)
                         

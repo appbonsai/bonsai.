@@ -28,10 +28,14 @@ final class AppstoreModel: ObservableObject {
     var showUpdate: Bool = false
     
     init() {
-        getAppInfo { [weak self] appStoreVersion, _ in
+        _ = getAppInfo { [weak self] appStoreVersion, _ in
             let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
             self?.appURL = appStoreVersion?.trackViewUrl ?? ""
-            self?.showUpdate = currentVersion == appStoreVersion?.version
+            if currentVersion != appStoreVersion?.version {
+                self?.showUpdate = true
+            } else {
+                self?.showUpdate = false
+            }
         }
     }
     
