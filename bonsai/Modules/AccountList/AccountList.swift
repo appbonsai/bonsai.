@@ -25,7 +25,7 @@ struct AccountList: View {
         if purchaseService.isSubscriptionActive {
             return true
         }
-        let limitedAccounts = 3
+        let limitedAccounts = 6
         return fetchedAccounts.count < limitedAccounts
     }
     

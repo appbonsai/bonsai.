@@ -28,52 +28,58 @@ final class AppstoreModel: ObservableObject {
     var showUpdate: Bool = false
     
     init() {
-        _ = getAppInfo { [weak self] appStoreVersion, _ in
-            let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-            self?.appURL = appStoreVersion?.trackViewUrl ?? ""
-            if currentVersion != appStoreVersion?.version {
-                self?.showUpdate = true
-            } else {
-                self?.showUpdate = false
+        _ = getAppInfo { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            switch result {
+            case .success(let info):
+                let currentVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+                self.appURL = info.trackViewUrl
+                self.showUpdate = currentVersion != info.version
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
     
-    private func getAppInfo(completion: @escaping (AppInfo?, Error?) -> Void) -> URLSessionDataTask? {
+    private func getAppInfo(completion: @escaping (Result<AppInfo, Error>) -> Void) -> URLSessionDataTask? {
         guard let identifier = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String,
               let url = URL(string: "http://itunes.apple.com/lookup?bundleId=\(identifier)") else {
             DispatchQueue.main.async {
-                completion(nil, VersionError.invalidBundleInfo)
+                completion(.failure(VersionError.invalidBundleInfo))
             }
             return nil
         }
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            do {
-                if let error = error { throw error }
-                guard let data = data else { throw VersionError.invalidResponse }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
                 
-                print("Data:::",data)
-                print("response###",response!)
+                guard let data = data else {
+                    completion(.failure(VersionError.invalidResponse))
+                    return
+                }
                 
-                let result = try JSONDecoder().decode(LookupResult.self, from: data)
-                
-                let dictionary = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                
-                print("dictionary",dictionary!)
-                
-                
-                guard let info = result.results.first else { throw VersionError.invalidResponse }
-                print("result:::",result)
-                completion(info, nil)
-            } catch {
-                completion(nil, error)
+                do {
+                    let result = try JSONDecoder().decode(LookupResult.self, from: data)
+                    guard let info = result.results.first else {
+                        completion(.failure(VersionError.invalidResponse))
+                        return
+                    }
+                    completion(.success(info))
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }
         task.resume()
-        
-        print("task ******", task)
         return task
     }
+
 }
 
 struct UpdateView: View {

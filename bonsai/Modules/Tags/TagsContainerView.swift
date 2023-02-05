@@ -18,7 +18,7 @@ struct TagsContainerView: View {
         if purchaseService.isSubscriptionActive {
             return true
         }
-        let limitedTags = 3
+        let limitedTags = 6
         return tags.count < limitedTags
     }
     

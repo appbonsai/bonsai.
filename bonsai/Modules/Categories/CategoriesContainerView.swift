@@ -17,7 +17,7 @@ struct CategoriesContainerView: View {
         if purchaseService.isSubscriptionActive {
             return true
         }
-        let limitedCategories = 3
+        let limitedCategories = 6
         return categories.count < limitedCategories
     }
     

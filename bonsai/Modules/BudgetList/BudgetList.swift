@@ -27,7 +27,7 @@ struct BudgetList: View {
         if purchaseService.isSubscriptionActive {
             return true
         }
-        let limitedBudgets = 3
+        let limitedBudgets = 6
         var limitedAccountBudgets: [FetchedResults<Budget>.Element] = []
         for account in accounts {
 //            limitedAccountBudgets = fetchedBudgets.filter { $0.accountId == account.id }
