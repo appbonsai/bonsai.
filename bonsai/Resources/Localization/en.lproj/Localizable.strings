@@ -6,6 +6,8 @@
   
 */
 
+"delete_Account_Confirmation" = "Are you sure you want to delete this account?";
+
 "account.new" = "New account";
 "account.edit" = "Edit account";
 "account.create" = "Create";

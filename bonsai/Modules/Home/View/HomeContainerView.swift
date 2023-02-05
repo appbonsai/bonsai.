@@ -150,23 +150,23 @@ struct HomeContainerView: View {
                     .blur(radius: 1)
                     .opacity(0.8)
                 HStack {
-//                    Spacer()
-//                    BonsaiImage.creditcard
-//                        .symbolRenderingMode(.multicolor)
-//                        .foregroundStyle(BonsaiColor.green)
-//                        .font(.system(size: 22))
-//                        .onTapGesture {
-//                            isBudgetListPresented = true
-//                        }
-//                    Spacer()
-//                    BonsaiImage.creditcardRectangle
-//                        .symbolRenderingMode(.multicolor)
-//                        .foregroundStyle(BonsaiColor.orange)
-//                        .font(.system(size: 22))
-//                        .onTapGesture {
-//                            isAccountListPresented = true
-//                        }
-//                    Spacer()
+                    Spacer()
+                    BonsaiImage.creditcard
+                        .symbolRenderingMode(.multicolor)
+                        .foregroundStyle(BonsaiColor.green)
+                        .font(.system(size: 22))
+                        .onTapGesture {
+                            isBudgetListPresented = true
+                        }
+                    Spacer()
+                    BonsaiImage.creditcardRectangle
+                        .symbolRenderingMode(.multicolor)
+                        .foregroundStyle(BonsaiColor.orange)
+                        .font(.system(size: 22))
+                        .onTapGesture {
+                            isAccountListPresented = true
+                        }
+                    Spacer()
                     BonsaiImage.settings
                         .font(.system(size: 22))
                         .symbolRenderingMode(.multicolor)
@@ -174,11 +174,11 @@ struct HomeContainerView: View {
                         .onTapGesture {
                             isSettingPresented = true
                         }
-//                    Spacer()
+                    Spacer()
                 }
             }
             .frame(
-                width: 40,
+                width: 120,
                 height: 40,
                 alignment: .center
             )

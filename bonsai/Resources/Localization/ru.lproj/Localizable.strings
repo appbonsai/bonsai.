@@ -6,6 +6,8 @@
   
 */
 
+"delete_Account_Confirmation" = "Вы уверены, что хотите удалить этот аккаунт?";
+
 "account.new" = "Новый аккаунт";
 "account.edit" = "Редактировать аккаунт";
 "account.create" = "Создать";

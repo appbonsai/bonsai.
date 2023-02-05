@@ -5,7 +5,7 @@
   Created by antuan.khoanh on 06/09/2022.
   
 */
-
+"delete_Account_Confirmation" = "Czy na pewno chcesz usunąć to konto?";
 "account.new" = "Nowe konto";
 "account.edit" = "Edytuj konto";
 "account.create" = "Utwórz";

@@ -6,6 +6,7 @@
   
 */
 
+"delete_Account_Confirmation" = "Bạn có chắc muốn xóa tài khoản này?";
 "account.new" = "Tài khoản mới";
 "account.edit" = "Sửa tài khoản";
 "account.create" = "Tạo";

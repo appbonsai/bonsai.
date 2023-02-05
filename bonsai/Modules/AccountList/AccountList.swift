@@ -128,13 +128,13 @@ struct AccountList: View {
                 }
             }
         } // NavigationView
-//        .fullScreenCover(isPresented: $isCreateAccountPresented) {
-//            CreateEditBudget(kind: .new) { budget in
+        .fullScreenCover(isPresented: $isCreateAccountPresented) {
+            CreateEditAccount(kind: .new) { budget in
 //                if let budget = budget {
 //                    self.selectedBudget = budget
 //                }
-//            }
-//        }
+            }
+        }
         .fullScreenCover(isPresented: $isSubscriptionPresented) {
             Subscriptions(completion: {
                 isAllSetPresented = true
