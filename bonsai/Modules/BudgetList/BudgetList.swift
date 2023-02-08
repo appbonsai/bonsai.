@@ -79,23 +79,25 @@ struct BudgetList: View {
                             }
                         } // ForEach
                         
-                        Button {
-                            #warning("Choose and update selected budget")
-                            dismiss()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 13)
-                                    .frame(width: 192, height: 48)
-                                    .foregroundColor(BonsaiColor.mainPurple)
-
-                                Text(LocalizedStringKey("SelectCurrencyPage.Choose"))
-                                    .foregroundColor(BonsaiColor.card)
-                                    .font(.system(size: 17))
-                                    .bold()
+                        if !fetchedBudgets.isEmpty {
+                            Button {
+#warning("Choose and update selected budget")
+                                dismiss()
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 13)
+                                        .frame(width: 192, height: 48)
+                                        .foregroundColor(BonsaiColor.mainPurple)
+                                    
+                                    Text(LocalizedStringKey("SelectCurrencyPage.Choose"))
+                                        .foregroundColor(BonsaiColor.card)
+                                        .font(.system(size: 17))
+                                        .bold()
+                                }
                             }
+                            .opacity(selectedBudget == nil ? 0.5 : 1)
+                            .disabled(selectedBudget == nil)                            
                         }
-                        .opacity(selectedBudget == nil ? 0.5 : 1)
-                        .disabled(selectedBudget == nil)
                         
                     } // VStack
                     .padding(2)

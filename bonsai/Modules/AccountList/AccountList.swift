@@ -73,23 +73,25 @@ struct AccountList: View {
                             }
                         } // ForEach
                         
-                        Button {
-                            #warning("Choose and update selected budget")
-                            dismiss()
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 13)
-                                    .frame(width: 192, height: 48)
-                                    .foregroundColor(BonsaiColor.mainPurple)
-
-                                Text(LocalizedStringKey("SelectCurrencyPage.Choose"))
-                                    .foregroundColor(BonsaiColor.card)
-                                    .font(.system(size: 17))
-                                    .bold()
+                        if !fetchedAccounts.isEmpty {
+                            Button {
+#warning("Choose and update selected budget")
+                                dismiss()
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 13)
+                                        .frame(width: 192, height: 48)
+                                        .foregroundColor(BonsaiColor.mainPurple)
+                                    
+                                    Text(LocalizedStringKey("SelectCurrencyPage.Choose"))
+                                        .foregroundColor(BonsaiColor.card)
+                                        .font(.system(size: 17))
+                                        .bold()
+                                }
                             }
+                            .opacity(selectedAccount == nil ? 0.5 : 1)
+                            .disabled(selectedAccount == nil)
                         }
-                        .opacity(selectedAccount == nil ? 0.5 : 1)
-                        .disabled(selectedAccount == nil)
                         
                     } // VStack
                     .padding(2)
@@ -129,10 +131,10 @@ struct AccountList: View {
             }
         } // NavigationView
         .fullScreenCover(isPresented: $isCreateAccountPresented) {
-            CreateEditAccount(kind: .new) { budget in
-//                if let budget = budget {
-//                    self.selectedBudget = budget
-//                }
+            CreateEditAccount(kind: .new) { account in
+                if let account {
+                    self.selectedAccount = account
+                }
             }
         }
         .fullScreenCover(isPresented: $isSubscriptionPresented) {
