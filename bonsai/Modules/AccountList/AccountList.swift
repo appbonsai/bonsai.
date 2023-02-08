@@ -155,11 +155,11 @@ struct AccountList: View {
             .foregroundColor(BonsaiColor.secondary)
             .opacity(0.8)
             .confirmationDialog(
-                LocalizedStringKey("delete.tags.confirmation"),
+                LocalizedStringKey("delete_Account_Confirmation"),
                 isPresented: $isDeleteConfirmationPresented,
                 titleVisibility: .visible
             ) {
-                Button(LocalizedStringKey("tags.delete.confirmation"),
+                Button(LocalizedStringKey("account.delete.confirmation"),
                        role: .destructive) {
                     if let selectedAccount {
                         moc.delete(selectedAccount)

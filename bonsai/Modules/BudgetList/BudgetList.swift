@@ -96,7 +96,7 @@ struct BudgetList: View {
                                 }
                             }
                             .opacity(selectedBudget == nil ? 0.5 : 1)
-                            .disabled(selectedBudget == nil)                            
+                            .disabled(selectedBudget == nil)
                         }
                         
                     } // VStack
@@ -161,11 +161,11 @@ struct BudgetList: View {
             .foregroundColor(BonsaiColor.secondary)
             .opacity(0.8)
             .confirmationDialog(
-                LocalizedStringKey("delete.tags.confirmation"),
+                LocalizedStringKey("delete_Budget_Confirmation"),
                 isPresented: $isDeleteConfirmationPresented,
                 titleVisibility: .visible
             ) {
-                Button(LocalizedStringKey("tags.delete.confirmation"),
+                Button(LocalizedStringKey("budget.delete.confirmation"),
                        role: .destructive) {
                     if let selectedBudget {
                         moc.delete(selectedBudget)
